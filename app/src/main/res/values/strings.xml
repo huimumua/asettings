@@ -72,4 +72,15 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="tv_menu">MENU</string>
+    <string name="main_menu_prs">Parking Recording Setting</string>
+    <string name="main_menu_fp">File Playback</string>
+    <string name="main_menu_mirs">Movie/Still Image Recording Setting</string>
+    <string name="main_menu_vt">Vehicle Type</string>
+    <string name="main_menu_dsfs">Driving Support Function Setting</string>
+    <string name="main_menu_nsg">Notification Sound Guidance</string>
+    <string name="main_menu_ss">System Setting</string>
+    <string name="main_menu_scm">SD Card Menu</string>
+    <string name="main_menu_si">Service Information</string>
+    <string name="main_menu_cs">Communication Setting</string>
 </resources>
