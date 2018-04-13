@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
@@ -67,7 +69,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         HashMap<String, Object> map;
 
-        for (int i=0; i <menuInfo.length-1; i++) {
+        for (int i=0; i <menuInfo.length; i++) {
             map = new HashMap<>();
             map.put("menu_item",getString(menuInfo[i]));
             dataTotal.add(map);
@@ -88,7 +90,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        String clickItem = currentData.get(position).get("menu_item").toString();
+        if(clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
+            Intent intent = new Intent();
+            intent.setClass(SettingsActivity.this, SystemSetting.class);
+            startActivity(intent);
+        }
     }
 
     @Override
