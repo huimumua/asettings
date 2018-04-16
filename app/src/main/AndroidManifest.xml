@@ -19,19 +19,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".module.system.ui.SystemSetting"/>
+        <activity android:name=".module.system.ui.SystemSetting" />
+        <activity android:name=".module.parking.ui.ParkingRecordSetting" />
 
         <receiver
             android:name=".broadcast.SdcardReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <provider
-            android:authorities="com.askey.dvr.cdr7010.setting.provider"
             android:name=".module.settingsprovider.SettingsProvider"
-            android:exported="true"
-            />
+            android:authorities="com.askey.dvr.cdr7010.setting.provider"
+            android:exported="true" />
+
+        <activity android:name=".module.parking.ui.RecordingTimeActivity"></activity>
     </application>
 
 </manifest>
