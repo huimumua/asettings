@@ -26,6 +26,12 @@
             android:name=".broadcast.SdcardReceiver"
             android:enabled="true"
             android:exported="true"/>
+
+        <provider
+            android:authorities="com.askey.dvr.cdr7010.setting.provider"
+            android:name=".module.settingsprovider.SettingsProvider"
+            android:exported="true"
+            />
     </application>
 
 </manifest>
