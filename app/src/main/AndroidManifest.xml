@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".module.system.ui.SystemSetting" />
         <activity android:name=".module.parking.ui.ParkingRecordSetting" />
+        <activity android:name=".module.movie.ui.MovieRecordSetting" />
 
         <receiver
             android:name=".broadcast.SdcardReceiver"
@@ -32,7 +33,10 @@
             android:authorities="com.askey.dvr.cdr7010.setting.provider"
             android:exported="true" />
 
-        <activity android:name=".module.parking.ui.RecordingTimeActivity"></activity>
+        <activity android:name=".module.parking.ui.RecordingTimeActivity" />
+        <activity android:name=".module.movie.ui.AudioRecordActivity" />
+        <activity android:name=".module.movie.ui.ImpactSensitivityActivity" />
+        <activity android:name=".module.movie.ui.InformationStampActivity"></activity>
     </application>
 
 </manifest>

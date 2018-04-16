@@ -1,21 +1,15 @@
-package com.askey.dvr.cdr7010.setting;
+package com.askey.dvr.cdr7010.setting.module.movie.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
-import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
-import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
+import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
@@ -23,11 +17,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener,AdapterView.OnItemClickListener{
+public class ImpactSensitivityActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    private TextView tv_title;
     private ListView list_view;
-    private ImageView iv_icon;
+
     private VerticalProgressBar vp_progress;
 
     private SimpleAdapter simpleAdapter;
@@ -39,87 +32,55 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int screenHeight;
     private int lastPosition;
 
-    private int[] menuInfo = {R.string.main_menu_fp,R.string.main_menu_prs,R.string.main_menu_mirs,R.string.main_menu_vt,R.string.main_menu_dsfs
-    ,R.string.main_menu_nsg,R.string.main_menu_ss,R.string.main_menu_scm,R.string.main_menu_si,R.string.main_menu_cs};
+    private String[] menuInfo;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_impact_sensitivity);
 
         initView();
         initData();
     }
 
     private void initView() {
-        tv_title = findViewById(R.id.tv_title);
         list_view = findViewById(R.id.list_view);
-        iv_icon = findViewById(R.id.iv_icon);
         vp_progress = findViewById(R.id.vp_progress);
 
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();
 
         list_view.setOnItemClickListener(this);
-        list_view.setOnItemSelectedListener(this);
     }
 
-    private void initData(){
-
+    private void initData() {
+        menuInfo = getResources().getStringArray(R.array.impact_setting);
         lastPosition = 0;
         screenHeight = Utils.getScreenHeight(this);
 
         HashMap<String, Object> map;
 
-        for (int i=0; i <menuInfo.length; i++) {
+        for (int i = 0; i < menuInfo.length; i++) {
             map = new HashMap<>();
-            map.put("menu_item",getString(menuInfo[i]));
+            map.put("menu_item", menuInfo[i]);
             dataTotal.add(map);
         }
 
-        if(dataTotal.size()>PERPAGECOUNT) {
+        if (dataTotal.size() > PERPAGECOUNT) {
             vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
-        }else {
+        } else {
             vp_progress.setVisibility(View.INVISIBLE);
         }
 
-        getPerPageData(dataTotal,lastPosition);
+        getPerPageData(dataTotal, lastPosition);
 
         list_view.setVerticalScrollBarEnabled(false);
-        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.menu_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
+        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
         list_view.setAdapter(simpleAdapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String clickItem = currentData.get(position).get("menu_item").toString();
-        if(clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
-            Intent intent = new Intent();
-            intent.setClass(SettingsActivity.this, SystemSetting.class);
-            startActivity(intent);
-        }
-        if (clickItem.equals(getString(R.string.main_menu_prs))) {
-            Intent intent = new Intent();
-            intent.setClass(SettingsActivity.this, ParkingRecordSetting.class);
-            startActivity(intent);
-        }
-        if (clickItem.equals(getString(R.string.main_menu_mirs))) {
-            startActivity(new Intent(SettingsActivity.this, MovieRecordSetting.class));
-        }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //根据需求自己修改
-        if (position%2 == 0) {
-            iv_icon.setImageDrawable(getDrawable(R.drawable.ic_info_black_24dp));
-        }else {
-            iv_icon.setImageDrawable(getDrawable(R.drawable.ic_notifications_black_24dp));
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 
@@ -132,42 +93,42 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                     Log.d("tag", "down" + lastPosition);
                     if (lastPosition < dataTotal.size()) {
                         getPerPageData(dataTotal, lastPosition);
-                    }else {
+                    } else {
                         lastPosition = 0;
                         getPerPageData(dataTotal, lastPosition);
                     }
-                    vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
+                    vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                     simpleAdapter.notifyDataSetChanged();
                     list_view.setSelection(0);
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (!Utils.isFastDoubleClick()) {
-                    if(lastPosition>=PERPAGECOUNT) {
+                    if (lastPosition >= PERPAGECOUNT) {
                         Log.d("tag", "up" + lastPosition);
                         lastPosition -= PERPAGECOUNT;
                         if (lastPosition >= 0) {
                             getPerPageData(dataTotal, lastPosition);
                             vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                             simpleAdapter.notifyDataSetChanged();
-                            list_view.setSelection(PERPAGECOUNT-1);
+                            list_view.setSelection(PERPAGECOUNT - 1);
                         }
                     } else {
                         if (lastPosition == 0) {
-                            if (dataTotal.size()%PERPAGECOUNT != 0) {
-                                lastPosition = dataTotal.size()-dataTotal.size()%PERPAGECOUNT;
+                            if (dataTotal.size() % PERPAGECOUNT != 0) {
+                                lastPosition = dataTotal.size() - dataTotal.size() % PERPAGECOUNT;
                                 Log.d("tag", "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
-                                vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
+                                vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
-                                list_view.setSelection(dataTotal.size()%PERPAGECOUNT-1);//将最后一页的焦点设置到最后一项
+                                list_view.setSelection(dataTotal.size() % PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             } else {
-                                lastPosition = dataTotal.size()-PERPAGECOUNT;
+                                lastPosition = dataTotal.size() - PERPAGECOUNT;
                                 Log.d("tag", "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
-                                vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
+                                vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
-                                list_view.setSelection(PERPAGECOUNT-1);//将最后一页的焦点设置到最后一项
+                                list_view.setSelection(PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             }
                         }
                     }
@@ -184,5 +145,4 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             currentData.add(dataTotal.get(i));
         }
     }
-
 }

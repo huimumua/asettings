@@ -59,6 +59,19 @@
         <item>3</item>
     </string-array>
 
+    <string-array name="all_switch_item">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+    <string-array name="impact_setting">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
     <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
@@ -104,4 +117,10 @@
     <string name="time_20s">20 sec</string>
     <string name="time_30s">30 sec</string>
     <string name="record_time_setting">Record Time Setting</string>
+    <string name="audio_recording">Audio recording</string>
+    <string name="impact_detection_sensitivity">Impact detection sensitivity</string>
+    <string name="information_stamp_record">Information stamp record</string>
+    <string name="movie_record_setting">Movie Record Setting</string>
+    <string name="imapct_sensitivity">Imapct Sensitivity</string>
+    <string name="audio_setting">Audio Setting</string>
 </resources>
