@@ -1,8 +1,17 @@
 package com.askey.dvr.cdr7010.setting;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -41,7 +50,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     private int[] menuInfo = {R.string.main_menu_fp,R.string.main_menu_prs,R.string.main_menu_mirs,R.string.main_menu_vt,R.string.main_menu_dsfs
     ,R.string.main_menu_nsg,R.string.main_menu_ss,R.string.main_menu_scm,R.string.main_menu_si,R.string.main_menu_cs};
-
+    private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +58,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         initView();
         initData();
+        requestSdcardPermission();
     }
 
     private void initView() {
@@ -182,6 +192,33 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         currentData.clear();
         for (int i = lastPosition; i <= dataTotal.size() - 1 && i >= 0 && i < PERPAGECOUNT + lastPosition; i++) {
             currentData.add(dataTotal.get(i));
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void requestSdcardPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 第一次请求权限时，用户如果拒绝，下一次请求shouldShowRequestPermissionRationale()返回true
+            // 向用户解释为什么需要这个权限
+            String setSdcardDetail = getResources().getString(R.string.set_sdcard_permission);
+            String inserted_ok = getResources().getString(R.string.inserted_ok);
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                new AlertDialog.Builder(this)
+                        .setMessage(setSdcardDetail)
+                        .setPositiveButton(inserted_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ActivityCompat.requestPermissions((Activity) mContext,
+                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
+                            }
+                        })
+                        .show();
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
+            }
+        } else {
+            Log.i("test", "requestSdcardPermission:true");
         }
     }
 

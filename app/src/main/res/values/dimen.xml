@@ -4,6 +4,8 @@
     <dimen name="system_settings_item_height">28dp</dimen>
     <dimen name="progress_bar_width">10dp</dimen>
     <dimen name="progress_bar_height">150dp</dimen>
+    <dimen name="brightness_width">20dp</dimen>
+    <dimen name="brightness_margin">20dp</dimen>
 
     <dimen name="title_size">24sp</dimen>
     <dimen name="content_size">16sp</dimen>

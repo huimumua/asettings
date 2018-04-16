@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -57,6 +58,7 @@ public class SystemSetting extends BaseActivity implements AdapterView.OnItemCli
         vp_progress = findViewById(R.id.vp_progress);
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();
+        list_view.setOnItemClickListener(this);
     }
 
     private void initData() {
@@ -135,12 +137,35 @@ public class SystemSetting extends BaseActivity implements AdapterView.OnItemCli
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Log.i("SetingActivity", "=position==" + position);
-        String clickItem = currentData.get(position).get("menu_item").toString();
-        Log.i("SetingActivity", "=clickItem==" + clickItem + "===" + clickItem.equals(getResources().getString(R.string.main_menu_ss)));
+        String clickItem = currentData.get(position).get("system_settings_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_system_settings_date_time))) {
             //            Intent intent = new Intent();
             //            intent.setClass(SystemSetting.this, DateTimeSetting.class);
             //            startActivity(intent);
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_playback_volume))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_lcd_brightness))) {
+            Intent intent = new Intent();
+            intent.setClass(SystemSetting.this, LCDBrightnessSetting.class);
+            startActivity(intent);
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_screen_power_saving))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_tool))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_bluetooth))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_infrared_led))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
+
         }
     }
 
