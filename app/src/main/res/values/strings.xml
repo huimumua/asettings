@@ -97,6 +97,7 @@
     <string name="tv_system_settings_2nd_camera">2nd Camera</string>
     <string name="tv_system_settings_system_update">System update</string>
     <string name="tv_system_settings_system_information">System Information</string>
+
     <string name="parking_record_rt">Recording time</string>
     <string name="parking_record_settings">Parking Record Settings</string>
     <string name="parking_recording_off">OFF</string>
@@ -104,4 +105,7 @@
     <string name="time_20s">20 sec</string>
     <string name="time_30s">30 sec</string>
     <string name="record_time_setting">Record Time Setting</string>
+
+    <string name="set_sdcard_permission">Application for SD card permissions</string>
+    <string name="inserted_ok">OK</string>
 </resources>

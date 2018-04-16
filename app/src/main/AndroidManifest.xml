@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.askey.dvr.cdr7010.setting">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <application
         android:name=".application.SettingApplication"
         android:allowBackup="true"
@@ -21,6 +24,7 @@
         </activity>
         <activity android:name=".module.system.ui.SystemSetting" />
         <activity android:name=".module.parking.ui.ParkingRecordSetting" />
+        <activity android:name=".module.system.ui.LCDBrightnessSetting" />
 
         <receiver
             android:name=".broadcast.SdcardReceiver"
@@ -33,6 +37,7 @@
             android:exported="true" />
 
         <activity android:name=".module.parking.ui.RecordingTimeActivity"></activity>
+
     </application>
 
 </manifest>
