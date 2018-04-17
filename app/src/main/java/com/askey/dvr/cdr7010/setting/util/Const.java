@@ -17,6 +17,8 @@ public class Const {
      */
     public static final boolean DEBUG = true;
 
+    public static final String PLAY_BACK_PAKAGE="com.askey.jvc.mediaplayer";
+
 
 
 }

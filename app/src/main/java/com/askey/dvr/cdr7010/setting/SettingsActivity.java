@@ -25,6 +25,8 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
+import com.askey.dvr.cdr7010.setting.util.AppUtil;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
@@ -107,14 +109,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent();
             intent.setClass(SettingsActivity.this, SystemSetting.class);
             startActivity(intent);
-        }
-        if (clickItem.equals(getString(R.string.main_menu_prs))) {
+        }else if (clickItem.equals(getString(R.string.main_menu_prs))) {
             Intent intent = new Intent();
             intent.setClass(SettingsActivity.this, ParkingRecordSetting.class);
             startActivity(intent);
-        }
-        if (clickItem.equals(getString(R.string.main_menu_mirs))) {
+        }else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
             startActivity(new Intent(SettingsActivity.this, MovieRecordSetting.class));
+        }else if(clickItem.equals(getString(R.string.main_menu_fp))){
+            AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
         }
     }
 
