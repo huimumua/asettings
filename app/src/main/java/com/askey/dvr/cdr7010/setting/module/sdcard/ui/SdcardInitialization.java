@@ -1,32 +1,28 @@
 package com.askey.dvr.cdr7010.setting.module.sdcard.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 
 /**
  * 项目名称：settings
  * 类描述：
  * 创建人：skysoft  charles.bai
- * 创建时间：2018/4/8 13:29
+ * 创建时间：2018/4/17 15:50
  * 修改人：skysoft
- * 修改时间：2018/4/8 13:29
+ * 修改时间：2018/4/17 15:50
  * 修改备注：
  */
-public class SdcardSetting extends BaseActivity {
-
-    private static final String TAG = "SdcardSetting";
+public class SdcardInitialization extends BaseActivity {
+    private static final String TAG = "SdcardInitialization";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        startActivity(new Intent(mContext, SdcardInformation.class));
-        startActivity(new Intent(mContext, SdcardInitialization.class));
-
-}
+        setContentView(R.layout.activity_sdcard_init);
+    }
 
 
 }

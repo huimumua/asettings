@@ -25,6 +25,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
+import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
@@ -109,21 +110,21 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             Intent intent = new Intent();
-            intent.setClass(SettingsActivity.this, SystemSetting.class);
+            intent.setClass(mContext, SystemSetting.class);
             startActivity(intent);
         }else if (clickItem.equals(getString(R.string.main_menu_prs))) {
             Intent intent = new Intent();
-            intent.setClass(SettingsActivity.this, ParkingRecordSetting.class);
+            intent.setClass(mContext, ParkingRecordSetting.class);
             startActivity(intent);
         }else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
-            startActivity(new Intent(SettingsActivity.this, MovieRecordSetting.class));
+            startActivity(new Intent(mContext, MovieRecordSetting.class));
         }else if(clickItem.equals(getString(R.string.main_menu_fp))){
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
-        }
-
-        if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
+        }else if(clickItem.equals(getString(R.string.main_menu_scm))){
+            startActivity(new Intent(mContext, SdcardSetting.class));
+        }else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
-            Intent intent = new Intent(SettingsActivity.this, DrivingSetting.class);
+            Intent intent = new Intent(mContext, DrivingSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }
