@@ -17,10 +17,9 @@ public class Const {
      */
     public static final boolean DEBUG = true;
 
-<<<<<<< HEAD
     public static final String PLAY_BACK_PAKAGE="com.askey.jvc.mediaplayer";
 
-=======
+
     public static final String DRIVING_SUPPORT = "driving_support";
 
     public static final String FRONT_COLLISION_WARING = "Front collision warning";
@@ -29,7 +28,6 @@ public class Const {
     public static final String DROWSINESS_DETECTION = "Drowsiness detection";
     public static final String DEPARTURE_DELAY_WARNING = "Departure delay warning";
     public static final String RANGE_OF = "Range of";
->>>>>>> 3d3e4ea9d37ca7c7f91958b6b166e3d3cf76cb56
 
 
 }
