@@ -17,6 +17,14 @@ public class Const {
      */
     public static final boolean DEBUG = true;
 
+    public static final String DRIVING_SUPPORT = "driving_support";
+
+    public static final String FRONT_COLLISION_WARING = "Front collision warning";
+    public static final String LANE_DEPARTURE = "Lane departure warning";
+    public static final String PEDESTRIAN_DETECTION = "Pedestrian detection";
+    public static final String DROWSINESS_DETECTION = "Drowsiness detection";
+    public static final String DEPARTURE_DELAY_WARNING = "Departure delay warning";
+    public static final String RANGE_OF = "Range of";
 
 
 }
