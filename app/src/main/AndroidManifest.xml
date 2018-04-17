@@ -40,8 +40,9 @@
         <activity android:name=".module.parking.ui.RecordingTimeActivity" />
         <activity android:name=".module.movie.ui.AudioRecordActivity" />
         <activity android:name=".module.movie.ui.ImpactSensitivityActivity" />
-        <activity android:name=".module.movie.ui.InformationStampActivity"/>
-
+        <activity android:name=".module.movie.ui.InformationStampActivity" />
+        <activity android:name=".module.dirving.ui.DrivingSetting" />
+        <activity android:name=".module.dirving.ui.SwitchActivity"></activity>
     </application>
 
 </manifest>

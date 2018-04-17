@@ -1,33 +1,17 @@
-package com.askey.dvr.cdr7010.setting;
+package com.askey.dvr.cdr7010.setting.module.dirving.ui;
 
-import android.Manifest;
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
-import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
-import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
-import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
-import com.askey.dvr.cdr7010.setting.util.AppUtil;
-import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
@@ -35,11 +19,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener,AdapterView.OnItemClickListener{
+public class SwitchActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private TextView tv_title;
+
     private ListView list_view;
-    private ImageView iv_icon;
+
     private VerticalProgressBar vp_progress;
 
     private SimpleAdapter simpleAdapter;
@@ -51,35 +36,33 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int screenHeight;
     private int lastPosition;
 
-    private int[] menuInfo = {R.string.main_menu_fp,R.string.main_menu_prs,R.string.main_menu_mirs,R.string.main_menu_vt,R.string.main_menu_dsfs
-    ,R.string.main_menu_nsg,R.string.main_menu_ss,R.string.main_menu_scm,R.string.main_menu_si,R.string.main_menu_cs};
-    private String[] secondMenuItem;
-    private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
+    private String[] menuInfo;
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_switch);
 
         initView();
         initData();
-        requestSdcardPermission();
     }
 
     private void initView() {
-        tv_title = findViewById(R.id.tv_title);
         list_view = findViewById(R.id.list_view);
-        iv_icon = findViewById(R.id.iv_icon);
         vp_progress = findViewById(R.id.vp_progress);
+        tv_title = findViewById(R.id.tv_title);
 
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();
 
         list_view.setOnItemClickListener(this);
-        list_view.setOnItemSelectedListener(this);
     }
 
     private void initData(){
-
+        //根据不同的tag类型，去操作contentPrivider不同的的字段
+        String switch_tag = getIntent().getStringExtra("switch_tag");
+        tv_title.setText(switch_tag);
+        menuInfo = getResources().getStringArray(R.array.all_switch_item);
         lastPosition = 0;
         screenHeight = Utils.getScreenHeight(this);
 
@@ -87,7 +70,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         for (int i=0; i <menuInfo.length; i++) {
             map = new HashMap<>();
-            map.put("menu_item",getString(menuInfo[i]));
+            map.put("menu_item",menuInfo[i]);
             dataTotal.add(map);
         }
 
@@ -100,48 +83,19 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         getPerPageData(dataTotal,lastPosition);
 
         list_view.setVerticalScrollBarEnabled(false);
-        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.menu_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
+        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
         list_view.setAdapter(simpleAdapter);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-        if(clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
-            Intent intent = new Intent();
-            intent.setClass(SettingsActivity.this, SystemSetting.class);
-            startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_prs))) {
-            Intent intent = new Intent();
-            intent.setClass(SettingsActivity.this, ParkingRecordSetting.class);
-            startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
-            startActivity(new Intent(SettingsActivity.this, MovieRecordSetting.class));
-        }else if(clickItem.equals(getString(R.string.main_menu_fp))){
-            AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
+        if(clickItem.equals(menuInfo[position])) {
+            Toast.makeText(this, menuInfo[0], Toast.LENGTH_SHORT).show();
         }
-
-        if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
-            secondMenuItem = getResources().getStringArray(R.array.driving_support);
-            Intent intent = new Intent(SettingsActivity.this, DrivingSetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
-            startActivity(intent);
+        if(clickItem.equals(menuInfo[position])) {
+            Toast.makeText(this, menuInfo[1], Toast.LENGTH_SHORT).show();
         }
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //根据需求自己修改
-        if (position%2 == 0) {
-            iv_icon.setImageDrawable(getDrawable(R.drawable.ic_info_black_24dp));
-        }else {
-            iv_icon.setImageDrawable(getDrawable(R.drawable.ic_notifications_black_24dp));
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
     }
 
     @Override
@@ -205,32 +159,4 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             currentData.add(dataTotal.get(i));
         }
     }
-
-    @TargetApi(Build.VERSION_CODES.M)
-    private void requestSdcardPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            // 第一次请求权限时，用户如果拒绝，下一次请求shouldShowRequestPermissionRationale()返回true
-            // 向用户解释为什么需要这个权限
-            String setSdcardDetail = getResources().getString(R.string.set_sdcard_permission);
-            String inserted_ok = getResources().getString(R.string.inserted_ok);
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                new AlertDialog.Builder(this)
-                        .setMessage(setSdcardDetail)
-                        .setPositiveButton(inserted_ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions((Activity) mContext,
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
-                            }
-                        })
-                        .show();
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
-            }
-        } else {
-            Log.i("test", "requestSdcardPermission:true");
-        }
-    }
-
 }
