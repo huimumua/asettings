@@ -19,7 +19,6 @@ public class Const {
 
     public static final String PLAY_BACK_PAKAGE="com.askey.jvc.mediaplayer";
 
-
     public static final String DRIVING_SUPPORT = "driving_support";
 
     public static final String FRONT_COLLISION_WARING = "Front collision warning";
