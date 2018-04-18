@@ -81,6 +81,16 @@
         <item>Range of </item>
     </string-array>
 
+    <string-array name="movie_record">
+        <item>Audio recording</item>
+        <item>Impact detection sensitivity</item>
+        <item>Information stamp record</item>
+    </string-array>
+
+    <string-array name="parking_record">
+        <item>Recording time</item>
+    </string-array>
+
     <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
@@ -135,5 +145,5 @@
     <string name="audio_setting">Audio Setting</string>
     <string name="set_sdcard_permission">Application for SD card permissions</string>
     <string name="inserted_ok">OK</string>
-    >>>>>>> cb53c6222b4c8db9a07bad1675c7d6899c894cbd
+
 </resources>

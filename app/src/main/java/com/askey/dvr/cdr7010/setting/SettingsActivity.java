@@ -113,11 +113,15 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             intent.setClass(mContext, SystemSetting.class);
             startActivity(intent);
         }else if (clickItem.equals(getString(R.string.main_menu_prs))) {
-            Intent intent = new Intent();
-            intent.setClass(mContext, ParkingRecordSetting.class);
+            secondMenuItem = getResources().getStringArray(R.array.parking_record);
+            Intent intent = new Intent(mContext, ParkingRecordSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
-            startActivity(new Intent(mContext, MovieRecordSetting.class));
+            secondMenuItem = getResources().getStringArray(R.array.movie_record);
+            Intent intent = new Intent(mContext, MovieRecordSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         }else if(clickItem.equals(getString(R.string.main_menu_fp))){
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
         }else if(clickItem.equals(getString(R.string.main_menu_scm))){
