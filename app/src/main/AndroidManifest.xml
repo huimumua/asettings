@@ -35,6 +35,8 @@
         <activity android:name=".module.parking.ui.ParkingRecordSetting" />
         <activity android:name=".module.movie.ui.MovieRecordSetting" />
         <activity android:name=".module.system.ui.LCDBrightnessSetting" />
+        <activity android:name=".module.system.ui.DateTimeSetting" />
+        <activity android:name=".module.system.ui.ManualDateTimeSetting" />
 
         <receiver
             android:name=".broadcast.SdcardReceiver"

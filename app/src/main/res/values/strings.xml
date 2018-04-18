@@ -155,4 +155,8 @@
     <string name="sdcard_setting_information">Sdcard Information</string>
     <string name="sdcard_setting_initialization">Sdcard Initialization</string>
 
+    <string name="tv_date_time">Date/time</string>
+    <string name="tv_automatic">Automatic</string>
+    <string name="tv_manual">Manual</string>
+    <string name="tv_date_time_setting">Date/time setting</string>
 </resources>

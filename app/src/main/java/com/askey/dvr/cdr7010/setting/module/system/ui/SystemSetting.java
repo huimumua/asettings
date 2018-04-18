@@ -139,9 +139,9 @@ public class SystemSetting extends BaseActivity implements AdapterView.OnItemCli
         Log.i("SetingActivity", "=position==" + position);
         String clickItem = currentData.get(position).get("system_settings_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_system_settings_date_time))) {
-            //            Intent intent = new Intent();
-            //            intent.setClass(SystemSetting.this, DateTimeSetting.class);
-            //            startActivity(intent);
+            Intent intent = new Intent();
+            intent.setClass(SystemSetting.this, DateTimeSetting.class);
+            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_playback_volume))) {
