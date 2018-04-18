@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
+import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.util.Collections;
@@ -38,8 +39,10 @@ public class SettingApplication extends Application {
         instance = this;
 
         context = this.getApplicationContext();
+
         registerActivityListener();
     }
+
 
     public static SettingApplication getInstance() {
         return instance;

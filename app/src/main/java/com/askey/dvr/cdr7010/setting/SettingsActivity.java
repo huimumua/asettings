@@ -22,6 +22,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
@@ -61,9 +62,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        requestSdcardPermission();
+
         initView();
         initData();
-        requestSdcardPermission();
+
+        FileManager.getInstance().bindFileManageService();
     }
 
     private void initView() {
@@ -125,7 +129,10 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }else if(clickItem.equals(getString(R.string.main_menu_fp))){
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
         }else if(clickItem.equals(getString(R.string.main_menu_scm))){
-            startActivity(new Intent(mContext, SdcardSetting.class));
+            secondMenuItem = getResources().getStringArray(R.array.sdcard_record);
+            Intent intent = new Intent(mContext, SdcardSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         }else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
             Intent intent = new Intent(mContext, DrivingSetting.class);
@@ -238,4 +245,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        FileManager.getInstance().unBindFileManageService();
+    }
 }
