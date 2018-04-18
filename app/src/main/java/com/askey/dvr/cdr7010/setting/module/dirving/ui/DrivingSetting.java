@@ -113,7 +113,7 @@ public class DrivingSetting extends AppCompatActivity implements AdapterView.OnI
                 break;
             case 5:
                 switch_tag = Const.RANGE_OF;
-                break;
+                return;
         }
         intent.putExtra("switch_tag", switch_tag);
         startActivity(intent);
