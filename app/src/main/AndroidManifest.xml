@@ -4,6 +4,14 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
 
     <application
         android:name=".application.SettingApplication"
@@ -42,11 +50,11 @@
         <activity android:name=".module.movie.ui.ImpactSensitivityActivity" />
         <activity android:name=".module.movie.ui.InformationStampActivity" />
         <activity android:name=".module.dirving.ui.DrivingSetting" />
-        <activity android:name=".module.dirving.ui.SwitchActivity"></activity>
-
-        <activity android:name=".module.sdcard.ui.SdcardSetting"></activity>
-        <activity android:name=".module.sdcard.ui.SdcardInitialization"></activity>
-        <activity android:name=".module.sdcard.ui.SdcardInformation"></activity>
+        <activity android:name=".module.dirving.ui.SwitchActivity" />
+        <activity android:name=".module.sdcard.ui.SdcardSetting" />
+        <activity android:name=".module.sdcard.ui.SdcardInitialization" />
+        <activity android:name=".module.sdcard.ui.SdcardInformation" />
+        <activity android:name=".module.dirving.ui.RangeSettingActivity"></activity>
     </application>
 
 </manifest>

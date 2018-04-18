@@ -112,7 +112,9 @@ public class DrivingSetting extends AppCompatActivity implements AdapterView.OnI
                 switch_tag = Const.DEPARTURE_DELAY_WARNING;
                 break;
             case 5:
-                switch_tag = Const.RANGE_OF;
+//                switch_tag = Const.RANGE_OF;
+                intent = new Intent(DrivingSetting.this, RangeSettingActivity.class);
+                startActivity(intent);
                 return;
         }
         intent.putExtra("switch_tag", switch_tag);
