@@ -54,7 +54,10 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
                 Log.i("height", previewHeight+"");
             }
         });
-        lineCurrentMarginTop = marginLayoutParams.topMargin;
+
+        //注意这里设置的是上边外距，设置下外边距貌似没用
+        lineCurrentMarginTop = 150;
+        setLineMarginTop(lineCurrentMarginTop);
 
         requestCameraPermission();
 
@@ -90,18 +93,14 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
                 Log.i("top_down",lineCurrentMarginTop+"");
                 if (lineCurrentMarginTop < previewHeight-1) {
                     lineCurrentMarginTop += 1;
-                    marginLayoutParams.setMargins(marginLayoutParams.leftMargin,lineCurrentMarginTop,marginLayoutParams.rightMargin,marginLayoutParams.bottomMargin);
-                    layoutParams = new FrameLayout.LayoutParams(marginLayoutParams);
-                    line.setLayoutParams(layoutParams);
+                    setLineMarginTop(lineCurrentMarginTop);
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 Log.i("top_up",lineCurrentMarginTop+"");
                 if (lineCurrentMarginTop > 1) {
                     lineCurrentMarginTop -= 1;
-                    marginLayoutParams.setMargins(marginLayoutParams.leftMargin,lineCurrentMarginTop,marginLayoutParams.rightMargin,marginLayoutParams.bottomMargin);
-                    layoutParams = new FrameLayout.LayoutParams(marginLayoutParams);
-                    line.setLayoutParams(layoutParams);
+                    setLineMarginTop(lineCurrentMarginTop);
                 }
                 break;
         }
@@ -168,5 +167,11 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void setLineMarginTop(int lineCurrentMarginTop){
+        marginLayoutParams.setMargins(marginLayoutParams.leftMargin,lineCurrentMarginTop,marginLayoutParams.rightMargin,marginLayoutParams.bottomMargin);
+        layoutParams = new FrameLayout.LayoutParams(marginLayoutParams);
+        line.setLayoutParams(layoutParams);
     }
 }
