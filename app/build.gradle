@@ -5,7 +5,6 @@ def getTime() {
 }
 
 android {
-
     signingConfigs {
         singnedconfig {
             keyAlias 'kenwood'
@@ -14,7 +13,6 @@ android {
             storePassword 'android'
         }
     }
-
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.askey.dvr.cdr7010.setting"
@@ -26,7 +24,6 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.singnedconfig
     }
-
     buildTypes {
         debug {
             // 显示Log
@@ -52,7 +49,6 @@ android {
             signingConfig signingConfigs.singnedconfig
         }
     }
-
     //打包后应用名称
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
@@ -65,11 +61,8 @@ android {
             }
         }
     }
-
     sourceSets { main { res.srcDirs = ['src/main/res', 'src/main/res/values-zh-rTW'] } }
-
-
-    repositories{
+    repositories {
         flatDir {
             dirs 'libs'
         }

@@ -42,6 +42,8 @@
         <activity android:name=".module.system.ui.LCDBrightnessSetting" />
         <activity android:name=".module.system.ui.DateTimeSetting" />
         <activity android:name=".module.system.ui.ManualDateTimeSetting" />
+        <activity android:name=".module.system.ui.NotificationSoundSetting" />
+        <activity android:name=".module.system.ui.PlaybackSoundSetting" />
 
         <receiver
             android:name=".broadcast.SdcardReceiver"
