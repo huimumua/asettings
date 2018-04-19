@@ -123,8 +123,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
-            Intent intent = new Intent();
-            intent.setClass(mContext, SystemSetting.class);
+            secondMenuItem = getResources().getStringArray(R.array.system_setting);
+            Intent intent = new Intent(mContext, SystemSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }else if (clickItem.equals(getString(R.string.main_menu_prs))) {
             secondMenuItem = getResources().getStringArray(R.array.parking_record);
