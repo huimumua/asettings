@@ -25,6 +25,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
+import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
@@ -69,11 +70,11 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         FileManager.getInstance().bindFileManageService();
 
-//向系统setting里面新增我们需要的字段值
-//        Settings.Global.putInt(getContentResolver(), "LED",3);
+        //向系统setting里面新增我们需要的字段值，name值为系统下的字段值，自定义的貌似不行
+//        Settings.Global.putInt(getContentResolver(), "LED",4);
 
 //        try {
-//            Log.i("111",Settings.Global.getInt(getContentResolver(), "LED")+"");
+//            Log.i("tag", Settings.Global.getInt(getContentResolver(), "LED")+"");
 //        } catch (Settings.SettingNotFoundException e) {
 //            e.printStackTrace();
 //        }
@@ -145,6 +146,11 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
             Intent intent = new Intent(mContext, DrivingSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
+        } else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
+            secondMenuItem = getResources().getStringArray(R.array.notify_sound_guidance);
+            Intent intent = new Intent(mContext, NotificationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }

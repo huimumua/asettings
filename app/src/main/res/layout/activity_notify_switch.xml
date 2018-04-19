@@ -5,12 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="com.askey.dvr.cdr7010.setting.module.dirving.ui.SwitchActivity">
+    tools:context="com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotifySwitchActivity">
     <LinearLayout
         android:layout_width="250dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_title"
@@ -20,13 +19,7 @@
             android:padding="5dp"
             android:text="@string/audio_setting"
             android:textColor="@android:color/background_light"
-            android:textSize="24sp"
-            android:ellipsize="marquee"
-            android:focusableInTouchMode="true"
-            android:gravity="center_vertical"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            />
+            android:textSize="24sp" />
 
         <ListView
             android:id="@+id/list_view"

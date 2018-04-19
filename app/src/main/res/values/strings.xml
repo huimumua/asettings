@@ -102,6 +102,24 @@
         <item>Right</item>
     </string-array>
 
+    <string-array name="notify_sound_guidance">
+        <item>Reverse run detection</item>
+        <item>Speed ​​regulation area</item>
+        <item>Pause</item>
+        <item>Accident frequently occurring area</item>
+        <item>Driving time</item>
+        <item>Rapid acceleration, sudden deceleration</item>
+        <item>Handling</item>
+        <item>Fluctuation detection</item>
+        <item>Driving outside the designated area</item>
+        <item>Driving report</item>
+        <item>Advice before driving</item>
+        <item>Notification</item>
+        <item>Weather information</item>
+        <item>Road Kill</item>
+        <item>Location information</item>
+    </string-array>
+
     <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
