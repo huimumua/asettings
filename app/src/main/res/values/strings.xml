@@ -154,9 +154,15 @@
     <string name="sdcard_setting">SD Card Menu</string>
     <string name="sdcard_setting_information">Sdcard Information</string>
     <string name="sdcard_setting_initialization">Sdcard Initialization</string>
+    <string name="sdcard_normal_dir">Normal : </string>
+    <string name="sdcard_event_dir">Event : </string>
+    <string name="sdcard_parking_dir">Parking : </string>
+    <string name="sdcard_picture_dir">Picture : </string>
+    <string name="sdcard_not_exist">Sdcard not exist</string>
 
     <string name="tv_date_time">Date/time</string>
     <string name="tv_automatic">Automatic</string>
     <string name="tv_manual">Manual</string>
     <string name="tv_date_time_setting">Date/time setting</string>
+
 </resources>
