@@ -185,10 +185,19 @@
     <string name="sdcard_parking_dir">Parking : </string>
     <string name="sdcard_picture_dir">Picture : </string>
     <string name="sdcard_not_exist">Sdcard not exist</string>
+    <string name="sdcard_init_prompt">Sdcard Format ?</string>
+    <string name="sdcard_init_cancel">Cancel</string>
+    <string name="sdcard_init_ok">OK</string>
+    <string name="sdcard_init_ongoing">Formatting</string>
+    <string name="sdcard_init_success">Format Success</string>
+    <string name="sdcard_init_fail">Format Failed</string>
 
     <string name="tv_date_time">Date/time</string>
     <string name="tv_automatic">Automatic</string>
     <string name="tv_manual">Manual</string>
     <string name="tv_date_time_setting">Date/time setting</string>
     <string name="driving_support_setting">Driving Support Setting</string>
+
+
+
 </resources>

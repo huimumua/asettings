@@ -11,6 +11,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.RecordingTimeActivity;
+import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 
 /**
  * 项目名称：settings
@@ -24,6 +25,7 @@ import com.askey.dvr.cdr7010.setting.module.parking.ui.RecordingTimeActivity;
 public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener{
 
     private static final String TAG = "SdcardSetting";
+    private Boolean isExist = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,26 +33,24 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         setContentView(R.layout.activity_sdcard_settings);
 
         initView();
+        isExist = SdcardUtil.checkSdcardExist();
 }
 
     private void initView() {
         list_view = findViewById(R.id.list_view);
         vp_progress = findViewById(R.id.vp_progress);
-
         list_view.setOnItemClickListener(this);
-
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-
         setViewAndData(list_view, vp_progress, menuInfo);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-        if(clickItem.equals(getResources().getString(R.string.sdcard_setting_information))) {
+        if(clickItem.equals(getResources().getString(R.string.sdcard_setting_information)) && isExist) {
             startActivity(new Intent(mContext, SdcardInformation.class));
         }
-        if(clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization))) {
+        if(clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization)) && isExist) {
             startActivity(new Intent(mContext, SdcardInitialization.class));
         }
 
