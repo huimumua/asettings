@@ -92,6 +92,26 @@
         <item>Sdcard Initialization</item>
     </string-array>
 
+    <string-array name="system_setting">
+        <item>Date Time</item>
+        <item>Notification sound volume</item>
+        <item>Playback volume</item>
+        <item>LCD Brightness</item>
+        <item>Monitor screen Power saving setting</item>
+        <item>Installation tool</item>
+        <item>Bluetooth</item>
+        <item>Infrared LED</item>
+        <item>Setting initialization</item>
+        <item>2nd Camera</item>
+        <item>System update</item>
+        <item>System Information</item>
+    </string-array>
+
+    <string-array name="date_time">
+        <item>Automatic</item>
+        <item>Manual</item>
+    </string-array>
+
     <string-array name="parking_record">
         <item>Recording time</item>
     </string-array>
@@ -133,7 +153,7 @@
     <string name="tv_system_settings_playback_volume">Playback volume</string>
     <string name="tv_system_settings_lcd_brightness">LCD Brightness</string>
     <string name="tv_system_settings_screen_power_saving">Monitor screen Power saving setting</string>
-    <string name="tv_system_settings_installation_tool">Installation tool </string>
+    <string name="tv_system_settings_installation_tool">Installation tool</string>
     <string name="tv_system_settings_bluetooth">Bluetooth</string>
     <string name="tv_system_settings_infrared_led">Infrared LED</string>
     <string name="tv_system_settings_setting_initialization">Setting initialization</string>
