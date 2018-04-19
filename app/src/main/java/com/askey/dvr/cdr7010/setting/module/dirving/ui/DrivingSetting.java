@@ -57,13 +57,14 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
                 switch_tag = Const.PEDESTRIAN_DETECTION;
                 break;
             case 3:
-                switch_tag = Const.DROWSINESS_DETECTION;
-                break;
+                switch_tag = Const.DEVICE_INSTALL_SETTING;
+                intent = new Intent(DrivingSetting.this, DeviceInstallActivity.class);
+                startActivity(intent);
+                return;
             case 4:
                 switch_tag = Const.DEPARTURE_DELAY_WARNING;
                 break;
             case 5:
-//                switch_tag = Const.RANGE_OF;
                 intent = new Intent(DrivingSetting.this, RangeSettingActivity.class);
                 startActivity(intent);
                 return;

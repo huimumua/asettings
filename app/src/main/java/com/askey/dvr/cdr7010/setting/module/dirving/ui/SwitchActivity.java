@@ -59,7 +59,7 @@ public class SwitchActivity extends AppCompatActivity implements AdapterView.OnI
     }
 
     private void initData(){
-        //根据不同的tag类型，去操作contentPrivider不同的的字段
+        //根据不同的tag类型，去操作contentProvider不同的的字段
         String switch_tag = getIntent().getStringExtra("switch_tag");
         tv_title.setText(switch_tag);
         menuInfo = getResources().getStringArray(R.array.all_switch_item);
@@ -91,10 +91,7 @@ public class SwitchActivity extends AppCompatActivity implements AdapterView.OnI
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(menuInfo[position])) {
-            Toast.makeText(this, menuInfo[0], Toast.LENGTH_SHORT).show();
-        }
-        if(clickItem.equals(menuInfo[position])) {
-            Toast.makeText(this, menuInfo[1], Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, menuInfo[position], Toast.LENGTH_SHORT).show();
         }
     }
 

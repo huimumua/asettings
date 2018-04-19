@@ -76,7 +76,7 @@
         <item>Front collision warning</item>
         <item>Lane departure warning</item>
         <item>Pedestrian Detection</item>
-        <item>Drowsiness detection</item>
+        <item>Device install setting</item>
         <item>Departure delay warning</item>
         <item>Range of </item>
     </string-array>
@@ -94,6 +94,12 @@
 
     <string-array name="parking_record">
         <item>Recording time</item>
+    </string-array>
+
+    <string-array name="device_install">
+        <item>Left</item>
+        <item>Center</item>
+        <item>Right</item>
     </string-array>
 
     <string-array name="multi_select_list_preference_default_value" />
@@ -159,4 +165,5 @@
     <string name="tv_automatic">Automatic</string>
     <string name="tv_manual">Manual</string>
     <string name="tv_date_time_setting">Date/time setting</string>
+    <string name="driving_support_setting">Driving Support Setting</string>
 </resources>

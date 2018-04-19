@@ -68,6 +68,15 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         initData();
 
         FileManager.getInstance().bindFileManageService();
+
+//向系统setting里面新增我们需要的字段值
+//        Settings.Global.putInt(getContentResolver(), "LED",3);
+
+//        try {
+//            Log.i("111",Settings.Global.getInt(getContentResolver(), "LED")+"");
+//        } catch (Settings.SettingNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     private void initView() {
