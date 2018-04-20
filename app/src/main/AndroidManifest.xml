@@ -68,6 +68,8 @@
         <activity android:name=".module.dirving.ui.DeviceInstallActivity" />
         <activity android:name=".module.notifacation.ui.NotificationSetting" />
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity"/>
+        <activity android:name=".module.vehicle.ui.VehicleTypeSetting"/>
     </application>
+
 
 </manifest>

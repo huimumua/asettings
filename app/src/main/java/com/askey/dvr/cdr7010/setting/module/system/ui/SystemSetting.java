@@ -71,7 +71,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
-
+            String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
+            setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {

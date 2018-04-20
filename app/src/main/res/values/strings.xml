@@ -92,6 +92,23 @@
         <item>Sdcard Initialization</item>
     </string-array>
 
+    <string-array name="vehicle_type">
+        <item>Options</item>
+        <item>Mini sedan</item>
+        <item>Minivan</item>
+        <item>Medium sedan</item>
+        <item>RV</item>
+        <item>Large sedan</item>
+        <item>SUV</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="secend_camera_array">
+        <item>Cabin</item>
+        <item>rear view</item>
+        <item>Level</item>
+    </string-array>
+
     <string-array name="system_setting">
         <item>Date Time</item>
         <item>Notification sound volume</item>
@@ -216,6 +233,14 @@
     <string name="tv_date_time_setting">Date/time setting</string>
     <string name="driving_support_setting">Driving Support Setting</string>
 
-
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="vehicle_type_options">Options</string>
+    <string name="vehicle_type_mini_sedan">Mini sedan</string>
+    <string name="vehicle_type_minivan">Minivan</string>
+    <string name="vehicle_type_medium_sedan">Medium sedan</string>
+    <string name="vehicle_type_rv">RV</string>
+    <string name="vehicle_type_large_sedan">Large sedan</string>
+    <string name="vehicle_type_suv">SUV</string>
+    <string name="vehicle_type_others">Others</string>
 
 </resources>

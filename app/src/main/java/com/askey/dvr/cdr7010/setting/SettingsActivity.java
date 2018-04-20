@@ -29,6 +29,7 @@ import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
+import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Utils;
@@ -154,7 +155,13 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, NotificationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
+        }else if (clickItem.equals(getString(R.string.main_menu_vt))) {
+            secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
+            Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         }
+
     }
 
     @Override
