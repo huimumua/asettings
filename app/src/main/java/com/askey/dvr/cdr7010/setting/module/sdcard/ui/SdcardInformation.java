@@ -63,11 +63,11 @@ public class SdcardInformation extends BaseActivity{
             parking.setText(parkingCurrentSize+backslash+parkingSize);
             picture.setText(pictureCurrentSize+backslash+pictureSize);
         }else{
-            TextView title = this.findViewById(R.id.sdcard_setting_information);
-            TextView normanTitle = this.findViewById(R.id.sdcard_normal_dir);
-            TextView eventTitle = this.findViewById(R.id.sdcard_event_dir);
-            TextView parkingTitle = this.findViewById(R.id.sdcard_parking_dir);
-            TextView pictureTitle = this.findViewById(R.id.sdcard_picture_dir);
+            TextView title = (TextView) this.findViewById(R.id.sdcard_setting_information);
+            TextView normanTitle = (TextView) this.findViewById(R.id.sdcard_normal_dir);
+            TextView eventTitle = (TextView) this.findViewById(R.id.sdcard_event_dir);
+            TextView parkingTitle = (TextView) this.findViewById(R.id.sdcard_parking_dir);
+            TextView pictureTitle = (TextView) this.findViewById(R.id.sdcard_picture_dir);
             title.setText(getResources().getString(R.string.sdcard_not_exist));
             normanTitle.setVisibility(View.GONE);
             eventTitle.setVisibility(View.GONE);
@@ -77,10 +77,10 @@ public class SdcardInformation extends BaseActivity{
     }
 
     private void initview() {
-        normal = this.findViewById(R.id.sdcard_normal_dir_count);
-        event = this.findViewById(R.id.sdcard_event_dir_count);
-        parking = this.findViewById(R.id.sdcard_parking_dir_count);
-        picture = this.findViewById(R.id.sdcard_picture_dir_count);
+        normal = (TextView) this.findViewById(R.id.sdcard_normal_dir_count);
+        event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
+        parking = (TextView) this.findViewById(R.id.sdcard_parking_dir_count);
+        picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);
     }
 
 

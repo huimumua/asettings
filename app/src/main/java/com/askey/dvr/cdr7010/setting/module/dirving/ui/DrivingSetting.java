@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
+
 /**
  * 项目名称：settings
  * 类描述：
@@ -32,8 +35,8 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
     }
 
     private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
+        list_view = (ListView) findViewById(R.id.list_view);
+        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
 
         list_view.setOnItemClickListener(this);
 

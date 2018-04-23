@@ -45,8 +45,8 @@ public class AudioRecordActivity extends AppCompatActivity implements AdapterVie
     }
 
     private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
+        list_view = (ListView) findViewById(R.id.list_view);
+        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
 
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();

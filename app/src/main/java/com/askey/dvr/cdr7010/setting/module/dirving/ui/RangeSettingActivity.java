@@ -41,7 +41,7 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_range_setting);
 
-        preview = findViewById(R.id.preview);
+        preview = (SurfaceView) findViewById(R.id.preview);
         line = findViewById(R.id.line);
         marginLayoutParams = new ViewGroup.MarginLayoutParams(line.getLayoutParams());
 

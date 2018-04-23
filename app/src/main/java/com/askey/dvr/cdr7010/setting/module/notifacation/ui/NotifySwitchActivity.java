@@ -48,9 +48,9 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
     }
 
     private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
-        tv_title = findViewById(R.id.tv_title);
+        list_view = (ListView) findViewById(R.id.list_view);
+        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
+        tv_title = (TextView) findViewById(R.id.tv_title);
 
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();

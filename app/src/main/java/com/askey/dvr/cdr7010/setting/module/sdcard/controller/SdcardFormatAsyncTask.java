@@ -42,7 +42,7 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 //            e.printStackTrace();
 //        }
 
-/*        PlatformLibrary mPlatformLibrary = new  PlatformLibrary(appContext);
+        PlatformLibrary mPlatformLibrary = new  PlatformLibrary(appContext);
         StorageUtils mStorageUtils = mPlatformLibrary.getStorageManager();
         for (final DiskInfoExtend disk : mStorageUtils.getDisksExtend()) {
             Logg.d(LOG_TAG, "doInBackground: disk " + disk.getSysPath());
@@ -55,7 +55,7 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
                     Logg.w(LOG_TAG, "doInBackground: format thread error. " + e.getMessage());
                 }
             }
-        }*/
+        }
 
         return false;
     }

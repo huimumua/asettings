@@ -47,8 +47,8 @@ public class SecondBaseActivity extends AppCompatActivity {
     }
 
     protected void initView(String[] menuInfo){
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
+        list_view = (ListView) findViewById(R.id.list_view);
+        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
         setViewAndData(list_view, vp_progress, menuInfo);
     }
 

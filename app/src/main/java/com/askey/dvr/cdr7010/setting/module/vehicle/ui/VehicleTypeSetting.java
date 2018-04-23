@@ -30,18 +30,13 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vehicle_type);
+        setContentView(R.layout.second_menu_layout);
 
-        initView();
-    }
-
-    private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
-        list_view.setOnItemClickListener(this);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView(menuInfo);
+        list_view.setOnItemClickListener(this);
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

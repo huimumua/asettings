@@ -5,10 +5,12 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
@@ -23,10 +25,10 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
     }
 
     private void initView() {
-        tv_title = findViewById(R.id.tv_title);
+        tv_title = (TextView) findViewById(R.id.tv_title);
         tv_title.setText(getResources().getString(R.string.tv_monitor_time_settings));
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
+        list_view = (ListView) findViewById(R.id.list_view);
+        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
         list_view.setOnItemClickListener(this);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
         setViewAndData(list_view, vp_progress, menuInfo);
