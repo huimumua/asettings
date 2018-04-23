@@ -25,7 +25,7 @@ public class MovieRecordSetting extends SecondBaseActivity implements AdapterVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_record_setting);
+        setContentView(R.layout.second_menu_layout);
 
         initView();
     }

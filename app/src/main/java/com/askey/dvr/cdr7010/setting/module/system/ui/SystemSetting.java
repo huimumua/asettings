@@ -76,7 +76,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
-
+            startActivity(new Intent(this, SystemInformation.class));
         }
     }
 }

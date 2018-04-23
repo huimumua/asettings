@@ -51,7 +51,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private List<HashMap<String, Object>> dataTotal;
     private List<HashMap<String, Object>> currentData;
 
-    private int PERPAGECOUNT = 6;
+    private int PERPAGECOUNT = 5;
     private int screenHeight;
     private int lastPosition;
 

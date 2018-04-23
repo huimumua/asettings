@@ -139,6 +139,12 @@
         <item>Right</item>
     </string-array>
 
+    <string-array name="system_information">
+        <item>System Version</item>
+        <item>SIM Information</item>
+        <item>Open Source License</item>
+    </string-array>
+
     <string-array name="notify_sound_guidance">
         <item>Reverse run detection</item>
         <item>Speed ​​regulation area</item>
