@@ -12,20 +12,10 @@ public class DeviceInstallActivity extends SecondBaseActivity implements Adapter
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_device_install);
-
-        initView();
-    }
-
-    private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
-
-        list_view.setOnItemClickListener(this);
-
+        setContentView(R.layout.second_menu_layout);
         menuInfo = getResources().getStringArray(R.array.device_install);
-
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView(menuInfo);
+        list_view.setOnItemClickListener(this);
     }
 
     @Override

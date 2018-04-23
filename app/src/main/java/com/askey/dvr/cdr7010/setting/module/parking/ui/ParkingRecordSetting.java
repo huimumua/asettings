@@ -23,20 +23,10 @@ public class ParkingRecordSetting extends SecondBaseActivity implements AdapterV
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_parking_record_settings);
-
-        initView();
-    }
-
-    private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
-
-        list_view.setOnItemClickListener(this);
-
+        setContentView(R.layout.second_menu_layout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView(menuInfo);
+        list_view.setOnItemClickListener(this);
     }
 
     @Override

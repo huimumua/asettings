@@ -20,23 +20,13 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
  */
 public class MovieRecordSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener{
 
-//    private int[] menuInfo = {R.string.audio_recording, R.string.impact_detection_sensitivity, R.string.information_stamp_record};
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_menu_layout);
-
-        initView();
-    }
-
-    private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
-
-        list_view.setOnItemClickListener(this);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView(menuInfo);
+        list_view.setOnItemClickListener(this);
     }
 
     @Override

@@ -8,6 +8,7 @@
         android:id="@+id/list_item"
         android:layout_width="@dimen/system_settings_item_width"
         android:layout_height="@dimen/system_settings_item_height"
+        android:paddingLeft="15dp"
         android:background="@drawable/menu_focus_item_bg"
         android:ellipsize="marquee"
         android:focusableInTouchMode="true"

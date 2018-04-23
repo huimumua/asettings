@@ -13,11 +13,11 @@ android {
             storePassword 'android'
         }
     }
-    compileSdkVersion 26
+    compileSdkVersion 25
     defaultConfig {
         applicationId "com.askey.dvr.cdr7010.setting"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
         project.archivesBaseName = "Settings";
@@ -56,7 +56,7 @@ android {
             def fileName
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
 //                fileName = "Settings.${defaultConfig.versionName}.${getTime()}.apk"
-                fileName = "Settings.apk"
+                fileName = "ASettings.apk"
                 outputFileName = fileName
             }
         }
@@ -73,8 +73,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     provided files('libs/platform_library.jar')
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support:support-v4:26.1.0'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:support-v4:25.4.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
