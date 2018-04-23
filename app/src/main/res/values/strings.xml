@@ -129,6 +129,23 @@
         <item>Manual</item>
     </string-array>
 
+    <string-array name="montior">
+        <item>Time settings</item>
+        <item>Operation settings</item>
+    </string-array>
+
+    <string-array name="monitor_time_settings">
+        <item>10 sec</item>
+        <item>1 min</item>
+        <item>3 min</item>
+    </string-array>
+
+    <string-array name="monitor_operation_settings">
+        <item>Always ON</item>
+        <item>OFF</item>
+        <item>Dim</item>
+    </string-array>
+
     <string-array name="parking_record">
         <item>Recording time</item>
     </string-array>
@@ -237,6 +254,14 @@
     <string name="tv_automatic">Automatic</string>
     <string name="tv_manual">Manual</string>
     <string name="tv_date_time_setting">Date/time setting</string>
+    <string name="tv_monitor_time_settings">Time settings</string>
+    <string name="tv_monitor_time_10sec">10 sec</string>
+    <string name="tv_monitor_time_1min">1 min</string>
+    <string name="tv_monitor_time_3min">3 min</string>
+    <string name="tv_monitor_operation_settings">Operation settings</string>
+    <string name="tv_monitor_operation_on">Always ON</string>
+    <string name="tv_monitor_operation_off">OFF</string>
+    <string name="tv_monitor_operation_dim">Dim</string>
     <string name="driving_support_setting">Driving Support Setting</string>
 
     <string name="vehicle_type">Vehicle Type</string>

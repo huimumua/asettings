@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp">
+
+    <ImageView
+        android:id="@+id/iv_playBackSound0"
+        android:layout_width="@dimen/brightness_width"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/brightness_margin"
+        android:src="@drawable/unchecked1"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_playBackSound1"
+        android:layout_width="@dimen/brightness_width"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/brightness_margin"
+        android:src="@drawable/unchecked2"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_playBackSound2"
+        android:layout_width="@dimen/brightness_width"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/brightness_margin"
+        android:layout_toRightOf="@id/iv_playBackSound1"
+        android:src="@drawable/unchecked3"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_playBackSound3"
+        android:layout_width="@dimen/brightness_width"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/brightness_margin"
+        android:layout_toRightOf="@id/iv_playBackSound2"
+        android:src="@drawable/unchecked4"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_playBackSound4"
+        android:layout_width="@dimen/brightness_width"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/brightness_margin"
+        android:layout_toRightOf="@id/iv_playBackSound3"
+        android:src="@drawable/unchecked5"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/iv_playBackSound5"
+        android:layout_width="@dimen/brightness_width"
+        android:layout_height="120dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/brightness_margin"
+        android:layout_toRightOf="@id/iv_playBackSound4"
+        android:src="@drawable/unchecked6"
+        android:visibility="invisible" />
+
+</RelativeLayout>

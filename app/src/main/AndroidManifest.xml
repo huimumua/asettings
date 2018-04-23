@@ -44,6 +44,9 @@
         <activity android:name=".module.system.ui.ManualDateTimeSetting" />
         <activity android:name=".module.system.ui.NotificationSoundSetting" />
         <activity android:name=".module.system.ui.PlaybackSoundSetting" />
+        <activity android:name=".module.system.ui.MonitorScreenPowerSavingSetting" />
+        <activity android:name=".module.system.ui.MonitorTimeSettings" />
+        <activity android:name=".module.system.ui.MonitorOperationSettings" />
 
         <receiver
             android:name=".broadcast.SdcardReceiver"

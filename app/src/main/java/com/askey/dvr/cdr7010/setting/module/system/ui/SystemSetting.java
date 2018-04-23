@@ -34,6 +34,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 
     private void initView() {
         tv_title = findViewById(R.id.tv_title);
+        tv_title.setText(getResources().getString(R.string.tv_system_settings));
         list_view = findViewById(R.id.list_view);
         vp_progress = findViewById(R.id.vp_progress);
         list_view.setOnItemClickListener(this);
@@ -61,7 +62,10 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             intent.setClass(SystemSetting.this, LCDBrightnessSetting.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_screen_power_saving))) {
-
+            secondMenuItem = getResources().getStringArray(R.array.montior);
+            Intent intent = new Intent(SystemSetting.this, MonitorScreenPowerSavingSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_tool))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_bluetooth))) {
