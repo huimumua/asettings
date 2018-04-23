@@ -26,6 +26,7 @@ public class NotificationSoundSetting extends BaseActivity {
     private ImageView notifiSound0, notifiSound1, notifiSound2, notifiSound3, notifiSound4, notifiSound5;
     int maxVolume, currentVolume;
     private AudioManager mAudioManager;
+    private SoundPool pool;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -117,7 +118,11 @@ public class NotificationSoundSetting extends BaseActivity {
     }
 
     private void testSound() {
-        SoundPool pool = new SoundPool(1, AudioManager.STREAM_NOTIFICATION, 0);
+        if (pool != null) {
+            Log.i("NotificationSound", "==pool=release");
+            pool.release();
+        }
+        pool = new SoundPool(1, AudioManager.STREAM_NOTIFICATION, 0);
         pool.load(this, R.raw.test_voice_settings, 1);
         pool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
             @Override
