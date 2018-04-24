@@ -9,6 +9,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Utils;
@@ -26,6 +27,7 @@ public class SecondBaseActivity extends AppCompatActivity {
 
     protected ListView list_view;
     protected static Context mContext;
+    private TextView menuTitle;
     protected VerticalProgressBar vp_progress;
 
     protected SimpleAdapter simpleAdapter;
@@ -46,8 +48,10 @@ public class SecondBaseActivity extends AppCompatActivity {
         mContext = this;
     }
 
-    protected void initView(String[] menuInfo){
+    protected void initView(String title,String[] menuInfo){
         list_view = (ListView) findViewById(R.id.list_view);
+        menuTitle = (TextView) findViewById(R.id.second_menu_title);
+        menuTitle.setText(title);
         vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
         setViewAndData(list_view, vp_progress, menuInfo);
     }

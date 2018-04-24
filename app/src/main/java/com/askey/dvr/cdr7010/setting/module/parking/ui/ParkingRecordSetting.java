@@ -25,7 +25,7 @@ public class ParkingRecordSetting extends SecondBaseActivity implements AdapterV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_menu_layout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(menuInfo);
+        initView(getResources().getString(R.string.parking_record_settings),menuInfo);
         list_view.setOnItemClickListener(this);
     }
 

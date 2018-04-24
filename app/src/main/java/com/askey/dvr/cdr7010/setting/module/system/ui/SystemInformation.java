@@ -25,7 +25,7 @@ public class SystemInformation extends SecondBaseActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_menu_layout);
         menuInfo = getResources().getStringArray(R.array.system_information);
-        initView(menuInfo);
+        initView(getResources().getString(R.string.tv_system_settings_system_information),menuInfo);
         list_view.setOnItemClickListener(this);
     }
 

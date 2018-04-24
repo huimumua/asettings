@@ -28,7 +28,7 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_drving_setting);
+        setContentView(R.layout.second_menu_layout);
 
         initView();
 

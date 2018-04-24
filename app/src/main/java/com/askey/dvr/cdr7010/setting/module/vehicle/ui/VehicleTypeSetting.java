@@ -33,7 +33,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
         setContentView(R.layout.second_menu_layout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(menuInfo);
+        initView(getResources().getString(R.string.vehicle_type),menuInfo);
         list_view.setOnItemClickListener(this);
     }
 
