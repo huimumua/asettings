@@ -273,5 +273,13 @@
     <string name="vehicle_type_large_sedan">Large sedan</string>
     <string name="vehicle_type_suv">SUV</string>
     <string name="vehicle_type_others">Others</string>
+    <string name="sys_phone_number">Phone Number</string>
+    <string name="sys_network">Network</string>
+    <string name="sys_signal_strength">Signal Strength</string>
+    <string name="sys_imei">IMEI</string>
+    <string name="sys_imei_sv">IMEI SV</string>
+    <string name="sys_version">System Version</string>
+    <string name="sys_sim">SIM</string>
+    <string name="sys_open_license">Open Source License</string>
 
 </resources>

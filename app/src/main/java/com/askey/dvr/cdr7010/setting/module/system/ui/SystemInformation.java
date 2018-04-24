@@ -1,10 +1,10 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
@@ -31,6 +31,18 @@ public class SystemInformation extends SecondBaseActivity implements AdapterView
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(this, position+"", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, SystemInfoDetailActivity.class);
+
+        if (menuInfo[position].equals(menuInfo[0])) {
+            intent.putExtra("info_type","version");
+        }
+        if (menuInfo[position].equals(menuInfo[1])) {
+            intent.putExtra("info_type","SIM");
+        }
+        if (menuInfo[position].equals(menuInfo[2])) {
+            intent.putExtra("info_type","open");
+        }
+        startActivity(intent);
     }
 }
