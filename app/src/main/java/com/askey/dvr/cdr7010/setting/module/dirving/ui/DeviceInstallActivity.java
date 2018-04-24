@@ -14,7 +14,7 @@ public class DeviceInstallActivity extends SecondBaseActivity implements Adapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_menu_layout);
         menuInfo = getResources().getStringArray(R.array.device_install);
-        initView(menuInfo);
+        initView(getResources().getString(R.string.imapct_sensitivity),menuInfo);
         list_view.setOnItemClickListener(this);
     }
 

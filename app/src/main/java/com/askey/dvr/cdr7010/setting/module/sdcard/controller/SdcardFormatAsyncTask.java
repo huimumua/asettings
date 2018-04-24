@@ -73,7 +73,6 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
         }catch (Exception e){
             Logg.e(LOG_TAG, "onPostExecute: " + e.getMessage());
         }
-
         super.onPostExecute(ready);
     }
 

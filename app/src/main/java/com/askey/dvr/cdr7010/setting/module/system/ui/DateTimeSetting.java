@@ -22,22 +22,14 @@ import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
  * 修改备注：
  */
 public class DateTimeSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
-    private TextView tv_title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_date_time_settings);
-        initView();
-    }
-
-    private void initView() {
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        list_view = (ListView) findViewById(R.id.list_view);
-        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
-        list_view.setOnItemClickListener(this);
+        setContentView(R.layout.second_menu_layout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView(getResources().getString(R.string.tv_date_time),menuInfo);
+        list_view.setOnItemClickListener(this);
     }
 
     @Override

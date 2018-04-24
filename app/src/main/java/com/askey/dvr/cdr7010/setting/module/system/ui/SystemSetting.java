@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 /**
@@ -24,24 +25,18 @@ import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
  */
 
 public class SystemSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
-    private TextView tv_title;
+    private static final String TAG = "SystemSetting";
     private String[] secondMenuItem;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_settings);
-        initView();
-    }
+        setContentView(R.layout.second_menu_layout);
 
-    private void initView() {
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText(getResources().getString(R.string.tv_system_settings));
-        list_view = (ListView) findViewById(R.id.list_view);
-        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
-        list_view.setOnItemClickListener(this);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView(getResources().getString(R.string.tv_system_settings),menuInfo);
+        list_view.setOnItemClickListener(this);
+
     }
 
     @Override
@@ -50,26 +45,29 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         String clickItem = currentData.get(position).get("menu_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_system_settings_date_time))) {
             secondMenuItem = getResources().getStringArray(R.array.date_time);
-            Intent intent = new Intent(SystemSetting.this, DateTimeSetting.class);
+            Intent intent = new Intent(mContext, DateTimeSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
-            Intent intent = new Intent(SystemSetting.this, NotificationSoundSetting.class);
+            Intent intent = new Intent(mContext, NotificationSoundSetting.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_playback_volume))) {
-            Intent intent = new Intent(SystemSetting.this, PlaybackSoundSetting.class);
+            Intent intent = new Intent(mContext, PlaybackSoundSetting.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_lcd_brightness))) {
             Intent intent = new Intent();
-            intent.setClass(SystemSetting.this, LCDBrightnessSetting.class);
+            intent.setClass(mContext, LCDBrightnessSetting.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_screen_power_saving))) {
             secondMenuItem = getResources().getStringArray(R.array.montior);
-            Intent intent = new Intent(SystemSetting.this, MonitorScreenPowerSavingSetting.class);
+            Intent intent = new Intent(mContext, MonitorScreenPowerSavingSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_tool))) {
-
+            secondMenuItem = getResources().getStringArray(R.array.system_settings_installation_tool);
+            Intent intent = new Intent(mContext, InstallationToolSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_bluetooth))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_infrared_led))) {

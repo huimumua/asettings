@@ -74,7 +74,18 @@
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity" />
         <activity android:name=".module.vehicle.ui.VehicleTypeSetting" />
         <activity android:name=".module.system.ui.SystemInformation" />
-        <activity android:name=".module.system.ui.SystemInfoDetailActivity"></activity>
+        <activity android:name=".module.system.ui.SystemInfoDetailActivity"/>
+        <activity android:name=".module.system.ui.InstallationToolSetting" />
+        <activity android:name=".module.system.ui.LevelerActivity" />
+        <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
+        <service
+            android:name=".module.system.controller.PlaybackSoundService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PlaybackSoundService"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

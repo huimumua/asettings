@@ -107,17 +107,8 @@ public class SdcardInitialization extends BaseActivity implements SdcardFormatAs
     }
 
     private void doSdcardformat() {
-        PlatformLibrary mPlatformLibrary = new  PlatformLibrary(mContext);
-        StorageUtils mStorageUtils = mPlatformLibrary.getStorageManager();
-        for (final DiskInfoExtend disk : mStorageUtils.getDisksExtend()) {
-            Logg.i(TAG, "formatSDCard: disk " + disk.getSysPath());
-            if (disk.isSd()) {
-                Logg.i(TAG, "formatSDCard: disk -> isSd = " + disk.getSysPath());
-                sdcardFormatAsyncTask = new SdcardFormatAsyncTask(this);
-                sdcardFormatAsyncTask.execute();
-                return;
-            }
-        }
+        sdcardFormatAsyncTask = new SdcardFormatAsyncTask(this);
+        sdcardFormatAsyncTask.execute();
     }
 
 
