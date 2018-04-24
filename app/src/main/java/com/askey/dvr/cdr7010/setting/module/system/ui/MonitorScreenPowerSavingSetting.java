@@ -29,19 +29,14 @@ public class MonitorScreenPowerSavingSetting extends SecondBaseActivity implemen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_settings);
-        initView();
+        setContentView(R.layout.second_menu_layout);
+
+        menuInfo = getIntent().getStringArrayExtra("menu_item");
+        initView(getResources().getString(R.string.tv_system_settings_screen_power_saving),menuInfo);
+        list_view.setOnItemClickListener(this);
+
     }
 
-    private void initView() {
-        tv_title = (TextView) findViewById(R.id.tv_title);
-        tv_title.setText(getResources().getString(R.string.tv_system_settings_screen_power_saving));
-        list_view = (ListView) findViewById(R.id.list_view);
-        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
-        list_view.setOnItemClickListener(this);
-        menuInfo = getIntent().getStringArrayExtra("menu_item");
-        setViewAndData(list_view, vp_progress, menuInfo);
-    }
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {

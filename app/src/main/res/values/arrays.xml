@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="all_switch_item">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+    <string-array name="impact_setting">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="driving_support">
+        <item>Front collision warning</item>
+        <item>Lane departure warning</item>
+        <item>Pedestrian Detection</item>
+        <item>Device install setting</item>
+        <item>Departure delay warning</item>
+        <item>Range of </item>
+    </string-array>
+
+    <string-array name="movie_record">
+        <item>Audio recording</item>
+        <item>Impact detection sensitivity</item>
+        <item>Information stamp record</item>
+    </string-array>
+
+    <string-array name="sdcard_record">
+        <item>Sdcard Information</item>
+        <item>Sdcard Initialization</item>
+    </string-array>
+
+    <string-array name="vehicle_type">
+        <item>Options</item>
+        <item>Mini sedan</item>
+        <item>Minivan</item>
+        <item>Medium sedan</item>
+        <item>RV</item>
+        <item>Large sedan</item>
+        <item>SUV</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="secend_camera_array">
+        <item>Cabin</item>
+        <item>rear view</item>
+        <item>Level</item>
+    </string-array>
+
+    <string-array name="system_setting">
+        <item>Date Time</item>
+        <item>Notification sound volume</item>
+        <item>Playback volume</item>
+        <item>LCD Brightness</item>
+        <item>Monitor screen Power saving setting</item>
+        <item>Installation tool</item>
+        <item>Bluetooth</item>
+        <item>Infrared LED</item>
+        <item>Setting initialization</item>
+        <item>2nd Camera</item>
+        <item>System update</item>
+        <item>System Information</item>
+    </string-array>
+
+    <string-array name="date_time">
+        <item>Automatic</item>
+        <item>Manual</item>
+    </string-array>
+
+    <string-array name="montior">
+        <item>Time settings</item>
+        <item>Operation settings</item>
+    </string-array>
+
+    <string-array name="monitor_time_settings">
+        <item>10 sec</item>
+        <item>1 min</item>
+        <item>3 min</item>
+    </string-array>
+
+    <string-array name="monitor_operation_settings">
+        <item>Always ON</item>
+        <item>OFF</item>
+        <item>Dim</item>
+    </string-array>
+
+    <string-array name="parking_record">
+        <item>Recording time</item>
+    </string-array>
+
+    <string-array name="device_install">
+        <item>Left</item>
+        <item>Center</item>
+        <item>Right</item>
+    </string-array>
+
+    <string-array name="system_information">
+        <item>System Version</item>
+        <item>SIM Information</item>
+        <item>Open Source License</item>
+    </string-array>
+
+    <string-array name="notify_sound_guidance">
+        <item>Reverse run detection</item>
+        <item>Speed ​​regulation area</item>
+        <item>Pause</item>
+        <item>Accident frequently occurring area</item>
+        <item>Driving time</item>
+        <item>Rapid acceleration, sudden deceleration</item>
+        <item>Handling</item>
+        <item>Fluctuation detection</item>
+        <item>Driving outside the designated area</item>
+        <item>Driving report</item>
+        <item>Advice before driving</item>
+        <item>Notification</item>
+        <item>Weather information</item>
+        <item>Road Kill</item>
+        <item>Location information</item>
+    </string-array>
+
+    <string-array name="system_settings_installation_tool">
+        <item>Leveler</item>
+        <item>Satellite reception status</item>
+    </string-array>
+
+</resources>

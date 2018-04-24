@@ -19,7 +19,7 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
  * 修改备注：
  */
 public class SystemInformation extends SecondBaseActivity implements AdapterView.OnItemClickListener{
-
+    private static final String TAG = "SystemInformation";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

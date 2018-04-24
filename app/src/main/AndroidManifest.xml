@@ -73,6 +73,9 @@
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity"/>
         <activity android:name=".module.vehicle.ui.VehicleTypeSetting"/>
         <activity android:name=".module.system.ui.SystemInformation" />
+        <activity android:name=".module.system.ui.InstallationToolSetting" />
+        <activity android:name=".module.system.ui.LevelerActivity" />
+        <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
     </application>
 
 
