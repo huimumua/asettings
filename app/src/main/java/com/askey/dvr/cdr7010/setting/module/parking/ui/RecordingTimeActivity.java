@@ -46,9 +46,9 @@ public class RecordingTimeActivity extends AppCompatActivity implements AdapterV
     }
 
     private void initView() {
-        tv_title = findViewById(R.id.tv_title);
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
+        tv_title = (TextView) findViewById(R.id.tv_title);
+        list_view = (ListView) findViewById(R.id.list_view);
+        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
 
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();

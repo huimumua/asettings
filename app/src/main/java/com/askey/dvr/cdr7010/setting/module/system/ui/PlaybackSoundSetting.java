@@ -35,12 +35,12 @@ public class PlaybackSoundSetting extends BaseActivity {
     }
 
     private void initView() {
-        playBackSound0 = findViewById(R.id.iv_playBackSound0);
-        playBackSound1 = findViewById(R.id.iv_playBackSound1);
-        playBackSound2 = findViewById(R.id.iv_playBackSound2);
-        playBackSound3 = findViewById(R.id.iv_playBackSound3);
-        playBackSound4 = findViewById(R.id.iv_playBackSound4);
-        playBackSound5 = findViewById(R.id.iv_playBackSound5);
+        playBackSound0 = (ImageView) findViewById(R.id.iv_playBackSound0);
+        playBackSound1 = (ImageView) findViewById(R.id.iv_playBackSound1);
+        playBackSound2 = (ImageView) findViewById(R.id.iv_playBackSound2);
+        playBackSound3 = (ImageView) findViewById(R.id.iv_playBackSound3);
+        playBackSound4 = (ImageView) findViewById(R.id.iv_playBackSound4);
+        playBackSound5 = (ImageView) findViewById(R.id.iv_playBackSound5);
         refreshView();
     }
 

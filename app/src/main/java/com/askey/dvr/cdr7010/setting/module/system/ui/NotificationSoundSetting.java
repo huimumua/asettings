@@ -36,12 +36,12 @@ public class NotificationSoundSetting extends BaseActivity {
     }
 
     private void initView() {
-        notifiSound0 = findViewById(R.id.iv_notifisound0);
-        notifiSound1 = findViewById(R.id.iv_notifisound1);
-        notifiSound2 = findViewById(R.id.iv_notifisound2);
-        notifiSound3 = findViewById(R.id.iv_notifisound3);
-        notifiSound4 = findViewById(R.id.iv_notifisound4);
-        notifiSound5 = findViewById(R.id.iv_notifisound5);
+        notifiSound0 = (ImageView) findViewById(R.id.iv_notifisound0);
+        notifiSound1 = (ImageView) findViewById(R.id.iv_notifisound1);
+        notifiSound2 = (ImageView) findViewById(R.id.iv_notifisound2);
+        notifiSound3 = (ImageView) findViewById(R.id.iv_notifisound3);
+        notifiSound4 = (ImageView) findViewById(R.id.iv_notifisound4);
+        notifiSound5 = (ImageView) findViewById(R.id.iv_notifisound5);
         refreshView();
     }
 

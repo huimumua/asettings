@@ -59,10 +59,10 @@ public class SdcardInitialization extends BaseActivity implements SdcardFormatAs
     }
 
     private void initView() {
-        title = this.findViewById(R.id.sdcard_init_title);
-        cancel = this.findViewById(R.id.sdcard_init_cancel_bt);
-        ok = this.findViewById(R.id.sdcard_init_ok_bt);
-        mProgressBar = this.findViewById(R.id.sdcard_init_progress);
+        title = (TextView) this.findViewById(R.id.sdcard_init_title);
+        cancel = (Button) this.findViewById(R.id.sdcard_init_cancel_bt);
+        ok = (Button) this.findViewById(R.id.sdcard_init_ok_bt);
+        mProgressBar = (ProgressBar) this.findViewById(R.id.sdcard_init_progress);
         mProgressBar.setVisibility(View.GONE);
         cancel.setSelected(true);
         ok.setSelected(false);
@@ -110,8 +110,9 @@ public class SdcardInitialization extends BaseActivity implements SdcardFormatAs
         PlatformLibrary mPlatformLibrary = new  PlatformLibrary(mContext);
         StorageUtils mStorageUtils = mPlatformLibrary.getStorageManager();
         for (final DiskInfoExtend disk : mStorageUtils.getDisksExtend()) {
-            //Logg.d(LOG_TAG, "formatSDCard: disk " + disk.getSysPath());
+            Logg.i(TAG, "formatSDCard: disk " + disk.getSysPath());
             if (disk.isSd()) {
+                Logg.i(TAG, "formatSDCard: disk -> isSd = " + disk.getSysPath());
                 sdcardFormatAsyncTask = new SdcardFormatAsyncTask(this);
                 sdcardFormatAsyncTask.execute();
                 return;

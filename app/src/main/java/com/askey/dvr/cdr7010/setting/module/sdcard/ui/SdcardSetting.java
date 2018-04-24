@@ -30,19 +30,13 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sdcard_settings);
+        setContentView(R.layout.second_menu_layout);
 
-        initView();
+        menuInfo = getIntent().getStringArrayExtra("menu_item");
+        initView(menuInfo);
+        list_view.setOnItemClickListener(this);
         isExist = SdcardUtil.checkSdcardExist();
 }
-
-    private void initView() {
-        list_view = findViewById(R.id.list_view);
-        vp_progress = findViewById(R.id.vp_progress);
-        list_view.setOnItemClickListener(this);
-        menuInfo = getIntent().getStringArrayExtra("menu_item");
-        setViewAndData(list_view, vp_progress, menuInfo);
-    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
