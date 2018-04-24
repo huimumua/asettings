@@ -93,7 +93,7 @@
     </string-array>
 
     <string-array name="system_setting">
-        <item>Date Time</item>
+        <item>Date/Time</item>
         <item>Notification sound volume</item>
         <item>Playback volume</item>
         <item>LCD Brightness</item>

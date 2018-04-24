@@ -23,7 +23,6 @@ import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
  * 修改备注：
  */
 public class MonitorScreenPowerSavingSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
-    private TextView tv_title;
     private String[] secondMenuItem;
 
     @Override

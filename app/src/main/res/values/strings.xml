@@ -44,7 +44,7 @@
     <string name="main_menu_cs">Communication Setting</string>
 
     <string name="tv_system_settings">System settings</string>
-    <string name="tv_system_settings_date_time">Date Time</string>
+    <string name="tv_system_settings_date_time">Date/Time</string>
     <string name="tv_system_settings_notification_sound_volume">Notification sound volume</string>
     <string name="tv_system_settings_playback_volume">Playback volume</string>
     <string name="tv_system_settings_lcd_brightness">LCD Brightness</string>

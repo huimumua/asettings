@@ -26,7 +26,6 @@ import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 public class SystemSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "SystemSetting";
-    private TextView tv_title;
     private String[] secondMenuItem;
 
     @Override

@@ -15,7 +15,6 @@ import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 public class MonitorOperationSettings extends SecondBaseActivity implements AdapterView.OnItemClickListener {
-    private TextView tv_title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,7 +22,7 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
         setContentView(R.layout.second_menu_layout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_monitor_time_settings),menuInfo);
+        initView(getResources().getString(R.string.tv_monitor_operation_settings),menuInfo);
         list_view.setOnItemClickListener(this);
 
     }

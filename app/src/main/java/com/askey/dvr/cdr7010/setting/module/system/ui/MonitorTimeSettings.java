@@ -12,7 +12,6 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 public class MonitorTimeSettings extends SecondBaseActivity implements AdapterView.OnItemClickListener {
-    private TextView tv_title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
