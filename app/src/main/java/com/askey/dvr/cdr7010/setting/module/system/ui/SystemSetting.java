@@ -53,6 +53,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_playback_volume))) {
             Intent intent = new Intent(mContext, PlaybackSoundSetting.class);
             startActivity(intent);
+        }else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_preview))) {
+
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_lcd_brightness))) {
             Intent intent = new Intent();
             intent.setClass(mContext, LCDBrightnessSetting.class);
@@ -74,6 +76,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
             //恢复出厂设置
             showDialog(this);
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
+
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
             String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
             setViewAndData(list_view, vp_progress, secondCameraMenuItem);

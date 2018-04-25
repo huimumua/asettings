@@ -96,12 +96,14 @@
         <item>Date/Time</item>
         <item>Notification sound volume</item>
         <item>Playback volume</item>
+        <item>Preview</item>
         <item>LCD Brightness</item>
         <item>Monitor screen Power saving setting</item>
         <item>Installation tool</item>
         <item>Bluetooth</item>
         <item>Infrared LED</item>
         <item>Setting initialization</item>
+        <item>Installation wizard</item>
         <item>2nd Camera</item>
         <item>System update</item>
         <item>System Information</item>
