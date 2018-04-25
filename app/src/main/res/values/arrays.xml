@@ -170,4 +170,14 @@
         <item>Satellite reception status</item>
     </string-array>
 
+    <declare-styleable name="JVCRelativeLayout">
+        <attr name="top_imageview" format="reference"/>
+        <attr name="top_visible" format="boolean"/>
+        <attr name="center_imageview" format="reference"/>
+        <attr name="center_visible" format="boolean"/>
+        <attr name="bottom_imageview" format="reference"/>
+        <attr name="bottom_visible" format="boolean"/>
+        <attr name="back_imageview" format="reference"/>
+        <attr name="back_visible" format="boolean"/>
+    </declare-styleable>
 </resources>
