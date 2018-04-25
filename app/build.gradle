@@ -71,7 +71,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     compileOnly files('libs/platform_library.jar')
     implementation 'com.android.support:appcompat-v7:25.4.0'
     implementation 'com.android.support:support-v4:25.4.0'

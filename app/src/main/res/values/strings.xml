@@ -124,5 +124,9 @@
 
     <string name="installation_tool_leveler">Leveler</string>
     <string name="installation_tool_satellite">Satellite reception status</string>
+    <string name="leveler_detail_title">Leveler</string>
+    <string name="leveler_detail_context1">Regulation makes the horizontal drive recorder.</string>
+    <string name="leveler_detail_context2">1 . At the car park on the safety level.</string>
+    <string name="leveler_detail_context3">2 . In the next screen, moving round to come in the middle of this machine to adjust the inclination.</string>
 
 </resources>
