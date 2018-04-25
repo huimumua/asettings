@@ -13,5 +13,5 @@ interface PlaybackSound {
     //get current playback music volume
     int getPlaybackSoundVolume();
     //set playback sound mute or restore previous volume.
-    boolean setPlaybackSoundMute();
+    boolean setPlaybackSoundVolume(int volume);
 }

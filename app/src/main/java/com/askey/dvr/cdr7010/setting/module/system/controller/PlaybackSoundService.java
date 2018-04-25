@@ -52,14 +52,20 @@ public class PlaybackSoundService extends Service {
         }
 
         @Override
-        public boolean setPlaybackSoundMute() throws RemoteException {
-            if (currentVolume != 0) {
-                tempVolume = currentVolume;
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);//set mute
-            } else {
-                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, tempVolume, 0);//restore previous volume.
-            }
-            if (tempVolume == 0) {
+        public boolean setPlaybackSoundVolume(int volume) throws RemoteException {
+            if(volume == 0){
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+            }else if(volume == 1){
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 3, 0);
+            }else if(volume == 2){
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 6, 0);
+            }else if(volume == 3){
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 9, 0);
+            }else if(volume == 4){
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 12, 0);
+            }else if(volume == 5){
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 15, 0);
+            }else {
                 return false;
             }
             return true;
