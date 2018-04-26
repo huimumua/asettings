@@ -11,6 +11,8 @@
     <dimen name="leveler_detail_title_margin_top">10dp</dimen>
     <dimen name="title_margin_top">30dp</dimen>
     <dimen name="view_margin_top">10dp</dimen>
+    <dimen name="gps_status_padding_top">10dp</dimen>
+    <dimen name="gps_status_padding_left">3dp</dimen>
 
     <dimen name="title_size">24sp</dimen>
     <dimen name="content_size">16sp</dimen>
