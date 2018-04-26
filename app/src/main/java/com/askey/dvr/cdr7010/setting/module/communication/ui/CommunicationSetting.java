@@ -1,10 +1,16 @@
 package com.askey.dvr.cdr7010.setting.module.communication.ui;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.AdapterView;
 
+import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInitialization;
 
 /**
  * 项目名称：settings
@@ -15,13 +21,30 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
  * 修改时间：2018/4/8 13:19
  * 修改备注：
  */
-public class CommunicationSetting extends BaseActivity {
+public class CommunicationSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
+    private static final String TAG = "CommunicationSetting";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.base_jvclayout);
+
+        menuInfo = getIntent().getStringArrayExtra("menu_item");
+        initView(getResources().getString(R.string.communication),menuInfo,R.layout.second_menu_layout);
+        list_view.setOnItemClickListener(this);
 
     }
 
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String clickItem = currentData.get(position).get("menu_item").toString();
+        if(clickItem.equals(getResources().getString(R.string.communication_emergency_contact_person)) ) {
+            startActivity(new Intent(mContext, EmergencyContactPerson.class));
+
+        }else if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification)) ) {
+            startActivity(new Intent(mContext, EmergencyAutomaticNotification.class));
+
+        }
+    }
 }

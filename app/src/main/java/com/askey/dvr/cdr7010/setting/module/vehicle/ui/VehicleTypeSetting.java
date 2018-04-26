@@ -20,7 +20,6 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 public class VehicleTypeSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener{
 
     private static final String TAG = "SdcardSetting";
-    private Boolean isExist = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
+import com.askey.dvr.cdr7010.setting.module.communication.ui.CommunicationSetting;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
@@ -165,6 +166,11 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }else if (clickItem.equals(getString(R.string.main_menu_vt))) {
             secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
             Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
+        }else if (clickItem.equals(getString(R.string.main_menu_cs))) {
+            secondMenuItem = getResources().getStringArray(R.array.communication);
+            Intent intent = new Intent(mContext, CommunicationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }

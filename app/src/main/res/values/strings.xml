@@ -130,6 +130,9 @@
     <string name="leveler_detail_context2">1 . At the car park on the safety level.</string>
     <string name="leveler_detail_context3">2 . In the next screen, moving round to come in the middle of this machine to adjust the inclination.</string>
     <string name="gps_status_title">GPS Trusted</string>
+    <string name="communication">Communication Setting</string>
+    <string name="communication_emergency_contact_person">Emergency Contact Person</string>
+    <string name="communication_emergency_automatic_notification">Emergency Automatic Notification</string>
 
 
 </resources>

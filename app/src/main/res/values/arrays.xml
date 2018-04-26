@@ -180,4 +180,11 @@
         <attr name="back_imageview" format="reference"/>
         <attr name="back_visible" format="boolean"/>
     </declare-styleable>
+
+    <string-array name="communication">
+        <item>Emergency Contact Person</item>
+        <item>Emergency Automatic Notification</item>
+    </string-array>
+
+
 </resources>
