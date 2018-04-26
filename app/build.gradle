@@ -20,7 +20,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-        project.archivesBaseName = "Settings"
+        project.archivesBaseName = "ASettings"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.singnedconfig
     }

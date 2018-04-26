@@ -77,5 +77,6 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
     public interface PartitionCallback{
         void onPostExecute(boolean ready);
     }
+
 }
 
