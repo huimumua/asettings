@@ -83,7 +83,7 @@
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
         <activity android:name=".module.system.ui.LevelerDetailActivity" />
         <activity android:name=".module.system.ui.BluetoothSetting" />
-        
+
         <service
             android:name=".module.system.controller.PlaybackSoundService"
             android:enabled="true"
