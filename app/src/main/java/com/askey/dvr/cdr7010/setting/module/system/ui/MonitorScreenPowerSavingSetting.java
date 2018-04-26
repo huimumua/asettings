@@ -5,13 +5,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 /**
  * 项目名称：settings
@@ -28,10 +24,10 @@ public class MonitorScreenPowerSavingSetting extends SecondBaseActivity implemen
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
+        setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_system_settings_screen_power_saving),menuInfo);
+        initView(getResources().getString(R.string.tv_system_settings_screen_power_saving),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
     }

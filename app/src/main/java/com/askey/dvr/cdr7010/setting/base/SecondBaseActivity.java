@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Utils;
+import com.askey.dvr.cdr7010.setting.widget.JVCRelativeLayout;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ import java.util.List;
  */
 
 public class SecondBaseActivity extends AppCompatActivity {
+
+    private JVCRelativeLayout jvcRelativeLayout;
 
     protected ListView list_view;
     protected static Context mContext;
@@ -48,11 +51,16 @@ public class SecondBaseActivity extends AppCompatActivity {
         mContext = this;
     }
 
-    protected void initView(String title,String[] menuInfo){
-        list_view = (ListView) findViewById(R.id.list_view);
-        menuTitle = (TextView) findViewById(R.id.second_menu_title);
+    protected void initView(String title,String[] menuInfo,int layoutId){
+
+        jvcRelativeLayout = (JVCRelativeLayout) findViewById(R.id.root);
+        jvcRelativeLayout.setContentView(layoutId);
+        View view = jvcRelativeLayout.getMyView();
+
+        list_view = (ListView) view.findViewById(R.id.list_view);
+        menuTitle = (TextView) view.findViewById(R.id.second_menu_title);
         menuTitle.setText(title);
-        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
+        vp_progress = (VerticalProgressBar) view.findViewById(R.id.vp_progress);
         setViewAndData(list_view, vp_progress, menuInfo);
     }
 

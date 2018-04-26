@@ -18,10 +18,10 @@ public class MonitorTimeSettings extends SecondBaseActivity implements AdapterVi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
+        setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_monitor_time_settings), menuInfo);
+        initView(getResources().getString(R.string.tv_monitor_time_settings), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }

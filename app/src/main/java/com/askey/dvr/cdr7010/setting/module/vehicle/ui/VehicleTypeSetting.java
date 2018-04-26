@@ -1,17 +1,12 @@
 package com.askey.dvr.cdr7010.setting.module.vehicle.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInformation;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInitialization;
-import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 
 /**
  * 项目名称：settings
@@ -30,10 +25,10 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
+        setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.vehicle_type),menuInfo);
+        initView(getResources().getString(R.string.vehicle_type),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 

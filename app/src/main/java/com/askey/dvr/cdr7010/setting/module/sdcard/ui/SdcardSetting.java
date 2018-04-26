@@ -7,10 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
-import com.askey.dvr.cdr7010.setting.module.parking.ui.RecordingTimeActivity;
 import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 
 /**
@@ -30,10 +27,10 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
+        setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.sdcard_setting),menuInfo);
+        initView(getResources().getString(R.string.sdcard_setting),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         isExist = SdcardUtil.checkSdcardExist();
 }

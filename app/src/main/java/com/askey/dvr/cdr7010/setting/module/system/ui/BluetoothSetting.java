@@ -24,7 +24,7 @@ public class BluetoothSetting extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bluetooth_setting_layout);
+        setContentView(R.layout.base_jvclayout);
 
         JVCRelativeLayout jvcRelativeLayout = (JVCRelativeLayout) findViewById(R.id.root);
         jvcRelativeLayout.setContentView(R.layout.activity_base_nemu);

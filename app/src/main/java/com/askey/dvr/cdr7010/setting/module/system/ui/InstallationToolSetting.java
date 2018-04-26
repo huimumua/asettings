@@ -8,10 +8,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInformation;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInitialization;
 
 /**
  * 项目名称：settings
@@ -30,10 +27,10 @@ public class InstallationToolSetting extends SecondBaseActivity implements Adapt
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
+        setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_system_settings_installation_tool),menuInfo);
+        initView(getResources().getString(R.string.tv_system_settings_installation_tool),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
     }

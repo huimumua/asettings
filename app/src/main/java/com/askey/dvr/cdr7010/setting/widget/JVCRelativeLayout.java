@@ -69,38 +69,86 @@ public class JVCRelativeLayout extends RelativeLayout {
         setBackgroundResource(R.drawable.bg_menu_main);
 
         top_btn = (ImageView) right_button_layout.findViewById(R.id.top_btn);
-        top_btn.setImageDrawable(top_img);
+        if (null == top_img) {
+            top_btn.setImageResource(R.drawable.tag_menu_main_moveup);
+        } else {
+            top_btn.setImageDrawable(top_img);
+        }
+        setTop_visible(top_visible);
+
+        center_btn = (ImageView) right_button_layout.findViewById(R.id.center_btn);
+        if (null == center_img) {
+            center_btn.setImageResource(R.drawable.tag_menu_main_enter);
+        } else {
+            center_btn.setImageDrawable(center_img);
+        }
+        setCenter_visible(center_visible);
+
+        bottom_btn = (ImageView) right_button_layout.findViewById(R.id.bottom_btn);
+        if (null == bottom_img) {
+            bottom_btn.setImageResource(R.drawable.tag_menu_main_movedown);
+        } else {
+            bottom_btn.setImageDrawable(bottom_img);
+        }
+        setBottom_visible(bottom_visible);
+
+        back_btn = (ImageView) bottom_button_layout.findViewById(R.id.back);
+        if (null == back_img) {
+            back_btn.setImageResource(R.drawable.tag_menu_main_back);
+        } else {
+            back_btn.setImageDrawable(back_img);
+        }
+        setBack_visible(back_visible);
+    }
+
+    public void setTop_img(int id) {
+        top_btn.setImageResource(id);
+    }
+
+    public void setTop_visible(boolean top_visible) {
         if (top_visible) {
             top_btn.setVisibility(VISIBLE);
         } else {
             top_btn.setVisibility(INVISIBLE);
         }
+    }
 
-        center_btn = (ImageView) right_button_layout.findViewById(R.id.center_btn);
-        center_btn.setImageDrawable(center_img);
+    public void setCenter_img(int id) {
+        center_btn.setImageResource(id);
+    }
+
+    public void setCenter_visible(boolean center_visible) {
         if (center_visible) {
             center_btn.setVisibility(VISIBLE);
         } else {
             center_btn.setVisibility(INVISIBLE);
         }
+    }
 
-        bottom_btn = (ImageView) right_button_layout.findViewById(R.id.bottom_btn);
-        bottom_btn.setImageDrawable(bottom_img);
+    public void setBottom_img(int id) {
+        bottom_btn.setImageResource(id);
+    }
+
+    public void setBottom_visible(boolean bottom_visible) {
         if (bottom_visible) {
             bottom_btn.setVisibility(VISIBLE);
         } else {
             bottom_btn.setVisibility(INVISIBLE);
         }
+    }
 
-        back_btn = (ImageView) bottom_button_layout.findViewById(R.id.back);
-        back_btn.setImageDrawable(back_img);
+    public void setBack_img(int id) {
+        back_btn.setImageResource(id);
+    }
+
+    public void setBack_visible(boolean back_visible) {
         if (back_visible) {
             back_btn.setVisibility(VISIBLE);
         } else {
             back_btn.setVisibility(INVISIBLE);
         }
-
     }
+
 
     public void setContentView(int viewId) {
 

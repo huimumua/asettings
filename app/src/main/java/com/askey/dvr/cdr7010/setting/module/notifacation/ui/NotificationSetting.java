@@ -25,9 +25,9 @@ public class NotificationSetting extends SecondBaseActivity implements AdapterVi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
+        setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.main_menu_nsg),menuInfo);
+        initView(getResources().getString(R.string.main_menu_nsg),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 

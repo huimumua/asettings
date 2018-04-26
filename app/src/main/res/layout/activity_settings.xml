@@ -44,8 +44,23 @@
         android:layout_alignParentEnd="true" />
 
     <include
+        android:id="@+id/bottom"
         layout="@layout/bottom_button_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
+    <com.askey.dvr.cdr7010.setting.widget.MarqueeTextView
+        android:id="@+id/bottom_notify"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@id/bottom"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+        android:text="this is item's detail discrible"
+        />
 </RelativeLayout>
