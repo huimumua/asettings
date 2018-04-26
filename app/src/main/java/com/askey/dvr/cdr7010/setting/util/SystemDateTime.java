@@ -1,7 +1,10 @@
 package com.askey.dvr.cdr7010.setting.util;
 
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.util.Log;
+
+import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -148,5 +151,20 @@ public class SystemDateTime {
             return false;
         }
         return false;
+    }
+
+    public static boolean isDateTimeAuto(){
+        try {
+            return android.provider.Settings.Global.getInt(SettingApplication.getContext().getContentResolver(),
+                    android.provider.Settings.Global.AUTO_TIME) > 0;
+        } catch (Settings.SettingNotFoundException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static void setAutoDateTime(int checked){
+        android.provider.Settings.Global.putInt(SettingApplication.getContext().getContentResolver(),
+                android.provider.Settings.Global.AUTO_TIME, checked);
     }
 }
