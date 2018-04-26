@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
@@ -28,10 +29,12 @@ import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
+import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
@@ -40,7 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener,AdapterView.OnItemClickListener{
-
+    private final String LOG_TAG = "SettingsActivity";
     private TextView tv_title;
     private ListView list_view;
     private ImageView iv_icon;
@@ -59,6 +62,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     ,R.string.main_menu_nsg,R.string.main_menu_ss,R.string.main_menu_scm,R.string.main_menu_si,R.string.main_menu_cs};
     private String[] secondMenuItem;
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
+    private int LOCATION_REQUEST_CODE = 10002;//GPS位置权限
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +76,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         initData();
 
         FileManager.getInstance().bindFileManageService();
+        GPSStatusManager.getInstance().recordLocation(true);
 
         //向系统setting里面新增我们需要的字段值，name值为系统下的字段值，自定义的貌似不行
 //        Settings.Global.putInt(getContentResolver(), "LED",4);
@@ -185,7 +192,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (!Utils.isFastDoubleClick()) {
                     lastPosition += PERPAGECOUNT;
-                    Log.d("tag", "down" + lastPosition);
+                    Log.d(LOG_TAG, "down" + lastPosition);
                     if (lastPosition < dataTotal.size()) {
                         getPerPageData(dataTotal, lastPosition);
                     }else {
@@ -200,7 +207,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (!Utils.isFastDoubleClick()) {
                     if(lastPosition>=PERPAGECOUNT) {
-                        Log.d("tag", "up" + lastPosition);
+                        Log.d(LOG_TAG, "up" + lastPosition);
                         lastPosition -= PERPAGECOUNT;
                         if (lastPosition >= 0) {
                             getPerPageData(dataTotal, lastPosition);
@@ -212,14 +219,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                         if (lastPosition == 0) {
                             if (dataTotal.size()%PERPAGECOUNT != 0) {
                                 lastPosition = dataTotal.size()-dataTotal.size()%PERPAGECOUNT;
-                                Log.d("tag", "up+another = " + lastPosition);
+                                Log.d(LOG_TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
                                 vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
                                 list_view.setSelection(dataTotal.size()%PERPAGECOUNT-1);//将最后一页的焦点设置到最后一项
                             } else {
                                 lastPosition = dataTotal.size()-PERPAGECOUNT;
-                                Log.d("tag", "up+another = " + lastPosition);
+                                Log.d(LOG_TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
                                 vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
@@ -264,13 +271,51 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
             }
         } else {
-            Log.i("test", "requestSdcardPermission:true");
+            Log.i(LOG_TAG, "requestSdcardPermission:true");
+            requestLocationPermission();
         }
     }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void requestLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // 第一次请求权限时，用户如果拒绝，下一次请求shouldShowRequestPermissionRationale()返回true
+            // 向用户解释为什么需要这个权限
+            String setlocationDetail = getResources().getString(R.string.set_location_permission);
+            String inserted_ok = getResources().getString(R.string.inserted_ok);
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
+                new AlertDialog.Builder(this)
+                        .setMessage(setlocationDetail)
+                        .setPositiveButton(inserted_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                //定位权限
+                                ActivityCompat.requestPermissions((Activity) mContext,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+                            }
+                        })
+                        .show();
+            } else {
+                //定位权限
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+            }
+        } else {
+            Logg.i(LOG_TAG, "requestLocationPermission:true");
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         FileManager.getInstance().unBindFileManageService();
+        GPSStatusManager.getInstance().recordLocation(false);
     }
 }
