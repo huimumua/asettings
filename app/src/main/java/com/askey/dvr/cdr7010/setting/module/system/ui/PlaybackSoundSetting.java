@@ -1,8 +1,10 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.ContentResolver;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -26,11 +28,14 @@ public class PlaybackSoundSetting extends BaseActivity {
     private int currentVolumeMusic;
     private AudioManager mAudioManager;
     private SoundPool pool;
+    private ContentResolver contentResolver;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playback_sound_setting);
+        contentResolver = getContentResolver();
         initView();
     }
 
@@ -53,6 +58,7 @@ public class PlaybackSoundSetting extends BaseActivity {
                     currentVolumeMusic = 0;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
+                Settings.Global.putInt(contentResolver, "SYSSET_playback_vol", volumeType(currentVolumeMusic));
                 refreshView();
                 testPlaybackSound();
                 break;
@@ -62,6 +68,7 @@ public class PlaybackSoundSetting extends BaseActivity {
                     currentVolumeMusic = 15;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
+                Settings.Global.putInt(contentResolver, "SYSSET_playback_vol", volumeType(currentVolumeMusic));
                 refreshView();
                 testPlaybackSound();
                 break;
@@ -71,42 +78,42 @@ public class PlaybackSoundSetting extends BaseActivity {
 
     private void refreshView() {
         getPlaybackSoundInfo();
-        if (currentVolumeMusic == 0) {
+        if (volumeType(currentVolumeMusic) == 0) {
             playBackSound0.setVisibility(View.VISIBLE);
             playBackSound1.setVisibility(View.INVISIBLE);
             playBackSound2.setVisibility(View.INVISIBLE);
             playBackSound3.setVisibility(View.INVISIBLE);
             playBackSound4.setVisibility(View.INVISIBLE);
             playBackSound5.setVisibility(View.INVISIBLE);
-        } else if (0 < currentVolumeMusic && currentVolumeMusic < 4) {
+        } else if (volumeType(currentVolumeMusic) == 1) {
             playBackSound0.setVisibility(View.INVISIBLE);
             playBackSound1.setVisibility(View.VISIBLE);
             playBackSound2.setVisibility(View.INVISIBLE);
             playBackSound3.setVisibility(View.INVISIBLE);
             playBackSound4.setVisibility(View.INVISIBLE);
             playBackSound5.setVisibility(View.INVISIBLE);
-        } else if (3 < currentVolumeMusic && currentVolumeMusic < 7) {
+        } else if (volumeType(currentVolumeMusic) == 2) {
             playBackSound0.setVisibility(View.INVISIBLE);
             playBackSound1.setVisibility(View.VISIBLE);
             playBackSound2.setVisibility(View.VISIBLE);
             playBackSound3.setVisibility(View.INVISIBLE);
             playBackSound4.setVisibility(View.INVISIBLE);
             playBackSound5.setVisibility(View.INVISIBLE);
-        } else if (6 < currentVolumeMusic && currentVolumeMusic < 10) {
+        } else if (volumeType(currentVolumeMusic) == 3) {
             playBackSound0.setVisibility(View.INVISIBLE);
             playBackSound1.setVisibility(View.VISIBLE);
             playBackSound2.setVisibility(View.VISIBLE);
             playBackSound3.setVisibility(View.VISIBLE);
             playBackSound4.setVisibility(View.INVISIBLE);
             playBackSound5.setVisibility(View.INVISIBLE);
-        } else if (9 < currentVolumeMusic && currentVolumeMusic < 13) {
+        } else if (volumeType(currentVolumeMusic) == 4) {
             playBackSound0.setVisibility(View.INVISIBLE);
             playBackSound1.setVisibility(View.VISIBLE);
             playBackSound2.setVisibility(View.VISIBLE);
             playBackSound3.setVisibility(View.VISIBLE);
             playBackSound4.setVisibility(View.VISIBLE);
             playBackSound5.setVisibility(View.INVISIBLE);
-        } else if (12 < currentVolumeMusic && currentVolumeMusic < 16) {
+        } else if (volumeType(currentVolumeMusic) == 5) {
             playBackSound0.setVisibility(View.INVISIBLE);
             playBackSound1.setVisibility(View.VISIBLE);
             playBackSound2.setVisibility(View.VISIBLE);
@@ -118,7 +125,6 @@ public class PlaybackSoundSetting extends BaseActivity {
 
     private void testPlaybackSound() {
         if (pool != null) {
-            Log.i("PlaybackSoundSetting", "==pool=release");
             pool.release();
         }
         pool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
@@ -132,7 +138,6 @@ public class PlaybackSoundSetting extends BaseActivity {
 
     }
 
-
     private void getPlaybackSoundInfo() {
         //音量控制,初始化定义
         mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
@@ -143,5 +148,23 @@ public class PlaybackSoundSetting extends BaseActivity {
         currentVolumeMusic = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         Log.i("PlaybackSoundSetting", "==currentVolumeMusic=" + currentVolumeMusic);
 
+    }
+
+    private int volumeType(int currentVolumeMusic) {
+        int volumeType = 0;
+        if (currentVolumeMusic == 0) {
+            volumeType = 0;
+        } else if (currentVolumeMusic > 0 && currentVolumeMusic < 4) {
+            volumeType = 1;
+        } else if (currentVolumeMusic > 3 && currentVolumeMusic < 7) {
+            volumeType = 2;
+        } else if (currentVolumeMusic > 6 && currentVolumeMusic < 10) {
+            volumeType = 3;
+        } else if (currentVolumeMusic > 9 && currentVolumeMusic < 13) {
+            volumeType = 4;
+        } else if (currentVolumeMusic > 12 && currentVolumeMusic < 16) {
+            volumeType = 5;
+        }
+        return volumeType;
     }
 }

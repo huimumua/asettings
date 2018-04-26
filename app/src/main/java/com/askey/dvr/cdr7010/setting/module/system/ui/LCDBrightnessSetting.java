@@ -25,11 +25,13 @@ public class LCDBrightnessSetting extends BaseActivity {
     private int currentBrightness = 0;
     private ImageView brightness1, brightness2, brightness3, brightness4, brightness5,
             brightness6, brightness7, brightness8, brightness9, brightness10;
+    private ContentResolver contentResolver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lcd_brightness);
+        contentResolver = getContentResolver();
         initView();
         getScreenBrightness();
         refresh(currentBrightness, "current");
@@ -109,6 +111,7 @@ public class LCDBrightnessSetting extends BaseActivity {
             currentBrightness = 0;
         }
         int process = currentBrightness * 10 / 255;
+        Settings.Global.putInt(contentResolver, "SYSSET_monitor_brightness", process);
         if (type.equals("down")) {
             if (process == 9) {
                 brightness10.setImageDrawable(getDrawable(R.drawable.unchecked10));

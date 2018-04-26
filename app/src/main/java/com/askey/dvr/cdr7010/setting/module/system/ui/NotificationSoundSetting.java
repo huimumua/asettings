@@ -1,8 +1,10 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.ContentResolver;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,11 +29,13 @@ public class NotificationSoundSetting extends BaseActivity {
     int maxVolume, currentVolume;
     private AudioManager mAudioManager;
     private SoundPool pool;
+    private ContentResolver contentResolver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_sound_setting);
+        contentResolver = getContentResolver();
         initView();
     }
 
@@ -54,6 +58,7 @@ public class NotificationSoundSetting extends BaseActivity {
                     currentVolume = 0;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+                Settings.Global.putInt(contentResolver, "SYSSET_notify_vol", currentVolume);
                 refreshView();
                 testSound();
                 break;
@@ -63,6 +68,7 @@ public class NotificationSoundSetting extends BaseActivity {
                     currentVolume = 5;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+                Settings.Global.putInt(contentResolver, "SYSSET_notify_vol", currentVolume);
                 refreshView();
                 testSound();
                 break;
@@ -119,7 +125,6 @@ public class NotificationSoundSetting extends BaseActivity {
 
     private void testSound() {
         if (pool != null) {
-            Log.i("NotificationSound", "==pool=release");
             pool.release();
         }
         pool = new SoundPool(1, AudioManager.STREAM_NOTIFICATION, 0);
