@@ -2,12 +2,11 @@ package com.askey.dvr.cdr7010.setting.module.sdcard.controller;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.storage.DiskInfo;
 
-import com.askey.android.platform_library.DiskInfoExtend;
-import com.askey.android.platform_library.PlatformLibrary;
-import com.askey.android.platform_library.StorageUtils;
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.util.Logg;
+import com.askey.platform.AskeyStorageManager;
 
 /**
  * 项目名称：settings
@@ -42,14 +41,13 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 //            e.printStackTrace();
 //        }
 
-        PlatformLibrary mPlatformLibrary = new  PlatformLibrary(appContext);
-        StorageUtils mStorageUtils = mPlatformLibrary.getStorageManager();
-        for (final DiskInfoExtend disk : mStorageUtils.getDisksExtend()) {
-            Logg.d(LOG_TAG, "doInBackground: disk " + disk.getSysPath());
+        AskeyStorageManager  storageManager = AskeyStorageManager.getInstance(appContext);
+        for (final DiskInfo disk : storageManager.getDisks()) {
+            Logg.d(LOG_TAG, "doInBackground: disk " + disk.sysPath);
             if (disk.isSd()) {
-                Logg.d(LOG_TAG, "doInBackground: sdcard disk, volumeCount = " + disk.getvolumeCount() + ", size = " + disk.getSize());
+                Logg.d(LOG_TAG, "doInBackground: sdcard disk, volumeCount = " + disk.volumeCount + ", size = " + disk.size);
                 try {
-                    mStorageUtils.partitionPublic(disk.getId());
+                    storageManager.partitionPublic(disk.getId());
                     return true;
                 } catch (Exception e) {
                     Logg.w(LOG_TAG, "doInBackground: format thread error. " + e.getMessage());

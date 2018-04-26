@@ -79,7 +79,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly files('libs/platform_library.jar')
+    compileOnly files('libs/com.askey.platform.jar')
     implementation 'com.android.support:appcompat-v7:25.4.0'
     implementation 'com.android.support:support-v4:25.4.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'

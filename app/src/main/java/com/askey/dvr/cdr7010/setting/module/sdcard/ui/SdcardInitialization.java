@@ -1,16 +1,6 @@
 package com.askey.dvr.cdr7010.setting.module.sdcard.ui;
 
-import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.IBinder;
-import android.os.Parcelable;
-import android.os.SystemClock;
-import android.os.storage.StorageManager;
-import android.os.storage.StorageVolume;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,17 +8,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.askey.android.platform_library.DiskInfoExtend;
-import com.askey.android.platform_library.PlatformLibrary;
-import com.askey.android.platform_library.StorageUtils;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.sdcard.controller.SdcardFormatAsyncTask;
-import com.askey.dvr.cdr7010.setting.util.Logg;
-
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * 项目名称：settings
