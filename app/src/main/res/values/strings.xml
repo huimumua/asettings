@@ -133,6 +133,6 @@
     <string name="communication">Communication Setting</string>
     <string name="communication_emergency_contact_person">Emergency Contact Person</string>
     <string name="communication_emergency_automatic_notification">Emergency Automatic Notification</string>
-
-
+    <string name="communication_emergency_automatic_notification_on">ON</string>
+    <string name="communication_emergency_automatic_notification_off">OFF</string>
 </resources>

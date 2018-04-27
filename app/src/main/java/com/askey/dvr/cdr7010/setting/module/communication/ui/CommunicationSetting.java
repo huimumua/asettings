@@ -43,7 +43,11 @@ public class CommunicationSetting extends SecondBaseActivity implements AdapterV
             startActivity(new Intent(mContext, EmergencyContactPerson.class));
 
         }else if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification)) ) {
-            startActivity(new Intent(mContext, EmergencyAutomaticNotification.class));
+
+            String [] secondMenuItem = getResources().getStringArray(R.array.emergency_automatic_notification);
+            Intent intent = new Intent(mContext, EmergencyAutomaticNotification.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
 
         }
     }

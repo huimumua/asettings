@@ -187,4 +187,11 @@
     </string-array>
 
 
+    <string-array name="emergency_automatic_notification">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+
+
 </resources>
