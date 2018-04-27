@@ -104,6 +104,7 @@ public class SatelliteReceptionStatus extends BaseActivity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
     }
 
 
