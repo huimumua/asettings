@@ -1,6 +1,8 @@
 package com.askey.dvr.cdr7010.setting.module.vehicle.ui;
 
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 public class VehicleTypeSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener{
 
     private static final String TAG = "SdcardSetting";
+    private ContentResolver contentResolver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,28 +32,35 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
         menuInfo = getIntent().getStringArrayExtra("menu_item");
         initView(getResources().getString(R.string.vehicle_type),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
+        contentResolver = getContentResolver();
+        focusItem();
     }
 
+    private void focusItem() {
+        list_view.requestFocus();
+        int car_type = Settings.Global.getInt(contentResolver, "CAR_type", 0);
+        list_view.setSelection(car_type);
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.vehicle_type_options)) ) {
-
+            Settings.Global.putInt(contentResolver, "CAR_type", 0);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_mini_sedan)) ) {
-
+            Settings.Global.putInt(contentResolver, "CAR_type", 1);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_minivan)) ) {
-
+            Settings.Global.putInt(contentResolver, "CAR_type", 2);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_medium_sedan)) ) {
-
+            Settings.Global.putInt(contentResolver, "CAR_type", 3);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_rv)) ) {
-
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_suv)) ) {
-
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_others)) ) {
-
+            Settings.Global.putInt(contentResolver, "CAR_type", 4);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_large_sedan)) ) {
-
+            Settings.Global.putInt(contentResolver, "CAR_type", 5);
+        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_suv)) ) {
+            Settings.Global.putInt(contentResolver, "CAR_type", 6);
+        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_others)) ) {
+            Settings.Global.putInt(contentResolver, "CAR_type", 7);
         }
 
     }

@@ -55,14 +55,9 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
          if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_on)) ) {
-
-             SystemDateTime.setAutoDateTime(1);
              Settings.Global.putInt(contentResolver, "COMM_emergency_auto", 1);
         }else if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_off)) ) {
-
-             SystemDateTime.setAutoDateTime(1);
              Settings.Global.putInt(contentResolver, "COMM_emergency_auto", 0);
-
         }
     }
 }
