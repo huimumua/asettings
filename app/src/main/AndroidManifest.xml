@@ -25,6 +25,8 @@
 
     <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
 
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -95,7 +97,6 @@
         <activity android:name=".module.communication.ui.CommunicationSetting" />
         <activity android:name=".module.communication.ui.EmergencyAutomaticNotification" />
         <activity android:name=".module.communication.ui.EmergencyContactPerson" />
-
 
         <service
             android:name=".module.system.controller.PlaybackSoundService"

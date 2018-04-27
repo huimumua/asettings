@@ -6,18 +6,24 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
+
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
+
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.io.IOException;
+
 
 /**
  * 项目名称：settings
@@ -28,6 +34,8 @@ import java.io.IOException;
  * 修改时间：2018/4/24 15:38
  * 修改备注：
  */
+
+@RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
 public class LevelerActivity extends BaseActivity implements SensorEventListener , SurfaceHolder.Callback {
     private static final String TAG = "LevelerActivity";
     //定义水平仪的仪表盘
@@ -45,6 +53,11 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_installation_leveler);
+
+        //获取水平仪的主组件
+        spiritView = (SpiritView) findViewById(R.id.show);
+        //获取传感器
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 
     }
 
@@ -149,7 +162,6 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     @Override
     protected void onStop() {
         //取消注册
-        Logg.i(TAG,"=====onStop=======");
         sensorManager.unregisterListener(this);
         super.onStop();
     }
@@ -159,7 +171,6 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         Logg.i(TAG,"=====onPause=======");
         //取消注册
         stopPreview();
-
         sensorManager.unregisterListener(this);
         super.onPause();
     }
