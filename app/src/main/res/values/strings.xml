@@ -135,4 +135,5 @@
     <string name="communication_emergency_automatic_notification">Emergency Automatic Notification</string>
     <string name="communication_emergency_automatic_notification_on">ON</string>
     <string name="communication_emergency_automatic_notification_off">OFF</string>
+    <string name="system_version">System Version</string>
 </resources>

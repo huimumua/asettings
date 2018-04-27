@@ -30,6 +30,19 @@
                 android:orientation="vertical"
                 android:visibility="gone"
                 >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:text="@string/system_version"
+                    />
+                <TextView
+                    android:id="@+id/version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:paddingStart="10dp"
+                    />
 
             </LinearLayout>
             <LinearLayout
