@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 /**
  * 项目名称：settings
@@ -28,22 +26,22 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_menu_layout);
-
-        initView();
-
-    }
-
-    private void initView() {
-        list_view = (ListView) findViewById(R.id.list_view);
-        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
-
-        list_view.setOnItemClickListener(this);
-
+        setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-
-        setViewAndData(list_view, vp_progress, menuInfo);
+        initView("Driving Setting",menuInfo,R.layout.second_menu_layout);
+        list_view.setOnItemClickListener(this);
     }
+
+//    private void initView() {
+//        list_view = (ListView) findViewById(R.id.list_view);
+//        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
+//
+//        list_view.setOnItemClickListener(this);
+//
+//        menuInfo = getIntent().getStringArrayExtra("menu_item");
+//
+//        setViewAndData(list_view, vp_progress, menuInfo);
+//    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

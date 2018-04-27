@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ public class SecondBaseActivity extends AppCompatActivity {
     protected ListView list_view;
     protected static Context mContext;
     private TextView menuTitle;
+    private ImageView menuTitle_icon;
     protected VerticalProgressBar vp_progress;
 
     protected SimpleAdapter simpleAdapter;
@@ -58,7 +60,8 @@ public class SecondBaseActivity extends AppCompatActivity {
         View view = jvcRelativeLayout.getMyView();
 
         list_view = (ListView) view.findViewById(R.id.list_view);
-        menuTitle = (TextView) view.findViewById(R.id.second_menu_title);
+        menuTitle = (TextView) view.findViewById(R.id.title_tv);
+        menuTitle_icon = (ImageView) view.findViewById(R.id.title_icon);//参数待添加
         menuTitle.setText(title);
         vp_progress = (VerticalProgressBar) view.findViewById(R.id.vp_progress);
         setViewAndData(list_view, vp_progress, menuInfo);

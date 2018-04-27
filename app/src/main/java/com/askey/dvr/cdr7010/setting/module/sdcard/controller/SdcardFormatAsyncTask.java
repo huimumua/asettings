@@ -2,7 +2,6 @@ package com.askey.dvr.cdr7010.setting.module.sdcard.controller;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.storage.DiskInfo;
 
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.util.Logg;
@@ -42,18 +41,18 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 //        }
 
         AskeyStorageManager  storageManager = AskeyStorageManager.getInstance(appContext);
-        for (final DiskInfo disk : storageManager.getDisks()) {
-            Logg.d(LOG_TAG, "doInBackground: disk " + disk.sysPath);
-            if (disk.isSd()) {
-                Logg.d(LOG_TAG, "doInBackground: sdcard disk, volumeCount = " + disk.volumeCount + ", size = " + disk.size);
-                try {
-                    storageManager.partitionPublic(disk.getId());
-                    return true;
-                } catch (Exception e) {
-                    Logg.w(LOG_TAG, "doInBackground: format thread error. " + e.getMessage());
-                }
-            }
-        }
+//        for (final DiskInfo disk : storageManager.getDisks()) {
+//            Logg.d(LOG_TAG, "doInBackground: disk " + disk.sysPath);
+//            if (disk.isSd()) {
+//                Logg.d(LOG_TAG, "doInBackground: sdcard disk, volumeCount = " + disk.volumeCount + ", size = " + disk.size);
+//                try {
+//                    storageManager.partitionPublic(disk.getId());
+//                    return true;
+//                } catch (Exception e) {
+//                    Logg.w(LOG_TAG, "doInBackground: format thread error. " + e.getMessage());
+//                }
+//            }
+//        }
 
         return false;
     }
