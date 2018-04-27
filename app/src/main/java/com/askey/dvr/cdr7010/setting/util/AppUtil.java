@@ -85,6 +85,7 @@ public class AppUtil {
             context.startActivity(intent);
             if(isFinish && (context instanceof Activity)){
                 SettingApplication.appExit();
+//                ((Activity) context).finish();
             }
         } catch (Exception e) {
             e.printStackTrace();

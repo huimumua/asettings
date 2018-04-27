@@ -325,10 +325,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     }
 
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         FileManager.getInstance().unBindFileManageService();
-        GPSStatusManager.getInstance().recordLocation(false);
+//        GPSStatusManager.getInstance().recordLocation(false);
     }
+
 }

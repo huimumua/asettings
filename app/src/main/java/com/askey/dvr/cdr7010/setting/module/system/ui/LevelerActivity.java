@@ -15,6 +15,7 @@ import android.view.SurfaceView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.io.IOException;
 
@@ -45,13 +46,6 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_installation_leveler);
 
-        //获取水平仪的主组件
-        spiritView = (SpiritView) findViewById(R.id.show);
-        //获取传感器
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        preview = (SurfaceView) findViewById(R.id.preview);
-        surfaceHolder = preview.getHolder();
-        surfaceHolder.addCallback(this);
     }
 
     @Override
@@ -138,7 +132,15 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     @Override
     protected void onResume() {
         super.onResume();
+        //获取水平仪的主组件
+        spiritView = (SpiritView) findViewById(R.id.show);
+        //获取传感器
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        preview = (SurfaceView) findViewById(R.id.preview);
+        surfaceHolder = preview.getHolder();
+        surfaceHolder.addCallback(this);
         //注册
+        Logg.i(TAG,"=====onResume=======");
         sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
                 SensorManager.SENSOR_DELAY_GAME);
 
@@ -147,13 +149,17 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     @Override
     protected void onStop() {
         //取消注册
+        Logg.i(TAG,"=====onStop=======");
         sensorManager.unregisterListener(this);
         super.onStop();
     }
 
     @Override
     protected void onPause() {
+        Logg.i(TAG,"=====onPause=======");
         //取消注册
+        stopPreview();
+
         sensorManager.unregisterListener(this);
         super.onPause();
     }
@@ -209,12 +215,19 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
                 camera.setPreviewDisplay(null);
                 camera.stopPreview();
                 camera.release();
+                camera = null ;
                 isPreviewing = false;
+            }
+            if(surfaceHolder!=null){
+                surfaceHolder.getSurface().destroy();
+                surfaceHolder.getSurface().release();
+                surfaceHolder =null;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
 
 }

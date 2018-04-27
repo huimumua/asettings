@@ -121,10 +121,18 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
 
     private void stopPreview() {
         try {
-            camera.setPreviewDisplay(null);
-            camera.stopPreview();
-            camera.release();
-            isPreviewing = false;
+            if(camera!=null){
+                camera.setPreviewDisplay(null);
+                camera.stopPreview();
+                camera.release();
+                camera=null;
+                isPreviewing = false;
+            }
+            if(surfaceHolder!=null){
+                surfaceHolder.getSurface().destroy();
+                surfaceHolder.getSurface().release();
+                surfaceHolder =null;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -136,5 +144,12 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
         line.setLayoutParams(layoutParams);
     }
 
+    @Override
+    protected void onPause() {
+        //取消注册
+        Logg.i(TAG,"=====onPause=======");
+        stopPreview();
+        super.onPause();
+    }
 
 }
