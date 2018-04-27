@@ -1,15 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.dirving.ui;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
@@ -20,22 +12,26 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.util.AppUtil;
+import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.Logg;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
 import java.io.IOException;
 
-public class RangeSettingActivity extends AppCompatActivity implements SurfaceHolder.Callback {
-
+public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.Callback {
+    private static final String TAG = "RangeSettingActivity";
     private SurfaceView preview;
     private int previewHeight;
     private SurfaceHolder surfaceHolder;
     private View line;
     private Camera camera;
-    private boolean cameraPermission = false;
     private boolean isPreviewing = false;
-
     private ViewGroup.MarginLayoutParams marginLayoutParams;
     private FrameLayout.LayoutParams layoutParams;
     private int lineCurrentMarginTop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,32 +55,10 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
         lineCurrentMarginTop = 150;
         setLineMarginTop(lineCurrentMarginTop);
 
-        requestCameraPermission();
-
         surfaceHolder = preview.getHolder();
         surfaceHolder.addCallback(this);
     }
 
-    private void requestCameraPermission() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            cameraPermission = true;
-        } else {
-            cameraPermission = false;
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                new AlertDialog.Builder(this)
-                        .setMessage("This function need camera permission")
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions(RangeSettingActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
-                            }
-                        })
-                        .show();
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
-            }
-        }
-    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -103,30 +77,20 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
                     setLineMarginTop(lineCurrentMarginTop);
                 }
                 break;
+            case KeyEvent.KEYCODE_ENTER:
+                Logg.i(TAG,"===KeyEvent.KEYCODE_ENTER===");
+                boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
+                if(isFirstInit){
+                    PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
+                    AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
+                }
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1) {
-            if (grantResults.length > 0) {
-                cameraPermission = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                if (cameraPermission) {
-                    startPreview();
-                } else {
-                    finish();
-                }
-            }
-        }
-    }
-
-    @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        if (!cameraPermission) {
-            return;
-        }
         startPreview();
     }
 
@@ -137,9 +101,6 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        if (!cameraPermission) {
-            return;
-        }
         stopPreview();
     }
 
@@ -174,4 +135,6 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
         layoutParams = new FrameLayout.LayoutParams(marginLayoutParams);
         line.setLayoutParams(layoutParams);
     }
+
+
 }
