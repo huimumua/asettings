@@ -1,6 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.content.Intent;
+import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -8,10 +9,14 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
+
+import java.io.IOException;
 
 /**
  * 项目名称：settings
@@ -22,7 +27,7 @@ import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
  * 修改时间：2018/4/24 15:38
  * 修改备注：
  */
-public class LevelerActivity extends BaseActivity implements SensorEventListener {
+public class LevelerActivity extends BaseActivity implements SensorEventListener , SurfaceHolder.Callback {
     private static final String TAG = "LevelerActivity";
     //定义水平仪的仪表盘
     private SpiritView spiritView;
@@ -30,6 +35,10 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     private int MAX_ANGLE = 30;
     //定义Sensor管理器
     SensorManager sensorManager;
+    private Camera camera;
+    private SurfaceView preview;
+    private SurfaceHolder surfaceHolder;
+    private boolean isPreviewing = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +49,9 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         spiritView = (SpiritView) findViewById(R.id.show);
         //获取传感器
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-
+        preview = (SurfaceView) findViewById(R.id.preview);
+        surfaceHolder = preview.getHolder();
+        surfaceHolder.addCallback(this);
     }
 
     @Override
@@ -161,5 +172,49 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        startPreview();
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        stopPreview();
+    }
+
+    private void startPreview() {
+        if (null != camera || isPreviewing) {
+            stopPreview();
+        }
+        try {
+            camera = Camera.open();
+            camera.setDisplayOrientation(0);
+            camera.setPreviewDisplay(surfaceHolder);
+            camera.startPreview();
+            isPreviewing = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void stopPreview() {
+        try {
+            if(camera!=null){
+                camera.setPreviewDisplay(null);
+                camera.stopPreview();
+                camera.release();
+                isPreviewing = false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

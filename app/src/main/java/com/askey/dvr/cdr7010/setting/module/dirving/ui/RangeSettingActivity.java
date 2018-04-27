@@ -28,10 +28,10 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
     private View line;
     private Camera camera;
     private boolean isPreviewing = false;
-
     private ViewGroup.MarginLayoutParams marginLayoutParams;
     private FrameLayout.LayoutParams layoutParams;
     private int lineCurrentMarginTop;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -135,4 +135,6 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
         layoutParams = new FrameLayout.LayoutParams(marginLayoutParams);
         line.setLayoutParams(layoutParams);
     }
+
+
 }
