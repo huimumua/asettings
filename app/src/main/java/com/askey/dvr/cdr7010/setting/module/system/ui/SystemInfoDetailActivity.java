@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneStateListener;
@@ -19,7 +20,7 @@ import java.lang.reflect.Method;
 public class SystemInfoDetailActivity extends AppCompatActivity {
     private String type;
     private ImageView title_icon;
-    private TextView title_tv, phone_number, net, signal, imei, imei_sv;
+    private TextView title_tv, phone_number, net, signal, imei, imei_sv, version;
     private LinearLayout systemVersion, sim, openLicense;
     private TelephonyManager mPhoneManager;
 
@@ -53,8 +54,11 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             systemVersion.setVisibility(View.VISIBLE);
             sim.setVisibility(View.GONE);
             openLicense.setVisibility(View.GONE);
-
             title_tv.setText(getString(R.string.sys_version));
+
+            version = (TextView) findViewById(R.id.version);
+            String systemVersion =  Build.DISPLAY;
+            version.setText(systemVersion);
         }
         if (type.equals("SIM")) {
             sim.setVisibility(View.VISIBLE);
