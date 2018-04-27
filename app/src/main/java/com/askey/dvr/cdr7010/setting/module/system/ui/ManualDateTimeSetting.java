@@ -71,6 +71,9 @@ public class ManualDateTimeSetting extends BaseActivity {
                     iv_month_line.setVisibility(View.INVISIBLE);
                     iv_day_line.setVisibility(View.VISIBLE);
                     maxDays = SystemDateTime.getDaysByYearMonth(Integer.parseInt(tv_year.getText().toString()), Integer.parseInt(tv_month.getText().toString()));
+                    if (Integer.parseInt(tv_day.getText().toString()) > maxDays) {
+                        tv_day.setText(maxDays + "");
+                    }
                 } else if (iv_day_line.getVisibility() == View.VISIBLE) {
                     iv_day_line.setVisibility(View.INVISIBLE);
                     iv_hour_line.setVisibility(View.VISIBLE);
