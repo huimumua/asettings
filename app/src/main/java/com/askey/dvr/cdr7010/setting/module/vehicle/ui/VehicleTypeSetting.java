@@ -1,6 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.vehicle.ui;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -9,6 +10,9 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
+import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
 /**
  * 项目名称：settings
@@ -63,7 +67,14 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
             Settings.Global.putInt(contentResolver, "CAR_type", 7);
         }
 
+        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
+        if(isFirstInit){
+            Intent intent = new Intent(mContext,RangeSettingActivity.class);
+            startActivity(intent);
+        }
+
     }
+
 
 
 }

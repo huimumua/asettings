@@ -27,6 +27,7 @@ public class Const {
     public static final String DEVICE_INSTALL_SETTING = "Device install setting";
     public static final String DEPARTURE_DELAY_WARNING = "Departure delay warning";
     public static final String RANGE_OF = "Range of";
-
-
+    public static final String DVR_MAIN_CLASS = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
+    public static final String DVR_MAIN_PAKAGE = "com.askey.dvr.cdr7010.dashcam";
+    public static final String SETTTING_FIRST_INIT = "firstInit";
 }

@@ -1,11 +1,15 @@
 package com.askey.dvr.cdr7010.setting.util;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.text.TextUtils;
+
+import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 
 import java.util.List;
 
@@ -69,5 +73,22 @@ public class AppUtil {
         }
     }
 
+
+    public static void startActivity(Context context, String packageName, String className, boolean isFinish){
+        if(TextUtils.isEmpty(packageName) || TextUtils.isEmpty(className) || context == null){
+            return ;
+        }
+        ComponentName componetName = new ComponentName(packageName,className);
+        try {
+            Intent intent = new Intent();
+            intent.setComponent(componetName);
+            context.startActivity(intent);
+            if(isFinish && (context instanceof Activity)){
+                SettingApplication.appExit();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }

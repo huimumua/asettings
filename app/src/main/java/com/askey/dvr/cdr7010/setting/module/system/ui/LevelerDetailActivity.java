@@ -1,10 +1,15 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
+import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
 /**
  * 项目名称：settings
@@ -26,5 +31,25 @@ public class LevelerDetailActivity extends BaseActivity{
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
+            if(isFirstInit){
+                String []secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
+                Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+                intent.putExtra("menu_item", secondMenuItem);
+                startActivity(intent);
+            }
+            return true;
+        }else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+
+            return true;
+        }else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

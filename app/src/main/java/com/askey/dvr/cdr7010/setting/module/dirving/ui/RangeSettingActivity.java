@@ -3,6 +3,7 @@ package com.askey.dvr.cdr7010.setting.module.dirving.ui;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -20,11 +21,17 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
+import com.askey.dvr.cdr7010.setting.util.AppUtil;
+import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.Logg;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
 import java.io.IOException;
 
-public class RangeSettingActivity extends AppCompatActivity implements SurfaceHolder.Callback {
-
+public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.Callback {
+    private static final String TAG = "RangeSettingActivity";
     private SurfaceView preview;
     private int previewHeight;
     private SurfaceHolder surfaceHolder;
@@ -101,6 +108,14 @@ public class RangeSettingActivity extends AppCompatActivity implements SurfaceHo
                 if (lineCurrentMarginTop > 1) {
                     lineCurrentMarginTop -= 1;
                     setLineMarginTop(lineCurrentMarginTop);
+                }
+                break;
+            case KeyEvent.KEYCODE_ENTER:
+                Logg.i(TAG,"===KeyEvent.KEYCODE_ENTER===");
+                boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
+                if(isFirstInit){
+                    PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
+                    AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
                 }
                 break;
         }

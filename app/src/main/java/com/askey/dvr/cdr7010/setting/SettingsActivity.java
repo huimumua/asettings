@@ -31,11 +31,13 @@ import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
+import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
@@ -79,6 +81,11 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         FileManager.getInstance().bindFileManageService();
         GPSStatusManager.getInstance().recordLocation(true);
 
+        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
+        if(isFirstInit){
+            Intent intent = new Intent(mContext,LevelerActivity.class);
+            startActivity(intent);
+        }
         //向系统setting里面新增我们需要的字段值，name值为系统下的字段值，自定义的貌似不行
 //        Settings.Global.putInt(getContentResolver(), "LED",4);
 
