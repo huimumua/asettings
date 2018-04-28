@@ -199,7 +199,7 @@ public class GPSStatusManager {
             Logg.d(TAG, "stopReceivingLocationUpdates");
         }
         if (mListener != null) mListener.hideGpsOnScreenIndicator();
-        closeGPS(SettingApplication.getContext());
+//        closeGPS(SettingApplication.getContext()); //gps不关闭，关闭后Mainapp使用异常
     }
 
     private GpsStatus.Listener gpsStatusListener = new GpsStatus.Listener() {
