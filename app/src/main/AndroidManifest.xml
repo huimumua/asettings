@@ -97,6 +97,7 @@
         <activity android:name=".module.communication.ui.CommunicationSetting" />
         <activity android:name=".module.communication.ui.EmergencyAutomaticNotification" />
         <activity android:name=".module.communication.ui.EmergencyContactPerson" />
+        <activity android:name=".module.system.ui.MountingPositionSetting" />
 
         <service
             android:name=".module.system.controller.PlaybackSoundService"

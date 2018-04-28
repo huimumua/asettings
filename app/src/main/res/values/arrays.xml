@@ -192,6 +192,12 @@
         <item>OFF</item>
     </string-array>
 
+    <string-array name="mounting_position">
+        <item>Left</item>
+        <item>Middle</item>
+        <item>Right</item>
+    </string-array>
+
 
 
 </resources>

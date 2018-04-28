@@ -136,4 +136,8 @@
     <string name="communication_emergency_automatic_notification_on">ON</string>
     <string name="communication_emergency_automatic_notification_off">OFF</string>
     <string name="system_version">System Version</string>
+    <string name="mounting_position">Mounting Position</string>
+    <string name="mounting_position_left">Left</string>
+    <string name="mounting_position_middle">Middle</string>
+    <string name="mounting_position_right">Right</string>
 </resources>

@@ -83,7 +83,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
         if(isFirstInit){
-            Intent intent = new Intent(mContext,LevelerActivity.class);
+            String []secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
+            Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }
         //向系统setting里面新增我们需要的字段值，name值为系统下的字段值，自定义的貌似不行

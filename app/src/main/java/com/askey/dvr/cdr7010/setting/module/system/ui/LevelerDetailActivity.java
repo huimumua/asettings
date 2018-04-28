@@ -7,6 +7,7 @@ import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
@@ -36,9 +37,7 @@ public class LevelerDetailActivity extends BaseActivity{
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
             boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
             if(isFirstInit){
-                String []secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
-                Intent intent = new Intent(mContext, VehicleTypeSetting.class);
-                intent.putExtra("menu_item", secondMenuItem);
+                Intent intent = new Intent(mContext,RangeSettingActivity.class);
                 startActivity(intent);
             }
             return true;
