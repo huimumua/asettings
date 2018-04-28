@@ -73,7 +73,7 @@ public class HorizontalListViewAdapter extends BaseAdapter{
 
         holder.mTitle.setText(mGpsStatusList.get(position).getPrn()+"");
         holder.mValue.setText(mGpsStatusList.get(position).getSnr()+"");
-        holder.mImage.setText("color");
+        holder.mImage.setText("");
 
         return convertView;
     }

@@ -12,11 +12,12 @@
     <TextView
         android:id="@+id/gps_signal_strength"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dip"
         android:layout_weight="0.1"
         android:layout_marginTop="@dimen/view_margin_top"
-        android:textColor="@color/text_color"
-        android:text="TextView" />
+        android:textColor="@color/white"
+        android:background="@color/color_ffff33"
+        android:text="" />
 
     <TextView
         android:id="@+id/gps_satellite_number"
@@ -24,7 +25,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.3"
         android:layout_marginTop="@dimen/view_margin_top"
-        android:textColor="@color/text_color"
+        android:textColor="@color/white"
         android:text="TextView" />
 
     <TextView
@@ -33,7 +34,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.3"
         android:layout_marginTop="@dimen/view_margin_top"
-        android:textColor="@color/text_color"
+        android:textColor="@color/white"
         android:text="TextView" />
 
 </LinearLayout>

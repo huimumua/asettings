@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:background="@drawable/bg_menu_main"
     android:gravity="center">
 
     <TextView
         android:id="@+id/sdcard_setting_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sdcard_setting_information" />
+        android:text="@string/sdcard_setting_information"
+        android:textColor="@color/white"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,6 +30,7 @@
                 android:id="@+id/sdcard_normal_dir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/sdcard_normal_dir" />
 
             <TextView
@@ -35,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
+                android:textColor="@color/white"
                 android:text="" />
         </LinearLayout>
 
@@ -48,6 +52,7 @@
                 android:id="@+id/sdcard_event_dir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/sdcard_event_dir" />
 
             <TextView
@@ -55,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
+                android:textColor="@color/white"
                 android:text="" />
         </LinearLayout>
 
@@ -81,6 +87,7 @@
                 android:id="@+id/sdcard_parking_dir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/sdcard_parking_dir" />
 
             <TextView
@@ -88,6 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
+                android:textColor="@color/white"
                 android:text="" />
         </LinearLayout>
 
@@ -100,6 +108,7 @@
                 android:id="@+id/sdcard_picture_dir"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@string/sdcard_picture_dir" />
 
             <TextView
@@ -107,6 +116,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dip"
+                android:textColor="@color/white"
                 android:text="" />
         </LinearLayout>
 
