@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:background="@drawable/bg_menu_main"
     tools:context="com.askey.dvr.cdr7010.setting.module.parking.ui.RecordingTimeActivity">
     <LinearLayout
         android:layout_width="250dp"
