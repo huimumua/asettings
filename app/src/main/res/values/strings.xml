@@ -140,4 +140,7 @@
     <string name="mounting_position_left">Left</string>
     <string name="mounting_position_middle">Middle</string>
     <string name="mounting_position_right">Right</string>
+    <string name="weather_report">Weather Report</string>
+    <string name="help">Help</string>
+    <string name="service_information_notified">Service Information Notified</string>
 </resources>

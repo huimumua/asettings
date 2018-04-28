@@ -30,6 +30,7 @@ import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
+import com.askey.dvr.cdr7010.setting.module.service.ui.ServiceSetting;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
@@ -182,7 +183,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, CommunicationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
+        }else if (clickItem.equals(getString(R.string.main_menu_si))) {
+            secondMenuItem = getResources().getStringArray(R.array.service_information);
+            Intent intent = new Intent(mContext, ServiceSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         }
+
+
 
     }
 

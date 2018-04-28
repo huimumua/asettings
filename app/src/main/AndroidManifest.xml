@@ -98,6 +98,11 @@
         <activity android:name=".module.communication.ui.EmergencyAutomaticNotification" />
         <activity android:name=".module.communication.ui.EmergencyContactPerson" />
         <activity android:name=".module.system.ui.MountingPositionSetting" />
+        <activity android:name=".module.service.ui.ServiceSetting" />
+        <activity android:name=".module.service.ui.HelpActivity" />
+        <activity android:name=".module.service.ui.LocationInformationNotified" />
+        <activity android:name=".module.service.ui.WeatherReport" />
+
 
         <service
             android:name=".module.system.controller.PlaybackSoundService"
