@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import com.askey.dvr.cdr7010.filemanagement.SdcardInfo;
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.SdcardInfo;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Logg;

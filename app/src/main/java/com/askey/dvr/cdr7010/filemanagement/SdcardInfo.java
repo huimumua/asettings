@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting;
+package com.askey.dvr.cdr7010.filemanagement;
 
 import android.os.Parcel;
 import android.os.Parcelable;

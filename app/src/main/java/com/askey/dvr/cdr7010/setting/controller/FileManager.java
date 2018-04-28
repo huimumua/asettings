@@ -5,13 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
-import android.os.PowerManager;
 import android.os.RemoteException;
 import android.os.SystemClock;
 
 import com.askey.dvr.cdr7010.filemanagement.IFileManagerAidlInterface;
+import com.askey.dvr.cdr7010.filemanagement.SdcardInfo;
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
-import com.askey.dvr.cdr7010.setting.SdcardInfo;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.util.List;

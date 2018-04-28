@@ -16,6 +16,7 @@ public class SdcardUtil {
     public static boolean checkSdcardExist(){
         if (android.os.Environment.getExternalStorageState().equals(android.os.Environment.MEDIA_MOUNTED))
         {
+            Logg.i(TAG,"===checkSdcardExist==true=");
             return true;
         }
         return false;

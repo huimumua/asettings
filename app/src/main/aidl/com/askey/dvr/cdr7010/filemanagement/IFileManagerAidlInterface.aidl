@@ -1,8 +1,8 @@
 // IFileManagerAidlInterface.aidl
 package com.askey.dvr.cdr7010.filemanagement;
 
-import com.askey.dvr.cdr7010.setting.ItemData;
-import com.askey.dvr.cdr7010.setting.SdcardInfo;
+import com.askey.dvr.cdr7010.filemanagement.ItemData;
+import com.askey.dvr.cdr7010.filemanagement.SdcardInfo;
 // Declare any non-default types here with import statements
 
 interface IFileManagerAidlInterface {
@@ -15,14 +15,14 @@ interface IFileManagerAidlInterface {
                  folderType: Event, Manual, Normal, Parking, Picture, System
          Output: FILE Pointer
         ** If file number > folderType file_num, return NULL; ***/
-     long openSdcard(String mount_path, String filename, String folderType);
+     String openSdcard(String filename, String folderType);
 
      /**
      *  Purpose: Close opened file
        Input: Opened FILE Pointer
        Output: bool, true = 1, false = 0;
      * */
-     boolean closeSdcard(long filePointer);
+     boolean closeSdcard();
 
     /**
     * Type : NORMAL EVENT PARKING PICTURE SYSTEM
@@ -50,7 +50,7 @@ interface IFileManagerAidlInterface {
     /**
     * pathList : files Absolute Path
     * */
-    boolean deleteFileByFolder(String path);
+    boolean deleteFileByFolder(String type);
 
     /**
     * 为setting界面提供sdcardInfo信息
