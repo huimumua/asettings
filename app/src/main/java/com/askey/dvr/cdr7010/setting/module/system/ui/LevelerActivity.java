@@ -230,7 +230,6 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
                 isPreviewing = false;
             }
             if(surfaceHolder!=null){
-                surfaceHolder.getSurface().destroy();
                 surfaceHolder.getSurface().release();
                 surfaceHolder =null;
             }
