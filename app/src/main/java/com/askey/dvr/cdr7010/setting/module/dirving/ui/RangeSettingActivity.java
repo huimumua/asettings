@@ -129,7 +129,6 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                 isPreviewing = false;
             }
             if(surfaceHolder!=null){
-                surfaceHolder.getSurface().destroy();
                 surfaceHolder.getSurface().release();
                 surfaceHolder =null;
             }
