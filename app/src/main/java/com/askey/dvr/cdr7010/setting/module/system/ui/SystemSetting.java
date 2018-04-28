@@ -70,7 +70,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_bluetooth))) {
-            startActivity(new Intent(this, BluetoothSetting.class));
+//            startActivity(new Intent(this, BluetoothSetting.class));
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_infrared_led))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
