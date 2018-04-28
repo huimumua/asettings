@@ -43,7 +43,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     //定义水平仪能处理的最大倾斜角度，超过该角度气泡直接位于边界
     private int MAX_ANGLE = 30;
     //定义Sensor管理器
-    SensorManager sensorManager;
+    private SensorManager sensorManager;
     private Camera camera;
     private SurfaceView preview;
     private SurfaceHolder surfaceHolder;

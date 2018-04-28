@@ -46,11 +46,12 @@ public class SpiritView extends View {
         //设置绘制风格：仅填充
         paint.setStyle(Paint.Style.FILL);
         //创建一个线性渐变来绘制线性渐变
+        int color = getResources().getColor(R.color.color_66cc66);
         Shader shader = new LinearGradient(0, screenWidth, screenWidth * 0.8f, screenWidth * 0.2f,
-                Color.YELLOW, Color.WHITE, Shader.TileMode.MIRROR);
+                color, Color.WHITE, Shader.TileMode.MIRROR);
         paint.setShader(shader);
         //绘制圆形
-        canvas.drawCircle(screenWidth / 2, screenHeight / 2, screenHeight / 2-40, paint);
+        canvas.drawCircle(screenWidth / 2, screenHeight / 2, screenHeight / 2-50, paint);
         Paint paint2 = new Paint();
         paint2.setAntiAlias(true);
         //设置绘制风格：仅绘制边框
@@ -58,17 +59,12 @@ public class SpiritView extends View {
         paint2.setStrokeWidth(5);
         paint2.setColor(Color.BLACK);
         //绘制圆形边框
-        canvas.drawCircle(screenWidth / 2, screenHeight / 2, screenHeight / 2-40, paint2);
+        canvas.drawCircle(screenWidth / 2, screenHeight / 2, screenHeight / 2-50, paint2);
         canvas.drawCircle(screenWidth / 2, screenHeight / 2, 15, paint2);
         //设置画笔宽度
         paint2.setStrokeWidth(10);
         paint2.setColor(Color.RED);
-        //绘制中心的红色“十字”
-//        canvas.drawLine(screenWidth / 2 - 15, screenHeight / 2, screenWidth / 2 + 15,
-//                screenHeight / 2, paint2);
-//        canvas.drawLine(screenWidth / 2, screenHeight / 2 - 15, screenWidth / 2,
-//                screenHeight / 2 + 15, paint2);
-        //加载气泡图片
+
         bubble = BitmapFactory.decodeResource(getResources(), R.mipmap.bubble);
     }
 
