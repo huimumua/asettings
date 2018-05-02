@@ -30,4 +30,8 @@ public class Const {
     public static final String DVR_MAIN_CLASS = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
     public static final String DVR_MAIN_PAKAGE = "com.askey.dvr.cdr7010.dashcam";
     public static final String SETTTING_FIRST_INIT = "firstInit";
+
+    public static final String ON = "ON";
+    public static final String OFF = "OFF";
+    public static final String ADAS_LDS = "ADAS_LDS";
 }
