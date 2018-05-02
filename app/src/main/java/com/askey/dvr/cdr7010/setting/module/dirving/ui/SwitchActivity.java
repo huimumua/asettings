@@ -104,6 +104,13 @@ public class SwitchActivity extends AppCompatActivity implements AdapterView.OnI
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
+        }else if(switch_tag.equals(Const.FRONT_COLLISION_WARING)){
+            settingValue = Settings.Global.getInt(contentResolver, Const.ADAS_FCWS, 0);
+            if (settingValue == 0) {
+                focusPosition = 1;//OFF
+            } else if (settingValue == 1) {//ON
+                focusPosition = 0;
+            }
         }
         list_view.setSelection(focusPosition);
     }
@@ -119,6 +126,12 @@ public class SwitchActivity extends AppCompatActivity implements AdapterView.OnI
                 Settings.Global.putInt(contentResolver, Const.ADAS_LDS, 1);
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.ADAS_LDS, 0);
+            }
+        }else if(switch_tag.equals(Const.FRONT_COLLISION_WARING)){
+            if (clickItem.equals(Const.ON)) {
+                Settings.Global.putInt(contentResolver, Const.ADAS_FCWS, 1);
+            } else if (clickItem.equals(Const.OFF)) {
+                Settings.Global.putInt(contentResolver, Const.ADAS_FCWS, 0);
             }
         }
     }
