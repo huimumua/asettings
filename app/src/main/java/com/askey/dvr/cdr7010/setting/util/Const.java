@@ -35,6 +35,7 @@ public class Const {
     public static final String OFF = "OFF";
     public static final String ADAS_LDS = "ADAS_LDS";
     public static final String ADAS_FCWS = "ADAS_FCWS";
+    public static final String ADAS_pedestrian_collision = "ADAS_pedestrian_collision";
     public static final String SYSSET_monitor_brightness = "SYSSET_monitor_brightness";
     public static final String SYSSET_auto_datetime = "SYSSET_auto_datetime";
     public static final String SYSSET_notify_vol = "SYSSET_notify_vol";
