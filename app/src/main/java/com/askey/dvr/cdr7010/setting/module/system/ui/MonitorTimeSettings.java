@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.util.Const;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
@@ -28,7 +29,7 @@ public class MonitorTimeSettings extends SecondBaseActivity implements AdapterVi
 
     private void focusItem() {
         list_view.requestFocus();
-        int monitorTime = Settings.Global.getInt(contentResolver, "SYSSET_powersave_time", 10);
+        int monitorTime = Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_time, 10);
         int position = 0;
         if (monitorTime == 10) {
             position = 0;
@@ -44,18 +45,18 @@ public class MonitorTimeSettings extends SecondBaseActivity implements AdapterVi
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_monitor_time_10sec))) {
-            Settings.Global.putInt(contentResolver, "SYSSET_powersave_time", 10);
-            if (Settings.Global.getInt(contentResolver, "SYSSET_powersave_action", 0) == 1) {
+            Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_time, 10);
+            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 10 * 1000);
             }
         } else if (clickItem.equals(getResources().getString(R.string.tv_monitor_time_1min))) {
-            Settings.Global.putInt(contentResolver, "SYSSET_powersave_time", 60);
-            if (Settings.Global.getInt(contentResolver, "SYSSET_powersave_action", 0) == 1) {
+            Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_time, 60);
+            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 60 * 1000);
             }
         } else if (clickItem.equals(getResources().getString(R.string.tv_monitor_time_3min))) {
-            Settings.Global.putInt(contentResolver, "SYSSET_powersave_time", 180);
-            if (Settings.Global.getInt(contentResolver, "SYSSET_powersave_action", 0) == 1) {
+            Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_time, 180);
+            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 180 * 1000);
             }
         }

@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
 
 /**
@@ -41,7 +42,7 @@ public class DateTimeSetting extends SecondBaseActivity implements AdapterView.O
         list_view.requestFocus();
         boolean isAuto = SystemDateTime.isDateTimeAuto();
         Log.i("DateTimeSetting", "=isAuto==" + isAuto);
-//        int datetime = Settings.Global.getInt(contentResolver, "SYSSET_auto_datetime", 1);
+//        int datetime = Settings.Global.getInt(contentResolver, Const.SYSSET_auto_datetime, 1);
         int position = 0;
 //        if (datetime == 1) {
 //            position = 0;
@@ -62,10 +63,10 @@ public class DateTimeSetting extends SecondBaseActivity implements AdapterView.O
         if (clickItem.equals(getResources().getString(R.string.tv_automatic))) {
             //自动校时
             SystemDateTime.setAutoDateTime(1);
-            Settings.Global.putInt(contentResolver, "SYSSET_auto_datetime", 1);
+            Settings.Global.putInt(contentResolver, Const.SYSSET_auto_datetime, 1);
         } else if (clickItem.equals(getResources().getString(R.string.tv_manual))) {
             SystemDateTime.setAutoDateTime(0);
-            Settings.Global.putInt(contentResolver, "SYSSET_auto_datetime", 0);
+            Settings.Global.putInt(contentResolver, Const.SYSSET_auto_datetime, 0);
             Intent intent = new Intent();
             intent.setClass(DateTimeSetting.this, ManualDateTimeSetting.class);
             startActivity(intent);

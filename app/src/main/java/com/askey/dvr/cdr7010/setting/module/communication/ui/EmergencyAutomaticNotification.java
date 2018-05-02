@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
 
 /**
@@ -41,7 +42,7 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
 
     private void focusItem() {
         list_view.requestFocus();
-        int emergency_auto = Settings.Global.getInt(contentResolver, "COMM_emergency_auto", 1);
+        int emergency_auto = Settings.Global.getInt(contentResolver, Const.COMM_emergency_auto, 1);
         int position = 0;
         if (emergency_auto == 1) {
             position = 0;
@@ -55,9 +56,9 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
          if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_on)) ) {
-             Settings.Global.putInt(contentResolver, "COMM_emergency_auto", 1);
+             Settings.Global.putInt(contentResolver, Const.COMM_emergency_auto, 1);
         }else if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_off)) ) {
-             Settings.Global.putInt(contentResolver, "COMM_emergency_auto", 0);
+             Settings.Global.putInt(contentResolver, Const.COMM_emergency_auto, 0);
         }
     }
 }

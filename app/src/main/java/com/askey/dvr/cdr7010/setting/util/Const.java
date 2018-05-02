@@ -17,7 +17,7 @@ public class Const {
      */
     public static final boolean DEBUG = true;
 
-    public static final String PLAY_BACK_PAKAGE="com.askey.jvc.mediaplayer";
+    public static final String PLAY_BACK_PAKAGE = "com.askey.jvc.mediaplayer";
 
     public static final String DRIVING_SUPPORT = "driving_support";
 
@@ -34,4 +34,13 @@ public class Const {
     public static final String ON = "ON";
     public static final String OFF = "OFF";
     public static final String ADAS_LDS = "ADAS_LDS";
+    public static final String SYSSET_monitor_brightness = "SYSSET_monitor_brightness";
+    public static final String SYSSET_auto_datetime = "SYSSET_auto_datetime";
+    public static final String SYSSET_notify_vol = "SYSSET_notify_vol";
+    public static final String SYSSET_playback_vol = "SYSSET_playback_vol";
+    public static final String SYSSET_powersave_action = "SYSSET_powersave_action";
+    public static final String SYSSET_powersave_time = "SYSSET_powersave_time";
+    public static final String CAR_type = "CAR_type";
+    public static final String COMM_emergency_auto = "COMM_emergency_auto";
+    public static final String ADAS_mount_position = "ADAS_mount_position";
 }

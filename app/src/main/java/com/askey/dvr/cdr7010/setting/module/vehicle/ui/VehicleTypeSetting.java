@@ -44,7 +44,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 
     private void focusItem() {
         list_view.requestFocus();
-        int car_type = Settings.Global.getInt(contentResolver, "CAR_type", 0);
+        int car_type = Settings.Global.getInt(contentResolver, Const.CAR_type, 0);
         list_view.setSelection(car_type);
     }
 
@@ -52,21 +52,21 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.vehicle_type_options)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 0);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 0);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_mini_sedan)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 1);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 1);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_minivan)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 2);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 2);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_medium_sedan)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 3);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 3);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_rv)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 4);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 4);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_large_sedan)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 5);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 5);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_suv)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 6);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 6);
         }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_others)) ) {
-            Settings.Global.putInt(contentResolver, "CAR_type", 7);
+            Settings.Global.putInt(contentResolver, Const.CAR_type, 7);
         }
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);

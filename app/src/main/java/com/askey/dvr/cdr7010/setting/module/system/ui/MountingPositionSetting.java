@@ -42,7 +42,7 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
 
     private void focusItem() {
         list_view.requestFocus();
-        int car_type = Settings.Global.getInt(contentResolver, "ADAS_mount_position", 0);
+        int car_type = Settings.Global.getInt(contentResolver, Const.ADAS_mount_position, 0);
         list_view.setSelection(car_type);
     }
 
@@ -50,11 +50,11 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.mounting_position_left)) ) {
-            Settings.Global.putInt(contentResolver, "ADAS_mount_position", 0);
+            Settings.Global.putInt(contentResolver, Const.ADAS_mount_position, 0);
         }else if(clickItem.equals(getResources().getString(R.string.mounting_position_middle)) ) {
-            Settings.Global.putInt(contentResolver, "ADAS_mount_position", 1);
+            Settings.Global.putInt(contentResolver, Const.ADAS_mount_position, 1);
         }else if(clickItem.equals(getResources().getString(R.string.mounting_position_right)) ) {
-            Settings.Global.putInt(contentResolver, "ADAS_mount_position", 2);
+            Settings.Global.putInt(contentResolver, Const.ADAS_mount_position, 2);
         }
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
