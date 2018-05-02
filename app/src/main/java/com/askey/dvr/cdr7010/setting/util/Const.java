@@ -35,6 +35,7 @@ public class Const {
     public static final String Pause = "Pause";
     public static final String ACCIDENT_FREQUENTLY_OCCURRING_AREA = "Accident frequently occurring area";
     public static final String DRIVING_TIME = "Driving time";
+    public static final String RAPID_ACCELERATION_SUDDEN_DECELERATION = "Rapid acceleration, sudden deceleration";
 
     public static final String ON = "ON";
     public static final String OFF = "OFF";
@@ -56,4 +57,5 @@ public class Const {
     public static final String NOTIFY_stop = "NOTIFY_stop";
     public static final String NOTIFY_freq_accident_area = "NOTIFY_freq_accident_area";
     public static final String NOTIFY_driving_time = "NOTIFY_driving_time";
+    public static final String NOTIFY_Intense_driving = "NOTIFY_Intense_driving";
 }

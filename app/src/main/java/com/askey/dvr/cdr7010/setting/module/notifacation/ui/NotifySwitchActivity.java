@@ -117,15 +117,22 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
-        } else if(switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)){
+        } else if (switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)) {
             settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_freq_accident_area, 0);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
-        } else if(switch_tag.equals(Const.DRIVING_TIME)){
+        } else if (switch_tag.equals(Const.DRIVING_TIME)) {
             settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_driving_time, 1);
+            if (settingValue == 0) {
+                focusPosition = 1;//OFF
+            } else if (settingValue == 1) {//ON
+                focusPosition = 0;
+            }
+        } else if (switch_tag.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_Intense_driving, 1);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -159,17 +166,23 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_stop, 0);
             }
-        } else if(switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)){
+        } else if (switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)) {
             if (clickItem.equals(Const.ON)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_freq_accident_area, 1);
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_freq_accident_area, 0);
             }
-        } else if(switch_tag.equals(Const.DRIVING_TIME)){
+        } else if (switch_tag.equals(Const.DRIVING_TIME)) {
             if (clickItem.equals(Const.ON)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_time, 1);
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_time, 0);
+            }
+        } else if (switch_tag.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
+            if (clickItem.equals(Const.ON)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_Intense_driving, 1);
+            } else if (clickItem.equals(Const.OFF)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_Intense_driving, 0);
             }
         }
     }
