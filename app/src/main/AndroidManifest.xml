@@ -23,6 +23,8 @@
 
     <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
 
+    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -98,7 +100,6 @@
         <activity android:name=".module.service.ui.HelpActivity" />
         <activity android:name=".module.service.ui.LocationInformationNotified" />
         <activity android:name=".module.service.ui.WeatherReport" />
-
 
         <service
             android:name=".module.system.controller.PlaybackSoundService"

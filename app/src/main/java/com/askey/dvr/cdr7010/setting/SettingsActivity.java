@@ -209,7 +209,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     }
 
-/*    @Override
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
@@ -262,7 +262,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                 break;
         }
         return super.onKeyDown(keyCode, event);
-    }*/
+    }
 
     public void getPerPageData(List<HashMap<String, Object>> dataTotal, int lastPosition) {
         currentData.clear();
