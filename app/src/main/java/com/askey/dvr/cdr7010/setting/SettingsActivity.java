@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
@@ -32,7 +31,6 @@ import com.askey.dvr.cdr7010.setting.module.parking.ui.ParkingRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.service.ui.ServiceSetting;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
-import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;

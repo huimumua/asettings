@@ -1,6 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +13,9 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 项目名称：settings
@@ -82,7 +86,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
             setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
-
+            showDialog(this,"Sure to update ?",okListener,cancelListener);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
         }
@@ -101,4 +105,49 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         AlertDialog dialog = builder.create();
         dialog.show();
     }
+
+    private void showDialog(Context context,String content,DialogInterface.OnClickListener okListener,DialogInterface.OnClickListener cancelListener){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(content);
+        builder.setPositiveButton("OK", okListener);
+        builder.setNegativeButton("Cancel",cancelListener);
+        builder.setCancelable(true);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showLoadingDialog(Context context){
+        final ProgressDialog dialog = new ProgressDialog(context);
+        dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        dialog.setMessage("正在加载中");
+        dialog.setMax(100);
+        dialog.setCancelable(false);
+        final Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            int progress = 0;
+
+            @Override
+            public void run() {
+                dialog.setProgress(progress += 10);
+                if (progress == 100) {
+                    timer.cancel();
+                    dialog.dismiss();
+                }
+            }
+        }, 0, 1000);
+        dialog.show();
+    }
+    DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+            showLoadingDialog(SystemSetting.this);
+        }
+    };
+    DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            dialog.dismiss();
+        }
+    };
 }
