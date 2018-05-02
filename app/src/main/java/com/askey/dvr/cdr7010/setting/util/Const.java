@@ -31,6 +31,7 @@ public class Const {
     public static final String DVR_MAIN_PAKAGE = "com.askey.dvr.cdr7010.dashcam";
     public static final String SETTTING_FIRST_INIT = "firstInit";
     public static final String REVERSE_RUN_DETECTION = "Reverse run detection";
+    public static final String SPEED_REGULATION_AREA = "Speed regulation area";
 
     public static final String ON = "ON";
     public static final String OFF = "OFF";
@@ -48,4 +49,5 @@ public class Const {
     public static final String CAR_type = "CAR_type";
     public static final String COMM_emergency_auto = "COMM_emergency_auto";
     public static final String NOTIFY_reverse_run = "NOTIFY_reverse_run";
+    public static final String NOTIFY_speed_limit_area = "NOTIFY_speed_limit_area";
 }
