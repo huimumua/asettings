@@ -11,19 +11,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
-
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
-
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.io.IOException;
-
 
 /**
  * 项目名称：settings
@@ -34,6 +30,7 @@ import java.io.IOException;
  * 修改时间：2018/4/24 15:38
  * 修改备注：
  */
+
 
 @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
 public class LevelerActivity extends BaseActivity implements SensorEventListener , SurfaceHolder.Callback {
@@ -164,6 +161,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         //取消注册
         sensorManager.unregisterListener(this);
         super.onStop();
+
     }
 
     @Override
