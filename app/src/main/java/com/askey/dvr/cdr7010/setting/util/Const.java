@@ -30,6 +30,7 @@ public class Const {
     public static final String DVR_MAIN_CLASS = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
     public static final String DVR_MAIN_PAKAGE = "com.askey.dvr.cdr7010.dashcam";
     public static final String SETTTING_FIRST_INIT = "firstInit";
+    public static final String REVERSE_RUN_DETECTION = "Reverse run detection";
 
     public static final String ON = "ON";
     public static final String OFF = "OFF";
@@ -37,6 +38,7 @@ public class Const {
     public static final String ADAS_FCWS = "ADAS_FCWS";
     public static final String ADAS_pedestrian_collision = "ADAS_pedestrian_collision";
     public static final String ADAS_delay_start = "ADAS_delay_start";
+    public static final String ADAS_mount_position = "ADAS_mount_position";
     public static final String SYSSET_monitor_brightness = "SYSSET_monitor_brightness";
     public static final String SYSSET_auto_datetime = "SYSSET_auto_datetime";
     public static final String SYSSET_notify_vol = "SYSSET_notify_vol";
@@ -45,5 +47,5 @@ public class Const {
     public static final String SYSSET_powersave_time = "SYSSET_powersave_time";
     public static final String CAR_type = "CAR_type";
     public static final String COMM_emergency_auto = "COMM_emergency_auto";
-    public static final String ADAS_mount_position = "ADAS_mount_position";
+    public static final String NOTIFY_reverse_run = "NOTIFY_reverse_run";
 }
