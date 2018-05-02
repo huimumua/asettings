@@ -34,6 +34,7 @@ public class Const {
     public static final String SPEED_REGULATION_AREA = "Speed regulation area";
     public static final String Pause = "Pause";
     public static final String ACCIDENT_FREQUENTLY_OCCURRING_AREA = "Accident frequently occurring area";
+    public static final String DRIVING_TIME = "Driving time";
 
     public static final String ON = "ON";
     public static final String OFF = "OFF";
@@ -54,4 +55,5 @@ public class Const {
     public static final String NOTIFY_speed_limit_area = "NOTIFY_speed_limit_area";
     public static final String NOTIFY_stop = "NOTIFY_stop";
     public static final String NOTIFY_freq_accident_area = "NOTIFY_freq_accident_area";
+    public static final String NOTIFY_driving_time = "NOTIFY_driving_time";
 }
