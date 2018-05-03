@@ -6,16 +6,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.RecoverySystem;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.util.Const;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import java.io.File;
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 
 /**
  * 项目名称：settings
@@ -37,7 +42,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_system_settings),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.tv_system_settings), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
     }
@@ -57,7 +62,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_playback_volume))) {
             Intent intent = new Intent(mContext, PlaybackSoundSetting.class);
             startActivity(intent);
-        }else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_preview))) {
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_preview))) {
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_lcd_brightness))) {
             Intent intent = new Intent();
@@ -86,13 +91,13 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
             setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
-            showDialog(this,"Sure to update ?",okListener,cancelListener);
+            showDialog(this, "Sure to update ?", okListener, cancelListener);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
         }
     }
 
-    private void showDialog(Context context){
+    private void showDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Are you sure to restore factory Settings?");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -106,37 +111,64 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         dialog.show();
     }
 
-    private void showDialog(Context context,String content,DialogInterface.OnClickListener okListener,DialogInterface.OnClickListener cancelListener){
+    private void showDialog(Context context, String content, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(content);
         builder.setPositiveButton("OK", okListener);
-        builder.setNegativeButton("Cancel",cancelListener);
+        builder.setNegativeButton("Cancel", cancelListener);
         builder.setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.show();
     }
 
-    private void showLoadingDialog(Context context){
+    private void showLoadingDialog(Context context) {
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         dialog.setMessage("正在加载中");
         dialog.setMax(100);
         dialog.setCancelable(false);
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            int progress = 0;
-
+        dialog.show();
+        final Handler handler = new Handler();
+        new Thread(new Runnable() {
             @Override
             public void run() {
-                dialog.setProgress(progress += 10);
-                if (progress == 100) {
-                    timer.cancel();
-                    dialog.dismiss();
+                try {
+                    RecoverySystem.verifyPackage(new File(Const.OTA_PACKAGE_PATH), new RecoverySystem.ProgressListener() {
+                        @Override
+                        public void onProgress(final int progress) {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    dialog.setProgress(progress);
+                                    if (100 == progress) {
+                                        dialog.dismiss();
+                                    }
+                                }
+                            });
+                        }
+                    }, null);
+                } catch (GeneralSecurityException | IOException e) {
+                    Log.i("====", "doesImageMatchProduct(): verifaPackage faild!" + "," + e.getMessage());
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            dialog.dismiss();
+                            Toast.makeText(SystemSetting.this, "Package is not exsit or vertify failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SystemSetting.this, Const.OTA_PACKAGE_PATH, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    return;
+                }
+                try {
+                    RecoverySystem.installPackage(mContext, new File(Const.OTA_PACKAGE_PATH));
+                } catch (IOException e) {
+                    Log.i("========failed", e.getMessage());
                 }
             }
-        }, 0, 1000);
-        dialog.show();
+        }).start();
+
     }
+
     DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {

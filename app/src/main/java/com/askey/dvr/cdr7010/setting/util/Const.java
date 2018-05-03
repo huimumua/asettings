@@ -1,6 +1,8 @@
 package com.askey.dvr.cdr7010.setting.util;
 
 
+import android.os.Environment;
+
 /***
  * 常量配置类
  * Company: Chengdu Skysoft Info&Tech Co., Ltd.
@@ -18,7 +20,7 @@ public class Const {
     public static final boolean DEBUG = true;
 
     public static final String PLAY_BACK_PAKAGE = "com.askey.jvc.mediaplayer";
-
+    public static final String OTA_PACKAGE_PATH = Environment.getExternalStorageState()+"/update.zip";
     public static final String DRIVING_SUPPORT = "driving_support";
 
     public static final String FRONT_COLLISION_WARING = "Front collision warning";
