@@ -44,7 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener,AdapterView.OnItemClickListener{
+public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private final String LOG_TAG = "SettingsActivity";
     private TextView tv_title;
     private ListView list_view;
@@ -60,8 +60,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int screenHeight;
     private int lastPosition;
 
-    private int[] menuInfo = {R.string.main_menu_fp,R.string.main_menu_prs,R.string.main_menu_mirs,R.string.main_menu_vt,R.string.main_menu_dsfs
-    ,R.string.main_menu_nsg,R.string.main_menu_ss,R.string.main_menu_scm,R.string.main_menu_si,R.string.main_menu_cs};
+    private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_prs, R.string.main_menu_mirs, R.string.main_menu_vt, R.string.main_menu_dsfs
+            , R.string.main_menu_nsg, R.string.main_menu_ss, R.string.main_menu_scm, R.string.main_menu_si, R.string.main_menu_cs};
     private String[] secondMenuItem;
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
     private int LOCATION_REQUEST_CODE = 10002;//GPS位置权限
@@ -80,9 +80,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         FileManager.getInstance().bindFileManageService();
         GPSStatusManager.getInstance().recordLocation(true);
 
-        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
-        if(isFirstInit){
-            String []secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
+        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+        if (isFirstInit) {
+            String[] secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
             Intent intent = new Intent(mContext, VehicleTypeSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
@@ -110,26 +110,26 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         list_view.setOnItemSelectedListener(this);
     }
 
-    private void initData(){
+    private void initData() {
 
         lastPosition = 0;
         screenHeight = Utils.getScreenHeight(this);
 
         HashMap<String, Object> map;
 
-        for (int i=0; i <menuInfo.length; i++) {
+        for (int i = 0; i < menuInfo.length; i++) {
             map = new HashMap<>();
-            map.put("menu_item",getString(menuInfo[i]));
+            map.put("menu_item", getString(menuInfo[i]));
             dataTotal.add(map);
         }
 
-        if(dataTotal.size()>PERPAGECOUNT) {
+        if (dataTotal.size() > PERPAGECOUNT) {
             vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
-        }else {
+        } else {
             vp_progress.setVisibility(View.INVISIBLE);
         }
 
-        getPerPageData(dataTotal,lastPosition);
+        getPerPageData(dataTotal, lastPosition);
 
         list_view.setVerticalScrollBarEnabled(false);
         simpleAdapter = new SimpleAdapter(this, currentData, R.layout.menu_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
@@ -139,29 +139,29 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-        if(clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
+        if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             secondMenuItem = getResources().getStringArray(R.array.system_setting);
             Intent intent = new Intent(mContext, SystemSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_prs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_prs))) {
             secondMenuItem = getResources().getStringArray(R.array.parking_record);
             Intent intent = new Intent(mContext, ParkingRecordSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
             secondMenuItem = getResources().getStringArray(R.array.movie_record);
             Intent intent = new Intent(mContext, MovieRecordSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if(clickItem.equals(getString(R.string.main_menu_fp))){
+        } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
-        }else if(clickItem.equals(getString(R.string.main_menu_scm))){
+        } else if (clickItem.equals(getString(R.string.main_menu_scm))) {
             secondMenuItem = getResources().getStringArray(R.array.sdcard_record);
             Intent intent = new Intent(mContext, SdcardSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
             Intent intent = new Intent(mContext, DrivingSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
@@ -171,17 +171,17 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, NotificationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_vt))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_vt))) {
             secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
             Intent intent = new Intent(mContext, VehicleTypeSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_cs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
             secondMenuItem = getResources().getStringArray(R.array.communication);
             Intent intent = new Intent(mContext, CommunicationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }else if (clickItem.equals(getString(R.string.main_menu_si))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_si))) {
             secondMenuItem = getResources().getStringArray(R.array.service_information);
             Intent intent = new Intent(mContext, ServiceSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
@@ -189,15 +189,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }
 
 
-
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //根据需求自己修改
-        if (position%2 == 0) {
+        if (position % 2 == 0) {
             iv_icon.setImageDrawable(getDrawable(R.drawable.ic_info_black_24dp));
-        }else {
+        } else {
             iv_icon.setImageDrawable(getDrawable(R.drawable.ic_notifications_black_24dp));
         }
     }
@@ -216,42 +215,42 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                     Log.d(LOG_TAG, "down" + lastPosition);
                     if (lastPosition < dataTotal.size()) {
                         getPerPageData(dataTotal, lastPosition);
-                    }else {
+                    } else {
                         lastPosition = 0;
                         getPerPageData(dataTotal, lastPosition);
                     }
-                    vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
+                    vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                     simpleAdapter.notifyDataSetChanged();
                     list_view.setSelection(0);
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (!Utils.isFastDoubleClick()) {
-                    if(lastPosition>=PERPAGECOUNT) {
+                    if (lastPosition >= PERPAGECOUNT) {
                         Log.d(LOG_TAG, "up" + lastPosition);
                         lastPosition -= PERPAGECOUNT;
                         if (lastPosition >= 0) {
                             getPerPageData(dataTotal, lastPosition);
                             vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                             simpleAdapter.notifyDataSetChanged();
-                            list_view.setSelection(PERPAGECOUNT-1);
+                            list_view.setSelection(PERPAGECOUNT - 1);
                         }
                     } else {
                         if (lastPosition == 0) {
-                            if (dataTotal.size()%PERPAGECOUNT != 0) {
-                                lastPosition = dataTotal.size()-dataTotal.size()%PERPAGECOUNT;
+                            if (dataTotal.size() % PERPAGECOUNT != 0) {
+                                lastPosition = dataTotal.size() - dataTotal.size() % PERPAGECOUNT;
                                 Log.d(LOG_TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
-                                vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
+                                vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
-                                list_view.setSelection(dataTotal.size()%PERPAGECOUNT-1);//将最后一页的焦点设置到最后一项
+                                list_view.setSelection(dataTotal.size() % PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             } else {
-                                lastPosition = dataTotal.size()-PERPAGECOUNT;
+                                lastPosition = dataTotal.size() - PERPAGECOUNT;
                                 Log.d(LOG_TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
-                                vp_progress.setProgress(lastPosition, lastPosition+PERPAGECOUNT, dataTotal.size());
+                                vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
-                                list_view.setSelection(PERPAGECOUNT-1);//将最后一页的焦点设置到最后一项
+                                list_view.setSelection(PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             }
                         }
                     }
@@ -331,7 +330,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
 
     @Override

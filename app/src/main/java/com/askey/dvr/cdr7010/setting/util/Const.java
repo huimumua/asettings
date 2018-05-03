@@ -20,7 +20,7 @@ public class Const {
     public static final boolean DEBUG = true;
 
     public static final String PLAY_BACK_PAKAGE = "com.askey.jvc.mediaplayer";
-    public static final String OTA_PACKAGE_PATH = Environment.getExternalStorageState()+"/update.zip";
+    public static final String OTA_PACKAGE_PATH = Environment.getExternalStorageState() + "/update.zip";
     public static final String DRIVING_SUPPORT = "driving_support";
 
     public static final String FRONT_COLLISION_WARING = "Front collision warning";
@@ -34,10 +34,19 @@ public class Const {
     public static final String SETTTING_FIRST_INIT = "firstInit";
     public static final String REVERSE_RUN_DETECTION = "Reverse run detection";
     public static final String SPEED_REGULATION_AREA = "Speed regulation area";
-    public static final String Pause = "Pause";
+    public static final String PAUSE = "Pause";
     public static final String ACCIDENT_FREQUENTLY_OCCURRING_AREA = "Accident frequently occurring area";
     public static final String DRIVING_TIME = "Driving time";
     public static final String RAPID_ACCELERATION_SUDDEN_DECELERATION = "Rapid acceleration, sudden deceleration";
+    public static final String HANDLING = "Handling";
+    public static final String FLUCTUATION_DETECTION = "Fluctuation detection";
+    public static final String DRIVING_OUTSIDE_THE_DESIGNATED_AREA = "Driving outside the designated area";
+    public static final String DRIVING_REPORT = "Driving report";
+    public static final String ADVICE_BEFORE_DRIVING = "Advice before driving";
+    public static final String NOTIFICATION = "Notification";
+    public static final String WEATHER_INFORMATION = "Weather information";
+    public static final String ROAD_KILL = "Road Kill";
+    public static final String LOCATION_INFORMATION = "Location information";
 
     public static final String ON = "ON";
     public static final String OFF = "OFF";
@@ -60,4 +69,5 @@ public class Const {
     public static final String NOTIFY_freq_accident_area = "NOTIFY_freq_accident_area";
     public static final String NOTIFY_driving_time = "NOTIFY_driving_time";
     public static final String NOTIFY_Intense_driving = "NOTIFY_Intense_driving";
+    public static final String NOTIFY_abnormal_handing = "NOTIFY_abnormal_handing";
 }

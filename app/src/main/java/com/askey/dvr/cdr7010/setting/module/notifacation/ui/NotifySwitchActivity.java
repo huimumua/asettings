@@ -66,6 +66,7 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
     private void initData() {
         //根据不同的tag类型，去操作contentProvider不同的的字段
         switch_tag = getIntent().getStringExtra("switch_tag");
+        Log.i("NotifySwitchActivity", "=switch_tag==" + switch_tag);
         tv_title.setText(switch_tag);
         menuInfo = getResources().getStringArray(R.array.all_switch_item);
         lastPosition = 0;
@@ -110,7 +111,7 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
-        } else if (switch_tag.equals(Const.Pause)) {
+        } else if (switch_tag.equals(Const.PAUSE)) {
             settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_stop, 1);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
@@ -118,7 +119,7 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_freq_accident_area, 0);
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_freq_accident_area, 0);//Default OFF
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -133,6 +134,13 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             }
         } else if (switch_tag.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
             settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_Intense_driving, 1);
+            if (settingValue == 0) {
+                focusPosition = 1;//OFF
+            } else if (settingValue == 1) {//ON
+                focusPosition = 0;
+            }
+        } else if (switch_tag.equals(Const.HANDLING)) {
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_abnormal_handing, 0);//Default OFF
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -160,7 +168,7 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_speed_limit_area, 0);
             }
-        } else if (switch_tag.equals(Const.Pause)) {
+        } else if (switch_tag.equals(Const.PAUSE)) {
             if (clickItem.equals(Const.ON)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_stop, 1);
             } else if (clickItem.equals(Const.OFF)) {
@@ -183,6 +191,12 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_Intense_driving, 1);
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_Intense_driving, 0);
+            }
+        } else if (switch_tag.equals(Const.HANDLING)) {
+            if (clickItem.equals(Const.ON)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_abnormal_handing, 1);
+            } else if (clickItem.equals(Const.OFF)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_abnormal_handing, 0);
             }
         }
     }
