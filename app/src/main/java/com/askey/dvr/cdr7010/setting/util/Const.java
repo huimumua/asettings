@@ -21,7 +21,7 @@ public class Const {
 
     public static final String PLAY_BACK_PAKAGE = "com.askey.jvc.mediaplayer";
 
-    public static final String OTA_PACKAGE_PATH = Environment.getExternalStorageDirectory()+"/update.zip";
+    public static final String OTA_PACKAGE_PATH = Environment.getExternalStorageDirectory() + "/update.zip";
 
     public static final String DRIVING_SUPPORT = "driving_support";
 
@@ -72,4 +72,5 @@ public class Const {
     public static final String NOTIFY_driving_time = "NOTIFY_driving_time";
     public static final String NOTIFY_Intense_driving = "NOTIFY_Intense_driving";
     public static final String NOTIFY_abnormal_handing = "NOTIFY_abnormal_handing";
+    public static final String NOTIFY_fluctuation_detection = "NOTIFY_fluctuation_detection";
 }

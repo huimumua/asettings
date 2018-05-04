@@ -98,21 +98,21 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
         list_view.requestFocus();
         contentResolver = getContentResolver();
         if (switch_tag.equals(Const.REVERSE_RUN_DETECTION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_reverse_run, 1);
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_reverse_run, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.SPEED_REGULATION_AREA)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_speed_limit_area, 1);
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_speed_limit_area, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.PAUSE)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_stop, 1);
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_stop, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -126,14 +126,14 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.DRIVING_TIME)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_driving_time, 1);
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_driving_time, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_Intense_driving, 1);
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_Intense_driving, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -141,6 +141,13 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             }
         } else if (switch_tag.equals(Const.HANDLING)) {
             settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_abnormal_handing, 0);//Default OFF
+            if (settingValue == 0) {
+                focusPosition = 1;//OFF
+            } else if (settingValue == 1) {//ON
+                focusPosition = 0;
+            }
+        } else if (switch_tag.equals(Const.FLUCTUATION_DETECTION)) {
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_fluctuation_detection, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -197,6 +204,12 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_abnormal_handing, 1);
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_abnormal_handing, 0);
+            }
+        } else if (switch_tag.equals(Const.FLUCTUATION_DETECTION)) {
+            if (clickItem.equals(Const.ON)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_fluctuation_detection, 1);
+            } else if (clickItem.equals(Const.OFF)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_fluctuation_detection, 0);
             }
         }
     }
