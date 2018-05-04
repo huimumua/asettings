@@ -73,4 +73,5 @@ public class Const {
     public static final String NOTIFY_Intense_driving = "NOTIFY_Intense_driving";
     public static final String NOTIFY_abnormal_handing = "NOTIFY_abnormal_handing";
     public static final String NOTIFY_fluctuation_detection = "NOTIFY_fluctuation_detection";
+    public static final String NOTIFY_out_of_area = "NOTIFY_out_of_area";
 }
