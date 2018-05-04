@@ -46,18 +46,36 @@ public class MonitorTimeSettings extends SecondBaseActivity implements AdapterVi
         String clickItem = currentData.get(position).get("menu_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_monitor_time_10sec))) {
             Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_time, 10);
-            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {
+            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 0) {//Always ON
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, Integer.MAX_VALUE);
+            } else if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {//OFF
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 10 * 1000);
+                Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 0);   //設成0表示要進入DIM且要關屏
+            } else if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 2) {//Dim
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 10 * 1000);
+                Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 1);   //設成1表示要進入DIM不關屏
             }
         } else if (clickItem.equals(getResources().getString(R.string.tv_monitor_time_1min))) {
             Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_time, 60);
-            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {
+            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 0) {//Always ON
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, Integer.MAX_VALUE);
+            } else if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {//OFF
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 60 * 1000);
+                Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 0);   //設成0表示要進入DIM且要關屏
+            } else if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 2) {//Dim
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 60 * 1000);
+                Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 1);   //設成1表示要進入DIM不關屏
             }
         } else if (clickItem.equals(getResources().getString(R.string.tv_monitor_time_3min))) {
             Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_time, 180);
-            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {
+            if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 0) {//Always ON
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, Integer.MAX_VALUE);
+            } else if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 1) {//OFF
                 Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 180 * 1000);
+                Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 0);   //設成0表示要進入DIM且要關屏
+            } else if (Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_action, 0) == 2) {//Dim
+                Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, 180 * 1000);
+                Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 1);   //設成1表示要進入DIM不關屏
             }
         }
     }

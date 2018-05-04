@@ -22,7 +22,7 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
         setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_monitor_operation_settings), menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.tv_monitor_operation_settings), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }
@@ -51,8 +51,12 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
             Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_action, 1);
             int monitorTime = Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_time, 10) * 1000;
             Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, monitorTime);
+            Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 0);   //設成0表示要進入DIM且要關屏
         } else if (clickItem.equals(getResources().getString(R.string.tv_monitor_operation_dim))) {
             Settings.Global.putInt(contentResolver, Const.SYSSET_powersave_action, 2);
+            int monitorTime = Settings.Global.getInt(contentResolver, Const.SYSSET_powersave_time, 10) * 1000;
+            Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, monitorTime);
+            Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 1);   //設成1表示要進入DIM不關屏
         }
     }
 }
