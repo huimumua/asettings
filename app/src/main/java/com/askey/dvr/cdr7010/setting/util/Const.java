@@ -75,4 +75,5 @@ public class Const {
     public static final String NOTIFY_fluctuation_detection = "NOTIFY_fluctuation_detection";
     public static final String NOTIFY_out_of_area = "NOTIFY_out_of_area";
     public static final String NOTIFY_driving_report = "NOTIFY_driving_report";
+    public static final String NOTIFY_advice = "NOTIFY_advice";
 }

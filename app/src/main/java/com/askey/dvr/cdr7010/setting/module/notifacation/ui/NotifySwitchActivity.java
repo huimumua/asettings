@@ -167,6 +167,13 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
+        } else if (switch_tag.equals(Const.ADVICE_BEFORE_DRIVING)) {
+            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_advice, 1);//Default ON
+            if (settingValue == 0) {
+                focusPosition = 1;//OFF
+            } else if (settingValue == 1) {//ON
+                focusPosition = 0;
+            }
         }
         list_view.setSelection(focusPosition);
     }
@@ -236,6 +243,12 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_report, 1);
             } else if (clickItem.equals(Const.OFF)) {
                 Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_report, 0);
+            }
+        } else if (switch_tag.equals(Const.ADVICE_BEFORE_DRIVING)) {
+            if (clickItem.equals(Const.ON)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_advice, 1);
+            } else if (clickItem.equals(Const.OFF)) {
+                Settings.Global.putInt(contentResolver, Const.NOTIFY_advice, 0);
             }
         }
     }
