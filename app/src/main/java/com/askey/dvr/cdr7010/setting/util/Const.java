@@ -79,4 +79,5 @@ public class Const {
     public static final String NOTIFY_notification = "NOTIFY_notification";
     public static final String NOTIFY_weather_info = "NOTIFY_weather_info";
     public static final String NOTIFY_road_kill = "NOTIFY_road_kill";
+    public static final String NOTIFY_location_info = "NOTIFY_location_info";
 }
