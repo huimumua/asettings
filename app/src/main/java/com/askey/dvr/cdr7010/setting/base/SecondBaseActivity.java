@@ -42,15 +42,22 @@ public class SecondBaseActivity extends AppCompatActivity {
 
     protected int PERPAGECOUNT = 6;
     protected int screenHeight;
-    protected int lastPosition;
+    protected int firstPosition;
 
     protected String[] menuInfo;
 
+    private int index;//进入界面需要默认选中的item index
+
+    private int pageNum;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
+    }
+
+    protected void setIndex(int index) {
+        this.index = index+1;//从1开始算
     }
 
     protected void initView(String title,String[] menuInfo,int layoutId){
@@ -78,7 +85,6 @@ public class SecondBaseActivity extends AppCompatActivity {
 
     private void initData() {
 
-        lastPosition = 0;
         screenHeight = Utils.getScreenHeight(this);
 
         HashMap<String, Object> map;
@@ -95,12 +101,28 @@ public class SecondBaseActivity extends AppCompatActivity {
             vp_progress.setVisibility(View.INVISIBLE);
         }
 
-        getPerPageData(dataTotal, lastPosition);
+        //获取总页数
+//        pageNum = getPageNum(dataTotal.size());
+
+
+        if (index <= 6) {
+            firstPosition = 0;
+        } else {
+            pageNum = (index / PERPAGECOUNT - 1) + index % PERPAGECOUNT == 0 ? 0 : 1;
+            firstPosition += pageNum * PERPAGECOUNT;
+        }
+        getPerPageData(dataTotal, firstPosition);
 
         simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
 
         list_view.setVerticalScrollBarEnabled(false);
         list_view.setAdapter(simpleAdapter);
+        if (index > 6) {
+            list_view.setSelection(index % PERPAGECOUNT-1);
+            vp_progress.setProgress(firstPosition, firstPosition +PERPAGECOUNT,dataTotal.size());
+        } else {
+            list_view.setSelection(index-1);
+        }
     }
 
     @Override
@@ -108,44 +130,44 @@ public class SecondBaseActivity extends AppCompatActivity {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (!Utils.isFastDoubleClick()) {
-                    lastPosition += PERPAGECOUNT;
-                    Log.d("tag", "down" + lastPosition);
-                    if (lastPosition < dataTotal.size()) {
-                        getPerPageData(dataTotal, lastPosition);
+                    firstPosition += PERPAGECOUNT;
+                    Log.d("tag", "down" + firstPosition);
+                    if (firstPosition < dataTotal.size()) {
+                        getPerPageData(dataTotal, firstPosition);
                     } else {
-                        lastPosition = 0;
-                        getPerPageData(dataTotal, lastPosition);
+                        firstPosition = 0;
+                        getPerPageData(dataTotal, firstPosition);
                     }
-                    vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
+                    vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
                     simpleAdapter.notifyDataSetChanged();
                     list_view.setSelection(0);
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (!Utils.isFastDoubleClick()) {
-                    if (lastPosition >= PERPAGECOUNT) {
-                        Log.d("tag", "up" + lastPosition);
-                        lastPosition -= PERPAGECOUNT;
-                        if (lastPosition >= 0) {
-                            getPerPageData(dataTotal, lastPosition);
-                            vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
+                    if (firstPosition >= PERPAGECOUNT) {
+                        Log.d("tag", "up" + firstPosition);
+                        firstPosition -= PERPAGECOUNT;
+                        if (firstPosition >= 0) {
+                            getPerPageData(dataTotal, firstPosition);
+                            vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
                             simpleAdapter.notifyDataSetChanged();
                             list_view.setSelection(PERPAGECOUNT - 1);
                         }
                     } else {
-                        if (lastPosition == 0) {
+                        if (firstPosition == 0) {
                             if (dataTotal.size() % PERPAGECOUNT != 0) {
-                                lastPosition = dataTotal.size() - dataTotal.size() % PERPAGECOUNT;
-                                Log.d("tag", "up+another = " + lastPosition);
-                                getPerPageData(dataTotal, lastPosition);
-                                vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
+                                firstPosition = dataTotal.size() - dataTotal.size() % PERPAGECOUNT;
+                                Log.d("tag", "up+another = " + firstPosition);
+                                getPerPageData(dataTotal, firstPosition);
+                                vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
                                 list_view.setSelection(dataTotal.size() % PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             } else {
-                                lastPosition = dataTotal.size() - PERPAGECOUNT;
-                                Log.d("tag", "up+another = " + lastPosition);
-                                getPerPageData(dataTotal, lastPosition);
-                                vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
+                                firstPosition = dataTotal.size() - PERPAGECOUNT;
+                                Log.d("tag", "up+another = " + firstPosition);
+                                getPerPageData(dataTotal, firstPosition);
+                                vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
                                 list_view.setSelection(PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             }

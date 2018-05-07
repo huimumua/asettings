@@ -10,8 +10,6 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
-import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
@@ -35,17 +33,17 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
 
+        contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
+        int car_type = Settings.Global.getInt(contentResolver, Const.CAR_type, 0);
+        setIndex(car_type);
         initView(getResources().getString(R.string.vehicle_type),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
-        contentResolver = getContentResolver();
         focusItem();
     }
 
     private void focusItem() {
         list_view.requestFocus();
-        int car_type = Settings.Global.getInt(contentResolver, Const.CAR_type, 0);
-        list_view.setSelection(car_type);
     }
 
     @Override
