@@ -143,4 +143,5 @@
     <string name="weather_report">Weather Report</string>
     <string name="help">Help</string>
     <string name="service_information_notified">Service Information Notified</string>
+    <string name="main_menu_us">User Selection</string>
 </resources>

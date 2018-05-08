@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECOVERY" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
@@ -15,18 +15,20 @@
     <!-- 格式化SD卡 -->
     <uses-permission android:name="android.permission.MOUNT_FORMAT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.MASTER_CLEAR" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.MASTER_CLEAR"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MASTER_CLEAR" />
     <!-- 定位权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.location" />
     <uses-permission android:name="android.permission.BATTERY_STATS" />
 
-    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
-
-    <uses-feature android:name="android.hardware.sensor.gyroscope" android:required="true"/>
-
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.sensor.gyroscope"
+        android:required="true" />
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -87,7 +89,7 @@
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity" />
         <activity android:name=".module.vehicle.ui.VehicleTypeSetting" />
         <activity android:name=".module.system.ui.SystemInformation" />
-        <activity android:name=".module.system.ui.SystemInfoDetailActivity"/>
+        <activity android:name=".module.system.ui.SystemInfoDetailActivity" />
         <activity android:name=".module.system.ui.InstallationToolSetting" />
         <activity android:name=".module.system.ui.LevelerActivity" />
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
@@ -107,10 +109,11 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.PlaybackSoundService"/>
+                <action android:name="android.intent.action.PlaybackSoundService" />
             </intent-filter>
         </service>
 
+        <activity android:name=".module.user.ui.UserSelectActivity"></activity>
     </application>
 
 </manifest>
