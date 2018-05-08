@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -59,7 +60,7 @@ public class NotificationSoundSetting extends BaseActivity {
                     currentVolume = 0;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-                Settings.Global.putInt(contentResolver, Const.SYSSET_notify_vol, currentVolume);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
                 refreshView();
                 testSound();
                 break;
@@ -69,7 +70,7 @@ public class NotificationSoundSetting extends BaseActivity {
                     currentVolume = 5;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-                Settings.Global.putInt(contentResolver, Const.SYSSET_notify_vol, currentVolume);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
                 refreshView();
                 testSound();
                 break;

@@ -11,12 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
+import com.askey.platform.AskeySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,105 +98,105 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
         list_view.requestFocus();
         contentResolver = getContentResolver();
         if (switch_tag.equals(Const.REVERSE_RUN_DETECTION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_reverse_run, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_REVERSE_RUN, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.SPEED_REGULATION_AREA)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_speed_limit_area, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_SPEED_LIMIT_AREA, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.PAUSE)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_stop, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_STOP, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_freq_accident_area, 0);//Default OFF
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_FREQ_ACCIDENT_AREA, 0);//Default OFF
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.DRIVING_TIME)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_driving_time, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_DRIVING_TIME, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_Intense_driving, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_INTENSE_DRIVING, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.HANDLING)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_abnormal_handing, 0);//Default OFF
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_ABNORMAL_HANDING, 0);//Default OFF
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.FLUCTUATION_DETECTION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_fluctuation_detection, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_FLUCTUATION_DETECTION, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.DRIVING_OUTSIDE_THE_DESIGNATED_AREA)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_out_of_area, 0);//Default OFF
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_OUT_OF_AREA, 0);//Default OFF
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.DRIVING_REPORT)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_driving_report, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_DRIVING_REPORT, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.ADVICE_BEFORE_DRIVING)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_advice, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_ADVICE, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.NOTIFICATION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_notification, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_NOTIFICATION, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.WEATHER_INFORMATION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_weather_info, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_WEATHER_INFO, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.ROAD_KILL)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_road_kill, 1);//Default ON
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_ROAD_KILL, 1);//Default ON
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.LOCATION_INFORMATION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.NOTIFY_location_info, 0);//Default OFF
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.NOTIFY_LOCATION_INFO, 0);//Default OFF
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -209,98 +209,95 @@ public class NotifySwitchActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-//        if (clickItem.equals(menuInfo[position])) {
-//            Toast.makeText(this, menuInfo[position], Toast.LENGTH_SHORT).show();
-//        }
         if (switch_tag.equals(Const.REVERSE_RUN_DETECTION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_reverse_run, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_REVERSE_RUN, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_reverse_run, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_REVERSE_RUN, 0);
             }
         } else if (switch_tag.equals(Const.SPEED_REGULATION_AREA)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_speed_limit_area, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_SPEED_LIMIT_AREA, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_speed_limit_area, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_SPEED_LIMIT_AREA, 0);
             }
         } else if (switch_tag.equals(Const.PAUSE)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_stop, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_STOP, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_stop, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_STOP, 0);
             }
         } else if (switch_tag.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_freq_accident_area, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_FREQ_ACCIDENT_AREA, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_freq_accident_area, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_FREQ_ACCIDENT_AREA, 0);
             }
         } else if (switch_tag.equals(Const.DRIVING_TIME)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_time, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_DRIVING_TIME, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_time, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_DRIVING_TIME, 0);
             }
         } else if (switch_tag.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_Intense_driving, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_INTENSE_DRIVING, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_Intense_driving, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_INTENSE_DRIVING, 0);
             }
         } else if (switch_tag.equals(Const.HANDLING)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_abnormal_handing, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_ABNORMAL_HANDING, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_abnormal_handing, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_ABNORMAL_HANDING, 0);
             }
         } else if (switch_tag.equals(Const.FLUCTUATION_DETECTION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_fluctuation_detection, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_FLUCTUATION_DETECTION, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_fluctuation_detection, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_FLUCTUATION_DETECTION, 0);
             }
         } else if (switch_tag.equals(Const.DRIVING_OUTSIDE_THE_DESIGNATED_AREA)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_out_of_area, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_OUT_OF_AREA, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_out_of_area, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_OUT_OF_AREA, 0);
             }
         } else if (switch_tag.equals(Const.DRIVING_REPORT)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_report, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_DRIVING_REPORT, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_driving_report, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_DRIVING_REPORT, 0);
             }
         } else if (switch_tag.equals(Const.ADVICE_BEFORE_DRIVING)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_advice, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_ADVICE, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_advice, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_ADVICE, 0);
             }
         } else if (switch_tag.equals(Const.NOTIFICATION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_notification, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_NOTIFICATION, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_notification, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_NOTIFICATION, 0);
             }
         } else if (switch_tag.equals(Const.WEATHER_INFORMATION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_weather_info, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_WEATHER_INFO, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_weather_info, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_WEATHER_INFO, 0);
             }
         } else if (switch_tag.equals(Const.ROAD_KILL)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_road_kill, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_ROAD_KILL, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_road_kill, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_ROAD_KILL, 0);
             }
         } else if (switch_tag.equals(Const.LOCATION_INFORMATION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_location_info, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_LOCATION_INFO, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.NOTIFY_location_info, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_LOCATION_INFO, 0);
             }
         }
     }

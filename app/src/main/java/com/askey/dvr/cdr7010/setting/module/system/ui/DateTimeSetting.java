@@ -14,6 +14,7 @@ import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -32,7 +33,7 @@ public class DateTimeSetting extends SecondBaseActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_date_time),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.tv_date_time), menuInfo, R.layout.second_menu_layout);
         contentResolver = getContentResolver();
         list_view.setOnItemClickListener(this);
         focusItem();
@@ -63,10 +64,10 @@ public class DateTimeSetting extends SecondBaseActivity implements AdapterView.O
         if (clickItem.equals(getResources().getString(R.string.tv_automatic))) {
             //自动校时
             SystemDateTime.setAutoDateTime(1);
-            Settings.Global.putInt(contentResolver, Const.SYSSET_auto_datetime, 1);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_AUTO_DATETIME, 1);
         } else if (clickItem.equals(getResources().getString(R.string.tv_manual))) {
             SystemDateTime.setAutoDateTime(0);
-            Settings.Global.putInt(contentResolver, Const.SYSSET_auto_datetime, 0);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_AUTO_DATETIME, 0);
             Intent intent = new Intent();
             intent.setClass(DateTimeSetting.this, ManualDateTimeSetting.class);
             startActivity(intent);

@@ -13,6 +13,7 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -23,7 +24,7 @@ import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
  * 修改时间：2018/4/8 13:33
  * 修改备注：
  */
-public class VehicleTypeSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener{
+public class VehicleTypeSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
 
     private static final String TAG = "SdcardSetting";
     private ContentResolver contentResolver;
@@ -35,9 +36,9 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        int car_type = Settings.Global.getInt(contentResolver, Const.CAR_type, 0);
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.CAR_TYPE, 0);
         setIndex(car_type);
-        initView(getResources().getString(R.string.vehicle_type),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.vehicle_type), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }
@@ -49,28 +50,28 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-        if(clickItem.equals(getResources().getString(R.string.vehicle_type_options)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 0);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_mini_sedan)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 1);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_minivan)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 2);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_medium_sedan)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 3);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_rv)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 4);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_large_sedan)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 5);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_suv)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 6);
-        }else if(clickItem.equals(getResources().getString(R.string.vehicle_type_others)) ) {
-            Settings.Global.putInt(contentResolver, Const.CAR_type, 7);
+        if (clickItem.equals(getResources().getString(R.string.vehicle_type_options))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 0);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_mini_sedan))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 1);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_minivan))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 2);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_medium_sedan))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 3);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_rv))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 4);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_large_sedan))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 5);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_suv))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 6);
+        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_others))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 7);
         }
 
-        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
-        if(isFirstInit){
+        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+        if (isFirstInit) {
 
-            String [] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
+            String[] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
             Intent intent = new Intent(mContext, MountingPositionSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
@@ -78,7 +79,6 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
         }
 
     }
-
 
 
 }

@@ -13,6 +13,7 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -42,7 +43,7 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
 
     private void focusItem() {
         list_view.requestFocus();
-        int car_type = Settings.Global.getInt(contentResolver, Const.ADAS_mount_position, 0);
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 0);
         list_view.setSelection(car_type);
     }
 
@@ -50,11 +51,11 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.mounting_position_left)) ) {
-            Settings.Global.putInt(contentResolver, Const.ADAS_mount_position, 0);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 0);
         }else if(clickItem.equals(getResources().getString(R.string.mounting_position_middle)) ) {
-            Settings.Global.putInt(contentResolver, Const.ADAS_mount_position, 1);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 1);
         }else if(clickItem.equals(getResources().getString(R.string.mounting_position_right)) ) {
-            Settings.Global.putInt(contentResolver, Const.ADAS_mount_position, 2);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 2);
         }
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);

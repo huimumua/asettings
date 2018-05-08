@@ -14,6 +14,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -24,7 +25,7 @@ import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
  * 修改时间：2018/4/26 20:03
  * 修改备注：
  */
-public class EmergencyAutomaticNotification extends SecondBaseActivity implements AdapterView.OnItemClickListener{
+public class EmergencyAutomaticNotification extends SecondBaseActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "EmergencyAutomaticNotification";
     private ContentResolver contentResolver;
 
@@ -34,7 +35,7 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.communication_emergency_automatic_notification),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.communication_emergency_automatic_notification), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         contentResolver = getContentResolver();
         focusItem();
@@ -42,7 +43,7 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
 
     private void focusItem() {
         list_view.requestFocus();
-        int emergency_auto = Settings.Global.getInt(contentResolver, Const.COMM_emergency_auto, 1);
+        int emergency_auto = Settings.Global.getInt(contentResolver, AskeySettings.Global.COMM_EMERGENCY_AUTO, 1);
         int position = 0;
         if (emergency_auto == 1) {
             position = 0;
@@ -55,10 +56,10 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-         if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_on)) ) {
-             Settings.Global.putInt(contentResolver, Const.COMM_emergency_auto, 1);
-        }else if(clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_off)) ) {
-             Settings.Global.putInt(contentResolver, Const.COMM_emergency_auto, 0);
+        if (clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_on))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.COMM_EMERGENCY_AUTO, 1);
+        } else if (clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_off))) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.COMM_EMERGENCY_AUTO, 0);
         }
     }
 }

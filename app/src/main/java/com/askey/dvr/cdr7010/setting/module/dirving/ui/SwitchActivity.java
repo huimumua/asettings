@@ -11,12 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
+import com.askey.platform.AskeySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,28 +98,28 @@ public class SwitchActivity extends AppCompatActivity implements AdapterView.OnI
         list_view.requestFocus();
         contentResolver = getContentResolver();
         if (switch_tag.equals(Const.LANE_DEPARTURE)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.ADAS_LDS, 0);
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_LDS, 0);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.FRONT_COLLISION_WARING)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.ADAS_FCWS, 0);
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_FCWS, 0);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.PEDESTRIAN_DETECTION)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.ADAS_pedestrian_collision, 0);
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_PEDESTRIAN_COLLISION, 0);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
                 focusPosition = 0;
             }
         } else if (switch_tag.equals(Const.DEPARTURE_DELAY_WARNING)) {
-            settingValue = Settings.Global.getInt(contentResolver, Const.ADAS_delay_start, 0);
+            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 0);
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -132,32 +132,29 @@ public class SwitchActivity extends AppCompatActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-//        if (clickItem.equals(menuInfo[position])) {
-//            Toast.makeText(this, menuInfo[position], Toast.LENGTH_SHORT).show();
-//        }
         if (switch_tag.equals(Const.LANE_DEPARTURE)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_LDS, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_LDS, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_LDS, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_LDS, 0);
             }
         } else if (switch_tag.equals(Const.FRONT_COLLISION_WARING)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_FCWS, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_FCWS, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_FCWS, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_FCWS, 0);
             }
         } else if (switch_tag.equals(Const.PEDESTRIAN_DETECTION)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_pedestrian_collision, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_PEDESTRIAN_COLLISION, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_pedestrian_collision, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_PEDESTRIAN_COLLISION, 0);
             }
         } else if (switch_tag.equals(Const.DEPARTURE_DELAY_WARNING)) {
             if (clickItem.equals(Const.ON)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_delay_start, 1);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 1);
             } else if (clickItem.equals(Const.OFF)) {
-                Settings.Global.putInt(contentResolver, Const.ADAS_delay_start, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 0);
             }
         }
     }

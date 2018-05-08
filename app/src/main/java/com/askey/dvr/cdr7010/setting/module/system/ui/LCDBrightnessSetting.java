@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -112,7 +113,7 @@ public class LCDBrightnessSetting extends BaseActivity {
             currentBrightness = 0;
         }
         int process = currentBrightness * 10 / 255;
-        Settings.Global.putInt(contentResolver, Const.SYSSET_monitor_brightness, process);
+        Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_MONITOR_BRIGHTNESS, process);
         if (type.equals("down")) {
             if (process == 9) {
                 brightness10.setImageDrawable(getDrawable(R.drawable.unchecked10));

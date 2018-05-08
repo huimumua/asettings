@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -59,7 +60,7 @@ public class PlaybackSoundSetting extends BaseActivity {
                     currentVolumeMusic = 0;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
-                Settings.Global.putInt(contentResolver, Const.SYSSET_playback_vol, volumeType(currentVolumeMusic));
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, volumeType(currentVolumeMusic));
                 refreshView();
                 testPlaybackSound();
                 break;
@@ -69,7 +70,7 @@ public class PlaybackSoundSetting extends BaseActivity {
                     currentVolumeMusic = 15;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
-                Settings.Global.putInt(contentResolver, Const.SYSSET_playback_vol, volumeType(currentVolumeMusic));
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, volumeType(currentVolumeMusic));
                 refreshView();
                 testPlaybackSound();
                 break;
