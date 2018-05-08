@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 
 /**
@@ -59,7 +60,9 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
                 break;
             case 3:
                 switch_tag = Const.DEVICE_INSTALL_SETTING;
-                intent = new Intent(DrivingSetting.this, DeviceInstallActivity.class);
+                String[] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
+                intent = new Intent(DrivingSetting.this, MountingPositionSetting.class);
+                intent.putExtra("menu_item", secondMenuItem);
                 startActivity(intent);
                 return;
             case 4:
