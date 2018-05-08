@@ -16,6 +16,6 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:text="item"
-        android:textColor="@color/textcolor_select"
+        android:textColor="@android:color/background_light"
         android:textSize="@dimen/content_size" />
 </LinearLayout>

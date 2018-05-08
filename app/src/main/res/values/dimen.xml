@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="system_settings_item_width">250dp</dimen>
-    <dimen name="system_settings_item_height">25dp</dimen>
+    <dimen name="system_settings_item_height">29dp</dimen>
     <dimen name="progress_bar_width">10dp</dimen>
     <dimen name="progress_bar_height">150dp</dimen>
     <dimen name="brightness_width">20dp</dimen>
