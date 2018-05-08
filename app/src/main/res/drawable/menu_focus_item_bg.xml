@@ -6,11 +6,5 @@
             <size android:width="180dp" android:height="28dp"/>
         </shape>
     </item>
-    <item android:state_selected="true">
-        <shape android:shape="rectangle">
-            <stroke android:width="2dp" android:color="@android:color/background_dark"/>
-            <solid android:color="@android:color/holo_blue_dark"/>
-            <size android:width="180dp" android:height="28dp"/>
-        </shape>
-    </item>
+    <item android:state_selected="true" android:drawable="@drawable/bg_menu_slected"/>
 </selector>

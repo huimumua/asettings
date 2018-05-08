@@ -67,6 +67,8 @@ public class SecondBaseActivity extends AppCompatActivity {
         View view = jvcRelativeLayout.getMyView();
 
         list_view = (ListView) view.findViewById(R.id.list_view);
+        list_view.setVerticalScrollBarEnabled(false);
+        list_view.setDivider(null);
         menuTitle = (TextView) view.findViewById(R.id.title_tv);
         menuTitle_icon = (ImageView) view.findViewById(R.id.title_icon);//参数待添加
         menuTitle.setText(title);
@@ -115,7 +117,6 @@ public class SecondBaseActivity extends AppCompatActivity {
 
         simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
 
-        list_view.setVerticalScrollBarEnabled(false);
         list_view.setAdapter(simpleAdapter);
         if (index > 6) {
             list_view.setSelection(index % PERPAGECOUNT-1);

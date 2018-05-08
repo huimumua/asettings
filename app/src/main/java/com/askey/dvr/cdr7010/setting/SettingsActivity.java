@@ -106,6 +106,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         currentData = new ArrayList<>();
         dataTotal = new ArrayList<>();
 
+        list_view.setVerticalScrollBarEnabled(false);
+        list_view.setDivider(null);
         list_view.setOnItemClickListener(this);
         list_view.setOnItemSelectedListener(this);
     }
@@ -131,7 +133,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         getPerPageData(dataTotal, lastPosition);
 
-        list_view.setVerticalScrollBarEnabled(false);
         simpleAdapter = new SimpleAdapter(this, currentData, R.layout.menu_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
         list_view.setAdapter(simpleAdapter);
     }
