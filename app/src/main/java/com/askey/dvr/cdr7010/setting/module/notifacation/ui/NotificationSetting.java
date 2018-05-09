@@ -37,7 +37,7 @@ public class NotificationSetting extends SecondBaseActivity implements AdapterVi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
         Intent intent = new Intent(NotificationSetting.this, NotifySwitchActivity.class);
-        String[] secondMenuItem = getResources().getStringArray(R.array.swithch);
+        String[] secondMenuItem = getResources().getStringArray(R.array.all_switch_item);
         intent.putExtra("menu_item", secondMenuItem);
         if (clickItem.equals(Const.REVERSE_RUN_DETECTION)) {
             switch_tag = menuInfo[0];

@@ -47,7 +47,7 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(DrivingSetting.this, SwitchActivity.class);
-        String[] secondMenuItem = getResources().getStringArray(R.array.swithch);
+        String[] secondMenuItem = getResources().getStringArray(R.array.all_switch_item);
         intent.putExtra("menu_item", secondMenuItem);
         Log.i("position",menuInfo[position]);
         switch (position) {
