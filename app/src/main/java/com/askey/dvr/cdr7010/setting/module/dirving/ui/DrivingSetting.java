@@ -47,6 +47,8 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(DrivingSetting.this, SwitchActivity.class);
+        String[] secondMenuItem = getResources().getStringArray(R.array.swithch);
+        intent.putExtra("menu_item", secondMenuItem);
         Log.i("position",menuInfo[position]);
         switch (position) {
             case 0:
@@ -60,7 +62,7 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
                 break;
             case 3:
                 switch_tag = Const.DEVICE_INSTALL_SETTING;
-                String[] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
+                secondMenuItem = getResources().getStringArray(R.array.mounting_position);
                 intent = new Intent(DrivingSetting.this, MountingPositionSetting.class);
                 intent.putExtra("menu_item", secondMenuItem);
                 startActivity(intent);

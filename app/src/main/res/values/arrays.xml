@@ -197,6 +197,11 @@
         <item>Right</item>
     </string-array>
 
+    <string-array name="swithch">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
     <string-array name="service_information">
         <item>Weather Report</item>
         <item>Service Information Notified</item>
