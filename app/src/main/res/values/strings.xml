@@ -106,7 +106,6 @@
     <string name="driving_support_setting">Driving Support Setting</string>
 
     <string name="vehicle_type">Vehicle Type</string>
-    <string name="vehicle_type_options">Options</string>
     <string name="vehicle_type_mini_sedan">Mini sedan</string>
     <string name="vehicle_type_minivan">Minivan</string>
     <string name="vehicle_type_medium_sedan">Medium sedan</string>

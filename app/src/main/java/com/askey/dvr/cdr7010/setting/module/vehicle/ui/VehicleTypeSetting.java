@@ -36,7 +36,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.CAR_TYPE, 0);
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.CAR_TYPE, 2);
         setIndex(car_type);
         initView(getResources().getString(R.string.vehicle_type), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
@@ -50,22 +50,20 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-        if (clickItem.equals(getResources().getString(R.string.vehicle_type_options))) {
+        if (clickItem.equals(getResources().getString(R.string.vehicle_type_mini_sedan))) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 0);
-        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_mini_sedan))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 1);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_minivan))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 2);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 1);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_medium_sedan))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 3);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 2);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_rv))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 4);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 3);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_large_sedan))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 5);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 4);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_suv))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 6);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 5);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_others))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 7);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 6);
         }
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
