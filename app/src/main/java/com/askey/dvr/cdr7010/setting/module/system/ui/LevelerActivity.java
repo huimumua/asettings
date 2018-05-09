@@ -55,6 +55,14 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         spiritView = (SpiritView) findViewById(R.id.show);
         //获取传感器
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        preview = (SurfaceView) findViewById(R.id.preview);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                cameraInit();
+            }
+        }).start();
 
     }
 
@@ -139,50 +147,57 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
 
     }
 
+
+    @Override
+    protected void onStart() {
+        Logg.i(TAG,"=====onStart=======");
+        super.onStart();
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
-        //获取水平仪的主组件
-        spiritView = (SpiritView) findViewById(R.id.show);
-        //获取传感器
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        preview = (SurfaceView) findViewById(R.id.preview);
-        surfaceHolder = preview.getHolder();
-        surfaceHolder.addCallback(this);
-        //注册
         Logg.i(TAG,"=====onResume=======");
-        sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
-                SensorManager.SENSOR_DELAY_GAME);
 
     }
 
-    @Override
-    protected void onStop() {
-        //取消注册
-        sensorManager.unregisterListener(this);
-        super.onStop();
+    private void cameraInit() {
+        surfaceHolder = preview.getHolder();
+        surfaceHolder.addCallback(this);
+        Sensor mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
+        //注册
 
+        sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
     protected void onPause() {
         Logg.i(TAG,"=====onPause=======");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Logg.i(TAG,"=====onStop=======");
+        super.onStop();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Logg.i(TAG,"=====onDestroy=======");
         //取消注册
         stopPreview();
         sensorManager.unregisterListener(this);
-        super.onPause();
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
             startActivity(new Intent(mContext, LevelerDetailActivity.class));
-            return true;
-        }else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-
-            return true;
-        }else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-
+            finish();
             return true;
         }
         return super.onKeyDown(keyCode, event);

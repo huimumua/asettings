@@ -83,7 +83,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-         if (keyCode == KeyEvent.KEYCODE_BACK) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
             if (isFirstInit) {
                 return true;

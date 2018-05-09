@@ -145,10 +145,14 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
 
     @Override
     protected void onPause() {
-        //取消注册
-        Logg.i(TAG,"=====onPause=======");
-        stopPreview();
         super.onPause();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //取消注册
+        Logg.i(TAG,"=====onPause=======");
+        stopPreview();
+    }
 }

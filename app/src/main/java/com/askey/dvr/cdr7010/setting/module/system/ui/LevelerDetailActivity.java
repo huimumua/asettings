@@ -41,12 +41,9 @@ public class LevelerDetailActivity extends BaseActivity{
                 startActivity(intent);
             }
             return true;
-        }else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
-
-            return true;
-        }else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
-
-            return true;
+        }else if(keyCode == KeyEvent.KEYCODE_BACK){
+            startActivity(new Intent(mContext, LevelerActivity.class));
+            finish();
         }
         return super.onKeyDown(keyCode, event);
     }
