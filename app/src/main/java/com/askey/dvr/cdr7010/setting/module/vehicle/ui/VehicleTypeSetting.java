@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
@@ -78,5 +80,26 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 
     }
 
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+
+            return true;
+        }else if (keyCode == KeyEvent.KEYCODE_DPAD_UP) {
+
+            return true;
+        }else if (keyCode == KeyEvent.KEYCODE_DPAD_DOWN) {
+
+            return true;
+        }
+        else if (keyCode == KeyEvent.KEYCODE_BACK) {
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+            if (isFirstInit) {
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
