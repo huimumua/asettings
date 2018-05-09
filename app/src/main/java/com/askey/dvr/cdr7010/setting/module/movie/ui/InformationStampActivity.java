@@ -1,6 +1,8 @@
 package com.askey.dvr.cdr7010.setting.module.movie.ui;
 
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -10,14 +12,16 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
+import com.askey.platform.AskeySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class InformationStampActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class InformationStampActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView list_view;
 
@@ -31,14 +35,16 @@ public class InformationStampActivity extends AppCompatActivity implements Adapt
     private int PERPAGECOUNT = 6;
     private int screenHeight;
     private int lastPosition;
-
+    private ContentResolver contentResolver;
     private String[] menuInfo;
+    private int settingValue;
+    private int focusPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_stamp);
-
+        contentResolver = getContentResolver();
         initView();
         initData();
     }
@@ -77,11 +83,28 @@ public class InformationStampActivity extends AppCompatActivity implements Adapt
         list_view.setVerticalScrollBarEnabled(false);
         simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
         list_view.setAdapter(simpleAdapter);
+        focusItem();
+    }
+
+    private void focusItem() {
+        list_view.requestFocus();
+        settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.RECSET_INFO_STAMP, 1);
+        if (settingValue == 0) {
+            focusPosition = 1;//OFF
+        } else if (settingValue == 1) {//ON
+            focusPosition = 0;
+        }
+        list_view.setSelection(focusPosition);
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        String clickItem = currentData.get(position).get("menu_item").toString();
+        if (clickItem.equals(Const.ON)) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.RECSET_INFO_STAMP, 1);
+        } else if (clickItem.equals(Const.OFF)) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.RECSET_INFO_STAMP, 0);
+        }
     }
 
     @Override
