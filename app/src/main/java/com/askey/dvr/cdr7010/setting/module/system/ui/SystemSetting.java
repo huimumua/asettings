@@ -20,6 +20,8 @@ import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.FileUtils;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -89,6 +91,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             //恢复出厂设置
             showDialog(this);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
+            PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,true);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {

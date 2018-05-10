@@ -212,6 +212,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+
+                break;
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (!Utils.isFastDoubleClick()) {
                     lastPosition += PERPAGECOUNT;
@@ -338,8 +341,13 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        FileManager.getInstance().unBindFileManageService();
-        GPSStatusManager.getInstance().recordLocation(false);
+        try {
+            FileManager.getInstance().unBindFileManageService();
+            GPSStatusManager.getInstance().recordLocation(false);
+        }catch (Exception e){
+            Logg.e(LOG_TAG,"onDestroy-->Exception"+e.getMessage());
+        }
+
     }
 
 }

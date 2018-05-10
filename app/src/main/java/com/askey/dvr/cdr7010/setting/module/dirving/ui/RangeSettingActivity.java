@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting.module.dirving.ui;
 
+import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
@@ -81,8 +83,12 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                 Logg.i(TAG,"===KeyEvent.KEYCODE_ENTER===");
                 boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
                 if(isFirstInit){
-                    PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
-                    AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
+                    Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+                    intent.putExtra("set_wizard_help_index", "set_wizard_help_finish");
+                    startActivity(intent);
+                    finish();
+//                    PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
+//                    AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
                 }
                 break;
             case KeyEvent.KEYCODE_BACK:

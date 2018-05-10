@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,13 +9,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
+import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
 /**
@@ -57,6 +59,8 @@ public class SetWizardHelpActivity extends BaseActivity {
             indexStr = getResources().getString(R.string.set_wizard_help_context_mounting_position);
         }else if(currentUi.equals("set_wizard_help_context_range")){
             indexStr = getResources().getString(R.string.set_wizard_help_context_range);
+        }else if(currentUi.equals("set_wizard_help_finish")){
+            indexStr = getResources().getString(R.string.set_wizard_help_finish);
         }
         setWizardhelp.setText(indexStr);
     }
@@ -87,6 +91,12 @@ public class SetWizardHelpActivity extends BaseActivity {
             }else if(currentUi.equals("set_wizard_help_context_range")){
                 Intent intent = new Intent(mContext,RangeSettingActivity.class);
                 startActivity(intent);
+            }else if(currentUi.equals("set_wizard_help_finish")){
+                PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
+//                AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
+                Intent intent = new Intent(mContext,SettingsActivity.class);
+                startActivity(intent);
+                SettingApplication.finishActivity(SetWizardHelpActivity.class);
             }
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_CALL){

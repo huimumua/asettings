@@ -105,7 +105,6 @@ public class SettingApplication extends Application {
             return;
         }
         if (activity != null) {
-            mActivitys.remove(activity);
             activity.finish();
             activity = null;
         }
@@ -123,6 +122,14 @@ public class SettingApplication extends Application {
                 finishActivity(activity);
             }
         }
+        try {
+            for (int i=0;i<=mActivitys.size();i++){
+                mActivitys.remove(mActivitys.get(i));
+            }
+        }catch (Exception e){
+            Logg.e(TAG,"==finishActivity==Exception="+e.getMessage());
+        }
+
     }
 
     /**

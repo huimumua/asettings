@@ -64,7 +64,7 @@
         <activity android:name=".module.system.ui.MonitorScreenPowerSavingSetting" />
         <activity android:name=".module.system.ui.MonitorTimeSettings" />
         <activity android:name=".module.system.ui.MonitorOperationSettings" />
-        <activity android:name=".SetWizardHelpActivity" />
+        <activity android:name=".SetWizardHelpActivity" android:launchMode="singleTop"/>
 
         <receiver
             android:name=".broadcast.SdcardReceiver"

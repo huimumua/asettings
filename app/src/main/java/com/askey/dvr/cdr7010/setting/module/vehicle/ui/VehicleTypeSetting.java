@@ -74,6 +74,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
             Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
             intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
             startActivity(intent);
+            finish();
         }
 
     }

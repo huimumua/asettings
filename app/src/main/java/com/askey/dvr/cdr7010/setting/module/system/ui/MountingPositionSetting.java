@@ -65,6 +65,7 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
             Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
             intent.putExtra("set_wizard_help_index", "set_wizard_help_context_range");
             startActivity(intent);
+            finish();
         }
 
 

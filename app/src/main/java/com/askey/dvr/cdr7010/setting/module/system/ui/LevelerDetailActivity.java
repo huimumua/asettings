@@ -41,6 +41,7 @@ public class LevelerDetailActivity extends BaseActivity{
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
                 intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
                 startActivity(intent);
+                finish();
             }
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_BACK){
