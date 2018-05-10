@@ -15,7 +15,6 @@ import android.widget.FrameLayout;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
@@ -25,37 +24,45 @@ import java.io.IOException;
 public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.Callback {
     private static final String TAG = "RangeSettingActivity";
     private SurfaceView preview;
-    private int previewHeight;
+    private int previewHeight, previewWidth;
     private SurfaceHolder surfaceHolder;
-    private View line;
+    private View line, line_center;
     private Camera camera;
     private boolean isPreviewing = false;
-    private ViewGroup.MarginLayoutParams marginLayoutParams;
+    private ViewGroup.MarginLayoutParams marginTopLayoutParams, marginLeftLayoutParams;
     private FrameLayout.LayoutParams layoutParams;
-    private int lineCurrentMarginTop;
+    private int lineCurrentMarginTop, lineCurrentMarginLeft;
+    private AdasSettingStatus status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_range_setting);
 
+        status = AdasSettingStatus.SETTING_HORIZON;
+
         preview = (SurfaceView) findViewById(R.id.preview);
         line = findViewById(R.id.line);
-        marginLayoutParams = new ViewGroup.MarginLayoutParams(line.getLayoutParams());
+        marginTopLayoutParams = new ViewGroup.MarginLayoutParams(line.getLayoutParams());
+        line_center = findViewById(R.id.line_center);
+        marginLeftLayoutParams = new ViewGroup.MarginLayoutParams(line_center.getLayoutParams());
 
         ViewTreeObserver treeObserver = preview.getViewTreeObserver();
         treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
                 preview.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                previewWidth = preview.getWidth();
                 previewHeight = preview.getHeight();
-                Log.i("height", previewHeight+"");
+                Log.i("height", previewHeight + "");
             }
         });
 
         //注意这里设置的是上边外距，设置下外边距貌似没用
         lineCurrentMarginTop = 150;
         setLineMarginTop(lineCurrentMarginTop);
+
+        lineCurrentMarginLeft = 150;
 
         surfaceHolder = preview.getHolder();
         surfaceHolder.addCallback(this);
@@ -66,35 +73,94 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                Log.i("top_down",lineCurrentMarginTop+"");
-                if (lineCurrentMarginTop < previewHeight-1) {
-                    lineCurrentMarginTop += 1;
-                    setLineMarginTop(lineCurrentMarginTop);
+                switch (status) {
+                    case SETTING_CENTER:
+                        Log.i("right", lineCurrentMarginLeft + "");
+                        if (lineCurrentMarginLeft > 1) {
+                            lineCurrentMarginLeft -= 1;
+                            setLineMarginLeft(lineCurrentMarginLeft);
+                        }
+                        break;
+                    default:
+                        Log.i("top_down", lineCurrentMarginTop + "");
+                        if (lineCurrentMarginTop < previewHeight - 1) {
+                            lineCurrentMarginTop += 1;
+                            setLineMarginTop(lineCurrentMarginTop);
+                        }
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                Log.i("top_up",lineCurrentMarginTop+"");
-                if (lineCurrentMarginTop > 1) {
-                    lineCurrentMarginTop -= 1;
-                    setLineMarginTop(lineCurrentMarginTop);
+                switch (status) {
+                    case SETTING_CENTER:
+                        Log.i("right", lineCurrentMarginLeft + "");
+                        if (lineCurrentMarginLeft < previewWidth - 1) {
+                            lineCurrentMarginLeft += 1;
+                            setLineMarginLeft(lineCurrentMarginLeft);
+                        }
+                        break;
+                    default:
+                        Log.i("top_up", lineCurrentMarginTop + "");
+                        if (lineCurrentMarginTop > 1) {
+                            lineCurrentMarginTop -= 1;
+                            setLineMarginTop(lineCurrentMarginTop);
+                        }
                 }
                 break;
             case KeyEvent.KEYCODE_ENTER:
-                Logg.i(TAG,"===KeyEvent.KEYCODE_ENTER===");
-                boolean isFirstInit = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
-                if(isFirstInit){
-                    Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+                Logg.i(TAG, "===KeyEvent.KEYCODE_ENTER===");
+                boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+                if (isFirstInit) {
+                    Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
                     intent.putExtra("set_wizard_help_index", "set_wizard_help_finish");
                     startActivity(intent);
                     finish();
 //                    PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
 //                    AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
                 }
+                Logg.i(TAG, "===KeyEvent.KEYCODE_ENTER===");
+
+                switch (status) {
+                    //地平线标记线
+                    case SETTING_HORIZON:
+                        status = AdasSettingStatus.SETTING_HOOD;
+                        line.setBackgroundResource(R.drawable.range_setting_hood_line);
+                        break;
+                    //引擎盖标记线
+                    case SETTING_HOOD:
+                        status = AdasSettingStatus.SETTING_CENTER;
+                        line.setVisibility(View.GONE);
+                        line_center.setVisibility(View.VISIBLE);
+                        break;
+                    //车道中线标记线
+                    case SETTING_CENTER:
+                        finish();
+                        break;
+                }
                 break;
             case KeyEvent.KEYCODE_BACK:
-                Logg.i(TAG,"===KeyEvent.KEYCODE_BACK===");
-                boolean isFirstInit1 = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
-                if(isFirstInit1){
+                Logg.i(TAG, "===KeyEvent.KEYCODE_BACK===");
+
+                switch (status) {
+                    //地平线标记线
+                    case SETTING_HORIZON:
+                        finish();
+                        return true;
+                    //引擎盖标记线
+                    case SETTING_HOOD:
+                        status = AdasSettingStatus.SETTING_HORIZON;
+                        line.setBackgroundResource(R.drawable.range_setting_horizon_line);
+                        return true;
+                    //车道中线标记线
+                    case SETTING_CENTER:
+                        status = AdasSettingStatus.SETTING_HOOD;
+                        line_center.setVisibility(View.GONE);
+                        line.setVisibility(View.VISIBLE);
+                        line.setBackgroundResource(R.drawable.range_setting_hood_line);
+                        return true;
+                }
+
+                boolean isFirstInit1 = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+                if (isFirstInit1) {
                     return true;
                 }
                 break;
@@ -134,26 +200,32 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
 
     private void stopPreview() {
         try {
-            if(camera!=null){
+            if (camera != null) {
                 camera.setPreviewDisplay(null);
                 camera.stopPreview();
                 camera.release();
-                camera=null;
+                camera = null;
                 isPreviewing = false;
             }
-            if(surfaceHolder!=null){
+            if (surfaceHolder != null) {
                 surfaceHolder.getSurface().release();
-                surfaceHolder =null;
+                surfaceHolder = null;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void setLineMarginTop(int lineCurrentMarginTop){
-        marginLayoutParams.setMargins(marginLayoutParams.leftMargin,lineCurrentMarginTop,marginLayoutParams.rightMargin,marginLayoutParams.bottomMargin);
-        layoutParams = new FrameLayout.LayoutParams(marginLayoutParams);
+    private void setLineMarginTop(int lineCurrentMarginTop) {
+        marginTopLayoutParams.setMargins(marginTopLayoutParams.leftMargin, lineCurrentMarginTop, marginTopLayoutParams.rightMargin, marginTopLayoutParams.bottomMargin);
+        layoutParams = new FrameLayout.LayoutParams(marginTopLayoutParams);
         line.setLayoutParams(layoutParams);
+    }
+
+    private void setLineMarginLeft(int lineCurrentMarginLeft) {
+        marginLeftLayoutParams.setMargins(lineCurrentMarginLeft, marginLeftLayoutParams.topMargin, marginLeftLayoutParams.rightMargin, marginLeftLayoutParams.bottomMargin);
+        layoutParams = new FrameLayout.LayoutParams(marginLeftLayoutParams);
+        line_center.setLayoutParams(layoutParams);
     }
 
     @Override
@@ -165,7 +237,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
     protected void onDestroy() {
         super.onDestroy();
         //取消注册
-        Logg.i(TAG,"=====onPause=======");
+        Logg.i(TAG, "=====onPause=======");
         stopPreview();
     }
 }
