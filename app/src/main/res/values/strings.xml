@@ -143,4 +143,10 @@
     <string name="help">Help</string>
     <string name="service_information_notified">Service Information Notified</string>
     <string name="main_menu_us">User Selection</string>
+    <string name="set_wizard_help_context_start_setting">Setting is about to start</string>
+    <string name="set_wizard_help_context_leveler">Level setting confirmation</string>
+    <string name="set_wizard_help_context_vehicle_type">Vehicle Type setting confirmation</string>
+    <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
+    <string name="set_wizard_help_context_range">Range setting confirmation</string>
+
 </resources>

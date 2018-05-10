@@ -15,9 +15,12 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
+import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
 import java.io.IOException;
 
@@ -199,6 +202,11 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
             startActivity(new Intent(mContext, LevelerDetailActivity.class));
             finish();
             return true;
+        }else if(keyCode == KeyEvent.KEYCODE_BACK){
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+            if (isFirstInit) {
+                return true;
+            }
         }
         return super.onKeyDown(keyCode, event);
     }

@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
@@ -60,13 +62,23 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
         if(isFirstInit){
-            Intent intent = new Intent(mContext,LevelerActivity.class);
+            Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_range");
             startActivity(intent);
         }
 
 
     }
 
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+            if (isFirstInit) {
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

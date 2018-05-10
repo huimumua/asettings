@@ -85,6 +85,13 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                     AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
                 }
                 break;
+            case KeyEvent.KEYCODE_BACK:
+                Logg.i(TAG,"===KeyEvent.KEYCODE_BACK===");
+                boolean isFirstInit1 = (boolean) PreferencesUtils.get(mContext,Const.SETTTING_FIRST_INIT,true);
+                if(isFirstInit1){
+                    return true;
+                }
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }

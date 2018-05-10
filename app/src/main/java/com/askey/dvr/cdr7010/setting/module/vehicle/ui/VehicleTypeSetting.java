@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
@@ -70,12 +71,9 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
         if (isFirstInit) {
-
-            String[] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
-            Intent intent = new Intent(mContext, MountingPositionSetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
+            Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
             startActivity(intent);
-
         }
 
     }

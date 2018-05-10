@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
@@ -37,7 +38,8 @@ public class LevelerDetailActivity extends BaseActivity{
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
             boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
             if(isFirstInit){
-                Intent intent = new Intent(mContext,RangeSettingActivity.class);
+                Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
                 startActivity(intent);
             }
             return true;
