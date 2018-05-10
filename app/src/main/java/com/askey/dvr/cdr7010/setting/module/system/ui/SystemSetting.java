@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.PowerManager;
 import android.os.RecoverySystem;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,7 +95,11 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
             setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
-            showDialog(this, "Sure to update ?", okListener, cancelListener);
+            if (FileUtils.isFileExist(Const.OTA_PACKAGE_PATH)) {
+                showDialog(this, "Sure to update ?", okListener, cancelListener);
+            } else {
+                Toast.makeText(this, "Package is not exist", Toast.LENGTH_SHORT).show();
+            }
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
         }
@@ -150,12 +156,12 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                         }
                     }, null);
                 } catch (GeneralSecurityException | IOException e) {
-                    Log.i("====", "doesImageMatchProduct(): verifaPackage faild!" + "," + e.getMessage());
+                    Log.i("====", "doesImageMatchProduct(): verify Package failed!" + "," + e.getMessage());
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
                             dialog.dismiss();
-                            Toast.makeText(SystemSetting.this, "Package is not exsit or vertify failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SystemSetting.this, "Package is not exist or verify failed", Toast.LENGTH_SHORT).show();
                             Toast.makeText(SystemSetting.this, Const.OTA_PACKAGE_PATH, Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -175,7 +181,14 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
-            showLoadingDialog(SystemSetting.this);
+//            showLoadingDialog(SystemSetting.this);
+            FileUtils.writeFile("/cache/recovery/command", "--update_package=/sdcard/update.zip");
+
+            PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            if (powerManager != null) {
+                powerManager.reboot("recovery-update");
+            }
+
         }
     };
     DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
