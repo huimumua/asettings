@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 
@@ -86,7 +87,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             //恢复出厂设置
             showDialog(this);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
-
+            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
             String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
             setViewAndData(list_view, vp_progress, secondCameraMenuItem);
