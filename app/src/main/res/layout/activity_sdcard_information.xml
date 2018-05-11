@@ -3,16 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center"
     android:background="@drawable/bg_menu_main"
-    android:gravity="center">
+    >
+
+    <include layout="@layout/title_layout" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
 
     <TextView
         android:id="@+id/sdcard_setting_information"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sdcard_setting_information"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -120,5 +130,6 @@
                 android:text="" />
         </LinearLayout>
 
+    </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
@@ -29,6 +31,8 @@ public class SatelliteReceptionStatus extends BaseActivity{
     private ArrayList<GpsSvInfo> gpsStatusList = new ArrayList<GpsSvInfo>();
     private HorizontalListView hListView;
     private HorizontalListViewAdapter hListViewAdapter;
+    private TextView menuTitle;
+    private ImageView menuTitle_icon;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +69,16 @@ public class SatelliteReceptionStatus extends BaseActivity{
 
 
     public void initUI(){
+        ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
+        ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
+        ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
+        topMenu.setVisibility(View.GONE);
+        bottomMenu.setVisibility(View.GONE);
+
+        menuTitle = (TextView) this.findViewById(R.id.title_tv);
+        menuTitle_icon = (ImageView) this.findViewById(R.id.title_icon);//参数待添加
+        menuTitle.setText(getResources().getString(R.string.gps_status_title));
+
         hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
         hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
         hListView.setAdapter(hListViewAdapter);

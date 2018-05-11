@@ -3,6 +3,7 @@ package com.askey.dvr.cdr7010.setting.module.sdcard.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.filemanagement.SdcardInfo;
@@ -26,6 +27,8 @@ public class SdcardInformation extends BaseActivity{
     private static final String TAG = "SdcardInformation";
     private TextView normal,event,parking,picture;
     private String backslash= "/";
+    private TextView menuTitle;
+    private ImageView menuTitle_icon;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,6 +71,7 @@ public class SdcardInformation extends BaseActivity{
             TextView eventTitle = (TextView) this.findViewById(R.id.sdcard_event_dir);
             TextView parkingTitle = (TextView) this.findViewById(R.id.sdcard_parking_dir);
             TextView pictureTitle = (TextView) this.findViewById(R.id.sdcard_picture_dir);
+            title.setVisibility(View.VISIBLE);
             title.setText(getResources().getString(R.string.sdcard_not_exist));
             normanTitle.setVisibility(View.GONE);
             eventTitle.setVisibility(View.GONE);
@@ -81,6 +85,11 @@ public class SdcardInformation extends BaseActivity{
         event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
         parking = (TextView) this.findViewById(R.id.sdcard_parking_dir_count);
         picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);
+
+        menuTitle = (TextView) this.findViewById(R.id.title_tv);
+        menuTitle_icon = (ImageView) this.findViewById(R.id.title_icon);//参数待添加
+        menuTitle.setText(getResources().getString(R.string.sdcard_setting_information));
+
     }
 
 
