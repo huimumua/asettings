@@ -13,6 +13,8 @@ import android.support.annotation.RequiresApi;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
@@ -59,6 +61,12 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         //获取传感器
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         preview = (SurfaceView) findViewById(R.id.preview);
+
+        ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
+        ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
+        ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
+        topMenu.setVisibility(View.GONE);
+        bottomMenu.setVisibility(View.GONE);
 
         new Thread(new Runnable() {
             @Override
