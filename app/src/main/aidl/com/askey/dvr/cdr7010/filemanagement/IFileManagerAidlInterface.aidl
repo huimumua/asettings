@@ -68,7 +68,4 @@ interface IFileManagerAidlInterface {
      boolean checkSdcardAvailable();
 
 
-
-
-
 }

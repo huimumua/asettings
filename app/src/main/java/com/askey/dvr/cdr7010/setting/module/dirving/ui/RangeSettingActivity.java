@@ -139,7 +139,6 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                 break;
             case KeyEvent.KEYCODE_BACK:
                 Logg.i(TAG, "===KeyEvent.KEYCODE_BACK===");
-
                 switch (status) {
                     //地平线标记线
                     case SETTING_HORIZON:
@@ -158,12 +157,6 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                         line.setBackgroundResource(R.drawable.range_setting_hood_line);
                         return true;
                 }
-
-                boolean isFirstInit1 = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
-                if (isFirstInit1) {
-                    return true;
-                }
-                break;
         }
         return super.onKeyDown(keyCode, event);
     }

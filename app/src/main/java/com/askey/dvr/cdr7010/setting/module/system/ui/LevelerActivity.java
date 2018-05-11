@@ -202,11 +202,6 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
             startActivity(new Intent(mContext, LevelerDetailActivity.class));
             finish();
             return true;
-        }else if(keyCode == KeyEvent.KEYCODE_BACK){
-            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
-            if (isFirstInit) {
-                return true;
-            }
         }
         return super.onKeyDown(keyCode, event);
     }
