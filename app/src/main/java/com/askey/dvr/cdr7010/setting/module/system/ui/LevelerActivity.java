@@ -199,9 +199,18 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
+            if(isFirstInit){
+                Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
+                startActivity(intent);
+                finish();
+                return true;
+            }
+
+        }if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(mContext, LevelerDetailActivity.class));
             finish();
-            return true;
         }
         return super.onKeyDown(keyCode, event);
     }

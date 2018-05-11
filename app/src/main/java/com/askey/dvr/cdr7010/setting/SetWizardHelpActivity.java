@@ -13,6 +13,7 @@ import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
+import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
@@ -72,12 +73,10 @@ public class SetWizardHelpActivity extends BaseActivity {
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_ENTER){
             if(currentUi.equals("set_wizard_help_start_setting")){
-                String str = getResources().getString(R.string.set_wizard_help_context_leveler);
-                setWizardhelp.setText(str);
-                currentUi = "set_wizard_help_context_leveler";
-            }else if(currentUi.equals("set_wizard_help_context_leveler")){
-                Intent intent = new Intent(mContext,LevelerActivity.class);
-                startActivity(intent);
+//                String str = getResources().getString(R.string.set_wizard_help_context_leveler);
+//                setWizardhelp.setText(str);
+                startActivity(new Intent(mContext, LevelerDetailActivity.class));
+                finish();
             }else if(currentUi.equals("set_wizard_help_context_vehicle_type")){
                 String[] secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
                 Intent intent = new Intent(mContext, VehicleTypeSetting.class);
