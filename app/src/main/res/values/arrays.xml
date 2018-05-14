@@ -204,5 +204,7 @@
         <item>Help</item>
     </string-array>
 
-
+    <string-array name="user_list">
+        <item>user_1</item>
+    </string-array>
 </resources>

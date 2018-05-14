@@ -14,9 +14,9 @@ public class UserSelectActivity extends SecondBaseActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         //数据暂无
-//        menuInfo = getIntent().getStringArrayExtra("menu_item");
-//        initView("Driving Setting",menuInfo,R.layout.second_menu_layout);
-//        list_view.setOnItemClickListener(this);
+        menuInfo = getResources().getStringArray(R.array.user_list);
+        initView("User Selection",menuInfo,R.layout.second_menu_layout);
+        list_view.setOnItemClickListener(this);
     }
 
     @Override
