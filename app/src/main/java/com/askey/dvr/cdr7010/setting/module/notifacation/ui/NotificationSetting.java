@@ -39,35 +39,35 @@ public class NotificationSetting extends SecondBaseActivity implements AdapterVi
         Intent intent = new Intent(NotificationSetting.this, NotifySwitchActivity.class);
         String[] secondMenuItem = getResources().getStringArray(R.array.all_switch_item);
         intent.putExtra("menu_item", secondMenuItem);
-        if (clickItem.equals(Const.REVERSE_RUN_DETECTION)) {
+        if (clickItem.equals(getResources().getString(R.string.reverse_run_detection))) {
             switch_tag = menuInfo[0];
-        } else if (clickItem.equals(Const.SPEED_REGULATION_AREA)) {
+        } else if (clickItem.equals(getResources().getString(R.string.speed_regulation_area))) {
             switch_tag = menuInfo[1];
-        } else if (clickItem.equals(Const.PAUSE)) {
+        } else if (clickItem.equals(getResources().getString(R.string.pause))) {
             switch_tag = menuInfo[2];
-        } else if (clickItem.equals(Const.ACCIDENT_FREQUENTLY_OCCURRING_AREA)) {
+        } else if (clickItem.equals(getResources().getString(R.string.accident_frequently_occurring_area))) {
             switch_tag = menuInfo[3];
-        } else if (clickItem.equals(Const.DRIVING_TIME)) {
+        } else if (clickItem.equals(getResources().getString(R.string.driving_time))) {
             switch_tag = menuInfo[4];
-        } else if (clickItem.equals(Const.RAPID_ACCELERATION_SUDDEN_DECELERATION)) {
+        } else if (clickItem.equals(getResources().getString(R.string.rapid_acceleration_sudden_deceleration))) {
             switch_tag = menuInfo[5];
-        } else if (clickItem.equals(Const.HANDLING)) {
+        } else if (clickItem.equals(getResources().getString(R.string.handling))) {
             switch_tag = menuInfo[6];
-        } else if (clickItem.equals(Const.FLUCTUATION_DETECTION)) {
+        } else if (clickItem.equals(getResources().getString(R.string.fluctuation_detection))) {
             switch_tag = menuInfo[7];
-        } else if (clickItem.equals(Const.DRIVING_OUTSIDE_THE_DESIGNATED_AREA)) {
+        } else if (clickItem.equals(getResources().getString(R.string.driving_outside_the_designated_area))) {
             switch_tag = menuInfo[8];
-        } else if (clickItem.equals(Const.DRIVING_REPORT)) {
+        } else if (clickItem.equals(getResources().getString(R.string.driving_report))) {
             switch_tag = menuInfo[9];
-        } else if (clickItem.equals(Const.ADVICE_BEFORE_DRIVING)) {
+        } else if (clickItem.equals(getResources().getString(R.string.advice_before_driving))) {
             switch_tag = menuInfo[10];
-        } else if (clickItem.equals(Const.NOTIFICATION)) {
+        } else if (clickItem.equals(getResources().getString(R.string.notification))) {
             switch_tag = menuInfo[11];
-        } else if (clickItem.equals(Const.WEATHER_INFORMATION)) {
+        } else if (clickItem.equals(getResources().getString(R.string.weather_information))) {
             switch_tag = menuInfo[12];
-        } else if (clickItem.equals(Const.ROAD_KILL)) {
+        } else if (clickItem.equals(getResources().getString(R.string.road_kill))) {
             switch_tag = menuInfo[13];
-        } else if (clickItem.equals(Const.LOCATION_INFORMATION)) {
+        } else if (clickItem.equals(getResources().getString(R.string.location_information))) {
             switch_tag = menuInfo[14];
         }
         intent.putExtra("switch_tag", switch_tag);

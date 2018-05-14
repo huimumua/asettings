@@ -29,7 +29,7 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView("Driving Setting",menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.driving_setting),menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 
@@ -52,23 +52,23 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
         Log.i("position",menuInfo[position]);
         switch (position) {
             case 0:
-                switch_tag = Const.FRONT_COLLISION_WARING;
+                switch_tag = getResources().getString(R.string.front_collision_warning);
                 break;
             case 1:
-                switch_tag = Const.LANE_DEPARTURE;
+                switch_tag = getResources().getString(R.string.lane_departure_warning);
                 break;
             case 2:
-                switch_tag = Const.PEDESTRIAN_DETECTION;
+                switch_tag = getResources().getString(R.string.pedestrian_detection);
                 break;
             case 3:
-                switch_tag = Const.DEVICE_INSTALL_SETTING;
+                switch_tag = getResources().getString(R.string.device_install_setting);
                 secondMenuItem = getResources().getStringArray(R.array.mounting_position);
                 intent = new Intent(DrivingSetting.this, MountingPositionSetting.class);
                 intent.putExtra("menu_item", secondMenuItem);
                 startActivity(intent);
                 return;
             case 4:
-                switch_tag = Const.DEPARTURE_DELAY_WARNING;
+                switch_tag = getResources().getString(R.string.departure_delay_warning);
                 break;
             case 5:
                 intent = new Intent(DrivingSetting.this, RangeSettingActivity.class);
