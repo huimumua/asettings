@@ -149,6 +149,7 @@
     <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
     <string name="set_wizard_help_context_range">Range setting confirmation</string>
     <string name="set_wizard_help_finish">Setup completion</string>
+    <string name="check_update">Is check update package</string>
 
 
 </resources>

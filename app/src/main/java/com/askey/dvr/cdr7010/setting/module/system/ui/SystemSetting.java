@@ -22,7 +22,6 @@ import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.FileUtils;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -135,7 +134,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     private void showLoadingDialog(Context context) {
         final ProgressDialog dialog = new ProgressDialog(context);
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        dialog.setMessage("正在加载中");
+        dialog.setMessage(getString(R.string.check_update));
         dialog.setMax(100);
         dialog.setCancelable(false);
         dialog.show();
@@ -184,14 +183,13 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         @Override
         public void onClick(DialogInterface dialog, int which) {
             dialog.dismiss();
-//            showLoadingDialog(SystemSetting.this);
-            FileUtils.writeFile("/cache/recovery/command", "--update_package=/sdcard/update.zip");
+            FileUtils.writeFile(Const.COMMAND_PATH, "--update_package=/sdcard/update.zip");
 
             PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-            if (powerManager != null) {
+            if (powerManager != null && FileUtils.isFileExist(Const.COMMAND_PATH)) {
                 powerManager.reboot("recovery-update");
             }
-
+//            showLoadingDialog(SystemSetting.this);
         }
     };
     DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {

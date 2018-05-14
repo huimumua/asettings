@@ -22,6 +22,7 @@ public class Const {
     public static final String PLAY_BACK_PAKAGE = "com.askey.jvc.mediaplayer";
 
     public static final String OTA_PACKAGE_PATH = Environment.getExternalStorageDirectory() + "/update.zip";
+    public static final String COMMAND_PATH = "/cache/recovery/command";
 
     public static final String DRIVING_SUPPORT = "driving_support";
 
