@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.platform.AskeySettings;
@@ -45,6 +43,8 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
 
     private void focusItem() {
         list_view.requestFocus();
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_install));
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 0);
         list_view.setSelection(car_type);
     }

@@ -27,7 +27,7 @@ import java.util.List;
 
 public class SecondBaseActivity extends AppCompatActivity {
 
-    private JVCRelativeLayout jvcRelativeLayout;
+    protected JVCRelativeLayout jvcRelativeLayout;
 
     protected ListView list_view;
     protected static Context mContext;

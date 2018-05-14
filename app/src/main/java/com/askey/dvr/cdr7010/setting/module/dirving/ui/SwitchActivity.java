@@ -33,8 +33,10 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
 
     private void focusItem() {
         list_view.requestFocus();
+        jvcRelativeLayout.setMarquee_visible(true);
         if (switch_tag.equals(Const.LANE_DEPARTURE)) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_LDS, 0);
+            jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_lane));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -42,6 +44,7 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
             }
         } else if (switch_tag.equals(Const.FRONT_COLLISION_WARING)) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_FCWS, 0);
+            jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_front));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -49,6 +52,7 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
             }
         } else if (switch_tag.equals(Const.PEDESTRIAN_DETECTION)) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_PEDESTRIAN_COLLISION, 0);
+            jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_pedestrain));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON
@@ -56,6 +60,7 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
             }
         } else if (switch_tag.equals(Const.DEPARTURE_DELAY_WARNING)) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 0);
+            jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_departure));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
             } else if (settingValue == 1) {//ON

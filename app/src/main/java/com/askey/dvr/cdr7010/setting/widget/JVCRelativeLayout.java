@@ -3,6 +3,7 @@ package com.askey.dvr.cdr7010.setting.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,15 +13,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.util.DensityUtil;
 
 public class JVCRelativeLayout extends RelativeLayout {
 
     private ImageView top_btn, center_btn, bottom_btn, back_btn;
     private Drawable top_img, center_img, bottom_img, back_img;
-    private boolean top_visible, center_visible, bottom_visible, back_visible;
+    private boolean top_visible, center_visible, bottom_visible, back_visible, showMarqueeTextView;
     private LinearLayout right_button_layout, bottom_button_layout;
     private Context context;
     private View myView;
+    private MarqueeTextView marqueeTextView;
 
     public JVCRelativeLayout(Context context) {
         super(context);
@@ -40,6 +43,7 @@ public class JVCRelativeLayout extends RelativeLayout {
         bottom_visible = typedArray.getBoolean(R.styleable.JVCRelativeLayout_bottom_visible, true);
         back_img = typedArray.getDrawable(R.styleable.JVCRelativeLayout_back_imageview);
         back_visible = typedArray.getBoolean(R.styleable.JVCRelativeLayout_back_visible, true);
+        showMarqueeTextView = typedArray.getBoolean(R.styleable.JVCRelativeLayout_showMarqueeTextView, false);
         typedArray.recycle();
 
         initView(context);
@@ -65,6 +69,19 @@ public class JVCRelativeLayout extends RelativeLayout {
         bottomParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, TRUE);
         bottomParams.addRule(RelativeLayout.ALIGN_PARENT_END, TRUE);
         addView(bottom_button_layout, bottomParams);
+
+        LayoutParams marqueeParams = new LayoutParams(DensityUtil.dp2px(context, 200), ViewGroup.LayoutParams.WRAP_CONTENT);
+        marqueeParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, TRUE);
+        marqueeTextView = new MarqueeTextView(context);
+        marqueeTextView.setPadding(DensityUtil.dp2px(context, 10), 0, 0, 0);
+        marqueeTextView.setTextSize(DensityUtil.sp2px(context, 16));
+        marqueeTextView.setTextColor(0xff33b5e5);
+        marqueeTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        marqueeTextView.setMarqueeRepeatLimit(-1);
+        marqueeTextView.setBackgroundResource(R.drawable.bg_menu_main_description);
+        marqueeTextView.setSingleLine();
+        addView(marqueeTextView, marqueeParams);
+        setMarquee_visible(showMarqueeTextView);
 
         setBackgroundResource(R.drawable.bg_menu_main);
 
@@ -147,6 +164,18 @@ public class JVCRelativeLayout extends RelativeLayout {
         } else {
             back_btn.setVisibility(INVISIBLE);
         }
+    }
+
+    public void setMarquee_visible(boolean marqueeTextView_visible) {
+        if (marqueeTextView_visible) {
+            marqueeTextView.setVisibility(VISIBLE);
+        } else {
+            marqueeTextView.setVisibility(GONE);
+        }
+    }
+
+    public void setMarquee_text(String content) {
+        marqueeTextView.setText(content);
     }
 
 

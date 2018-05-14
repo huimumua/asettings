@@ -99,9 +99,9 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
             if (FileUtils.isFileExist(Const.OTA_PACKAGE_PATH)) {
-                showDialog(this, "Sure to update ?", okListener, cancelListener);
+                showDialog(this, getString(R.string.sure_to_update), okListener, cancelListener);
             } else {
-                Toast.makeText(this, "Package is not exist", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.package_not_exist, Toast.LENGTH_SHORT).show();
             }
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
