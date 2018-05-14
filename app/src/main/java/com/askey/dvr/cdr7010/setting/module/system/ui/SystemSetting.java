@@ -68,7 +68,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             Intent intent = new Intent(mContext, PlaybackSoundSetting.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_preview))) {
-
+            Intent intent = new Intent(mContext, PreviewActivity.class);
+            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_lcd_brightness))) {
             Intent intent = new Intent();
             intent.setClass(mContext, LCDBrightnessSetting.class);
