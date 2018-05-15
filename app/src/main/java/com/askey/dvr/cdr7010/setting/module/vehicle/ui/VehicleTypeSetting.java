@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
-import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.platform.AskeySettings;
@@ -42,6 +39,8 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.CAR_TYPE, 2);
         setIndex(car_type);
         initView(getResources().getString(R.string.vehicle_type), menuInfo, R.layout.second_menu_layout);
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_install));
         list_view.setOnItemClickListener(this);
         focusItem();
     }
