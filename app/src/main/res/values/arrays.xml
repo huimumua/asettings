@@ -66,13 +66,13 @@
 
     <string-array name="movie_record">
         <item>音声記録</item>
-        <item>衝撃感知</item>
-        <item>情報スタンプ</item>
+        <item>衝撃検知感度</item>
+        <item>情報スタンプ記録</item>
     </string-array>
 
     <string-array name="sdcard_record">
-        <item>Sdcard Information</item>
-        <item>Sdcard Initialization</item>
+        <item>SDカード情報</item>
+        <item>SDカード初期化</item>
     </string-array>
 
     <string-array name="vehicle_type">
@@ -205,6 +205,6 @@
     </string-array>
 
     <string-array name="user_list">
-        <item>user_1</item>
+        <item>ユーザー１</item>
     </string-array>
 </resources>
