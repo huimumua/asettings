@@ -111,6 +111,7 @@
     <string name="vehicle_type_large_sedan">Large sedan</string>
     <string name="vehicle_type_suv">SUV</string>
     <string name="vehicle_type_others">Others</string>
+
     <string name="sys_phone_number">Phone Number</string>
     <string name="sys_network">Network</string>
     <string name="sys_signal_strength">Signal Strength</string>
@@ -148,6 +149,23 @@
     <string name="set_wizard_help_context_range">Range setting confirmation</string>
     <string name="set_wizard_help_finish">Setup completion</string>
 
+    <string name="check_update">Is check update package</string>
+    <string name="sure_to_update">Sure to update ?</string>
+    <string name="package_not_exist">Package is not exist</string>
+
+    <!--底部滚动条提示内容-->
+    <string name="driving_setting_marqueeText_front">When set to ON, we will let you know when the distance between your car and the car in front is close</string>
+    <string name="driving_setting_marqueeText_lane">When set to ON, we will inform you when your car has run off the driving lane</string>
+    <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
+    <string name="driving_setting_marqueeText_install">Set to detect the driving lane correctly. Select the horizontal position where this unit is installed</string>
+    <string name="driving_setting_marqueeText_pedestrain">When set to ON, we will let you know when a pedestrian approaches</string>
+
+    <string name="user_marqueeText">In the case where there is no user name registration, leave it blank, the factory setting value is "user 1" only</string>
+    <string name="movie_record_marqueeText_audio">When set to OFF, audio recording by the built-in microphone is stopped</string>
+    <string name="movie_record_marqueeText_impact">Set shock sensor sensitivity to start event recording</string>
+    <string name="movie_record_marqueeText_information">When OFF is set, subtitle recording such as date and time and position information stops</string>
+    <string name="Vehicle_marqueeText">It is set to increase the accuracy of the driving support function. Choose the nearest vehicle type from the number and shape of your car</string>
+
     <string name="driving_setting">Driving Setting</string>
     <string name="front_collision_warning">Front collision warning</string>
     <string name="lane_departure_warning">Lane departure warning</string>
@@ -170,4 +188,5 @@
     <string name="weather_information">Weather information</string>
     <string name="road_kill">Road Kill</string>
     <string name="location_information">Location information</string>
+
 </resources>

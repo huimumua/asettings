@@ -24,6 +24,8 @@ public class AudioRecordActivity extends SecondBaseActivity implements AdapterVi
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
         initView(getResources().getString(R.string.audio_recording), menuInfo, R.layout.second_menu_layout);
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.movie_record_marqueeText_audio));
         list_view.setOnItemClickListener(this);
         focusItem();
     }
