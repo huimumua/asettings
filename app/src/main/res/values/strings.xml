@@ -66,12 +66,10 @@
     <string name="time_20s">20 sec</string>
     <string name="time_30s">30 sec</string>
     <string name="record_time_setting">Record Time Setting</string>
-    <string name="audio_recording">Audio recording</string>
-    <string name="impact_detection_sensitivity">Impact detection sensitivity</string>
-    <string name="information_stamp_record">Information stamp record</string>
+    <string name="audio_recording">音声記録</string>
+    <string name="impact_detection_sensitivity">衝撃感知</string>
+    <string name="information_stamp_record">情報スタンプ</string>
     <string name="movie_record_setting">動画, 靜止画紀錄設定</string>
-    <string name="imapct_sensitivity">Imapct Sensitivity</string>
-    <string name="audio_setting">Audio Setting</string>
     <string name="set_sdcard_permission">Application for SD card permissions</string>
     <string name="set_location_permission">Application for Position permissions</string>
     <string name="inserted_ok">OK</string>
@@ -106,13 +104,13 @@
     <string name="driving_support_setting">Driving Support Setting</string>
 
     <string name="vehicle_type">車両タイプ</string>
-    <string name="vehicle_type_mini_sedan">Mini sedan</string>
-    <string name="vehicle_type_minivan">Minivan</string>
-    <string name="vehicle_type_medium_sedan">Medium sedan</string>
-    <string name="vehicle_type_rv">RV</string>
-    <string name="vehicle_type_large_sedan">Large sedan</string>
-    <string name="vehicle_type_suv">SUV</string>
-    <string name="vehicle_type_others">Others</string>
+    <string name="vehicle_type_mini_sedan">軽自動車セダン</string>
+    <string name="vehicle_type_minivan">軽自動車ワンボックス</string>
+    <string name="vehicle_type_medium_sedan">5、7ナンバーセダン</string>
+    <string name="vehicle_type_rv">5、7ナンバーワゴン/RV/ワンボックス</string>
+    <string name="vehicle_type_large_sedan">3ナンバーセダン</string>
+    <string name="vehicle_type_suv">3ナンバーワゴン/RV/ワンボックス</string>
+    <string name="vehicle_type_others">その他</string>
     <string name="sys_phone_number">Phone Number</string>
     <string name="sys_network">Network</string>
     <string name="sys_signal_strength">Signal Strength</string>

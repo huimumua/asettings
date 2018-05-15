@@ -23,7 +23,7 @@ public class AudioRecordActivity extends SecondBaseActivity implements AdapterVi
         setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.audio_setting), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.audio_recording), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }

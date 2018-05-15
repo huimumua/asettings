@@ -23,7 +23,7 @@ public class ImpactSensitivityActivity extends SecondBaseActivity implements Ada
         setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.imapct_sensitivity), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.impact_detection_sensitivity), menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }

@@ -76,13 +76,13 @@
     </string-array>
 
     <string-array name="vehicle_type">
-        <item>Mini sedan</item>
-        <item>Minivan</item>
-        <item>Medium sedan</item>
-        <item>RV</item>
-        <item>Large sedan</item>
-        <item>SUV</item>
-        <item>Others</item>
+        <item>軽自動車セダン</item>
+        <item>軽自動車ワンボックス</item>
+        <item>5、7ナンバーセダン</item>
+        <item>5、7ナンバーワゴン/RV/ワンボックス</item>
+        <item>3ナンバーセダン</item>
+        <item>3ナンバーワゴン/RV/ワンボックス</item>
+        <item>その他</item>
     </string-array>
 
     <string-array name="secend_camera_array">
