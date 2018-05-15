@@ -178,6 +178,7 @@
         <attr name="bottom_visible" format="boolean"/>
         <attr name="back_imageview" format="reference"/>
         <attr name="back_visible" format="boolean"/>
+        <attr name="showMarqueeTextView" format="boolean"/>
     </declare-styleable>
 
     <string-array name="communication">
