@@ -56,18 +56,18 @@
     </string-array>
 
     <string-array name="driving_support">
-        <item>前方衝突警告</item>
-        <item>車線逸脱警告</item>
-        <item>歩行者衝突警告</item>
-        <item>取付位置</item>
-        <item>発進遅れ警告</item>
+        <item>Front collision warning</item>
+        <item>Lane departure warning</item>
+        <item>Pedestrian Detection</item>
+        <item>Device install setting</item>
+        <item>Departure delay warning</item>
         <item>Range of </item>
     </string-array>
 
     <string-array name="movie_record">
-        <item>音声記録</item>
-        <item>衝撃感知</item>
-        <item>情報スタンプ</item>
+        <item>Audio recording</item>
+        <item>Impact detection sensitivity</item>
+        <item>Information stamp record</item>
     </string-array>
 
     <string-array name="sdcard_record">
@@ -92,20 +92,20 @@
     </string-array>
 
     <string-array name="system_setting">
-        <item>日付/時刻</item>
-        <item>報知音音量</item>
-        <item>再生音量</item>
+        <item>Date/Time</item>
+        <item>Notification sound volume</item>
+        <item>Playback volume</item>
         <item>Preview</item>
-        <item>モニター明るさ</item>
-        <item>モニター画面節電</item>
+        <item>LCD Brightness</item>
+        <item>Monitor screen Power saving setting</item>
         <item>Installation tool</item>
-        <item>Bluetooth設定</item>
+        <item>Bluetooth</item>
         <item>Infrared LED</item>
         <item>Setting initialization</item>
         <item>Installation wizard</item>
         <item>2nd Camera</item>
         <item>System update</item>
-        <item>システム情報</item>
+        <item>System Information</item>
     </string-array>
 
     <string-array name="date_time">
@@ -147,21 +147,21 @@
     </string-array>
 
     <string-array name="notify_sound_guidance">
-        <item>逆走検知時</item>
-        <item>時速30㎞規制区域(ゾーン30)</item>
-        <item>一時停止</item>
-        <item>事故多発地域接近時</item>
-        <item>走行時間</item>
-        <item>急加速,急減速時</item>
-        <item>ハンドリング</item>
-        <item>ふらつき検知</item>
-        <item>指定区域外走行検知時</item>
-        <item>運転レポート</item>
-        <item>運転前アドバイス</item>
-        <item>お知らせ</item>
-        <item>気象情報</item>
-        <item>動物飛び出し(ロードキル)</item>
-        <item>位置情報に関する通知</item>
+        <item>Reverse run detection</item>
+        <item>Speed regulation area</item>
+        <item>Pause</item>
+        <item>Accident frequently occurring area</item>
+        <item>Driving time</item>
+        <item>Rapid acceleration, sudden deceleration</item>
+        <item>Handling</item>
+        <item>Fluctuation detection</item>
+        <item>Driving outside the designated area</item>
+        <item>Driving report</item>
+        <item>Advice before driving</item>
+        <item>Notification</item>
+        <item>Weather information</item>
+        <item>Road Kill</item>
+        <item>Location information</item>
     </string-array>
 
     <string-array name="system_settings_installation_tool">
@@ -207,4 +207,6 @@
     <string-array name="user_list">
         <item>user_1</item>
     </string-array>
+
+
 </resources>

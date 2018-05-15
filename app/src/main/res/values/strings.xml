@@ -32,35 +32,35 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="tv_menu">MENU</string>
-    <string name="main_menu_prs">駐車録画設定</string>
-    <string name="main_menu_fp">ファイル再生</string>
-    <string name="main_menu_mirs">動画, 靜止画紀錄設定</string>
-    <string name="main_menu_vt">車両タイプ</string>
-    <string name="main_menu_dsfs">運転支援機能設定</string>
-    <string name="main_menu_nsg">音声案内</string>
-    <string name="main_menu_ss">システム設定</string>
-    <string name="main_menu_scm">SD カード　メ二ユー</string>
-    <string name="main_menu_si">サービスメニュー</string>
-    <string name="main_menu_cs">通信機能設定</string>
+    <string name="main_menu_prs">Parking Recording Setting</string>
+    <string name="main_menu_fp">File Playback</string>
+    <string name="main_menu_mirs">Movie/Still Image Recording Setting</string>
+    <string name="main_menu_vt">Vehicle Type</string>
+    <string name="main_menu_dsfs">Driving Support Function Setting</string>
+    <string name="main_menu_nsg">Notification Sound Guidance</string>
+    <string name="main_menu_ss">System Setting</string>
+    <string name="main_menu_scm">SD Card Menu</string>
+    <string name="main_menu_si">Service Information</string>
+    <string name="main_menu_cs">Communication Setting</string>
 
-    <string name="tv_system_settings">システム設定</string>
-    <string name="tv_system_settings_date_time">日付/時刻</string>
-    <string name="tv_system_settings_notification_sound_volume">報知音音量</string>
-    <string name="tv_system_settings_playback_volume">再生音量</string>
+    <string name="tv_system_settings">System settings</string>
+    <string name="tv_system_settings_date_time">Date/Time</string>
+    <string name="tv_system_settings_notification_sound_volume">Notification sound volume</string>
+    <string name="tv_system_settings_playback_volume">Playback volume</string>
     <string name="tv_system_settings_preview">Preview</string>
-    <string name="tv_system_settings_lcd_brightness">モニター明るさ</string>
-    <string name="tv_system_settings_screen_power_saving">モニター画面節電</string>
+    <string name="tv_system_settings_lcd_brightness">LCD Brightness</string>
+    <string name="tv_system_settings_screen_power_saving">Monitor screen Power saving setting</string>
     <string name="tv_system_settings_installation_tool">Installation tool</string>
-    <string name="tv_system_settings_bluetooth">Bluetooth設定</string>
+    <string name="tv_system_settings_bluetooth">Bluetooth</string>
     <string name="tv_system_settings_infrared_led">Infrared LED</string>
     <string name="tv_system_settings_setting_initialization">Setting initialization</string>
     <string name="tv_system_settings_installation_wizard">Installation wizard</string>
     <string name="tv_system_settings_2nd_camera">2nd Camera</string>
     <string name="tv_system_settings_system_update">System update</string>
-    <string name="tv_system_settings_system_information">システム情報</string>
+    <string name="tv_system_settings_system_information">System Information</string>
 
     <string name="parking_record_rt">Recording time</string>
-    <string name="parking_record_settings">駐車録画設定</string>
+    <string name="parking_record_settings">Parking Record Settings</string>
     <string name="parking_recording_off">OFF</string>
     <string name="time_10s">10 sec</string>
     <string name="time_20s">20 sec</string>
@@ -69,14 +69,14 @@
     <string name="audio_recording">Audio recording</string>
     <string name="impact_detection_sensitivity">Impact detection sensitivity</string>
     <string name="information_stamp_record">Information stamp record</string>
-    <string name="movie_record_setting">動画, 靜止画紀錄設定</string>
+    <string name="movie_record_setting">Movie Record Setting</string>
     <string name="imapct_sensitivity">Imapct Sensitivity</string>
     <string name="audio_setting">Audio Setting</string>
     <string name="set_sdcard_permission">Application for SD card permissions</string>
     <string name="set_location_permission">Application for Position permissions</string>
     <string name="inserted_ok">OK</string>
 
-    <string name="sdcard_setting">SD カード　メ二ユー</string>
+    <string name="sdcard_setting">SD Card Menu</string>
     <string name="sdcard_setting_information">Sdcard Information</string>
     <string name="sdcard_setting_initialization">Sdcard Initialization</string>
     <string name="sdcard_normal_dir">Normal : </string>
@@ -105,7 +105,7 @@
     <string name="tv_monitor_operation_dim">Dim</string>
     <string name="driving_support_setting">Driving Support Setting</string>
 
-    <string name="vehicle_type">車両タイプ</string>
+    <string name="vehicle_type">Vehicle Type</string>
     <string name="vehicle_type_mini_sedan">Mini sedan</string>
     <string name="vehicle_type_minivan">Minivan</string>
     <string name="vehicle_type_medium_sedan">Medium sedan</string>
@@ -129,13 +129,13 @@
     <string name="leveler_detail_context2">1 . At the car park on the safety level.</string>
     <string name="leveler_detail_context3">2 . In the next screen, moving round to come in the middle of this machine to adjust the inclination.</string>
     <string name="gps_status_title">GPS Trusted</string>
-    <string name="communication">通信機能設定</string>
+    <string name="communication">Communication Setting</string>
     <string name="communication_emergency_contact_person">Emergency Contact Person</string>
     <string name="communication_emergency_automatic_notification">Emergency Automatic Notification</string>
     <string name="communication_emergency_automatic_notification_on">ON</string>
     <string name="communication_emergency_automatic_notification_off">OFF</string>
     <string name="system_version">System Version</string>
-    <string name="mounting_position">取付位置</string>
+    <string name="mounting_position">Mounting Position</string>
     <string name="mounting_position_left">Left</string>
     <string name="mounting_position_middle">Middle</string>
     <string name="mounting_position_right">Right</string>
@@ -149,6 +149,7 @@
     <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
     <string name="set_wizard_help_context_range">Range setting confirmation</string>
     <string name="set_wizard_help_finish">Setup completion</string>
+
     <string name="check_update">Is check update package</string>
     <string name="sure_to_update">Sure to update ?</string>
     <string name="package_not_exist">Package is not exist</string>
@@ -159,6 +160,7 @@
     <string name="driving_setting_marqueeText_departure">ONに設定すると、自車が停車中に前走車との距離が遠くなった時にお知らせします</string>
     <string name="driving_setting_marqueeText_install">走行車線を正しく検出するために設定します。本機を取り付けた水平方向の位置を選択します</string>
     <string name="driving_setting_marqueeText_pedestrain">ONに設定すると、歩行者が近づいた時にお知らせします</string>
+
     <string name="user_marqueeText">運転された方ごとに運転レポートを作成するために、車を運転される方を選びます</string>
     <string name="movie_record_marqueeText_audio">OFFに設定すると、内蔵マイクによる音声の記録を停止します</string>
     <string name="movie_record_marqueeText_impact">イベント記録を開始するための衝撃センサー感度を設定します</string>
@@ -187,4 +189,5 @@
     <string name="weather_information">気象情報</string>
     <string name="road_kill">動物飛び出し(ロードキル)</string>
     <string name="location_information">位置情報に関する通知</string>
+
 </resources>

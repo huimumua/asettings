@@ -173,6 +173,7 @@
     <string name="road_kill">Road Kill</string>
     <string name="location_information">Location information</string>
 
+
     <string name="driving_setting_marqueeText_front">When set to ON, we will let you know when the distance between your car and the car in front is close</string>
     <string name="driving_setting_marqueeText_lane">When set to ON, we will inform you when your car has run off the driving lane</string>
     <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
@@ -183,4 +184,9 @@
     <string name="movie_record_marqueeText_impact">Set shock sensor sensitivity to start event recording</string>
     <string name="movie_record_marqueeText_information">When OFF is set, subtitle recording such as date and time and position information stops</string>
     <string name="Vehicle_marqueeText">It is set to increase the accuracy of the driving support function. Choose the nearest vehicle type from the number and shape of your car</string>
+
+    <string name="check_update">Is check update package</string>
+    <string name="sure_to_update">Sure to update ?</string>
+    <string name="package_not_exist">Package is not exist</string>
+
 </resources>
