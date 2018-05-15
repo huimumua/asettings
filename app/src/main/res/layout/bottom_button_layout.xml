@@ -6,10 +6,15 @@
     android:gravity="right"
     android:orientation="horizontal">
 
-    <ImageView
+    <RadioButton
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
-        android:src="@drawable/tag_menu_main_back" />
+        android:button="@null"
+        android:focusable="false"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/tag_menu_main_back" />
 </LinearLayout>

@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
@@ -32,11 +34,11 @@ public class LevelerDetailActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leveler_detail);
 
-        ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
-        ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
-        ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
-        topMenu.setVisibility(View.GONE);
-        bottomMenu.setVisibility(View.GONE);
+        String title = getResources().getString(R.string.leveler_detail_title);
+        setTitleView(title);
+        setRightView(false,true,false);
+        String skip =getResources().getString(R.string.skip);
+        setBottomView(skip);
 
     }
 

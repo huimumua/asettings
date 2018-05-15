@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.askey.dvr.cdr7010.setting.R;
@@ -17,7 +18,8 @@ import com.askey.dvr.cdr7010.setting.util.DensityUtil;
 
 public class JVCRelativeLayout extends RelativeLayout {
 
-    private ImageView top_btn, center_btn, bottom_btn, back_btn;
+    private RadioButton back_btn;
+    private ImageView top_btn, center_btn, bottom_btn;
     private Drawable top_img, center_img, bottom_img, back_img;
     private boolean top_visible, center_visible, bottom_visible, back_visible, showMarqueeTextView;
     private LinearLayout right_button_layout, bottom_button_layout;
@@ -109,11 +111,11 @@ public class JVCRelativeLayout extends RelativeLayout {
         }
         setBottom_visible(bottom_visible);
 
-        back_btn = (ImageView) bottom_button_layout.findViewById(R.id.back);
+        back_btn = (RadioButton) bottom_button_layout.findViewById(R.id.back);
         if (null == back_img) {
-            back_btn.setImageResource(R.drawable.tag_menu_main_back);
+            back_btn.setBackgroundResource(R.drawable.tag_menu_main_back);
         } else {
-            back_btn.setImageDrawable(back_img);
+            back_btn.setBackground(back_img);
         }
         setBack_visible(back_visible);
     }
@@ -155,7 +157,7 @@ public class JVCRelativeLayout extends RelativeLayout {
     }
 
     public void setBack_img(int id) {
-        back_btn.setImageResource(id);
+        back_btn.setBackgroundResource(id);
     }
 
     public void setBack_visible(boolean back_visible) {
