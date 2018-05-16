@@ -40,11 +40,7 @@ public class SetWizardHelpActivity extends BaseActivity {
         setContentView(R.layout.activity_set_wizard);
 
         setWizardhelp = (TextView) this.findViewById(R.id.set_wizard_help_context);
-        ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
-        ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
-        ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
-        topMenu.setVisibility(View.GONE);
-        bottomMenu.setVisibility(View.GONE);
+        setRightView(false,true,false);
 
         currentUi = getIntent().getStringExtra("set_wizard_help_index");
         String indexStr = "";;
@@ -70,6 +66,26 @@ public class SetWizardHelpActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if(currentUi.equals("set_wizard_help_start_setting")){
+                return super.onKeyDown(keyCode, event);
+            }else if(currentUi.equals("set_wizard_help_context_leveler")){
+                currentUi = "set_wizard_help_context_vehicle_type";
+                String str = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
+                setWizardhelp.setText(str);
+            }else if(currentUi.equals("set_wizard_help_context_vehicle_type")){
+                currentUi = "set_wizard_help_context_mounting_position";
+                String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
+                setWizardhelp.setText(str);
+            }else if(currentUi.equals("set_wizard_help_context_mounting_position")){
+                currentUi = "set_wizard_help_context_range";
+                String str = getResources().getString(R.string.set_wizard_help_context_range);
+                setWizardhelp.setText(str);
+            }else if(currentUi.equals("set_wizard_help_context_range")){
+                PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
+                Intent intent = new Intent(mContext,SettingsActivity.class);
+                startActivity(intent);
+                finish();
+            }
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_ENTER){
             if(currentUi.equals("set_wizard_help_start_setting")){
@@ -98,29 +114,8 @@ public class SetWizardHelpActivity extends BaseActivity {
                 SettingApplication.finishActivity(SetWizardHelpActivity.class);
             }
             return true;
-        }else if(keyCode == KeyEvent.KEYCODE_CALL){
-            if(currentUi.equals("set_wizard_help_context_leveler")){
-                currentUi = "set_wizard_help_context_vehicle_type";
-                String str = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
-                setWizardhelp.setText(str);
-            }else if(currentUi.equals("set_wizard_help_context_vehicle_type")){
-                currentUi = "set_wizard_help_context_mounting_position";
-                String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
-                setWizardhelp.setText(str);
-            }else if(currentUi.equals("set_wizard_help_context_mounting_position")){
-                currentUi = "set_wizard_help_context_range";
-                String str = getResources().getString(R.string.set_wizard_help_context_range);
-                setWizardhelp.setText(str);
-            }else if(currentUi.equals("set_wizard_help_context_range")){
-                PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
-                Intent intent = new Intent(mContext,SettingsActivity.class);
-                startActivity(intent);
-                finish();
-            }
-            return true;
         }
         return super.onKeyDown(keyCode, event);
     }
-
 
 }
