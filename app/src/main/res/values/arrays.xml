@@ -61,7 +61,7 @@
         <item>歩行者衝突警告</item>
         <item>取付位置</item>
         <item>発進遅れ警告</item>
-        <item>Range of </item>
+        <item>検出範囲 </item>
     </string-array>
 
     <string-array name="movie_record">
@@ -95,39 +95,39 @@
         <item>日付/時刻</item>
         <item>報知音音量</item>
         <item>再生音量</item>
-        <item>Preview</item>
+        <item>映像確認</item>
         <item>モニター明るさ</item>
-        <item>モニター画面節電</item>
-        <item>Installation tool</item>
+        <item>モニター画面節電設定</item>
+        <item>設置ツール</item>
         <item>Bluetooth設定</item>
         <item>Infrared LED</item>
-        <item>Setting initialization</item>
-        <item>Installation wizard</item>
-        <item>2nd Camera</item>
-        <item>System update</item>
+        <item>設定初期化</item>
+        <item>セットアップ</item>
+        <item>2ndカメラ設定</item>
+        <item>システム更新</item>
         <item>システム情報</item>
     </string-array>
 
     <string-array name="date_time">
-        <item>Automatic</item>
-        <item>Manual</item>
+        <item>自動調整</item>
+        <item>手動設定</item>
     </string-array>
 
     <string-array name="montior">
-        <item>Time settings</item>
-        <item>Operation settings</item>
+        <item>時間設定</item>
+        <item>動作設定</item>
     </string-array>
 
     <string-array name="monitor_time_settings">
-        <item>10 sec</item>
-        <item>1 min</item>
-        <item>3 min</item>
+        <item>10秒</item>
+        <item>１分</item>
+        <item>３分</item>
     </string-array>
 
     <string-array name="monitor_operation_settings">
-        <item>Always ON</item>
-        <item>OFF</item>
-        <item>Dim</item>
+        <item>常時点灯</item>
+        <item>消灯</item>
+        <item>暗くする</item>
     </string-array>
 
     <string-array name="parking_record">
@@ -135,15 +135,15 @@
     </string-array>
 
     <string-array name="device_install">
-        <item>Left</item>
-        <item>Center</item>
-        <item>Right</item>
+        <item>左</item>
+        <item>中央</item>
+        <item>右</item>
     </string-array>
 
     <string-array name="system_information">
-        <item>System Version</item>
-        <item>SIM Information</item>
-        <item>Open Source License</item>
+        <item>システムバージョン X.XX</item>
+        <item>SIM情報</item>
+        <item>オープンソースライセンス</item>
     </string-array>
 
     <string-array name="notify_sound_guidance">
@@ -165,8 +165,8 @@
     </string-array>
 
     <string-array name="system_settings_installation_tool">
-        <item>Leveler</item>
-        <item>Satellite reception status</item>
+        <item>水準器</item>
+        <item>衛星受信状態</item>
     </string-array>
 
     <declare-styleable name="JVCRelativeLayout">
@@ -193,9 +193,9 @@
     </string-array>
 
     <string-array name="mounting_position">
-        <item>Left</item>
-        <item>Middle</item>
-        <item>Right</item>
+        <item>左</item>
+        <item>中央</item>
+        <item>右</item>
     </string-array>
 
     <string-array name="service_information">

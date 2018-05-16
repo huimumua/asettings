@@ -95,8 +95,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
-            String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
-            setViewAndData(list_view, vp_progress, secondCameraMenuItem);
+//            String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
+//            setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
             if (FileUtils.isFileExist(Const.OTA_PACKAGE_PATH)) {
                 showDialog(this, getString(R.string.sure_to_update), okListener, cancelListener);
