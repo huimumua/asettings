@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.platform.AskeySettings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
@@ -30,6 +29,8 @@ public class MonitorTimeSettings extends SecondBaseActivity implements AdapterVi
 
     private void focusItem() {
         list_view.requestFocus();
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.system_setting_monitor_time));
         int monitorTime = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_POWERSAVE_TIME, 10);
         int position = 0;
         if (monitorTime == 10) {

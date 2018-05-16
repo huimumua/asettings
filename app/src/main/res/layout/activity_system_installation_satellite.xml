@@ -29,9 +29,25 @@
 
     <include
         layout="@layout/bottom_button_layout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        />
+
+    <com.askey.dvr.cdr7010.setting.widget.MarqueeTextView
+        android:id="@+id/marquee_text"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:textSize="16sp"
+        android:layout_alignParentBottom="true"
+        android:textColor="@android:color/holo_blue_light"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:background="@drawable/bg_menu_main_description"
+        />
 
 
 </RelativeLayout>

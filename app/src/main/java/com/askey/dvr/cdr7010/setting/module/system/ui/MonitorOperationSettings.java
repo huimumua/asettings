@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.platform.AskeySettings;
 
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
@@ -30,6 +29,8 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
 
     private void focusItem() {
         list_view.requestFocus();
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.system_setting_monitor_operation));
         int monitorOperation = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_POWERSAVE_ACTION, 0);
         int position = 0;
         if (monitorOperation == 0) {

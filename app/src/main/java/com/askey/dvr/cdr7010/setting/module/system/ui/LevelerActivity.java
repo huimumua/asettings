@@ -21,6 +21,7 @@ import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 
 import java.io.IOException;
 
@@ -48,6 +49,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     private SurfaceView preview;
     private SurfaceHolder surfaceHolder;
     private boolean isPreviewing = false;
+    private MarqueeTextView marqueeTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +58,8 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
 
         String title = getResources().getString(R.string.installation_tool_leveler);
         setTitleView(title);
+        marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
+        marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
 
         //获取水平仪的主组件
         spiritView = (SpiritView) findViewById(R.id.show);

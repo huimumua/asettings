@@ -14,6 +14,7 @@ import com.askey.dvr.cdr7010.setting.module.system.bean.GpsSvInfo;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.view.HorizontalListView;
+import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,7 @@ public class SatelliteReceptionStatus extends BaseActivity{
     private HorizontalListViewAdapter hListViewAdapter;
     private TextView menuTitle;
     private ImageView menuTitle_icon;
+    private MarqueeTextView marqueeTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +71,8 @@ public class SatelliteReceptionStatus extends BaseActivity{
 
 
     public void initUI(){
+        marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
+        marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
         ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
         ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
         ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);

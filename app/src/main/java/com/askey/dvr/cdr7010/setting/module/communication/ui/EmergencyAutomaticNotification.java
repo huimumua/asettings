@@ -1,19 +1,14 @@
 package com.askey.dvr.cdr7010.setting.module.communication.ui;
 
 import android.content.ContentResolver;
-import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -43,6 +38,8 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
 
     private void focusItem() {
         list_view.requestFocus();
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.communication_emergency_notify));
         int emergency_auto = Settings.Global.getInt(contentResolver, AskeySettings.Global.COMM_EMERGENCY_AUTO, 1);
         int position = 0;
         if (emergency_auto == 1) {

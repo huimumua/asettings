@@ -167,6 +167,10 @@
     <string name="movie_record_marqueeText_impact">Set shock sensor sensitivity to start event recording</string>
     <string name="movie_record_marqueeText_information">When OFF is set, subtitle recording such as date and time and position information stops</string>
     <string name="Vehicle_marqueeText">It is set to increase the accuracy of the driving support function. Choose the nearest vehicle type from the number and shape of your car</string>
+    <string name="system_setting_monitor_time">Set the time for monitor screen to switch to power saving</string>
+    <string name="system_setting_monitor_operation">Sets the power saving behavior of the monitor screen. To save power, set it to OFF</string>
+    <string name="system_setting_install_leveler">It is a useful tool for installing this machine</string>
+    <string name="communication_emergency_notify">When set to OFF, automatic notification will not be sent to the call center even when an accident occurs</string>
 
     <string name="driving_setting">Driving Setting</string>
     <string name="front_collision_warning">Front collision warning</string>
