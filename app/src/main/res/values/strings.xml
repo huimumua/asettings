@@ -131,8 +131,8 @@
     <string name="leveler_detail_context3">2 . On the next screen, adjust the title of the machine so that the moving circle comes to the center.</string>
     <string name="gps_status_title">ＧＰＳ受信強度画面</string>
     <string name="communication">通信機能設定</string>
-    <string name="communication_emergency_contact_person">Emergency Contact Person</string>
-    <string name="communication_emergency_automatic_notification">Emergency Automatic Notification</string>
+    <string name="communication_emergency_contact_person">緊急連絡先の表示</string>
+    <string name="communication_emergency_automatic_notification">緊急自動通報設定</string>
     <string name="communication_emergency_automatic_notification_on">ON</string>
     <string name="communication_emergency_automatic_notification_off">OFF</string>
     <string name="system_version">システムバージョン X.XX</string>
@@ -140,9 +140,9 @@
     <string name="mounting_position_left">左</string>
     <string name="mounting_position_middle">中央</string>
     <string name="mounting_position_right">右</string>
-    <string name="weather_report">Weather Report</string>
-    <string name="help">Help</string>
-    <string name="service_information_notified">Service Information Notified</string>
+    <string name="weather_report">気象通知</string>
+    <string name="help">ヘルプインデックス</string>
+    <string name="service_information_notified">位置情報サービスより気象情報を通知する</string>
     <string name="main_menu_us">ユーザー選択</string>
     <string name="set_wizard_help_context_start_setting">Setting is about to start</string>
     <string name="set_wizard_help_context_leveler">Level setting confirmation</string>

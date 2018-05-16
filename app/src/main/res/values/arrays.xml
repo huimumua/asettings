@@ -182,8 +182,8 @@
     </declare-styleable>
 
     <string-array name="communication">
-        <item>Emergency Contact Person</item>
-        <item>Emergency Automatic Notification</item>
+        <item>緊急連絡先の表示</item>
+        <item>緊急自動通報設定</item>
     </string-array>
 
 
@@ -199,9 +199,9 @@
     </string-array>
 
     <string-array name="service_information">
-        <item>Weather Report</item>
-        <item>Service Information Notified</item>
-        <item>Help</item>
+        <item>気象通知</item>
+        <item>位置情報サービスより気象情報を通知する</item>
+        <item>ヘルプインデックス</item>
     </string-array>
 
     <string-array name="user_list">
