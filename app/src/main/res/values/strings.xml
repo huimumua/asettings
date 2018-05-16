@@ -31,7 +31,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="tv_menu">MENU</string>
+    <string name="tv_menu">メニュー</string>
     <string name="main_menu_prs">駐車録画設定</string>
     <string name="main_menu_fp">ファイル再生</string>
     <string name="main_menu_mirs">動画記録設定</string>
@@ -77,17 +77,17 @@
     <string name="sdcard_setting">SDカードメニュー</string>
     <string name="sdcard_setting_information">SDカード情報</string>
     <string name="sdcard_setting_initialization">SDカード初期化</string>
-    <string name="sdcard_normal_dir">Normal : </string>
-    <string name="sdcard_event_dir">Event : </string>
-    <string name="sdcard_parking_dir">Parking : </string>
-    <string name="sdcard_picture_dir">Picture : </string>
-    <string name="sdcard_not_exist">Sdcard not exist</string>
-    <string name="sdcard_init_prompt">Sdcard Format ?</string>
+    <string name="sdcard_normal_dir">常時録画 : </string>
+    <string name="sdcard_event_dir">イベント記録 : </string>
+    <string name="sdcard_parking_dir">駐車録画 : </string>
+    <string name="sdcard_picture_dir">静止画 : </string>
+    <string name="sdcard_not_exist">カードなし</string>
+    <string name="sdcard_init_prompt">SDカードを初期化しますか？</string>
     <string name="sdcard_init_cancel">Cancel</string>
     <string name="sdcard_init_ok">OK</string>
-    <string name="sdcard_init_ongoing">Formatting</string>
-    <string name="sdcard_init_success">Format Success</string>
-    <string name="sdcard_init_fail">Format Failed</string>
+    <string name="sdcard_init_ongoing">初期化中</string>
+    <string name="sdcard_init_success">初期化しました</string>
+    <string name="sdcard_init_fail">初期化に失敗しました</string>
 
     <string name="tv_date_time">日付/時刻</string>
     <string name="tv_automatic">自動調整</string>
@@ -144,16 +144,18 @@
     <string name="help">ヘルプインデックス</string>
     <string name="service_information_notified">位置情報サービスより気象情報を通知する</string>
     <string name="main_menu_us">ユーザー選択</string>
-    <string name="set_wizard_help_context_start_setting">Setting is about to start</string>
+    <string name="set_wizard_help_context_start_setting">セットアップを開始しますか？</string>
     <string name="set_wizard_help_context_leveler">Level setting confirmation</string>
     <string name="set_wizard_help_context_vehicle_type">Vehicle Type setting confirmation</string>
     <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
     <string name="set_wizard_help_context_range">Range setting confirmation</string>
-    <string name="set_wizard_help_finish">Setup completion</string>
+    <string name="set_wizard_help_finish">セットアップが完了しました</string>
 
     <string name="check_update">Is check update package</string>
-    <string name="sure_to_update">Sure to update ?</string>
-    <string name="package_not_exist">Package is not exist</string>
+    <string name="sure_to_update">システム更新を開始しますか？</string>
+    <string name="package_not_exist">更新可能なファイルがありません</string>
+    <string name="sure_to_restore_factory_Settings">設定をリセットしますか？</string>
+    <string name="sure">OK</string>
 
     <!--底部滚动条提示内容-->
     <string name="driving_setting_marqueeText_front">ONに設定すると、自車と前走車との距離が近くなった時にお知らせします</string>

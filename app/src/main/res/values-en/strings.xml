@@ -154,6 +154,8 @@
     <string name="check_update">Is check update package</string>
     <string name="sure_to_update">Sure to update ?</string>
     <string name="package_not_exist">Package is not exist</string>
+    <string name="sure_to_restore_factory_Settings">Are you sure to restore factory Settings?</string>
+    <string name="sure">OK</string>
 
     <!--底部滚动条提示内容-->
     <string name="driving_setting_marqueeText_front">When set to ON, we will let you know when the distance between your car and the car in front is close</string>

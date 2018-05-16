@@ -110,8 +110,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 
     private void showDialog(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Are you sure to restore factory Settings?");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setMessage(getResources().getString(R.string.sure_to_restore_factory_Settings));
+        builder.setPositiveButton(getResources().getString(R.string.sure), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
