@@ -12,22 +12,37 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <ImageView
+        <RadioButton
             android:id="@+id/top_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/tag_menu_main_moveup" />
+            android:button="@null"
+            android:focusable="false"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/tag_menu_main_moveup" />
 
-        <ImageView
+        <RadioButton
             android:id="@+id/center_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/tag_menu_main_enter" />
+            android:button="@null"
+            android:focusable="false"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/tag_menu_main_enter" />
 
-        <ImageView
+        <RadioButton
             android:id="@+id/bottom_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/tag_menu_main_movedown" />
+            android:button="@null"
+            android:focusable="false"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/tag_menu_main_movedown" />
     </LinearLayout>
 </LinearLayout>

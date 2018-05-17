@@ -19,7 +19,7 @@ import com.askey.dvr.cdr7010.setting.util.DensityUtil;
 public class JVCRelativeLayout extends RelativeLayout {
 
     private RadioButton back_btn;
-    private ImageView top_btn, center_btn, bottom_btn;
+    private RadioButton top_btn, center_btn, bottom_btn;
     private Drawable top_img, center_img, bottom_img, back_img;
     private boolean top_visible, center_visible, bottom_visible, back_visible, showMarqueeTextView;
     private LinearLayout right_button_layout, bottom_button_layout;
@@ -87,27 +87,27 @@ public class JVCRelativeLayout extends RelativeLayout {
 
         setBackgroundResource(R.drawable.bg_menu_main);
 
-        top_btn = (ImageView) right_button_layout.findViewById(R.id.top_btn);
+        top_btn = (RadioButton) right_button_layout.findViewById(R.id.top_btn);
         if (null == top_img) {
-            top_btn.setImageResource(R.drawable.tag_menu_main_moveup);
+            top_btn.setBackgroundResource(R.drawable.tag_menu_main_moveup);
         } else {
-            top_btn.setImageDrawable(top_img);
+            top_btn.setBackground(top_img);
         }
         setTop_visible(top_visible);
 
-        center_btn = (ImageView) right_button_layout.findViewById(R.id.center_btn);
+        center_btn = (RadioButton) right_button_layout.findViewById(R.id.center_btn);
         if (null == center_img) {
-            center_btn.setImageResource(R.drawable.tag_menu_main_enter);
+            center_btn.setBackgroundResource(R.drawable.tag_menu_main_enter);
         } else {
-            center_btn.setImageDrawable(center_img);
+            center_btn.setBackground(center_img);
         }
         setCenter_visible(center_visible);
 
-        bottom_btn = (ImageView) right_button_layout.findViewById(R.id.bottom_btn);
+        bottom_btn = (RadioButton) right_button_layout.findViewById(R.id.bottom_btn);
         if (null == bottom_img) {
-            bottom_btn.setImageResource(R.drawable.tag_menu_main_movedown);
+            bottom_btn.setBackgroundResource(R.drawable.tag_menu_main_movedown);
         } else {
-            bottom_btn.setImageDrawable(bottom_img);
+            bottom_btn.setBackground(bottom_img);
         }
         setBottom_visible(bottom_visible);
 
@@ -121,7 +121,7 @@ public class JVCRelativeLayout extends RelativeLayout {
     }
 
     public void setTop_img(int id) {
-        top_btn.setImageResource(id);
+        top_btn.setBackgroundResource(id);
     }
 
     public void setTop_visible(boolean top_visible) {
@@ -133,7 +133,7 @@ public class JVCRelativeLayout extends RelativeLayout {
     }
 
     public void setCenter_img(int id) {
-        center_btn.setImageResource(id);
+        center_btn.setBackgroundResource(id);
     }
 
     public void setCenter_visible(boolean center_visible) {
@@ -145,7 +145,7 @@ public class JVCRelativeLayout extends RelativeLayout {
     }
 
     public void setBottom_img(int id) {
-        bottom_btn.setImageResource(id);
+        bottom_btn.setBackgroundResource(id);
     }
 
     public void setBottom_visible(boolean bottom_visible) {

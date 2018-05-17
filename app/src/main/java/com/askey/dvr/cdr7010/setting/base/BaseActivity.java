@@ -54,10 +54,10 @@ public class BaseActivity extends AppCompatActivity{
     }
 
     protected void setRightView(boolean top,boolean middle,boolean bottom){
-        if((ImageView) this.findViewById(R.id.center_btn)!=null){
-            ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
-            ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
-            ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
+        if((RadioButton) this.findViewById(R.id.center_btn)!=null){
+            RadioButton topMenu = (RadioButton) this.findViewById(R.id.top_btn);
+            RadioButton centerMenu = (RadioButton) this.findViewById(R.id.center_btn);
+            RadioButton bottomMenu = (RadioButton) this.findViewById(R.id.bottom_btn);
             if(top){
                 topMenu.setVisibility(View.VISIBLE);
             }else{
