@@ -76,6 +76,38 @@ public class BaseActivity extends AppCompatActivity{
         }
     }
 
+    protected void setRightView(boolean top,int topButId,boolean middle,int middleButId,boolean bottom,int bottomButId){
+        if((RadioButton) this.findViewById(R.id.center_btn)!=null){
+            RadioButton topMenu = (RadioButton) this.findViewById(R.id.top_btn);
+            RadioButton centerMenu = (RadioButton) this.findViewById(R.id.center_btn);
+            RadioButton bottomMenu = (RadioButton) this.findViewById(R.id.bottom_btn);
+            if(top){
+                topMenu.setVisibility(View.VISIBLE);
+                if(topButId != 0){
+                    topMenu.setBackgroundResource(bottomButId);
+                }
+            }else{
+                topMenu.setVisibility(View.GONE);
+            }
+            if(middle){
+                if(middleButId != 0){
+                    centerMenu.setBackgroundResource(middleButId);
+                }
+                centerMenu.setVisibility(View.VISIBLE);
+            }else{
+                centerMenu.setVisibility(View.GONE);
+            }
+            if(bottom){
+                bottomMenu.setVisibility(View.VISIBLE);
+                if(bottomButId != 0){
+                    bottomMenu.setBackgroundResource(bottomButId);
+                }
+            }else{
+                bottomMenu.setVisibility(View.GONE);
+            }
+        }
+    }
+
     protected void setBottomView(int resid){
         if((RadioButton) this.findViewById(R.id.back)!=null){
             RadioButton back_btn = (RadioButton) this.findViewById(R.id.back);

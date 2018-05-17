@@ -66,7 +66,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         //获取传感器
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         preview = (SurfaceView) findViewById(R.id.preview);
-        setRightView(false,true,false);
+        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
 
         new Thread(new Runnable() {
             @Override

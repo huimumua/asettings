@@ -71,7 +71,7 @@ public class SatelliteReceptionStatus extends BaseActivity{
     public void initUI(){
         marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
         marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
-        setRightView(false,true,false);
+        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
         setTitleView(getResources().getString(R.string.gps_status_title));
 
         hListView = (HorizontalListView)findViewById(R.id.horizon_listview);

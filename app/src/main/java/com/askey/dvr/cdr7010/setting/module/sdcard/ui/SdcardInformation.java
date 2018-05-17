@@ -82,8 +82,12 @@ public class SdcardInformation extends BaseActivity{
         event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
         picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);
 
+        setRightView(true,0,true,R.drawable.tag_menu_sub_ok,true,0);
+
         String title = getResources().getString(R.string.sdcard_setting_information);
         setTitleView(title,R.drawable.icon_submenu_sdcard);
+
+        setBottomView(R.drawable.tag_menu_sub_cancel);
 
     }
 
