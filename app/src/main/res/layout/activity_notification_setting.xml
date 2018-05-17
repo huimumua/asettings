@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_blue_dark"
             android:padding="5dp"
-            android:text="@string/driving_support_setting"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             android:ellipsize="marquee"

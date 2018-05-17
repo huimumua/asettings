@@ -59,13 +59,13 @@
     <string name="tv_system_settings_system_update">システム更新</string>
     <string name="tv_system_settings_system_information">システム情報</string>
 
-    <string name="parking_record_rt">Recording time</string>
+    <string name="parking_record_rt">録画時間</string>
     <string name="parking_record_settings">駐車録画設定 </string>
     <string name="parking_recording_off">OFF</string>
-    <string name="time_10s">10 sec</string>
-    <string name="time_20s">20 sec</string>
-    <string name="time_30s">30 sec</string>
-    <string name="record_time_setting">Record Time Setting</string>
+    <string name="time_10s">10秒</string>
+    <string name="time_20s">20秒</string>
+    <string name="time_30s">30秒</string>
+    <string name="record_time_setting">録画時間設定</string>
     <string name="audio_recording">音声記録</string>
     <string name="impact_detection_sensitivity">衝撃検知感度</string>
     <string name="information_stamp_record">情報スタンプ記録</string>
@@ -81,7 +81,7 @@
     <string name="sdcard_event_dir">イベント記録 : </string>
     <string name="sdcard_parking_dir">駐車録画 : </string>
     <string name="sdcard_picture_dir">静止画 : </string>
-    <string name="sdcard_not_exist">カードなし</string>
+    <string name="sdcard_not_exist">SDカードがありません</string>
     <string name="sdcard_init_prompt">SDカードを初期化しますか？</string>
     <string name="sdcard_init_cancel">Cancel</string>
     <string name="sdcard_init_ok">OK</string>
@@ -103,7 +103,6 @@
     <string name="tv_monitor_operation_on">常時点灯</string>
     <string name="tv_monitor_operation_off">消灯</string>
     <string name="tv_monitor_operation_dim">暗くする</string>
-    <string name="driving_support_setting">Driving Support Setting</string>
 
     <string name="vehicle_type">車両タイプ</string>
     <string name="vehicle_type_mini_sedan">軽自動車セダン</string>
@@ -114,9 +113,9 @@
     <string name="vehicle_type_suv">3ナンバーワゴン/RV/ワンボックス</string>
     <string name="vehicle_type_others">その他</string>
 
-    <string name="sys_phone_number">Phone Number</string>
-    <string name="sys_network">Network</string>
-    <string name="sys_signal_strength">Signal Strength</string>
+    <string name="sys_phone_number">電話番号</string>
+    <string name="sys_network">ネットワーク</string>
+    <string name="sys_signal_strength">電波強度</string>
     <string name="sys_imei">IMEI</string>
     <string name="sys_imei_sv">IMEI SV</string>
     <string name="sys_version">システムバージョン X.XX</string>
@@ -126,9 +125,9 @@
     <string name="installation_tool_leveler">水準器</string>
     <string name="installation_tool_satellite">衛星受信状態</string>
     <string name="leveler_detail_title">水準器画面</string>
-    <string name="leveler_detail_context1">Adjust level of driving recording.</string>
-    <string name="leveler_detail_context2">1 . Parking the car in a safe and level place.</string>
-    <string name="leveler_detail_context3">2 . On the next screen, adjust the title of the machine so that the moving circle comes to the center.</string>
+    <string name="leveler_detail_context1">ドライブレコーダーが水平になるように調節します。</string>
+    <string name="leveler_detail_context2">1.車を安全で水平な場所に駐車します。</string>
+    <string name="leveler_detail_context3">2.次の画面で、動く円が中央に来るように本機の傾きを調節してください。</string>
     <string name="gps_status_title">ＧＰＳ受信強度画面</string>
     <string name="communication">通信機能設定</string>
     <string name="communication_emergency_contact_person">緊急連絡先の表示</string>
@@ -145,10 +144,9 @@
     <string name="service_information_notified">位置情報サービスより気象情報を通知する</string>
     <string name="main_menu_us">ユーザー選択</string>
     <string name="set_wizard_help_context_start_setting">セットアップを開始しますか？</string>
-    <string name="set_wizard_help_context_leveler">Level setting confirmation</string>
-    <string name="set_wizard_help_context_vehicle_type">Vehicle Type setting confirmation</string>
-    <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
-    <string name="set_wizard_help_context_range">Range setting confirmation</string>
+    <string name="set_wizard_help_context_vehicle_type">運転支援機能の精度を上げるために設定します。\n本機を取り付ける車のナンバーと形状から、\n最も近い車両タイプを選択してください。</string>
+    <string name="set_wizard_help_context_mounting_position">走行車線を正しく検出するために設定します。\n中央から**㎝以内に設置したときは中央、\n中央から**㎝より右側に設置したときは右、\n中央から**㎝より左側に設置したときは左を選択してください</string>
+    <string name="set_wizard_help_context_range">運転支援機能の検出範囲を設定します。\n走行車線を正しく検出するために必要な設定です。\n地平線の位置、車体の先端部（ボンネットなど）、\n走行車線の中心にガイド線を移動して設定します。</string>
     <string name="set_wizard_help_finish">セットアップが完了しました</string>
 
     <string name="check_update">Is check update package</string>

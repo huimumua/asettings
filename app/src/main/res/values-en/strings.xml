@@ -103,7 +103,6 @@
     <string name="tv_monitor_operation_on">Always ON</string>
     <string name="tv_monitor_operation_off">OFF</string>
     <string name="tv_monitor_operation_dim">Dim</string>
-    <string name="driving_support_setting">Driving Support Setting</string>
 
     <string name="vehicle_type">Vehicle Type</string>
     <string name="vehicle_type_mini_sedan">Mini sedan</string>
@@ -145,7 +144,6 @@
     <string name="service_information_notified">Service Information Notified</string>
     <string name="main_menu_us">User Selection</string>
     <string name="set_wizard_help_context_start_setting">Setting is about to start</string>
-    <string name="set_wizard_help_context_leveler">Level setting confirmation</string>
     <string name="set_wizard_help_context_vehicle_type">Vehicle Type setting confirmation</string>
     <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
     <string name="set_wizard_help_context_range">Range setting confirmation</string>
