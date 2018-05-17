@@ -82,6 +82,17 @@ public class BaseActivity extends AppCompatActivity{
             back_btn.setBackgroundResource(resid);
         }
     }
+    protected void setBottomView(boolean visable,int resid){
+        if((RadioButton) this.findViewById(R.id.back)!=null){
+            RadioButton back_btn = (RadioButton) this.findViewById(R.id.back);
+            if(visable){
+                back_btn.setVisibility(View.VISIBLE);
+            }else{
+                back_btn.setVisibility(View.GONE);
+            }
+            back_btn.setBackgroundResource(resid);
+        }
+    }
 
     protected void setBottomView(int resId,String title){
         if((RadioButton) this.findViewById(R.id.back)!=null){

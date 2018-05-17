@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
@@ -41,25 +42,31 @@ public class SetWizardHelpActivity extends BaseActivity {
 
         setWizardhelp = (TextView) this.findViewById(R.id.set_wizard_help_context);
         setRightView(false,true,false);
-        setBottomView(R.drawable.tag_menu_sub_skip);
+
 
         currentUi = getIntent().getStringExtra("set_wizard_help_index");
-        String indexStr = "";;
+        String indexStr = "";
         if(null == currentUi || currentUi.equals("")){
             indexStr = getResources().getString(R.string.set_wizard_help_context_start_setting);
             currentUi = "set_wizard_help_start_setting";
-
+            setBottomView(false,R.drawable.tag_menu_sub_skip);
         }else if(currentUi.equals("set_wizard_help_context_leveler")){
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
+            setBottomView(true,R.drawable.tag_menu_sub_skip);
         }else if(currentUi.equals("set_wizard_help_context_vehicle_type")){
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
+            setBottomView(true,R.drawable.tag_menu_sub_skip);
         }else if(currentUi.equals("set_wizard_help_context_mounting_position")){
             indexStr = getResources().getString(R.string.set_wizard_help_context_mounting_position);
+            setBottomView(true,R.drawable.tag_menu_sub_skip);
         }else if(currentUi.equals("set_wizard_help_context_range")){
             indexStr = getResources().getString(R.string.set_wizard_help_context_range);
+            setBottomView(true,R.drawable.tag_menu_sub_skip);
         }else if(currentUi.equals("set_wizard_help_finish")){
             indexStr = getResources().getString(R.string.set_wizard_help_finish);
+            setBottomView(true,R.drawable.tag_menu_sub_skip);
         }
+
         setWizardhelp.setText(indexStr);
     }
 
@@ -68,8 +75,7 @@ public class SetWizardHelpActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if(currentUi.equals("set_wizard_help_start_setting")){
-                startActivity(new Intent(mContext, LevelerDetailActivity.class));
-                finish();
+               return true;
             }else if(currentUi.equals("set_wizard_help_context_leveler")){
                 currentUi = "set_wizard_help_context_vehicle_type";
                 String str = getResources().getString(R.string.set_wizard_help_context_vehicle_type);

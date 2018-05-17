@@ -48,10 +48,13 @@ public class LevelerDetailActivity extends BaseActivity{
             finish();
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
-            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
-            startActivity(intent);
-            finish();
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
+            if (isFirstInit) {
+                Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
+                startActivity(intent);
+                finish();
+            }
         }
         return super.onKeyDown(keyCode, event);
     }
