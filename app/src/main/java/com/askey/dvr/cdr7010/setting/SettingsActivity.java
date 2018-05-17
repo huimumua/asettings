@@ -134,6 +134,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         simpleAdapter = new SimpleAdapter(this, currentData, R.layout.menu_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
         list_view.setAdapter(simpleAdapter);
+        list_view.setSelection(0);
     }
 
     @Override
