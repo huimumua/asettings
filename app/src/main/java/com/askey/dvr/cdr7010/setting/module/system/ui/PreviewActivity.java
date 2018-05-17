@@ -39,11 +39,7 @@ public class PreviewActivity extends BaseActivity implements SurfaceHolder.Callb
         setContentView(R.layout.activity_preview);
 
         preview = (SurfaceView) findViewById(R.id.preview);
-        ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
-        ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
-        ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
-        topMenu.setVisibility(View.GONE);
-        bottomMenu.setVisibility(View.GONE);
+        setRightView(false,true,false);
 
         cameraInit();
     }

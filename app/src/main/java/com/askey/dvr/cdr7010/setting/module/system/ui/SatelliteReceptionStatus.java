@@ -32,8 +32,6 @@ public class SatelliteReceptionStatus extends BaseActivity{
     private ArrayList<GpsSvInfo> gpsStatusList = new ArrayList<GpsSvInfo>();
     private HorizontalListView hListView;
     private HorizontalListViewAdapter hListViewAdapter;
-    private TextView menuTitle;
-    private ImageView menuTitle_icon;
     private MarqueeTextView marqueeTextView;
 
     @Override
@@ -73,38 +71,13 @@ public class SatelliteReceptionStatus extends BaseActivity{
     public void initUI(){
         marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
         marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
-        ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
-        ImageView centerMenu = (ImageView) this.findViewById(R.id.center_btn);
-        ImageView bottomMenu = (ImageView) this.findViewById(R.id.bottom_btn);
-        topMenu.setVisibility(View.GONE);
-        bottomMenu.setVisibility(View.GONE);
-
-        menuTitle = (TextView) this.findViewById(R.id.title_tv);
-        menuTitle_icon = (ImageView) this.findViewById(R.id.title_icon);//参数待添加
-        menuTitle.setText(getResources().getString(R.string.gps_status_title));
+        setRightView(false,true,false);
+        setTitleView(getResources().getString(R.string.gps_status_title));
 
         hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
         hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
         hListView.setAdapter(hListViewAdapter);
-        //      hListView.setOnItemSelectedListener(new OnItemSelectedListener() {
-        //
-        //          @Override
-        //          public void onItemSelected(AdapterView<?> parent, View view,
-        //                  int position, long id) {
-        //              // TODO Auto-generated method stub
-        //              if(olderSelected != null){
-        //                  olderSelected.setSelected(false); //上一个选中的View恢复原背景
-        //              }
-        //              olderSelected = view;
-        //              view.setSelected(true);
-        //          }
-        //
-        //          @Override
-        //          public void onNothingSelected(AdapterView<?> parent) {
-        //              // TODO Auto-generated method stub
-        //
-        //          }
-        //      });
+
         hListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
