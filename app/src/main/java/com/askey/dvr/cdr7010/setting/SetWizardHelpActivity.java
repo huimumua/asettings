@@ -68,7 +68,8 @@ public class SetWizardHelpActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if(currentUi.equals("set_wizard_help_start_setting")){
-                return super.onKeyDown(keyCode, event);
+                startActivity(new Intent(mContext, LevelerDetailActivity.class));
+                finish();
             }else if(currentUi.equals("set_wizard_help_context_leveler")){
                 currentUi = "set_wizard_help_context_vehicle_type";
                 String str = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
