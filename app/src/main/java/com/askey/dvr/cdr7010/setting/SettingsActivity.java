@@ -278,25 +278,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @TargetApi(Build.VERSION_CODES.M)
     private void requestSdcardPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            // 第一次请求权限时，用户如果拒绝，下一次请求shouldShowRequestPermissionRationale()返回true
-            // 向用户解释为什么需要这个权限
-            String setSdcardDetail = getResources().getString(R.string.set_sdcard_permission);
-            String inserted_ok = getResources().getString(R.string.inserted_ok);
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                new AlertDialog.Builder(this)
-                        .setMessage(setSdcardDetail)
-                        .setPositiveButton(inserted_ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ActivityCompat.requestPermissions((Activity) mContext,
-                                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
-                            }
-                        })
-                        .show();
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
-            }
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
         } else {
             Log.i(LOG_TAG, "requestSdcardPermission:true");
             requestLocationPermission();
@@ -306,27 +289,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @TargetApi(Build.VERSION_CODES.M)
     private void requestLocationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // 第一次请求权限时，用户如果拒绝，下一次请求shouldShowRequestPermissionRationale()返回true
-            // 向用户解释为什么需要这个权限
-            String setlocationDetail = getResources().getString(R.string.set_location_permission);
-            String inserted_ok = getResources().getString(R.string.inserted_ok);
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                new AlertDialog.Builder(this)
-                        .setMessage(setlocationDetail)
-                        .setPositiveButton(inserted_ok, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //定位权限
-                                ActivityCompat.requestPermissions((Activity) mContext,
-                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-                            }
-                        })
-                        .show();
-            } else {
-                //定位权限
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-            }
+            ActivityCompat.requestPermissions((Activity) mContext,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
         } else {
             Logg.i(LOG_TAG, "requestLocationPermission:true");
         }

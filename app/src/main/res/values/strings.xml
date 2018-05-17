@@ -70,8 +70,6 @@
     <string name="impact_detection_sensitivity">衝撃検知感度</string>
     <string name="information_stamp_record">情報スタンプ記録</string>
     <string name="movie_record_setting">動画記録設定</string>
-    <string name="set_sdcard_permission">Application for SD card permissions</string>
-    <string name="set_location_permission">Application for Position permissions</string>
     <string name="inserted_ok">OK</string>
 
     <string name="sdcard_setting">SDカードメニュー</string>
