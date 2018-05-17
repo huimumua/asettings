@@ -25,7 +25,7 @@ import java.util.List;
  */
 public class SdcardInformation extends BaseActivity{
     private static final String TAG = "SdcardInformation";
-    private TextView normal,event,parking,picture;
+    private TextView normal,event,picture;
     private String backslash= "/";
 
     @Override
@@ -61,7 +61,6 @@ public class SdcardInformation extends BaseActivity{
             Logg.i(TAG,"==getPictureSize=="+pictureSize);
             normal.setText(normalCurrentSize+backslash+normalSize);
             event.setText(eventCurrentSize+backslash+eventSize);
-            parking.setText(parkingCurrentSize+backslash+parkingSize);
             picture.setText(pictureCurrentSize+backslash+pictureSize);
         }else{
             TextView title = (TextView) this.findViewById(R.id.sdcard_setting_information);
@@ -81,11 +80,10 @@ public class SdcardInformation extends BaseActivity{
     private void initview() {
         normal = (TextView) this.findViewById(R.id.sdcard_normal_dir_count);
         event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
-        parking = (TextView) this.findViewById(R.id.sdcard_parking_dir_count);
         picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);
 
         String title = getResources().getString(R.string.sdcard_setting_information);
-        setTitleView(title);
+        setTitleView(title,R.drawable.icon_submenu_sdcard);
 
     }
 

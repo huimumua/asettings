@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_menu_main"
     >
 
-    <include layout="@layout/title_layout" />
+    <include
+        android:id="@+id/sdcard_info_title_view"
+        layout="@layout/title_layout" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        android:gravity="center">
 
     <TextView
         android:id="@+id/sdcard_setting_information"
@@ -22,114 +17,133 @@
         android:layout_height="wrap_content"
         android:text="@string/sdcard_setting_information"
         android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:visibility="gone"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/sdcard_picture_dir"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dip"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/sdcard_normal_dir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/sdcard_normal_dir" />
-
-            <TextView
-                android:id="@+id/sdcard_normal_dir_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:textColor="@color/white"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/sdcard_event_dir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/sdcard_event_dir" />
-
-            <TextView
-                android:id="@+id/sdcard_event_dir_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:textColor="@color/white"
-                android:text="" />
-        </LinearLayout>
-
-
-
-
-    </LinearLayout>
-
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/sdcard_info_title_view"
+        android:layout_marginTop="@dimen/view_margin_top"
+        android:layout_marginStart="@dimen/title_margin_top"
+        android:text="@string/sdcard_info_title"
+        android:textColor="@color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/sdcard_normal_dir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_sd_continious" />
+
+                <TextView
+                    android:id="@+id/sdcard_normal_dir_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:text=""
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/sdcard_event_dir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_sd_event" />
+
+                <TextView
+                    android:id="@+id/sdcard_event_dir_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:text=""
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dip"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_sd_image" />
+
+                <TextView
+                    android:id="@+id/sdcard_picture_dir_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:text=""
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/sdcard_parking_dir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginLeft="@dimen/title_margin_top"
+            android:layout_marginRight="@dimen/title_margin_top"
+            android:gravity="right"
+            android:text="@string/sdcard_info_context_explane"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/right_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" />
+
+    <include
+        layout="@layout/bottom_button_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dip"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/sdcard_parking_dir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/sdcard_parking_dir" />
-
-            <TextView
-                android:id="@+id/sdcard_parking_dir_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:textColor="@color/white"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dip"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/sdcard_picture_dir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/sdcard_picture_dir" />
-
-            <TextView
-                android:id="@+id/sdcard_picture_dir_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dip"
-                android:textColor="@color/white"
-                android:text="" />
-        </LinearLayout>
-
-    </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>

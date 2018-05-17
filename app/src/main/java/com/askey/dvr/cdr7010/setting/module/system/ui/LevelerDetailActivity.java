@@ -37,8 +37,7 @@ public class LevelerDetailActivity extends BaseActivity{
         String title = getResources().getString(R.string.leveler_detail_title);
         setTitleView(title);
         setRightView(false,true,false);
-        String skip =getResources().getString(R.string.skip);
-        setBottomView(skip);
+        setBottomView(R.drawable.tag_menu_sub_skip);
 
     }
 

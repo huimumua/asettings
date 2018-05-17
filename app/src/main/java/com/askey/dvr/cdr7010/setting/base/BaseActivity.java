@@ -44,6 +44,15 @@ public class BaseActivity extends AppCompatActivity{
         }
     }
 
+    protected void setTitleView(String title,int imageId){
+        if((TextView) this.findViewById(R.id.title_tv)!=null){
+            TextView  menuTitle = (TextView) this.findViewById(R.id.title_tv);
+            ImageView menuTitle_icon = (ImageView) this.findViewById(R.id.title_icon);//参数待添加
+            menuTitle.setText(title);
+            menuTitle_icon.setImageResource(imageId);
+        }
+    }
+
     protected void setRightView(boolean top,boolean middle,boolean bottom){
         if((ImageView) this.findViewById(R.id.center_btn)!=null){
             ImageView topMenu = (ImageView) this.findViewById(R.id.top_btn);
@@ -67,10 +76,10 @@ public class BaseActivity extends AppCompatActivity{
         }
     }
 
-    protected void setBottomView(String title){
+    protected void setBottomView(int resid){
         if((RadioButton) this.findViewById(R.id.back)!=null){
             RadioButton back_btn = (RadioButton) this.findViewById(R.id.back);
-            back_btn.setText(title);
+            back_btn.setBackgroundResource(resid);
         }
     }
 

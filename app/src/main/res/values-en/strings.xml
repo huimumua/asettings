@@ -198,5 +198,7 @@
     <string name="location_information">Location information</string>
 
     <string name="skip">Skip</string>
+    <string name="sdcard_info_title">Number of files in each folder</string>
+    <string name="sdcard_info_context_explane">Current / Maximum</string>
 
 </resources>

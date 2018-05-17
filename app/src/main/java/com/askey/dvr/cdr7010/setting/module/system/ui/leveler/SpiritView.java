@@ -29,9 +29,9 @@ public class SpiritView extends View {
 
     public SpiritView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        back  = BitmapFactory.decodeResource(getResources(), R.mipmap.image_center_level);
+        back  = BitmapFactory.decodeResource(getResources(), R.drawable.image_center_level);
 
-        bubble = BitmapFactory.decodeResource(getResources(), R.mipmap.image_lebel_red);
+        bubble = BitmapFactory.decodeResource(getResources(), R.drawable.image_lebel_red);
     }
 
     @Override

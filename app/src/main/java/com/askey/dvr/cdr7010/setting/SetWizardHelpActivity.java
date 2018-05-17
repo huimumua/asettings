@@ -41,6 +41,7 @@ public class SetWizardHelpActivity extends BaseActivity {
 
         setWizardhelp = (TextView) this.findViewById(R.id.set_wizard_help_context);
         setRightView(false,true,false);
+        setBottomView(R.drawable.tag_menu_sub_skip);
 
         currentUi = getIntent().getStringExtra("set_wizard_help_index");
         String indexStr = "";;
