@@ -98,6 +98,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@android:color/background_light"
+                    android:text="@string/network_type"
+                    />
+                <TextView
+                    android:id="@+id/network_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:paddingStart="10dp"
+                    android:text="123456789"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:text="@string/sys_service_status"
+                    />
+                <TextView
+                    android:id="@+id/service_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:paddingStart="10dp"
+                    android:text="123456789"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:text="@string/sys_network_status"
+                    />
+                <TextView
+                    android:id="@+id/network_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
+                    android:paddingStart="10dp"
+                    android:text="123456789"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_imei"
                     />
                 <TextView
@@ -108,21 +150,6 @@
                     android:paddingStart="10dp"
                     android:text="123456789"
                     />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
-                    android:text="@string/sys_imei_sv"
-                    />
-                <TextView
-                    android:id="@+id/imei_sv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
-                    android:paddingStart="10dp"
-                    android:text="123456789"
-                    />
-
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/open_license"

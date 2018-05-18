@@ -114,11 +114,15 @@
     <string name="sys_phone_number">Phone Number</string>
     <string name="sys_network">Network</string>
     <string name="sys_signal_strength">Signal Strength</string>
+    <string name="network_type">Network Type</string>
     <string name="sys_imei">IMEI</string>
-    <string name="sys_imei_sv">IMEI SV</string>
+    <string name="sys_service_status">Service status</string>
+    <string name="sys_network_status">Network Status</string>
     <string name="sys_version">System Version</string>
     <string name="sys_sim">SIM</string>
     <string name="sys_open_license">Open Source License</string>
+    <string name="net_conn">Connected</string>
+    <string name="net_not_conn">Not Connect</string>
 
     <string name="installation_tool_leveler">Leveler</string>
     <string name="installation_tool_satellite">Satellite reception status</string>

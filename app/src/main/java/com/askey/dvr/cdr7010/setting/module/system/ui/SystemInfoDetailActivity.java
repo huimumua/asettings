@@ -1,5 +1,8 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +23,7 @@ import java.lang.reflect.Method;
 public class SystemInfoDetailActivity extends AppCompatActivity {
     private String type;
     private ImageView title_icon;
-    private TextView title_tv, phone_number, net, signal, imei, imei_sv, version;
+    private TextView title_tv, phone_number, net, signal, imei, service_status, version, network_type, network_status;
     private LinearLayout systemVersion, sim, openLicense;
     private TelephonyManager mPhoneManager;
 
@@ -43,7 +46,9 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         net = (TextView) findViewById(R.id.net);
         signal = (TextView) findViewById(R.id.signal);
         imei = (TextView) findViewById(R.id.imei);
-        imei_sv = (TextView) findViewById(R.id.imei_sv);
+        service_status = (TextView) findViewById(R.id.service_status);
+        network_type = (TextView) findViewById(R.id.network_type);
+        network_status = (TextView) findViewById(R.id.network_status);
 
         title_tv = (TextView) findViewById(R.id.title_tv);
         title_icon = (ImageView) findViewById(R.id.title_icon);
@@ -57,7 +62,7 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             title_tv.setText(getString(R.string.sys_version));
 
             version = (TextView) findViewById(R.id.version);
-            String systemVersion =  Build.DISPLAY;
+            String systemVersion = Build.DISPLAY;
             version.setText(systemVersion);
         }
         if (type.equals("SIM")) {
@@ -72,6 +77,8 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             phone_number.setText(getPhoneNumber(mPhoneManager));
             net.setText(getNet(mPhoneManager));
             imei.setText(getImei(mPhoneManager));
+            network_type.setText(getNetworkType(mPhoneManager));
+            network_status.setText(getNetworkStatus(this));
         }
         if (type.equals("open")) {
             openLicense.setVisibility(View.VISIBLE);
@@ -90,6 +97,42 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         return manager.getSimOperatorName();
     }
 
+    private String getNetworkType(TelephonyManager manager) {
+        String type = "";
+        switch (manager.getNetworkType()) {
+            case TelephonyManager.NETWORK_TYPE_HSDPA:
+                type = "3G";
+                break;
+            case TelephonyManager.NETWORK_TYPE_HSPAP:
+                type = "4G";
+                break;
+            case TelephonyManager.NETWORK_TYPE_EDGE:
+                type = "2G";
+                break;
+            case TelephonyManager.NETWORK_TYPE_LTE:
+                type = "LTE";
+                break;
+            default:
+                type = "N/A";
+        }
+        return type;
+    }
+
+//    private String getServiceStatus(TelephonyManager manager){
+//        return
+//    }
+
+    private String getNetworkStatus(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        if (isConnected) {
+            return getString(R.string.net_conn);
+        }
+        return getString(R.string.net_not_conn);
+    }
+
     private String getImei(TelephonyManager manager) {
         return manager.getDeviceId();
     }
@@ -98,7 +141,7 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         @Override
         public void onSignalStrengthsChanged(SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
-            Log.i("lte",signalStrength.toString()+ "");
+            Log.i("lte", signalStrength.toString() + "");
             try {
                 Method method;
                 int strenth = 0;
@@ -115,8 +158,8 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
                     Log.i("lte", lteRsrp + "");
                 } else {
                     method = signalStrength.getClass().getDeclaredMethod("getLevel");
-                    strenth = (int)method.invoke(signalStrength);
-                    Log.i("非lte",strenth+"");
+                    strenth = (int) method.invoke(signalStrength);
+                    Log.i("非lte", strenth + "");
                 }
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();

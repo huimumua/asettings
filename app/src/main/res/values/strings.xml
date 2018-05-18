@@ -114,11 +114,15 @@
     <string name="sys_phone_number">電話番号</string>
     <string name="sys_network">ネットワーク</string>
     <string name="sys_signal_strength">電波強度</string>
+    <string name="network_type">ネットワークの種類</string>
     <string name="sys_imei">IMEI</string>
-    <string name="sys_imei_sv">IMEI SV</string>
+    <string name="sys_service_status">サービスの状態</string>
+    <string name="sys_network_status">ネットワークの状態</string>
     <string name="sys_version">システムバージョン X.XX</string>
     <string name="sys_sim">SIM情報</string>
     <string name="sys_open_license">オープンソースライセンス</string>
+    <string name="net_conn">接続</string>
+    <string name="net_not_conn">接続されていない</string>
 
     <string name="installation_tool_leveler">水準器</string>
     <string name="installation_tool_satellite">衛星受信状態</string>
