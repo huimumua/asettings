@@ -40,7 +40,7 @@ public class SatelliteReceptionStatus extends BaseActivity{
         setContentView(R.layout.activity_system_installation_satellite);
 
         initUI();
-//        initData();
+        initData();
         //获取当前星数
         GPSStatusManager.getInstance().getGpsUsedInFix();
         gpsStatusList = GPSStatusManager.getInstance().getGpsStatusList();
@@ -57,14 +57,61 @@ public class SatelliteReceptionStatus extends BaseActivity{
     }
 
     private void initData() {
-        for (int i=0;i<6;i++){
-            GpsSvInfo gpsSvInfo =new GpsSvInfo();
-            gpsSvInfo.setAzimuth((float) 1.0);
-            gpsSvInfo.setElevation((float) 1.0);
-            gpsSvInfo.setPrn(i);
-            gpsSvInfo.setSnr(12);
-            gpsStatusList.add(gpsSvInfo);
-        }
+        GpsSvInfo gpsSvInfo =new GpsSvInfo();
+        gpsSvInfo.setAzimuth((float) 1.0);
+        gpsSvInfo.setElevation((float) 1.0);
+        gpsSvInfo.setPrn(72);
+        gpsSvInfo.setSnr(001);
+        gpsStatusList.add(gpsSvInfo);
+
+        GpsSvInfo gpsSvInfo1 =new GpsSvInfo();
+        gpsSvInfo1.setAzimuth((float) 1.0);
+        gpsSvInfo1.setElevation((float) 1.0);
+        gpsSvInfo1.setPrn(39);
+        gpsSvInfo1.setSnr(007);
+        gpsStatusList.add(gpsSvInfo1);
+
+        GpsSvInfo gpsSvInfo2 =new GpsSvInfo();
+        gpsSvInfo2.setAzimuth((float) 1.0);
+        gpsSvInfo2.setElevation((float) 1.0);
+        gpsSvInfo2.setPrn(0);
+        gpsSvInfo2.setSnr(010);
+        gpsStatusList.add(gpsSvInfo2);
+
+        GpsSvInfo gpsSvInfo3 =new GpsSvInfo();
+        gpsSvInfo3.setAzimuth((float) 1.0);
+        gpsSvInfo3.setElevation((float) 1.0);
+        gpsSvInfo3.setPrn(44);
+        gpsSvInfo3.setSnr(11);
+        gpsStatusList.add(gpsSvInfo3);
+
+        GpsSvInfo gpsSvInfo4 =new GpsSvInfo();
+        gpsSvInfo4.setAzimuth((float) 1.0);
+        gpsSvInfo4.setElevation((float) 1.0);
+        gpsSvInfo4.setPrn(68);
+        gpsSvInfo4.setSnr(18);
+        gpsStatusList.add(gpsSvInfo4);
+
+        GpsSvInfo gpsSvInfo5 =new GpsSvInfo();
+        gpsSvInfo5.setAzimuth((float) 1.0);
+        gpsSvInfo5.setElevation((float) 1.0);
+        gpsSvInfo5.setPrn(24);
+        gpsSvInfo5.setSnr(27);
+        gpsStatusList.add(gpsSvInfo5);
+
+//        GpsSvInfo gpsSvInfo6 =new GpsSvInfo();
+//        gpsSvInfo6.setAzimuth((float) 1.0);
+//        gpsSvInfo6.setElevation((float) 1.0);
+//        gpsSvInfo6.setPrn(24);
+//        gpsSvInfo6.setSnr(28);
+//        gpsStatusList.add(gpsSvInfo6);
+//
+//        GpsSvInfo gpsSvInfo7 =new GpsSvInfo();
+//        gpsSvInfo7.setAzimuth((float) 1.0);
+//        gpsSvInfo7.setElevation((float) 1.0);
+//        gpsSvInfo7.setPrn(59);
+//        gpsSvInfo7.setSnr(30);
+//        gpsStatusList.add(gpsSvInfo7);
     }
 
 

@@ -41,7 +41,7 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         if(clickItem.equals(getResources().getString(R.string.sdcard_setting_information)) && isExist) {
             startActivity(new Intent(mContext, SdcardInformation.class));
         }
-        if(clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization)) && isExist) {
+        if(clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization)) /*&& isExist*/) {
             startActivity(new Intent(mContext, SdcardInitialization.class));
         }
 
