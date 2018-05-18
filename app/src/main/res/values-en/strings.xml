@@ -93,6 +93,7 @@
     <string name="tv_date_time_setting">Date/time setting</string>
     <string name="tv_notifacation_valume">Volume setting</string>
     <string name="tv_playback_valume">Volume setting</string>
+    <string name="tv_brightness_title">Brightness +2</string>
     <string name="tv_monitor_time_settings">Time settings</string>
     <string name="tv_monitor_time_10sec">10 sec</string>
     <string name="tv_monitor_time_1min">1 min</string>

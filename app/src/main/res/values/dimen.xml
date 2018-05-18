@@ -5,7 +5,8 @@
     <dimen name="progress_bar_width">10dp</dimen>
     <dimen name="progress_bar_height">150dp</dimen>
     <dimen name="brightness_width">20dp</dimen>
-    <dimen name="brightness_margin">20dp</dimen>
+    <dimen name="brightness_height">70dp</dimen>
+    <dimen name="brightness_margin">5dp</dimen>
     <dimen name="date_time_margin">30dp</dimen>
 
     <dimen name="leveler_detail_title_margin_top">10dp</dimen>
