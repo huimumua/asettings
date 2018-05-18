@@ -3,8 +3,6 @@ package com.askey.dvr.cdr7010.setting;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -197,11 +195,29 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //根据需求自己修改
-        if (position % 2 == 0) {
-            iv_icon.setImageDrawable(getDrawable(R.drawable.ic_info_black_24dp));
-        } else {
-            iv_icon.setImageDrawable(getDrawable(R.drawable.ic_notifications_black_24dp));
+        String clickItem = currentData.get(position).get("menu_item").toString();
+        if (clickItem.equals(getResources().getString(R.string.main_menu_us))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_settings);
+        } else if (clickItem.equals(getString(R.string.main_menu_prs))) {
+
+        } else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_movrec_setting);
+        } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_playback);
+        } else if (clickItem.equals(getString(R.string.main_menu_scm))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_sdcard);
+        } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_driving_support);
+        } else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_audio_guide);
+        } else if (clickItem.equals(getString(R.string.main_menu_vt))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_car_types);
+        } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_communication);
+        } else if (clickItem.equals(getString(R.string.main_menu_si))) {
+
         }
     }
 
