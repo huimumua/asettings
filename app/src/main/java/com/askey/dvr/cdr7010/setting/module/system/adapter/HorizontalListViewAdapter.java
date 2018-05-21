@@ -39,7 +39,7 @@ public class HorizontalListViewAdapter extends BaseAdapter{
     }
     @Override
     public int getCount() {
-        return mGpsStatusList.size();
+        return mGpsStatusList.size()+1;
     }
     @Override
     public Object getItem(int position) {
@@ -71,9 +71,17 @@ public class HorizontalListViewAdapter extends BaseAdapter{
             convertView.setSelected(false);
         }
 
-        holder.mTitle.setText(mGpsStatusList.get(position).getPrn()+"");
-        holder.mValue.setText(mGpsStatusList.get(position).getSnr()+"");
-        holder.mImage.setText("");
+        if(position==0){
+            holder.mTitle.setText("LV.");
+            holder.mValue.setText("");
+            holder.mValue.setBackgroundResource(R.drawable.icon_gpslevel);
+            holder.mImage.setText("");
+        }else{
+            holder.mTitle.setText(mGpsStatusList.get(position-1).getPrn()+"");
+            holder.mValue.setText(mGpsStatusList.get(position-1).getSnr()+"");
+            holder.mImage.setText("");
+        }
+
 
         return convertView;
     }

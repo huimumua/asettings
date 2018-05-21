@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="view_pading_left">10dip</dimen>
-    <dimen name="view_pading_top">5dip</dimen>
     <dimen name="view_gps_detail_padding">8dip</dimen>
 </resources>
