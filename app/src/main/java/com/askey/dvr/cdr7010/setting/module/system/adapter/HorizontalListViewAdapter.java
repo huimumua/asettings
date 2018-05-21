@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
@@ -71,13 +72,20 @@ public class HorizontalListViewAdapter extends BaseAdapter{
             convertView.setSelected(false);
         }
 
+        LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) holder.mImage.getLayoutParams(); //取控件textView当前的布局参数
+
+
         if(position==0){
             holder.mTitle.setText("LV.");
             holder.mValue.setText("");
             holder.mValue.setBackgroundResource(R.drawable.icon_gpslevel);
+            holder.mImage.setVisibility(View.INVISIBLE);
             holder.mImage.setText("");
         }else{
-            holder.mTitle.setText(mGpsStatusList.get(position-1).getPrn()+"");
+            int prn = mGpsStatusList.get(position-1).getPrn();
+            linearParams.height = prn;// 控件的高强制设成20
+            holder.mImage.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
+            holder.mTitle.setText(prn+"");
             holder.mValue.setText(mGpsStatusList.get(position-1).getSnr()+"");
             holder.mImage.setText("");
         }
