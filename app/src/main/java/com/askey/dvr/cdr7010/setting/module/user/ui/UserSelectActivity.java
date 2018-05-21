@@ -15,7 +15,7 @@ public class UserSelectActivity extends SecondBaseActivity implements AdapterVie
         setContentView(R.layout.base_jvclayout);
         //数据暂无
         menuInfo = getResources().getStringArray(R.array.user_list);
-        initView(getResources().getString(R.string.main_menu_us),menuInfo,R.layout.second_menu_layout);
+//        initView(getResources().getString(R.string.main_menu_us),menuInfo,R.layout.second_menu_layout);
         jvcRelativeLayout.setMarquee_visible(true);
         jvcRelativeLayout.setMarquee_text(getString(R.string.user_marqueeText));
         list_view.setOnItemClickListener(this);

@@ -23,7 +23,7 @@ public class InformationStampActivity extends SecondBaseActivity implements Adap
         setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.information_stamp_record), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.information_stamp_record),R.drawable.icon_submenu_mov_rec_setting, menuInfo, R.layout.second_menu_layout);
         jvcRelativeLayout.setMarquee_visible(true);
         jvcRelativeLayout.setMarquee_text(getString(R.string.movie_record_marqueeText_information));
         list_view.setOnItemClickListener(this);

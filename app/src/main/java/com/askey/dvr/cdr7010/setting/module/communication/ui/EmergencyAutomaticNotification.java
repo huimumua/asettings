@@ -30,7 +30,7 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.communication_emergency_automatic_notification), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.communication_emergency_automatic_notification),R.drawable.icon_submenu_communication, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         contentResolver = getContentResolver();
         focusItem();

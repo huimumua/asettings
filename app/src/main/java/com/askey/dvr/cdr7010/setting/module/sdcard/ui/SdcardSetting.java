@@ -30,7 +30,7 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.sdcard_setting),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.sdcard_setting),R.drawable.icon_submenu_sdcard,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         isExist = SdcardUtil.checkSdcardExist();
 }

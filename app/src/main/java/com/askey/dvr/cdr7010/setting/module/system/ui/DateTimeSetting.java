@@ -2,7 +2,6 @@ package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -12,7 +11,6 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.SystemDateTime;
 import com.askey.platform.AskeySettings;
 
@@ -33,7 +31,7 @@ public class DateTimeSetting extends SecondBaseActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_date_time), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.tv_date_time),R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         contentResolver = getContentResolver();
         list_view.setOnItemClickListener(this);
         focusItem();

@@ -23,7 +23,7 @@ public class ImpactSensitivityActivity extends SecondBaseActivity implements Ada
         setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.impact_detection_sensitivity), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.impact_detection_sensitivity),R.drawable.icon_submenu_mov_rec_setting, menuInfo, R.layout.second_menu_layout);
         jvcRelativeLayout.setMarquee_visible(true);
         jvcRelativeLayout.setMarquee_text(getString(R.string.movie_record_marqueeText_impact));
         list_view.setOnItemClickListener(this);

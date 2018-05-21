@@ -9,7 +9,6 @@ import android.widget.AdapterView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
-import com.askey.dvr.cdr7010.setting.util.Const;
 
 /**
  * 项目名称：settings
@@ -29,7 +28,7 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.driving_setting),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.driving_setting),R.drawable.icon_submenu_driving_support,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 

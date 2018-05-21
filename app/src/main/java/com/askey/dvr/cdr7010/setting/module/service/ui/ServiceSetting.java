@@ -7,11 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInformation;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInitialization;
-import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 
 /**
  * 项目名称：settings
@@ -32,7 +28,7 @@ public class ServiceSetting extends SecondBaseActivity implements AdapterView.On
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.main_menu_si),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.main_menu_si),R.drawable.icon_submenu_help,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 

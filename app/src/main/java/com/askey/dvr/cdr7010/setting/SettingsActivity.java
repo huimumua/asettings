@@ -227,7 +227,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_communication);
         } else if (clickItem.equals(getString(R.string.main_menu_si))) {
-
+            iv_icon.setImageResource(R.drawable.img_menu_main_help);
         }
     }
 

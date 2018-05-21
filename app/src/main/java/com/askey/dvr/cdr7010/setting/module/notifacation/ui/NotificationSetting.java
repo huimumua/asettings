@@ -3,13 +3,11 @@ package com.askey.dvr.cdr7010.setting.module.notifacation.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
 
 /**
  * 项目名称：settings
@@ -29,7 +27,7 @@ public class NotificationSetting extends SecondBaseActivity implements AdapterVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.main_menu_nsg), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.main_menu_nsg),R.drawable.icon_submenu_audio_guide, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 

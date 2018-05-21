@@ -27,7 +27,7 @@ public class MovieRecordSetting extends SecondBaseActivity implements AdapterVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.movie_record_setting), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.movie_record_setting),R.drawable.icon_submenu_mov_rec_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
 

@@ -26,7 +26,7 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
         switch_tag = getIntent().getStringExtra("switch_tag");
-        initView(switch_tag, menuInfo, R.layout.second_menu_layout);
+        initView(switch_tag,R.drawable.icon_submenu_driving_support, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }

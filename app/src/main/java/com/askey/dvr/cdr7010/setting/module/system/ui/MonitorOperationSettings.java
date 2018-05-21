@@ -22,7 +22,7 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
         setContentView(R.layout.base_jvclayout);
         contentResolver = getContentResolver();
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_monitor_operation_settings), menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.tv_monitor_operation_settings),R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         focusItem();
     }

@@ -60,7 +60,7 @@ public class SecondBaseActivity extends AppCompatActivity {
         this.index = index+1;//从1开始算
     }
 
-    protected void initView(String title,String[] menuInfo,int layoutId){
+    protected void initView(String title,int titleIconRes,String[] menuInfo,int layoutId){
 
         jvcRelativeLayout = (JVCRelativeLayout) findViewById(R.id.root);
         jvcRelativeLayout.setContentView(layoutId);
@@ -72,6 +72,7 @@ public class SecondBaseActivity extends AppCompatActivity {
         menuTitle = (TextView) view.findViewById(R.id.title_tv);
         menuTitle_icon = (ImageView) view.findViewById(R.id.title_icon);//参数待添加
         menuTitle.setText(title);
+        menuTitle_icon.setImageResource(titleIconRes);
         vp_progress = (VerticalProgressBar) view.findViewById(R.id.vp_progress);
         setViewAndData(list_view, vp_progress, menuInfo);
     }

@@ -1,16 +1,13 @@
 package com.askey.dvr.cdr7010.setting.module.communication.ui;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardInitialization;
 
 /**
  * 项目名称：settings
@@ -30,7 +27,7 @@ public class CommunicationSetting extends SecondBaseActivity implements AdapterV
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.communication),menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.communication),R.drawable.icon_submenu_communication,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
     }
