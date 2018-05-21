@@ -16,28 +16,44 @@
         android:layout_width="match_parent"
         android:layout_height="6dp"
         android:layout_gravity="center_vertical"
-        android:layerType="software"
-        android:background="@drawable/range_setting_horizon_line" />
+        android:background="@drawable/range_setting_horizon_line"
+        android:layerType="software" />
+
     <View
         android:id="@+id/line_center"
         android:layout_width="5dp"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
         android:background="@android:color/background_light"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone"
-        />
+        android:visibility="gone" />
 
-    <TextView
+    <com.askey.dvr.cdr7010.setting.widget.MarqueeTextView
         android:id="@+id/notify_msg"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:background="@android:color/background_dark"
-        android:textColor="@android:color/background_light"
-        android:textSize="16sp"
         android:gravity="center"
         android:text="这里显示提示信息"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        />
+
+    <include
+        layout="@layout/right_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end" />
+
+    <include
+        layout="@layout/bottom_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         />
 
 </FrameLayout>

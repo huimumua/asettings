@@ -18,6 +18,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 
 import java.io.IOException;
 
@@ -33,6 +34,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
     private FrameLayout.LayoutParams layoutParams;
     private int lineCurrentMarginTop, lineCurrentMarginLeft;
     private AdasSettingStatus status;
+    private MarqueeTextView notify_msg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
 
         preview = (SurfaceView) findViewById(R.id.preview);
         line = findViewById(R.id.line);
+        notify_msg = (MarqueeTextView) findViewById(R.id.notify_msg);
         marginTopLayoutParams = new ViewGroup.MarginLayoutParams(line.getLayoutParams());
         line_center = findViewById(R.id.line_center);
         marginLeftLayoutParams = new ViewGroup.MarginLayoutParams(line_center.getLayoutParams());
@@ -66,6 +69,9 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
 
         surfaceHolder = preview.getHolder();
         surfaceHolder.addCallback(this);
+
+        notify_msg.setText(getString(R.string.driving_setting_range_horizon));
+
     }
 
 
@@ -124,12 +130,14 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                     case SETTING_HORIZON:
                         status = AdasSettingStatus.SETTING_HOOD;
                         line.setBackgroundResource(R.drawable.range_setting_hood_line);
+                        notify_msg.setText(getString(R.string.driving_setting_range_hood));
                         break;
                     //引擎盖标记线
                     case SETTING_HOOD:
                         status = AdasSettingStatus.SETTING_CENTER;
                         line.setVisibility(View.GONE);
                         line_center.setVisibility(View.VISIBLE);
+                        notify_msg.setText(getString(R.string.driving_setting_range_center));
                         break;
                     //车道中线标记线
                     case SETTING_CENTER:
@@ -148,6 +156,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                     case SETTING_HOOD:
                         status = AdasSettingStatus.SETTING_HORIZON;
                         line.setBackgroundResource(R.drawable.range_setting_horizon_line);
+                        notify_msg.setText(getString(R.string.driving_setting_range_horizon));
                         return true;
                     //车道中线标记线
                     case SETTING_CENTER:
@@ -155,6 +164,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                         line_center.setVisibility(View.GONE);
                         line.setVisibility(View.VISIBLE);
                         line.setBackgroundResource(R.drawable.range_setting_hood_line);
+                        notify_msg.setText(getString(R.string.driving_setting_range_hood));
                         return true;
                 }
         }

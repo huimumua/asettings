@@ -124,6 +124,10 @@
     <string name="sys_open_license">オープンソースライセンス</string>
     <string name="net_conn">接続</string>
     <string name="net_not_conn">接続されていない</string>
+    
+    <string name="driving_setting_range_horizon">地平線の位置に線を移動させ、決定ボタンを押してください</string>
+    <string name="driving_setting_range_hood">ボンネット先端の位置に線を移動させ、決定ボタンを押してください</string>
+    <string name="driving_setting_range_center">走行車線の中心に線を移動させ、決定ボタンを押してください</string>
 
     <string name="installation_tool_leveler">水準器</string>
     <string name="installation_tool_satellite">衛星受信状態</string>

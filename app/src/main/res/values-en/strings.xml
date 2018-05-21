@@ -125,6 +125,10 @@
     <string name="net_conn">Connected</string>
     <string name="net_not_conn">Not Connect</string>
 
+    <string name="driving_setting_range_horizon">Move the line to the position of the horizon and press decision button</string>
+    <string name="driving_setting_range_hood">Move the line to the position of the bonnet tip and push the decision button</string>
+    <string name="driving_setting_range_center">Move the line to the center of the driving lane and press decision button</string>
+
     <string name="installation_tool_leveler">Leveler</string>
     <string name="installation_tool_satellite">Satellite reception status</string>
     <string name="leveler_detail_title">Level Adjustment</string>
