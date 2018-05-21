@@ -39,8 +39,9 @@ public class SatelliteReceptionStatus extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_installation_satellite);
 
-        initUI();
         initData();
+        initUI();
+
         //获取当前星数
         GPSStatusManager.getInstance().getGpsUsedInFix();
         gpsStatusList = GPSStatusManager.getInstance().getGpsStatusList();
@@ -54,6 +55,9 @@ public class SatelliteReceptionStatus extends BaseActivity{
                 Logg.i(TAG,"=gpsSvInfo.getElevation()="+gpsSvInfo.getElevation());
             }
         }
+
+//        initUI();
+
     }
 
     private void initData() {
@@ -122,8 +126,10 @@ public class SatelliteReceptionStatus extends BaseActivity{
         setTitleView(getResources().getString(R.string.gps_status_title));
 
         hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
-        hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
-        hListView.setAdapter(hListViewAdapter);
+        if(null != gpsStatusList && gpsStatusList.size()>0){
+            hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
+            hListView.setAdapter(hListViewAdapter);
+        }
 
         hListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
