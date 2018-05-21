@@ -63,6 +63,9 @@ public class LCDBrightnessSetting extends BaseActivity {
         r = getResources();
         layers = new Drawable[2];
         layers[1] = r.getDrawable(R.drawable.img_brightness_selected);
+        setRightView(true,true,true);
+        setBottomView(R.drawable.tag_menu_sub_cancel);
+        setRightView(true,0,true,R.drawable.tag_menu_sub_ok,true,0);
     }
 
     @Override
