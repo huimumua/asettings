@@ -64,8 +64,8 @@ public class SdcardInformation extends BaseActivity{
             picture.setText(pictureCurrentSize+backslash+pictureSize);
         }else{
             TextView title = (TextView) this.findViewById(R.id.sdcard_setting_information);
-            TextView normanTitle = (TextView) this.findViewById(R.id.sdcard_normal_dir);
-            TextView eventTitle = (TextView) this.findViewById(R.id.sdcard_event_dir);
+            ImageView normanTitle = (ImageView) this.findViewById(R.id.sdcard_normal_dir);
+            ImageView eventTitle = (ImageView) this.findViewById(R.id.sdcard_event_dir);
             TextView parkingTitle = (TextView) this.findViewById(R.id.sdcard_parking_dir);
             TextView pictureTitle = (TextView) this.findViewById(R.id.sdcard_picture_dir);
             title.setVisibility(View.VISIBLE);
