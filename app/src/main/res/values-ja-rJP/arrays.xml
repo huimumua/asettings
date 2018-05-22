@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="all_switch_item">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+    <string-array name="impact_setting">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="driving_support">
+        <item>前方衝突警告</item>
+        <item>車線逸脱警告</item>
+        <item>歩行者衝突警告</item>
+        <item>取付位置</item>
+        <item>発進遅れ警告</item>
+        <item>検出範囲 </item>
+    </string-array>
+
+    <string-array name="movie_record">
+        <item>音声記録</item>
+        <item>衝撃検知感度</item>
+        <item>情報スタンプ記録</item>
+    </string-array>
+
+    <string-array name="sdcard_record">
+        <item>SDカード情報</item>
+        <item>SDカード初期化</item>
+    </string-array>
+
+    <string-array name="vehicle_type">
+        <item>軽自動車セダン</item>
+        <item>軽自動車ワンボックス</item>
+        <item>5、7ナンバーセダン</item>
+        <item>5、7ナンバーワゴン/RV/ワンボックス</item>
+        <item>3ナンバーセダン</item>
+        <item>3ナンバーワゴン/RV/ワンボックス</item>
+        <item>その他</item>
+    </string-array>
+
+    <string-array name="secend_camera_array">
+        <item>Cabin</item>
+        <item>rear view</item>
+        <item>Level</item>
+    </string-array>
+
+    <string-array name="system_setting">
+        <item>日付/時刻</item>
+        <item>報知音音量</item>
+        <item>再生音量</item>
+        <item>映像確認</item>
+        <item>モニター明るさ</item>
+        <item>モニター画面節電設定</item>
+        <item>設置ツール</item>
+        <item>Bluetooth設定</item>
+        <item>Infrared LED</item>
+        <item>設定初期化</item>
+        <item>セットアップ</item>
+        <item>2ndカメラ設定</item>
+        <item>システム更新</item>
+        <item>システム情報</item>
+    </string-array>
+
+    <string-array name="date_time">
+        <item>自動調整</item>
+        <item>手動設定</item>
+    </string-array>
+
+    <string-array name="montior">
+        <item>時間設定</item>
+        <item>動作設定</item>
+    </string-array>
+
+    <string-array name="monitor_time_settings">
+        <item>10秒</item>
+        <item>１分</item>
+        <item>３分</item>
+    </string-array>
+
+    <string-array name="monitor_operation_settings">
+        <item>常時点灯</item>
+        <item>消灯</item>
+        <item>暗くする</item>
+    </string-array>
+
+    <string-array name="parking_record">
+        <item>録画時間</item>
+    </string-array>
+
+    <string-array name="device_install">
+        <item>左</item>
+        <item>中央</item>
+        <item>右</item>
+    </string-array>
+
+    <string-array name="system_information">
+        <item>システムバージョン X.XX</item>
+        <item>SIM情報</item>
+        <item>オープンソースライセンス</item>
+    </string-array>
+
+    <string-array name="notify_sound_guidance">
+        <item>逆走検知時</item>
+        <item>時速30㎞規制区域(ゾーン30)</item>
+        <item>一時停止</item>
+        <item>事故多発地域接近時</item>
+        <item>走行時間</item>
+        <item>急加速,急減速時</item>
+        <item>ハンドリング</item>
+        <item>ふらつき検知</item>
+        <item>指定区域外走行検知時</item>
+        <item>運転レポート</item>
+        <item>運転前アドバイス</item>
+        <item>お知らせ</item>
+        <item>気象情報</item>
+        <item>動物飛び出し(ロードキル)</item>
+        <item>位置情報に関する通知</item>
+    </string-array>
+
+    <string-array name="system_settings_installation_tool">
+        <item>水準器</item>
+        <item>衛星受信状態</item>
+    </string-array>
+
+    <declare-styleable name="JVCRelativeLayout">
+        <attr name="top_imageview" format="reference"/>
+        <attr name="top_visible" format="boolean"/>
+        <attr name="center_imageview" format="reference"/>
+        <attr name="center_visible" format="boolean"/>
+        <attr name="bottom_imageview" format="reference"/>
+        <attr name="bottom_visible" format="boolean"/>
+        <attr name="back_imageview" format="reference"/>
+        <attr name="back_visible" format="boolean"/>
+        <attr name="showMarqueeTextView" format="boolean"/>
+    </declare-styleable>
+
+    <string-array name="communication">
+        <item>緊急連絡先の表示</item>
+        <item>緊急自動通報設定</item>
+    </string-array>
+
+
+    <string-array name="emergency_automatic_notification">
+        <item>ON</item>
+        <item>OFF</item>
+    </string-array>
+
+    <string-array name="mounting_position">
+        <item>左</item>
+        <item>中央</item>
+        <item>右</item>
+    </string-array>
+
+    <string-array name="service_information">
+        <item>気象通知</item>
+        <item>位置情報サービスより気象情報を通知する</item>
+        <item>ヘルプインデックス</item>
+    </string-array>
+
+    <string-array name="user_list">
+        <item>ユーザー１</item>
+    </string-array>
+</resources>
