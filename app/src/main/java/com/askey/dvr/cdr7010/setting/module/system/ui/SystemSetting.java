@@ -21,6 +21,7 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.FileUtils;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 
 import java.io.File;
 import java.io.IOException;
@@ -123,13 +124,21 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     }
 
     private void showDialog(Context context, String content, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(content);
-        builder.setPositiveButton("OK", okListener);
-        builder.setNegativeButton("Cancel", cancelListener);
-        builder.setCancelable(true);
-        AlertDialog dialog = builder.create();
-        dialog.show();
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setMessage(content);
+//        builder.setPositiveButton("OK", okListener);
+//        builder.setNegativeButton("Cancel", cancelListener);
+//        builder.setCancelable(true);
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+        CommDialog commDialog = new CommDialog(context);
+        commDialog.setMessage(content);
+        commDialog.setDialogWidth(280);
+        commDialog.setDialogHeight(200);
+        commDialog.setPositiveButtonListener(okListener);
+        commDialog.setNegativeButtonListener(cancelListener);
+        commDialog.setCancelable(true);
+        commDialog.show();
     }
 
     private void showLoadingDialog(Context context) {
