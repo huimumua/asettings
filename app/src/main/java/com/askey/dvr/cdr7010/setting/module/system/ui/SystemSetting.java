@@ -1,6 +1,5 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -90,7 +89,17 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
             //恢复出厂设置
-            showDialog(this);
+            showDialog(this, getResources().getString(R.string.sure_to_restore_factory_Settings), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
             PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,true);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
@@ -109,19 +118,19 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         }
     }
 
-    private void showDialog(Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage(getResources().getString(R.string.sure_to_restore_factory_Settings));
-        builder.setPositiveButton(getResources().getString(R.string.sure), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
-            }
-        });
-        builder.setCancelable(true);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
+//    private void showDialog(Context context) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//        builder.setMessage(getResources().getString(R.string.sure_to_restore_factory_Settings));
+//        builder.setPositiveButton(getResources().getString(R.string.sure), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+//            }
+//        });
+//        builder.setCancelable(true);
+//        AlertDialog dialog = builder.create();
+//        dialog.show();
+//    }
 
     private void showDialog(Context context, String content, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
 //        AlertDialog.Builder builder = new AlertDialog.Builder(context);

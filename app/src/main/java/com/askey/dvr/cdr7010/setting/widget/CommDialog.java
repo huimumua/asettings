@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -13,12 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 
 public class CommDialog extends Dialog {
-    private TextView messageText;
+    private MarqueeTextView messageText;
     private Context mContext;
     private String msg;
     private int type = TYPE_BUTTON_OK | TYPE_BUTTON_CANCEL;
@@ -64,12 +64,16 @@ public class CommDialog extends Dialog {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
-        messageText = (TextView) findViewById(R.id.content);
+        messageText = (MarqueeTextView) findViewById(R.id.content);
         messageText.setText(msg);
         messageText.setTextColor(0xcc000000);
         messageText.setTextSize(TypedValue.COMPLEX_UNIT_PX, 22);
         messageText.setGravity(Gravity.CENTER);
+        messageText.setPadding(10,0,10,0);
         messageText.setLineSpacing(1.0f, 1.2f);
+        messageText.setSingleLine();
+        messageText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+        messageText.setMarqueeRepeatLimit(1);
 
         btnOk = (Button) findViewById(R.id.ib_ok);
         btnOk.setOnClickListener(clickListener);

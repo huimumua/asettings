@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting.module.dirving.ui;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
     private int lineCurrentMarginTop, lineCurrentMarginLeft;
     private AdasSettingStatus status;
     private MarqueeTextView notify_msg;
+    private ContentResolver contentResolver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
         marginTopLayoutParams = new ViewGroup.MarginLayoutParams(line.getLayoutParams());
         line_center = findViewById(R.id.line_center);
         marginLeftLayoutParams = new ViewGroup.MarginLayoutParams(line_center.getLayoutParams());
+        contentResolver = getContentResolver();
 
         ViewTreeObserver treeObserver = preview.getViewTreeObserver();
         treeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -63,6 +66,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
 
         //注意这里设置的是上边外距，设置下外边距貌似没用
         lineCurrentMarginTop = 150;
+//        lineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 0);
         setLineMarginTop(lineCurrentMarginTop);
 
         lineCurrentMarginLeft = 150;
