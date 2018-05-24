@@ -39,8 +39,8 @@ public class SatelliteReceptionStatus extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_installation_satellite);
 
-        initData();
-        initUI();
+//        initData();
+//        initUI();
 
         //获取当前星数
         GPSStatusManager.getInstance().getGpsUsedInFix();
@@ -56,7 +56,7 @@ public class SatelliteReceptionStatus extends BaseActivity{
             }
         }
 
-//        initUI();
+        initUI();
 
     }
 

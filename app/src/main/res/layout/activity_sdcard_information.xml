@@ -36,7 +36,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_gravity="center"
         android:layout_marginTop="@dimen/view_margin_top"
         android:layout_marginBottom="@dimen/view_margin_top"
         android:background="@drawable/bg_sd_table_all"
@@ -46,7 +45,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dip"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -62,6 +60,7 @@
                     android:id="@+id/sdcard_normal_dir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/view_margin_top"
                     android:src="@drawable/icon_sd_continious" />
 
                 <TextView
@@ -76,7 +75,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dip"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
                 android:background="@drawable/bg_sd_table2"
@@ -86,7 +84,8 @@
                     android:id="@+id/sdcard_event_dir"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_sd_event" />
+                    android:src="@drawable/icon_sd_event"
+                    android:layout_marginLeft="@dimen/view_margin_top"/>
 
                 <TextView
                     android:id="@+id/sdcard_event_dir_count"
@@ -104,7 +103,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dip"
             android:orientation="horizontal">
 
 
@@ -119,7 +117,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/icon_sd_image" />
+                    android:src="@drawable/icon_sd_image"
+                    android:layout_marginLeft="@dimen/view_margin_top"/>
 
                 <TextView
                     android:id="@+id/sdcard_picture_dir_count"

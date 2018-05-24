@@ -82,11 +82,27 @@ public class HorizontalListViewAdapter extends BaseAdapter{
             holder.mImage.setVisibility(View.INVISIBLE);
             holder.mImage.setText("");
         }else{
+
+//            A: 以8星級來分: 3星以下(含3星) - 橘色
+//            超過3星, 5星以下(含5星) - 黃色
+//            超過5星 - 藍色
+//            B: 以  % 來分:        38%以下(含38%) - 橘色
+//            超過38%, 63%以下(含63%) - 黃色
+//            超過63% - 藍色
+
             int prn = mGpsStatusList.get(position-1).getPrn();
-            linearParams.height = prn;// 控件的高强制设成20
+            int snr = (int) mGpsStatusList.get(position-1).getSnr();
+            linearParams.height = snr;// 控件的高强制设成20
             holder.mImage.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
-            holder.mTitle.setText(prn+"");
-            holder.mValue.setText(mGpsStatusList.get(position-1).getSnr()+"");
+            if(snr>=0 && snr<=38){
+                holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_orange);
+            }else if(snr>38 && snr<=63){
+                holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_yellow);
+            }else if(snr>63){
+                holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_blue);
+            }
+            holder.mTitle.setText(mGpsStatusList.get(position-1).getSnr()+"");
+            holder.mValue.setText(prn+"");
             holder.mImage.setText("");
         }
 
