@@ -8,12 +8,11 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -27,10 +26,11 @@ import com.askey.platform.AskeySettings;
  */
 public class NotificationSoundSetting extends BaseActivity {
 
-    private ImageView notifiSound0, notifiSound1, notifiSound2, notifiSound3, notifiSound4, notifiSound5;
+    private ImageView notificationView;
     int maxVolume, currentVolume;
     private AudioManager mAudioManager;
     private SoundPool pool;
+    private TextView title;
     private ContentResolver contentResolver;
 
     @Override
@@ -42,13 +42,13 @@ public class NotificationSoundSetting extends BaseActivity {
     }
 
     private void initView() {
-        notifiSound0 = (ImageView) findViewById(R.id.iv_notifisound0);
-        notifiSound1 = (ImageView) findViewById(R.id.iv_notifisound1);
-        notifiSound2 = (ImageView) findViewById(R.id.iv_notifisound2);
-        notifiSound3 = (ImageView) findViewById(R.id.iv_notifisound3);
-        notifiSound4 = (ImageView) findViewById(R.id.iv_notifisound4);
-        notifiSound5 = (ImageView) findViewById(R.id.iv_notifisound5);
+        title = (TextView) findViewById(R.id.title_tv);
+        title.setText(getResources().getString(R.string.tv_system_settings_notification_sound_volume));
+        notificationView = (ImageView) findViewById(R.id.iv_notification);
         refreshView();
+        setRightView(true, true, true);
+        setBottomView(R.drawable.tag_menu_sub_cancel);
+        setRightView(true, R.drawable.tag_menu_sub_increase, true, R.drawable.tag_menu_sub_ok, true, R.drawable.tag_menu_sub_decrease);
     }
 
     @Override
@@ -81,47 +81,17 @@ public class NotificationSoundSetting extends BaseActivity {
     private void refreshView() {
         getNotificationSoundInfo();
         if (currentVolume == 0) {
-            notifiSound0.setVisibility(View.VISIBLE);
-            notifiSound1.setVisibility(View.INVISIBLE);
-            notifiSound2.setVisibility(View.INVISIBLE);
-            notifiSound3.setVisibility(View.INVISIBLE);
-            notifiSound4.setVisibility(View.INVISIBLE);
-            notifiSound5.setVisibility(View.INVISIBLE);
+            notificationView.setImageDrawable(getDrawable(R.drawable.icon_large_noti_volume_none));
         } else if (currentVolume == 1) {
-            notifiSound0.setVisibility(View.INVISIBLE);
-            notifiSound1.setVisibility(View.VISIBLE);
-            notifiSound2.setVisibility(View.INVISIBLE);
-            notifiSound3.setVisibility(View.INVISIBLE);
-            notifiSound4.setVisibility(View.INVISIBLE);
-            notifiSound5.setVisibility(View.INVISIBLE);
+            notificationView.setImageDrawable(getDrawable(R.drawable.icon_large_noti_volume1));
         } else if (currentVolume == 2) {
-            notifiSound0.setVisibility(View.INVISIBLE);
-            notifiSound1.setVisibility(View.VISIBLE);
-            notifiSound2.setVisibility(View.VISIBLE);
-            notifiSound3.setVisibility(View.INVISIBLE);
-            notifiSound4.setVisibility(View.INVISIBLE);
-            notifiSound5.setVisibility(View.INVISIBLE);
+            notificationView.setImageDrawable(getDrawable(R.drawable.icon_large_noti_volume2));
         } else if (currentVolume == 3) {
-            notifiSound0.setVisibility(View.INVISIBLE);
-            notifiSound1.setVisibility(View.VISIBLE);
-            notifiSound2.setVisibility(View.VISIBLE);
-            notifiSound3.setVisibility(View.VISIBLE);
-            notifiSound4.setVisibility(View.INVISIBLE);
-            notifiSound5.setVisibility(View.INVISIBLE);
+            notificationView.setImageDrawable(getDrawable(R.drawable.icon_large_noti_volume3));
         } else if (currentVolume == 4) {
-            notifiSound0.setVisibility(View.INVISIBLE);
-            notifiSound1.setVisibility(View.VISIBLE);
-            notifiSound2.setVisibility(View.VISIBLE);
-            notifiSound3.setVisibility(View.VISIBLE);
-            notifiSound4.setVisibility(View.VISIBLE);
-            notifiSound5.setVisibility(View.INVISIBLE);
+            notificationView.setImageDrawable(getDrawable(R.drawable.icon_large_noti_volume4));
         } else if (currentVolume == 5) {
-            notifiSound0.setVisibility(View.INVISIBLE);
-            notifiSound1.setVisibility(View.VISIBLE);
-            notifiSound2.setVisibility(View.VISIBLE);
-            notifiSound3.setVisibility(View.VISIBLE);
-            notifiSound4.setVisibility(View.VISIBLE);
-            notifiSound5.setVisibility(View.VISIBLE);
+            notificationView.setImageDrawable(getDrawable(R.drawable.icon_large_noti_volume5));
         }
     }
 
