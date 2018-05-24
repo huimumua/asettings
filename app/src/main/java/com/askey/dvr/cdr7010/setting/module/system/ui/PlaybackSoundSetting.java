@@ -8,8 +8,8 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
@@ -25,10 +25,11 @@ import com.askey.platform.AskeySettings;
  * 修改备注：
  */
 public class PlaybackSoundSetting extends BaseActivity {
-    private ImageView playBackSound0, playBackSound1, playBackSound2, playBackSound3, playBackSound4, playBackSound5;
+    private ImageView playBackSoundView;
     private int currentVolumeMusic;
     private AudioManager mAudioManager;
     private SoundPool pool;
+    private TextView title;
     private ContentResolver contentResolver;
 
 
@@ -41,13 +42,13 @@ public class PlaybackSoundSetting extends BaseActivity {
     }
 
     private void initView() {
-        playBackSound0 = (ImageView) findViewById(R.id.iv_playBackSound0);
-        playBackSound1 = (ImageView) findViewById(R.id.iv_playBackSound1);
-        playBackSound2 = (ImageView) findViewById(R.id.iv_playBackSound2);
-        playBackSound3 = (ImageView) findViewById(R.id.iv_playBackSound3);
-        playBackSound4 = (ImageView) findViewById(R.id.iv_playBackSound4);
-        playBackSound5 = (ImageView) findViewById(R.id.iv_playBackSound5);
+        title = (TextView) findViewById(R.id.title_tv);
+        title.setText(getResources().getString(R.string.tv_system_settings_playback_volume));
+        playBackSoundView = (ImageView) findViewById(R.id.iv_playback);
         refreshView();
+        setRightView(true, true, true);
+        setBottomView(R.drawable.tag_menu_sub_cancel);
+        setRightView(true, R.drawable.tag_menu_sub_increase, true, R.drawable.tag_menu_sub_ok, true, R.drawable.tag_menu_sub_decrease);
     }
 
     @Override
@@ -80,47 +81,17 @@ public class PlaybackSoundSetting extends BaseActivity {
     private void refreshView() {
         getPlaybackSoundInfo();
         if (currentVolumeMusic == 0) {
-            playBackSound0.setVisibility(View.VISIBLE);
-            playBackSound1.setVisibility(View.INVISIBLE);
-            playBackSound2.setVisibility(View.INVISIBLE);
-            playBackSound3.setVisibility(View.INVISIBLE);
-            playBackSound4.setVisibility(View.INVISIBLE);
-            playBackSound5.setVisibility(View.INVISIBLE);
+            playBackSoundView.setImageDrawable(getDrawable(R.drawable.icon_large_playback_volume_none));
         } else if (currentVolumeMusic == 1) {
-            playBackSound0.setVisibility(View.INVISIBLE);
-            playBackSound1.setVisibility(View.VISIBLE);
-            playBackSound2.setVisibility(View.INVISIBLE);
-            playBackSound3.setVisibility(View.INVISIBLE);
-            playBackSound4.setVisibility(View.INVISIBLE);
-            playBackSound5.setVisibility(View.INVISIBLE);
+            playBackSoundView.setImageDrawable(getDrawable(R.drawable.icon_large_playback_volume1));
         } else if (currentVolumeMusic == 2) {
-            playBackSound0.setVisibility(View.INVISIBLE);
-            playBackSound1.setVisibility(View.VISIBLE);
-            playBackSound2.setVisibility(View.VISIBLE);
-            playBackSound3.setVisibility(View.INVISIBLE);
-            playBackSound4.setVisibility(View.INVISIBLE);
-            playBackSound5.setVisibility(View.INVISIBLE);
+            playBackSoundView.setImageDrawable(getDrawable(R.drawable.icon_large_playback_volume2));
         } else if (currentVolumeMusic == 3) {
-            playBackSound0.setVisibility(View.INVISIBLE);
-            playBackSound1.setVisibility(View.VISIBLE);
-            playBackSound2.setVisibility(View.VISIBLE);
-            playBackSound3.setVisibility(View.VISIBLE);
-            playBackSound4.setVisibility(View.INVISIBLE);
-            playBackSound5.setVisibility(View.INVISIBLE);
+            playBackSoundView.setImageDrawable(getDrawable(R.drawable.icon_large_playback_volume3));
         } else if (currentVolumeMusic == 4) {
-            playBackSound0.setVisibility(View.INVISIBLE);
-            playBackSound1.setVisibility(View.VISIBLE);
-            playBackSound2.setVisibility(View.VISIBLE);
-            playBackSound3.setVisibility(View.VISIBLE);
-            playBackSound4.setVisibility(View.VISIBLE);
-            playBackSound5.setVisibility(View.INVISIBLE);
+            playBackSoundView.setImageDrawable(getDrawable(R.drawable.icon_large_playback_volume4));
         } else if (currentVolumeMusic == 5) {
-            playBackSound0.setVisibility(View.INVISIBLE);
-            playBackSound1.setVisibility(View.VISIBLE);
-            playBackSound2.setVisibility(View.VISIBLE);
-            playBackSound3.setVisibility(View.VISIBLE);
-            playBackSound4.setVisibility(View.VISIBLE);
-            playBackSound5.setVisibility(View.VISIBLE);
+            playBackSoundView.setImageDrawable(getDrawable(R.drawable.icon_large_playback_volume5));
         }
     }
 
