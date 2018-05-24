@@ -84,7 +84,7 @@ public class BaseActivity extends AppCompatActivity{
             if(top){
                 topMenu.setVisibility(View.VISIBLE);
                 if(topButId != 0){
-                    topMenu.setBackgroundResource(bottomButId);
+                    topMenu.setBackgroundResource(topButId);
                 }
             }else{
                 topMenu.setVisibility(View.GONE);
