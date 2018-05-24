@@ -73,7 +73,7 @@ public class CommDialog extends Dialog {
         messageText.setLineSpacing(1.0f, 1.2f);
         messageText.setSingleLine();
         messageText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        messageText.setMarqueeRepeatLimit(1);
+        messageText.setMarqueeRepeatLimit(-1);
 
         btnOk = (Button) findViewById(R.id.ib_ok);
         btnOk.setOnClickListener(clickListener);
