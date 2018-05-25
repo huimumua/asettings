@@ -40,7 +40,7 @@ public class InstallationToolSetting extends SecondBaseActivity implements Adapt
         String clickItem = currentData.get(position).get("menu_item").toString();
         if(clickItem.equals(getResources().getString(R.string.installation_tool_leveler))) {
             //水准器
-            startActivity(new Intent(mContext, LevelerDetailActivity.class));
+            startActivity(new Intent(mContext, LevelerActivity.class));
         }
         if(clickItem.equals(getResources().getString(R.string.installation_tool_satellite))) {
             //卫星收信状态
