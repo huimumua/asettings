@@ -40,8 +40,7 @@ public class GPSStatusManager {
     private ArrayList<GpsSvInfo> gpsStatusList;
 
     LocationListener[] mLocationListeners = new LocationListener[]{
-            new LocationListener(android.location.LocationManager.GPS_PROVIDER)/*,
-            new LocationListener(android.location.LocationManager.NETWORK_PROVIDER)*/
+            new LocationListener(android.location.LocationManager.GPS_PROVIDER)
     };
 
     public interface Listener {
@@ -158,9 +157,8 @@ public class GPSStatusManager {
             if (year < 2017) {
                 mLocationManager.sendExtraCommand("gps", "delete_aiding_data", null);
             }
-            boolean networkRe = mLocationManager.isProviderEnabled(android.location.LocationManager.NETWORK_PROVIDER);
             boolean gpsRe = mLocationManager.isProviderEnabled(android.location.LocationManager.GPS_PROVIDER);
-            if (!(gpsRe && networkRe)) {
+            if (!(gpsRe)) {
                 Logg.i(TAG, "getLocationByGPS:请打开GPS定位功能!");
                 openGPS(mContext);
                 //打开gps
