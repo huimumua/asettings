@@ -92,15 +92,12 @@
     </string-array>
 
     <string-array name="system_setting">
-        <item>日付/時刻</item>
         <item>報知音音量</item>
         <item>再生音量</item>
         <item>映像確認</item>
         <item>モニター明るさ</item>
         <item>モニター画面節電設定</item>
         <item>設置ツール</item>
-        <item>Bluetooth設定</item>
-        <item>Infrared LED</item>
         <item>設定初期化</item>
         <item>セットアップ</item>
         <item>2ndカメラ設定</item>
@@ -108,10 +105,6 @@
         <item>システム情報</item>
     </string-array>
 
-    <string-array name="date_time">
-        <item>自動調整</item>
-        <item>手動設定</item>
-    </string-array>
 
     <string-array name="montior">
         <item>時間設定</item>

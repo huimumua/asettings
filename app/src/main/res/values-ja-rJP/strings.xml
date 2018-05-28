@@ -44,15 +44,12 @@
     <string name="main_menu_cs">通信機能設定</string>
 
     <string name="tv_system_settings">システム設定</string>
-    <string name="tv_system_settings_date_time">日付/時刻</string>
     <string name="tv_system_settings_notification_sound_volume">報知音音量</string>
     <string name="tv_system_settings_playback_volume">再生音量</string>
     <string name="tv_system_settings_preview">映像確認</string>
     <string name="tv_system_settings_lcd_brightness">モニター明るさ</string>
     <string name="tv_system_settings_screen_power_saving">モニター画面節電設定</string>
     <string name="tv_system_settings_installation_tool">設置ツール</string>
-    <string name="tv_system_settings_bluetooth">Bluetooth設定</string>
-    <string name="tv_system_settings_infrared_led">Infrared LED</string>
     <string name="tv_system_settings_setting_initialization">設定初期化</string>
     <string name="tv_system_settings_installation_wizard">セットアップ</string>
     <string name="tv_system_settings_2nd_camera">2ndカメラ設定</string>
@@ -87,10 +84,7 @@
     <string name="sdcard_init_success">初期化しました</string>
     <string name="sdcard_init_fail">初期化に失敗しました</string>
 
-    <string name="tv_date_time">日付/時刻</string>
-    <string name="tv_automatic">自動調整</string>
-    <string name="tv_manual">手動設定</string>
-    <string name="tv_date_time_setting">日時設定画面</string>
+
     <string name="tv_notifacation_valume">音量設定画面</string>
     <string name="tv_playback_valume">音量設定画面</string>
     <string name="tv_brightness_title">モニター明るさ +2</string>

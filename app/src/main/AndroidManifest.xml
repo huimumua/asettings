@@ -54,8 +54,6 @@
         <activity android:name=".module.parking.ui.ParkingRecordSetting" />
         <activity android:name=".module.movie.ui.MovieRecordSetting" />
         <activity android:name=".module.system.ui.LCDBrightnessSetting" />
-        <activity android:name=".module.system.ui.DateTimeSetting" />
-        <activity android:name=".module.system.ui.ManualDateTimeSetting" />
         <activity android:name=".module.system.ui.NotificationSoundSetting" />
         <activity android:name=".module.system.ui.PlaybackSoundSetting" />
         <activity android:name=".module.system.ui.MonitorScreenPowerSavingSetting" />
@@ -94,7 +92,6 @@
         <activity android:name=".module.system.ui.LevelerActivity" />
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
         <activity android:name=".module.system.ui.LevelerDetailActivity" />
-        <activity android:name=".module.system.ui.BluetoothSetting" />
         <activity android:name=".module.communication.ui.CommunicationSetting" />
         <activity android:name=".module.communication.ui.EmergencyAutomaticNotification" />
         <activity android:name=".module.communication.ui.EmergencyContactPerson" />

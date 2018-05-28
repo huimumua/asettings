@@ -46,7 +46,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.tv_system_settings),R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.tv_system_settings), R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
     }
@@ -55,12 +55,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Log.i("SetingActivity", "=position==" + position);
         String clickItem = currentData.get(position).get("menu_item").toString();
-        if (clickItem.equals(getResources().getString(R.string.tv_system_settings_date_time))) {
-            secondMenuItem = getResources().getStringArray(R.array.date_time);
-            Intent intent = new Intent(mContext, DateTimeSetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
-            startActivity(intent);
-        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
+        if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
             Intent intent = new Intent(mContext, NotificationSoundSetting.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_playback_volume))) {
@@ -83,10 +78,6 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             Intent intent = new Intent(mContext, InstallationToolSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_bluetooth))) {
-//            startActivity(new Intent(this, BluetoothSetting.class));
-        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_infrared_led))) {
-
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
             //恢复出厂设置
             showDialog(this, getResources().getString(R.string.sure_to_restore_factory_Settings), new DialogInterface.OnClickListener() {
@@ -101,7 +92,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                 }
             });
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
-            PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,true);
+            PreferencesUtils.put(mContext, Const.SETTTING_FIRST_INIT, true);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {

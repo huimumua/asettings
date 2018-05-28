@@ -44,15 +44,12 @@
     <string name="main_menu_cs">Communication Setting</string>
 
     <string name="tv_system_settings">System settings</string>
-    <string name="tv_system_settings_date_time">Date/Time</string>
     <string name="tv_system_settings_notification_sound_volume">Notification sound volume</string>
     <string name="tv_system_settings_playback_volume">Playback volume</string>
     <string name="tv_system_settings_preview">Preview</string>
     <string name="tv_system_settings_lcd_brightness">LCD Brightness</string>
     <string name="tv_system_settings_screen_power_saving">Monitor screen Power saving setting</string>
     <string name="tv_system_settings_installation_tool">Installation tool</string>
-    <string name="tv_system_settings_bluetooth">Bluetooth</string>
-    <string name="tv_system_settings_infrared_led">Infrared LED</string>
     <string name="tv_system_settings_setting_initialization">Setting initialization</string>
     <string name="tv_system_settings_installation_wizard">Installation wizard</string>
     <string name="tv_system_settings_2nd_camera">2nd Camera</string>
@@ -87,10 +84,7 @@
     <string name="sdcard_init_success">Format Success</string>
     <string name="sdcard_init_fail">Format Failed</string>
 
-    <string name="tv_date_time">Date/time</string>
-    <string name="tv_automatic">Automatic</string>
-    <string name="tv_manual">Manual</string>
-    <string name="tv_date_time_setting">Date/time setting</string>
+
     <string name="tv_notifacation_valume">Volume setting</string>
     <string name="tv_playback_valume">Volume setting</string>
     <string name="tv_brightness_title">Brightness +2</string>
