@@ -49,4 +49,8 @@ public class InstallationToolSetting extends SecondBaseActivity implements Adapt
 
 
     }
+
+
+
+
 }

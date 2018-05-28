@@ -52,6 +52,11 @@ interface IFileManagerAidlInterface {
     * */
     boolean deleteFileByFolder(String type);
 
+    /***
+    * FH_Sync
+    * */
+    boolean FH_Sync();
+
     /**
     * 为setting界面提供sdcardInfo信息
     * */
@@ -66,6 +71,9 @@ interface IFileManagerAidlInterface {
      *检测sdcard是否可用
      * */
      boolean checkSdcardAvailable();
+
+
+
 
 
 }
