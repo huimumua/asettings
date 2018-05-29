@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
@@ -27,7 +28,8 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     private String type;
     private ImageView title_icon;
     private TextView title_tv, phone_number, net, signal, imei, service_status, version, network_type, network_status;
-    private LinearLayout systemVersion, sim, openLicense;
+    private LinearLayout sim, openLicense;
+    private RelativeLayout systemVersion;
     private TelephonyManager mPhoneManager;
 
     @Override
@@ -41,7 +43,7 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        systemVersion = (LinearLayout) findViewById(R.id.system_version);
+        systemVersion = (RelativeLayout) findViewById(R.id.system_version);
         sim = (LinearLayout) findViewById(R.id.sim);
         openLicense = (LinearLayout) findViewById(R.id.open_license);
 
