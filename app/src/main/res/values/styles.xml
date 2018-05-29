@@ -11,10 +11,12 @@
     <style name="AppThemeNoAnimation" parent="AppTheme">
         <item name="android:windowAnimationStyle">@style/NoAnimation</item>
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
     
     <style name="SettingActivityTheme" parent="AppThemeNoAnimation">
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <!--<item name="android:windowIsTranslucent">true</item>-->
     </style>
 
     <style name="NoAnimation">
