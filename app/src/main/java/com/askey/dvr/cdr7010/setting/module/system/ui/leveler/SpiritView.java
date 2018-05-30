@@ -15,33 +15,35 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 
 /**
  * Created by Hades on 16/10/9.
  */
 public class SpiritView extends View {
+    private String TAG = "SpiritView";
     //定义水平仪仪表盘图片
-    public Bitmap back;
+    public Bitmap backBitmap;
     //定义水平仪中气泡图标
-    public Bitmap bubble;
+    public Bitmap bubbleBitmap;
     //定义水平仪中气泡的X、Y坐标
     public int bubbleX,bubbleY;
 
     public SpiritView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        back  = BitmapFactory.decodeResource(getResources(), R.drawable.image_center_level);
+        backBitmap  = BitmapFactory.decodeResource(getResources(), R.drawable.image_center_level);
 
-        bubble = BitmapFactory.decodeResource(getResources(), R.drawable.image_lebel_red);
+        bubbleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_lebel_red);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //绘制水平仪表盘
-        int with = back.getWidth()/2;
-        canvas.drawBitmap(back, getWidth()/2-with, getHeight()/2-with, null);
+        int with = backBitmap.getWidth()/2;
+        canvas.drawBitmap(backBitmap, getWidth()/2-with, getHeight()/2-with, null);
         //根据气泡坐标绘制气泡
-        canvas.drawBitmap(bubble, bubbleX, bubbleY, null);
+        canvas.drawBitmap(bubbleBitmap, bubbleX, bubbleY, null);
     }
 
 }

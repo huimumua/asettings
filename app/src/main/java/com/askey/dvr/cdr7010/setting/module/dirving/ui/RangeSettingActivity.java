@@ -23,14 +23,12 @@ import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 
 import java.io.IOException;
 
-public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.Callback {
+public class RangeSettingActivity extends BaseActivity  {
     private static final String TAG = "RangeSettingActivity";
     private SurfaceView preview;
     private int previewHeight, previewWidth;
-    private SurfaceHolder surfaceHolder;
     private View line, line_center;
-    private Camera camera;
-    private boolean isPreviewing = false;
+
     private ViewGroup.MarginLayoutParams marginTopLayoutParams, marginLeftLayoutParams;
     private FrameLayout.LayoutParams layoutParams;
     private int lineCurrentMarginTop, lineCurrentMarginLeft;
@@ -44,7 +42,7 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
         setContentView(R.layout.activity_range_setting);
 
         status = AdasSettingStatus.SETTING_HORIZON;
-
+        startPreview();
         preview = (SurfaceView) findViewById(R.id.preview);
         line = findViewById(R.id.line);
         notify_msg = (MarqueeTextView) findViewById(R.id.notify_msg);
@@ -70,9 +68,6 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
         setLineMarginTop(lineCurrentMarginTop);
 
         lineCurrentMarginLeft = 150;
-
-        surfaceHolder = preview.getHolder();
-        surfaceHolder.addCallback(this);
 
         notify_msg.setText(getString(R.string.driving_setting_range_horizon));
 
@@ -173,54 +168,6 @@ public class RangeSettingActivity extends BaseActivity implements SurfaceHolder.
                 }
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        startPreview();
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
-        stopPreview();
-    }
-
-    private void startPreview() {
-        if (null != camera || isPreviewing) {
-            stopPreview();
-        }
-        try {
-            camera = Camera.open();
-            camera.setDisplayOrientation(0);
-            camera.setPreviewDisplay(surfaceHolder);
-            camera.startPreview();
-            isPreviewing = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void stopPreview() {
-        try {
-            if (camera != null) {
-                camera.setPreviewDisplay(null);
-                camera.stopPreview();
-                camera.release();
-                camera = null;
-                isPreviewing = false;
-            }
-            if (surfaceHolder != null) {
-                surfaceHolder.getSurface().release();
-                surfaceHolder = null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void setLineMarginTop(int lineCurrentMarginTop) {

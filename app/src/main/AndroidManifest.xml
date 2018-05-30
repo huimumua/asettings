@@ -91,7 +91,7 @@
         <activity android:name=".module.system.ui.SystemInformation" />
         <activity android:name=".module.system.ui.SystemInfoDetailActivity" />
         <activity android:name=".module.system.ui.InstallationToolSetting" />
-        <activity android:name=".module.system.ui.LevelerActivity" />
+        <activity android:name=".module.system.ui.LevelerActivity" android:screenOrientation="landscape"/>
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
         <activity android:name=".module.system.ui.LevelerDetailActivity" />
         <activity android:name=".module.communication.ui.CommunicationSetting" />
