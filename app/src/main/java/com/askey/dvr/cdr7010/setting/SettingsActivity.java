@@ -3,10 +3,15 @@ package com.askey.dvr.cdr7010.setting;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +24,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.askey.dvr.cdr7010.filemanagement.IAskeySettingsAidlInterface;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.module.communication.ui.CommunicationSetting;
@@ -63,6 +69,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
     private int LOCATION_REQUEST_CODE = 10002;//GPS位置权限
 
+    private IAskeySettingsAidlInterface askeySettingsAidlInterface;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +84,11 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         FileManager.getInstance().bindFileManageService();
         GPSStatusManager.getInstance().recordLocation(true);
+
+        Intent settingIntent = new Intent();
+        settingIntent.setAction("com.askey.askeysettingservice.action");
+        settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
+        bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
 
         boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
         if (isFirstInit) {
@@ -128,7 +141,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                 list_view.requestFocusFromTouch();
                 list_view.setSelection(0);
             }
-        },300);
+        }, 300);
     }
 
     @Override
@@ -327,10 +340,33 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         try {
             FileManager.getInstance().unBindFileManageService();
             GPSStatusManager.getInstance().recordLocation(false);
+            unbindService(mConnection);
         } catch (Exception e) {
             Logg.e(LOG_TAG, "onDestroy-->Exception" + e.getMessage());
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        try {
+            askeySettingsAidlInterface.sync();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        super.onBackPressed();
+    }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            askeySettingsAidlInterface = IAskeySettingsAidlInterface.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
 }
