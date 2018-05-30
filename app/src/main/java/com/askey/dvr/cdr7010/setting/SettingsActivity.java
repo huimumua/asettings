@@ -82,14 +82,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         }
-        //向系统setting里面新增我们需要的字段值，name值为系统下的字段值，自定义的貌似不行
-//        Settings.Global.putInt(getContentResolver(), "LED",4);
-
-//        try {
-//            Log.i("tag", Settings.Global.getInt(getContentResolver(), "LED")+"");
-//        } catch (Settings.SettingNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 
     private void initView() {
