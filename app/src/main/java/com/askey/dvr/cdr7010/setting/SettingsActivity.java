@@ -350,7 +350,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onBackPressed() {
         try {
-            askeySettingsAidlInterface.sync();
+            if (null != askeySettingsAidlInterface) {
+                askeySettingsAidlInterface.sync();
+            }
         } catch (RemoteException e) {
             e.printStackTrace();
         }
