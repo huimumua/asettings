@@ -32,7 +32,6 @@ public class BaseActivity extends AppCompatActivity implements SurfaceHolder.Cal
     private final  String  TAG = "BaseActivity";
     protected static Context mContext;
     private Camera camera;
-    private SurfaceView preview;
     private SurfaceHolder surfaceHolder;
     private boolean isPreviewing = false;
 

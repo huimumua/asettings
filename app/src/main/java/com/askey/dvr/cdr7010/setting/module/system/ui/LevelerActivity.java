@@ -41,7 +41,9 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     //定义水平仪的仪表盘
     private SpiritView spiritView;
     //定义水平仪能处理的最大倾斜角度，超过该角度气泡直接位于边界
-    private int MAX_ANGLE = 30;
+//    private int MAX_ANGLE = 30;
+//    private int MAX_ANGLE = 60;
+    private int MAX_ANGLE = 90;
     //定义Sensor管理器
     private SensorManager sensorManager;
     private MarqueeTextView marqueeTextView;
@@ -72,12 +74,6 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         display.getMetrics(metrics);
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
-        Logg.i(TAG,"=screenWidth=x="+screenWidth);
-        Logg.i(TAG,"=screenHeight=y="+screenHeight);
-        Logg.i(TAG,"=spiritView.backBitmap.getWidth()=x="+spiritView.backBitmap.getWidth());
-        Logg.i(TAG,"=spiritView.backBitmap.getHeight()=y="+spiritView.backBitmap.getHeight());
-        Logg.i(TAG,"=spiritView.bubbleBitmap.getWidth()=x="+spiritView.bubbleBitmap.getWidth());
-        Logg.i(TAG,"=spiritView.bubbleBitmap.getHeight()=y="+spiritView.bubbleBitmap.getHeight());
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -98,26 +94,18 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
                 float yAngle = values[1];
                 //获取与Z轴的夹角
                 float zAngle = values[2];
-                Logg.i(TAG,"=onSensorChanged=yAngle="+yAngle);
-                Logg.i(TAG,"=onSensorChanged=zAngle="+zAngle);
+//                Logg.i(TAG,"=onSensorChanged=yAngle="+yAngle+"==zAngle=="+zAngle);
                 //气泡位于中间时（水平仪完全水平）
-//                int x = (spiritView.backBitmap.getWidth() - spiritView.bubbleBitmap.getWidth()) / 2;
-//                int y = (spiritView.backBitmap.getHeight() - spiritView.bubbleBitmap.getHeight()) / 2;
                 int x = spiritView.bubbleBitmap.getWidth()/2;
                 int y = spiritView.bubbleBitmap.getHeight()/2;
                 x= screenWidth/2-x;
                 y = screenHeight/2-y;
-//                y= screenWidth/2-x;
-//                x = screenHeight/2-y;
-                Logg.i(TAG,"=onSensorChanged=x="+x);
-                Logg.i(TAG,"=onSensorChanged=y="+y);
+//                Logg.i(TAG,"=onSensorChanged=x="+x+ "==y=="+y);
                 //如果与Z轴的倾斜角还在最大角度之内
                 if (Math.abs(zAngle) <= MAX_ANGLE) {
                     //根据与Z轴的倾斜角度计算X坐标轴的变化值
-//                    int deltaX = (int) ((spiritView.backBitmap.getWidth() - spiritView.bubbleBitmap.getWidth()) / 2
-//                            * zAngle / MAX_ANGLE);
                     int deltaX = (int)(x * zAngle / MAX_ANGLE);
-                    Logg.i(TAG,"=onSensorChanged=deltaX="+deltaX);
+//                    Logg.i(TAG,"=onSensorChanged=deltaX="+deltaX);
                     x += deltaX;
                 }
                 //如果与Z轴的倾斜角已经大于MAX_ANGLE，气泡应到最左边
@@ -126,23 +114,18 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
                 }
                 //如果与Z轴的倾斜角已经小于负的Max_ANGLE,气泡应到最右边
                 else {
-//                    x = spiritView.backBitmap.getWidth() - spiritView.bubbleBitmap.getWidth();
                     x = screenWidth - spiritView.bubbleBitmap.getWidth();
                 }
 
                 //如果与Y轴的倾斜角还在最大角度之内
                 if (Math.abs(yAngle) <= MAX_ANGLE) {
                     //根据与Z轴的倾斜角度计算X坐标轴的变化值
-//                    int deltaY = (int) ((spiritView.backBitmap.getHeight() - spiritView.bubbleBitmap.getHeight()) / 2
-//                            * yAngle / MAX_ANGLE);
-
                     int deltaY = (int)(y * yAngle / MAX_ANGLE);
-                    Logg.i(TAG,"=onSensorChanged=deltaY="+deltaY);
+//                    Logg.i(TAG,"=onSensorChanged=deltaY="+deltaY);
                     y += deltaY;
                 }
                 //如果与Y轴的倾斜角已经大于MAX_ANGLE，气泡应到最下边
                 else if (yAngle > MAX_ANGLE) {
-//                    y = spiritView.backBitmap.getHeight() - spiritView.bubbleBitmap.getHeight();
                     y = screenHeight - spiritView.bubbleBitmap.getHeight();
                 }
                 //如果与Y轴的倾斜角已经小于负的Max_ANGLE,气泡应到最上边
@@ -154,7 +137,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
                     spiritView.bubbleX = x;
                     spiritView.bubbleY = y;
                 }
-                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
+//                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
                 //通知组件更新
                 spiritView.postInvalidate();
                 //show.invalidate();
@@ -242,8 +225,11 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
             }
 
         }if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(mContext, LevelerDetailActivity.class));
-            finish();
+            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
+            if(isFirstInit){
+                startActivity(new Intent(mContext, LevelerDetailActivity.class));
+                finish();
+            }
         }
         return super.onKeyDown(keyCode, event);
     }

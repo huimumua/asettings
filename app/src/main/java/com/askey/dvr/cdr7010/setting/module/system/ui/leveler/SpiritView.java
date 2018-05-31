@@ -26,6 +26,7 @@ public class SpiritView extends View {
     public Bitmap backBitmap;
     //定义水平仪中气泡图标
     public Bitmap bubbleBitmap;
+    public Bitmap bubbleBitmapGreen;
     //定义水平仪中气泡的X、Y坐标
     public int bubbleX,bubbleY;
 
@@ -34,6 +35,8 @@ public class SpiritView extends View {
         backBitmap  = BitmapFactory.decodeResource(getResources(), R.drawable.image_center_level);
 
         bubbleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.image_lebel_red);
+
+        bubbleBitmapGreen = BitmapFactory.decodeResource(getResources(), R.drawable.image_level_green);
     }
 
     @Override
@@ -42,8 +45,13 @@ public class SpiritView extends View {
         //绘制水平仪表盘
         int with = backBitmap.getWidth()/2;
         canvas.drawBitmap(backBitmap, getWidth()/2-with, getHeight()/2-with, null);
-        //根据气泡坐标绘制气泡
-        canvas.drawBitmap(bubbleBitmap, bubbleX, bubbleY, null);
+        //根据气泡坐标绘制气泡  bubbleX = 125 bubbleY = 85
+        if(bubbleX>95 && bubbleX<155 && bubbleY>75 && bubbleY< 95){
+            canvas.drawBitmap(bubbleBitmapGreen, bubbleX, bubbleY, null);
+        }else{
+            canvas.drawBitmap(bubbleBitmap, bubbleX, bubbleY, null);
+        }
+
     }
 
 }
