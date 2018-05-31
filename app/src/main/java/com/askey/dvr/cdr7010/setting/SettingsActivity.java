@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -12,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -42,6 +44,7 @@ import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
+import com.askey.platform.AskeySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -71,7 +74,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     private IAskeySettingsAidlInterface askeySettingsAidlInterface;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,8 +92,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
         bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
 
-        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
-        if (isFirstInit) {
+        ContentResolver contentResolver = getContentResolver();
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+        if (car_type==1) {
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         }

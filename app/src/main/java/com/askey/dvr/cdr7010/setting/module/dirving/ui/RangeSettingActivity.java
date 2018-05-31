@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.SurfaceHolder;
@@ -20,6 +21,7 @@ import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
+import com.askey.platform.AskeySettings;
 
 import java.io.IOException;
 
@@ -113,16 +115,14 @@ public class RangeSettingActivity extends BaseActivity  {
                 break;
             case KeyEvent.KEYCODE_ENTER:
                 Logg.i(TAG, "===KeyEvent.KEYCODE_ENTER===");
-                boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
-                if (isFirstInit) {
+                ContentResolver contentResolver = getContentResolver();
+                int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+                if (car_type==1) {
                     Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
                     intent.putExtra("set_wizard_help_index", "set_wizard_help_finish");
                     startActivity(intent);
                     finish();
-//                    PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
-//                    AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
                 }
-                Logg.i(TAG, "===KeyEvent.KEYCODE_ENTER===");
 
                 switch (status) {
                     //地平线标记线

@@ -1,8 +1,10 @@
 package com.askey.dvr.cdr7010.setting;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -34,6 +37,7 @@ public class SetWizardHelpActivity extends BaseActivity {
     private final String LOG_TAG = "SetWizardHelpActivity";
     private String currentUi = "set_wizard_help_start_setting";
     private TextView setWizardhelp;
+    private ContentResolver contentResolver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class SetWizardHelpActivity extends BaseActivity {
 
         setWizardhelp = (TextView) this.findViewById(R.id.set_wizard_help_context);
         setRightView(false,true,false);
-
+        contentResolver = getContentResolver();
 
         currentUi = getIntent().getStringExtra("set_wizard_help_index");
         String indexStr = "";
@@ -89,7 +93,7 @@ public class SetWizardHelpActivity extends BaseActivity {
                 String str = getResources().getString(R.string.set_wizard_help_context_range);
                 setWizardhelp.setText(str);
             }else if(currentUi.equals("set_wizard_help_context_range")){
-                PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
                 Intent intent = new Intent(mContext,SettingsActivity.class);
                 startActivity(intent);
                 finish();
@@ -97,8 +101,6 @@ public class SetWizardHelpActivity extends BaseActivity {
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_ENTER){
             if(currentUi.equals("set_wizard_help_start_setting")){
-//                String str = getResources().getString(R.string.set_wizard_help_context_leveler);
-//                setWizardhelp.setText(str);
                 startActivity(new Intent(mContext, LevelerDetailActivity.class));
                 finish();
             }else if(currentUi.equals("set_wizard_help_context_vehicle_type")){
@@ -115,8 +117,7 @@ public class SetWizardHelpActivity extends BaseActivity {
                 Intent intent = new Intent(mContext,RangeSettingActivity.class);
                 startActivity(intent);
             }else if(currentUi.equals("set_wizard_help_finish")){
-                PreferencesUtils.put(mContext,Const.SETTTING_FIRST_INIT,false);
-//                AppUtil.startActivity(mContext,Const.DVR_MAIN_PAKAGE, Const.DVR_MAIN_CLASS,true);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
                 Intent intent = new Intent(mContext,SettingsActivity.class);
                 startActivity(intent);
                 SettingApplication.finishActivity(SetWizardHelpActivity.class);

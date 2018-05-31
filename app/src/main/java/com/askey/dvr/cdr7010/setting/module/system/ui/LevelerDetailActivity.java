@@ -1,7 +1,9 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
@@ -16,6 +18,7 @@ import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -48,8 +51,9 @@ public class LevelerDetailActivity extends BaseActivity{
             finish();
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_BACK){
-            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
-            if (isFirstInit) {
+            ContentResolver contentResolver = getContentResolver();
+            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+            if (car_type==1) {
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
                 intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
                 startActivity(intent);

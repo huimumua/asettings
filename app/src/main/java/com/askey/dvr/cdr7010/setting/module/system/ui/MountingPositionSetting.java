@@ -60,8 +60,9 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
             Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 2);
         }
 
-        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
-        if(isFirstInit){
+        ContentResolver contentResolver = getContentResolver();
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+        if (car_type==1) {
             Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
             intent.putExtra("set_wizard_help_index", "set_wizard_help_context_range");
             startActivity(intent);

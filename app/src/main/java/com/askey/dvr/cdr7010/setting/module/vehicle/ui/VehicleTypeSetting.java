@@ -68,8 +68,9 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
             Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 6);
         }
 
-        boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT, true);
-        if (isFirstInit) {
+        ContentResolver contentResolver = getContentResolver();
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+        if (car_type==1) {
             Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
             intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
             startActivity(intent);

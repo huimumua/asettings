@@ -1,5 +1,6 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -8,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
@@ -23,6 +25,7 @@ import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
+import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -48,6 +51,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     private SensorManager sensorManager;
     private MarqueeTextView marqueeTextView;
     private int screenWidth ,screenHeight;
+    private  ContentResolver contentResolver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
         startPreview();
         setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
 
+        contentResolver = getContentResolver();
         //获取窗口管理器
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         //获取屏幕的高度和宽度
@@ -215,8 +220,8 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
-            if(isFirstInit){
+            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+            if (car_type==1) {
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
                 intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
                 startActivity(intent);
@@ -225,8 +230,8 @@ public class LevelerActivity extends BaseActivity implements SensorEventListener
             }
 
         }if (keyCode == KeyEvent.KEYCODE_BACK) {
-            boolean isFirstInit = (boolean) PreferencesUtils.get(mContext, Const.SETTTING_FIRST_INIT,true);
-            if(isFirstInit){
+            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+            if (car_type==1) {
                 startActivity(new Intent(mContext, LevelerDetailActivity.class));
                 finish();
             }

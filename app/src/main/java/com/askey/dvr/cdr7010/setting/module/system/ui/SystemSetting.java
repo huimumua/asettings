@@ -1,6 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.RecoverySystem;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +23,7 @@ import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.FileUtils;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
+import com.askey.platform.AskeySettings;
 
 import java.io.File;
 import java.io.IOException;
@@ -92,7 +95,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                 }
             });
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
-            PreferencesUtils.put(mContext, Const.SETTTING_FIRST_INIT, true);
+            ContentResolver contentResolver = getContentResolver();
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
