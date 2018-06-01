@@ -196,8 +196,8 @@
     <string name="road_kill">動物飛び出し(ロードキル)</string>
     <string name="location_information">位置情報に関する通知</string>
 
-    <string name="skip">Skip</string>
-    <string name="sdcard_info_title">Number of files in each folder</string>
-    <string name="sdcard_info_context_explane">Current / Maximum</string>
+    <string name="skip">スキップ</string>
+    <string name="sdcard_info_title">各フォルダのファイル数</string>
+    <string name="sdcard_info_context_explane">現在 / 最大</string>
 
 </resources>
