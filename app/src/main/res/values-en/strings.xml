@@ -12,7 +12,7 @@
     <string name="main_menu_ss">System Setting</string>
     <string name="main_menu_scm">SD Card Menu</string>
     <string name="main_menu_si">Service Information</string>
-    <string name="main_menu_cs">Communication Setting</string>
+    <string name="main_menu_cs">Communication Function Setting</string>
 
     <string name="tv_system_settings">System settings</string>
     <string name="tv_system_settings_notification_sound_volume">Notification sound volume</string>
