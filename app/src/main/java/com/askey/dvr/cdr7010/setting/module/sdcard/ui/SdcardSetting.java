@@ -5,12 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.sdcard.controller.SdcardFormatAsyncTask;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 
@@ -58,6 +60,9 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
+                    jvcRelativeLayout.setBack_visible(false);
+                    jvcRelativeLayout.setTop_visible(false);
+                    jvcRelativeLayout.setBottom_visible(false);
                     showFormatResultDialog(0,getResources().getString(R.string.sdcard_init_ongoing));
                     doSdcardformat();
                 }
@@ -76,6 +81,9 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
+                jvcRelativeLayout.setBack_visible(true);
+                jvcRelativeLayout.setTop_visible(true);
+                jvcRelativeLayout.setBottom_visible(true);
             }
         });
     }
@@ -89,6 +97,16 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         commDialog.setPositiveButtonListener(okListener);
         commDialog.setNegativeButtonListener(cancelListener);
         commDialog.setCancelable(true);
+        commDialog.setCanceledOnTouchOutside(false);
+        commDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0) {
+                    return true;
+                }
+                return false;
+            }
+        });
         commDialog.show();
     }
 
@@ -102,7 +120,19 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         commDialog.setDialogHeight(200);
         commDialog.setPositiveButtonListener(okListener);
         commDialog.setCancelable(true);
+        commDialog.setCanceledOnTouchOutside(false);
         commDialog.setType(type);
+        commDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0) {
+                    if(commDialog!=null && commDialog.isShowing()){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
         commDialog.show();
     }
 
@@ -120,4 +150,6 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
             showFormatResultDialog(1,getResources().getString(R.string.sdcard_init_fail));
         }
     }
+
+
 }
