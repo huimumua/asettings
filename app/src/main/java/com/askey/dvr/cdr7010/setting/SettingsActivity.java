@@ -109,7 +109,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                 }
                 Looper.loop();
             }
-        }).start();;
+        }).start();
     }
 
     private void initView() {
