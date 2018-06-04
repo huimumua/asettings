@@ -1,5 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.sdcard.ui;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +10,9 @@ import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.module.sdcard.controller.SdcardFormatAsyncTask;
 import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
+import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 
 /**
  * 项目名称：settings
@@ -19,10 +23,12 @@ import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
  * 修改时间：2018/4/8 13:29
  * 修改备注：
  */
-public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener{
+public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener, SdcardFormatAsyncTask.PartitionCallback{
 
     private static final String TAG = "SdcardSetting";
     private Boolean isExist = false;
+    private SdcardFormatAsyncTask sdcardFormatAsyncTask;
+    private CommDialog commDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,10 +54,70 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
             startActivity(new Intent(mContext, SdcardInformation.class));
         }
         if(clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization)) /*&& isExist*/) {
-            startActivity(new Intent(mContext, SdcardInitialization.class));
+            showDialog(this, getResources().getString(R.string.sdcard_init_prompt), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    showFormatResultDialog(0,getResources().getString(R.string.sdcard_init_ongoing));
+                    doSdcardformat();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
         }
 
     }
 
+    private void showFormatResultDialog(int type,String title) {
+        showDialog(this,type, title, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+    }
 
+
+    private void showDialog(Context context, String content, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
+        CommDialog commDialog = new CommDialog(context);
+        commDialog.setMessage(content);
+        commDialog.setDialogWidth(280);
+        commDialog.setDialogHeight(200);
+        commDialog.setPositiveButtonListener(okListener);
+        commDialog.setNegativeButtonListener(cancelListener);
+        commDialog.setCancelable(true);
+        commDialog.show();
+    }
+
+    private void showDialog(Context context,int type, String content, DialogInterface.OnClickListener okListener) {
+        if(commDialog!=null){
+            commDialog.cancel();
+        }
+        commDialog = new CommDialog(context);
+        commDialog.setMessage(content);
+        commDialog.setDialogWidth(280);
+        commDialog.setDialogHeight(200);
+        commDialog.setPositiveButtonListener(okListener);
+        commDialog.setCancelable(true);
+        commDialog.setType(type);
+        commDialog.show();
+    }
+
+    private void doSdcardformat() {
+        sdcardFormatAsyncTask = new SdcardFormatAsyncTask(this);
+        sdcardFormatAsyncTask.execute();
+    }
+
+
+    @Override
+    public void onPostExecute(boolean ready) {
+        if(ready){
+            showFormatResultDialog(1,getResources().getString(R.string.sdcard_init_success));
+        }else{
+            showFormatResultDialog(1,getResources().getString(R.string.sdcard_init_fail));
+        }
+    }
 }

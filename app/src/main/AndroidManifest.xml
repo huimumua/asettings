@@ -82,7 +82,6 @@
         <activity android:name=".module.dirving.ui.DrivingSetting" />
         <activity android:name=".module.dirving.ui.SwitchActivity" />
         <activity android:name=".module.sdcard.ui.SdcardSetting" />
-        <activity android:name=".module.sdcard.ui.SdcardInitialization" />
         <activity android:name=".module.sdcard.ui.SdcardInformation" />
         <activity android:name=".module.dirving.ui.RangeSettingActivity" />
         <activity android:name=".module.notifacation.ui.NotificationSetting" />
