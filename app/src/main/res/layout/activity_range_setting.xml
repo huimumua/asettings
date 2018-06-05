@@ -15,7 +15,6 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="6dp"
-        android:layout_gravity="center_vertical"
         android:background="@drawable/range_setting_horizon_line"
         android:layerType="software" />
 
@@ -23,7 +22,6 @@
         android:id="@+id/line_center"
         android:layout_width="5dp"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
         android:background="@android:color/background_light"
         android:visibility="gone" />
 
