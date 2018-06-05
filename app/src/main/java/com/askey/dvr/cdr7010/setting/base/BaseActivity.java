@@ -28,12 +28,9 @@ import java.io.IOException;
  * 修改时间：2018/4/8 11:17
  * 修改备注：
  */
-public class BaseActivity extends AppCompatActivity implements SurfaceHolder.Callback {
+public class BaseActivity extends AppCompatActivity  {
     private final  String  TAG = "BaseActivity";
     protected static Context mContext;
-    private Camera camera;
-    private SurfaceHolder surfaceHolder;
-    private boolean isPreviewing = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,14 +38,6 @@ public class BaseActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
         mContext = this;
 
-
-    }
-
-    protected void startPreview(){
-        if((SurfaceView) this.findViewById(R.id.preview)!=null){
-            surfaceHolder = ((SurfaceView) findViewById(R.id.preview)).getHolder();
-            surfaceHolder.addCallback(this);
-        }
     }
 
     protected void setTitleView(String title){
@@ -150,31 +139,44 @@ public class BaseActivity extends AppCompatActivity implements SurfaceHolder.Cal
     }
 
     private int keydowmRepeatCount =0;
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        keydowmRepeatCount++;
+        if(keydowmRepeatCount==1){
+            onKeyHoldHalfASecond(keyCode);
+        }else if(keydowmRepeatCount==2){
+            onKeyHoldOneSecond(keyCode);
+        }else if(keydowmRepeatCount==3){
+            onKeyHoldThreeSecond(keyCode);
+        }
+        return true;
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        keydowmRepeatCount = event.getRepeatCount();
-        switch (event.getRepeatCount()){
-            case 10:
-                onKeyHoldHalfASecond(keyCode);
-                break;
-            case 20:
-                onKeyHoldOneSecond(keyCode);
-                break;
-            case 60:
-                onKeyHoldThreeSecond(keyCode);
-                break;
+        event.startTracking();
+
+        if(keydowmRepeatCount==1){
+            onContinueKeyHoldHalfASecond(keyCode);
+        }else if(keydowmRepeatCount==2){
+            onContinueKeyHoldOneSecond(keyCode);
+        }else if(keydowmRepeatCount==3){
+            onContinueKeyHoldThreeSecond(keyCode);
         }
-        return super.onKeyDown(keyCode, event);
+        return true;
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if(keydowmRepeatCount < 10){
+        event.startTracking();
+        if (keydowmRepeatCount==0) {
             onKeyShortPressed(keyCode);
+        }else{
+            keydowmRepeatCount= 0;
         }
-        return super.onKeyUp(keyCode, event);
+        return true;
     }
-
 
     public void onKeyShortPressed(int keyCode) {
 
@@ -192,52 +194,21 @@ public class BaseActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     }
 
-
-    @Override
-    public void surfaceCreated(SurfaceHolder holder) {
-        preview();
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    private void onContinueKeyHoldHalfASecond(int keyCode) {
 
     }
 
-    @Override
-    public void surfaceDestroyed(SurfaceHolder holder) {
+    private void onContinueKeyHoldOneSecond(int keyCode) {
 
     }
 
-    private void preview() {
-        if (null != camera || isPreviewing) {
-            stopPreview();
-        }
-        try {
-            camera = Camera.open();
-            camera.setPreviewDisplay(surfaceHolder);
-            camera.startPreview();
-            isPreviewing = true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void onContinueKeyHoldThreeSecond(int keyCode) {
+
     }
 
-    protected void stopPreview() {
-        try {
-            if(camera!=null){
-                camera.setPreviewDisplay(null);
-                camera.stopPreview();
-                camera.release();
-                camera = null ;
-                isPreviewing = false;
-            }
-            if(surfaceHolder!=null){
-                surfaceHolder.getSurface().release();
-                surfaceHolder =null;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
+
+
+
 
 }

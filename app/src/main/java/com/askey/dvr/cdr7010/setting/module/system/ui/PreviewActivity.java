@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 /**
@@ -16,7 +17,7 @@ import com.askey.dvr.cdr7010.setting.util.Logg;
  * 修改时间：2018/5/14 9:26
  * 修改备注：
  */
-public class PreviewActivity extends BaseActivity {
+public class PreviewActivity extends CameraBaseActivity {
     private static final String TAG = "PreviewActivity";
 
     @Override

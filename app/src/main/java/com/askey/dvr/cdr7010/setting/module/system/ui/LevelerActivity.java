@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
@@ -39,7 +40,7 @@ import com.askey.platform.AskeySettings;
 
 
 @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
-public class LevelerActivity extends BaseActivity implements SensorEventListener {
+public class LevelerActivity extends CameraBaseActivity implements SensorEventListener {
     private static final String TAG = "LevelerActivity";
     //定义水平仪的仪表盘
     private SpiritView spiritView;

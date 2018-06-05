@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
@@ -25,7 +26,7 @@ import com.askey.platform.AskeySettings;
 
 import java.io.IOException;
 
-public class RangeSettingActivity extends BaseActivity  {
+public class RangeSettingActivity extends CameraBaseActivity {
     private static final String TAG = "RangeSettingActivity";
     private SurfaceView preview;
     private int previewHeight, previewWidth;

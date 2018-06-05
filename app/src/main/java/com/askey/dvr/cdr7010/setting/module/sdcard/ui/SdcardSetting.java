@@ -151,5 +151,4 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         }
     }
 
-
 }

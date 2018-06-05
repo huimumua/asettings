@@ -386,4 +386,5 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }
     };
 
+
 }
