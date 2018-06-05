@@ -125,8 +125,6 @@ public class RangeSettingActivity extends CameraBaseActivity {
                             setLineMarginLeft(lineCurrentMarginLeft);
                         }
                         break;
-                    default:
-
                 }
                 break;
             case KeyEvent.KEYCODE_ENTER:
