@@ -1,13 +1,8 @@
 package com.askey.dvr.cdr7010.setting;
 
-import android.content.ComponentName;
 import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.RemoteException;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -47,11 +42,6 @@ public class SetWizardHelpActivity extends BaseActivity {
         setRightView(false,true,false);
         contentResolver = getContentResolver();
 
-        Intent intent = new Intent();
-        intent.setAction("jvcmodule.local.CommuicationService");
-        intent.setPackage("com.askey.dvr.cdr7010.dashcam");
-        bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
-
         currentUi = getIntent().getStringExtra("set_wizard_help_index");
         String indexStr = "";
         if(null == currentUi || currentUi.equals("")){
@@ -81,7 +71,6 @@ public class SetWizardHelpActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(mServiceConnection);
     }
 
     @Override
@@ -129,37 +118,10 @@ public class SetWizardHelpActivity extends BaseActivity {
                 Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
                 Intent intent = new Intent(mContext,SettingsActivity.class);
                 startActivity(intent);
-                if (null != iCommunication) {
-                    try {
-                        iCommunication.endInitialSetup();
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                }
                 SettingApplication.finishActivity(SetWizardHelpActivity.class);
             }
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
-
-    ServiceConnection mServiceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            iCommunication = ICommunication.Stub.asInterface(service);
-            if (null != iCommunication) {
-                try {
-                    iCommunication.startInitialSetup();
-                } catch (RemoteException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-
-        }
-    };
-
 }
