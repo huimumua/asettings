@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.PowerManager;
 import android.os.RecoverySystem;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
@@ -21,7 +20,6 @@ import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.FileUtils;
-import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 import com.askey.platform.AskeySettings;
 
@@ -196,14 +194,15 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            Intent intent = new Intent("com.jvckenwood.versionup.UPDATE_START");
+            sendBroadcast(intent);
             dialog.dismiss();
-            FileUtils.writeFile(Const.COMMAND_PATH, "--update_package=/sdcard/update.zip");
-
-            PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-            if (powerManager != null && FileUtils.isFileExist(Const.COMMAND_PATH)) {
-                powerManager.reboot("recovery-update");
-            }
-//            showLoadingDialog(SystemSetting.this);
+//            FileUtils.writeFile(Const.COMMAND_PATH, "--update_package=/sdcard/update.zip");
+//
+//            PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+//            if (powerManager != null && FileUtils.isFileExist(Const.COMMAND_PATH)) {
+//                powerManager.reboot("recovery-update");
+//            }
         }
     };
     DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
