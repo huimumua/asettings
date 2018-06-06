@@ -19,7 +19,6 @@ import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.util.FileUtils;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 import com.askey.platform.AskeySettings;
 
@@ -101,11 +100,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 //            String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
 //            setViewAndData(list_view, vp_progress, secondCameraMenuItem);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
-            if (FileUtils.isFileExist(Const.OTA_PACKAGE_PATH)) {
-                showDialog(this, getString(R.string.sure_to_update), okListener, cancelListener);
-            } else {
-                Toast.makeText(this, R.string.package_not_exist, Toast.LENGTH_SHORT).show();
-            }
+            showDialog(this, getString(R.string.sure_to_update), okListener, cancelListener);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
         }

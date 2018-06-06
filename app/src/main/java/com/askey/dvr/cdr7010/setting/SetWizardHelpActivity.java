@@ -8,7 +8,6 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
-import com.askey.dvr.cdr7010.dashcam.ICommunication;
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
@@ -31,7 +30,6 @@ public class SetWizardHelpActivity extends BaseActivity {
     private String currentUi = "set_wizard_help_start_setting";
     private TextView setWizardhelp;
     private ContentResolver contentResolver;
-    private ICommunication iCommunication;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
