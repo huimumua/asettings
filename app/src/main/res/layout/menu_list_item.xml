@@ -4,16 +4,16 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical">
 
-    <TextView
+    <com.askey.dvr.cdr7010.setting.widget.TextViewWithCustomFont
         android:id="@+id/list_item"
         android:layout_width="170dp"
         android:layout_height="30dp"
-        android:paddingStart="20dp"
         android:background="@drawable/menu_focus_item_bg"
         android:ellipsize="marquee"
         android:focusableInTouchMode="true"
         android:gravity="center_vertical"
         android:marqueeRepeatLimit="marquee_forever"
+        android:paddingStart="20dp"
         android:singleLine="true"
         android:text="item"
         android:textColor="@android:color/background_light"
