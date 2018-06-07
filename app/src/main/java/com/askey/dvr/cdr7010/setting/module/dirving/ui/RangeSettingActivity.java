@@ -57,11 +57,11 @@ public class RangeSettingActivity extends CameraBaseActivity {
                 previewHeight = preview.getHeight();
                 Log.i("height", previewHeight + "");
                 //注意这里设置的是上边外距，给的是下边距，设置下外边距貌似没用，所以这里做了一下减法
-                fullLineCurrentMarginTop =previewHeight - Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 120);
+                fullLineCurrentMarginTop =Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 120);
                 Log.d("full",fullLineCurrentMarginTop+"");
                 setLineMarginTop(fullLineCurrentMarginTop);
 
-                dottedLineCurrentMarginTop =previewHeight - Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, 178);
+                dottedLineCurrentMarginTop =Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, 178);
                 Log.d("dotted",dottedLineCurrentMarginTop+"");
             }
         });
@@ -149,8 +149,8 @@ public class RangeSettingActivity extends CameraBaseActivity {
                     //车道中线标记线
                     case SETTING_CENTER:
 
-                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_SKYLINE_RANGE,previewHeight-fullLineCurrentMarginTop);
-                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_BONNETY,previewHeight-dottedLineCurrentMarginTop);
+                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_SKYLINE_RANGE,fullLineCurrentMarginTop);
+                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_BONNETY,dottedLineCurrentMarginTop);
                         Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_CENTERX,lineCurrentMarginLeft);
 
                         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
