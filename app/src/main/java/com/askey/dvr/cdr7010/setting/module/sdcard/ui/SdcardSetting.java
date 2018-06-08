@@ -98,15 +98,6 @@ public class SdcardSetting extends SecondBaseActivity implements AdapterView.OnI
         commDialog.setNegativeButtonListener(cancelListener);
         commDialog.setCancelable(true);
         commDialog.setCanceledOnTouchOutside(false);
-        commDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-            @Override
-            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0) {
-                    return true;
-                }
-                return false;
-            }
-        });
         commDialog.show();
     }
 
