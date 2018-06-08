@@ -79,37 +79,25 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        initSetting();
+        requestSdcardPermission();
 
-    }
+        initView();
+        initData();
 
-    private void initSetting() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                requestSdcardPermission();
+        FileManager.getInstance().bindFileManageService();
+        GPSStatusManager.getInstance().recordLocation(true);
 
-                initView();
-                initData();
+        Intent settingIntent = new Intent();
+        settingIntent.setAction("com.askey.askeysettingservice.action");
+        settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
+        bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
 
-                FileManager.getInstance().bindFileManageService();
-                GPSStatusManager.getInstance().recordLocation(true);
-
-                Intent settingIntent = new Intent();
-                settingIntent.setAction("com.askey.askeysettingservice.action");
-                settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
-                bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
-
-                ContentResolver contentResolver = getContentResolver();
-                int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-                if (car_type==1) {
-                    Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-                    startActivity(intent);
-                }
-                Looper.loop();
-            }
-        }).start();
+        ContentResolver contentResolver = getContentResolver();
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+        if (car_type==1) {
+            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+            startActivity(intent);
+        }
     }
 
     private void initView() {
