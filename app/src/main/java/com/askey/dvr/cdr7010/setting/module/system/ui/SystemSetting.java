@@ -190,6 +190,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         @Override
         public void onClick(DialogInterface dialog, int which) {
             Intent intent = new Intent("com.jvckenwood.versionup.UPDATE_START");
+            intent.putExtra("updateInfo",1);
             sendBroadcast(intent);
             dialog.dismiss();
 //            FileUtils.writeFile(Const.COMMAND_PATH, "--update_package=/sdcard/update.zip");
