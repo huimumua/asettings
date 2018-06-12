@@ -35,7 +35,7 @@
     <string name="main_menu_prs">駐車録画設定</string>
     <string name="main_menu_fp">ファイル再生</string>
     <string name="main_menu_mirs">動画記録設定</string>
-    <string name="main_menu_vt">車両タイプ設定</string>
+    <string name="main_menu_em">緊急通報設定</string>
     <string name="main_menu_dsfs">運転支援機能設定</string>
     <string name="main_menu_nsg">音声案内</string>
     <string name="main_menu_ss">システム設定</string>
@@ -97,14 +97,9 @@
     <string name="tv_monitor_operation_off">消灯</string>
     <string name="tv_monitor_operation_dim">暗くする</string>
 
-    <string name="vehicle_type">車両タイプ</string>
-    <string name="vehicle_type_mini_sedan">軽自動車セダン</string>
-    <string name="vehicle_type_minivan">軽自動車ワンボックス</string>
-    <string name="vehicle_type_medium_sedan">5、7ナンバーセダン</string>
-    <string name="vehicle_type_rv">5、7ナンバーワゴン/RV/ワンボックス</string>
-    <string name="vehicle_type_large_sedan">3ナンバーセダン</string>
-    <string name="vehicle_type_suv">3ナンバーワゴン/RV/ワンボックス</string>
-    <string name="vehicle_type_others">その他</string>
+    <!--<string name="vehicle_type">車両タイプ</string>-->
+    <string name="emergency_contacts">緊急連絡先の表示</string>
+    <string name="emergency_automatic_setting">緊急自動通報設定</string>
 
     <string name="sys_phone_number">電話番号</string>
     <string name="sys_network">ネットワーク</string>
@@ -118,7 +113,7 @@
     <string name="sys_open_license">オープンソースライセンス</string>
     <string name="net_conn">接続</string>
     <string name="net_not_conn">接続されていない</string>
-    
+
     <string name="driving_setting_range_horizon">地平線の位置に線を移動させ、決定ボタンを押してください</string>
     <string name="driving_setting_range_hood">ボンネット先端の位置に線を移動させ、決定ボタンを押してください</string>
     <string name="driving_setting_range_center">走行車線の中心に線を移動させ、決定ボタンを押してください</string>

@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -12,9 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.Looper;
 import android.os.RemoteException;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -32,19 +29,18 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.module.communication.ui.CommunicationSetting;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
+import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.service.ui.ServiceSetting;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
-import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
-import com.askey.platform.AskeySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +62,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int screenHeight;
     private int lastPosition;
 
-    private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_mirs, R.string.main_menu_vt, R.string.main_menu_dsfs
+    private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_mirs, R.string.main_menu_em, R.string.main_menu_dsfs
             , R.string.main_menu_nsg, R.string.main_menu_ss, R.string.main_menu_scm, R.string.main_menu_si, R.string.main_menu_cs};
     private String[] secondMenuItem;
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
@@ -92,12 +88,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
         bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
 
-        ContentResolver contentResolver = getContentResolver();
-        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-        if (car_type==1) {
-            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-            startActivity(intent);
-        }
+//        ContentResolver contentResolver = getContentResolver();
+//        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+//        if (car_type==1) {
+//            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+//            startActivity(intent);
+//        }
     }
 
     private void initView() {
@@ -188,9 +184,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, NotificationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_vt))) {
-            secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
-            Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+        } else if (clickItem.equals(getString(R.string.main_menu_em))) {
+            secondMenuItem = getResources().getStringArray(R.array.Emergency_call_setting);
+            Intent intent = new Intent(mContext, EmergencySetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
@@ -230,7 +226,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             iv_icon.setImageResource(R.drawable.img_menu_main_driving_support);
         } else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_audio_guide);
-        } else if (clickItem.equals(getString(R.string.main_menu_vt))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_em))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_car_types);
         } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_communication);

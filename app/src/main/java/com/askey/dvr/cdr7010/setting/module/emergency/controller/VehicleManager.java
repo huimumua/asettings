@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.vehicle.controller;
+package com.askey.dvr.cdr7010.setting.module.emergency.controller;
 
 /**
  * 项目名称：settings

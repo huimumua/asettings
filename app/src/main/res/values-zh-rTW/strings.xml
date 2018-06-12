@@ -6,7 +6,7 @@
     <string name="main_menu_prs">駐車録画設定</string>
     <string name="main_menu_fp">ファイル再生</string>
     <string name="main_menu_mirs">動画記録設定</string>
-    <string name="main_menu_vt">車両タイプ設定</string>
+    <string name="main_menu_em">緊急通報設定</string>
     <string name="main_menu_dsfs">運転支援機能設定</string>
     <string name="main_menu_nsg">音声案内</string>
     <string name="main_menu_ss">システム設定</string>
