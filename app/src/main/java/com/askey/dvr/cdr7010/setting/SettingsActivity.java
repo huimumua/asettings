@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -11,7 +12,9 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.RemoteException;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -41,6 +44,7 @@ import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
+import com.askey.platform.AskeySettings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,24 +80,38 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_settings);
 
         requestSdcardPermission();
-
         initView();
-        initData();
+        initSetting();
 
-        FileManager.getInstance().bindFileManageService();
-        GPSStatusManager.getInstance().recordLocation(true);
+    }
 
-        Intent settingIntent = new Intent();
-        settingIntent.setAction("com.askey.askeysettingservice.action");
-        settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
-        bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
+    private void initSetting() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
 
-//        ContentResolver contentResolver = getContentResolver();
-//        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-//        if (car_type==1) {
-//            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-//            startActivity(intent);
-//        }
+                initData();
+
+                FileManager.getInstance().bindFileManageService();
+                GPSStatusManager.getInstance().recordLocation(true);
+
+                Intent settingIntent = new Intent();
+                settingIntent.setAction("com.askey.askeysettingservice.action");
+                settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
+                bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
+
+                ContentResolver contentResolver = getContentResolver();
+                int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+                if (car_type==1) {
+                    Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+                    startActivity(intent);
+                }
+
+                Looper.loop();
+            }
+        }).start();
+
     }
 
     private void initView() {
@@ -124,11 +142,15 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             dataTotal.add(map);
         }
 
-        if (dataTotal.size() > PERPAGECOUNT) {
-            vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
-        } else {
-            vp_progress.setVisibility(View.INVISIBLE);
-        }
+      runOnUiThread(new Runnable() {
+            public void run() {
+                if (dataTotal.size() > PERPAGECOUNT) {
+                    vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
+                } else {
+                    vp_progress.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         getPerPageData(dataTotal, lastPosition);
 
