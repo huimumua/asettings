@@ -33,9 +33,14 @@
         <item>Sdcard Initialization</item>
     </string-array>
 
-    <string-array name="Emergency_call_setting">
-        <item>Display Emergency Contacts</item>
-        <item>Emergency Automatic Report Setting</item>
+    <string-array name="vehicle_type">
+        <item>Mini sedan</item>
+        <item>Minivan</item>
+        <item>Medium sedan</item>
+        <item>RV</item>
+        <item>Large sedan</item>
+        <item>SUV</item>
+        <item>Others</item>
     </string-array>
 
     <string-array name="secend_camera_array">

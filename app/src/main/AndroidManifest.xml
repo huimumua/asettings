@@ -44,7 +44,9 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/app_name"
-            android:theme="@style/SettingActivityTheme">
+            android:theme="@style/SettingActivityTheme"
+            >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,10 +62,9 @@
         <activity android:name=".module.system.ui.MonitorScreenPowerSavingSetting" />
         <activity android:name=".module.system.ui.MonitorTimeSettings" />
         <activity android:name=".module.system.ui.MonitorOperationSettings" />
-        <activity
-            android:name=".SetWizardHelpActivity"
-            android:launchMode="singleTop" />
+        <activity android:name=".SetWizardHelpActivity" android:launchMode="singleTop"/>
         <activity android:name=".module.system.ui.PreviewActivity" />
+
 
         <receiver
             android:name=".broadcast.SdcardReceiver"
@@ -86,13 +87,11 @@
         <activity android:name=".module.dirving.ui.RangeSettingActivity" />
         <activity android:name=".module.notifacation.ui.NotificationSetting" />
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity" />
-        <activity android:name=".module.emergency.ui.EmergencySetting" />
+        <activity android:name=".module.vehicle.ui.VehicleTypeSetting" />
         <activity android:name=".module.system.ui.SystemInformation" />
         <activity android:name=".module.system.ui.SystemInfoDetailActivity" />
         <activity android:name=".module.system.ui.InstallationToolSetting" />
-        <activity
-            android:name=".module.system.ui.LevelerActivity"
-            android:screenOrientation="landscape" />
+        <activity android:name=".module.system.ui.LevelerActivity" android:screenOrientation="landscape"/>
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
         <activity android:name=".module.system.ui.LevelerDetailActivity" />
         <activity android:name=".module.communication.ui.CommunicationSetting" />
@@ -113,8 +112,7 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".module.user.ui.UserSelectActivity" />
-        <activity android:name=".module.emergency.ui.EmergencySwitchActivity"></activity>
+        <activity android:name=".module.user.ui.UserSelectActivity"></activity>
     </application>
 
 </manifest>

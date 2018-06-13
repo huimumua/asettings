@@ -75,9 +75,14 @@
         <item>SDカード初期化</item>
     </string-array>
 
-    <string-array name="Emergency_call_setting">
-        <item>緊急連絡先の表示</item>
-        <item>緊急自動通報設定</item>
+    <string-array name="vehicle_type">
+        <item>軽自動車セダン</item>
+        <item>軽自動車ワンボックス</item>
+        <item>5、7ナンバーセダン</item>
+        <item>5、7ナンバーワゴン/RV/ワンボックス</item>
+        <item>3ナンバーセダン</item>
+        <item>3ナンバーワゴン/RV/ワンボックス</item>
+        <item>その他</item>
     </string-array>
 
     <string-array name="secend_camera_array">
