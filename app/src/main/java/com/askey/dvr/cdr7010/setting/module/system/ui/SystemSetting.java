@@ -73,6 +73,23 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             Intent intent = new Intent(mContext, MonitorScreenPowerSavingSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
+            ContentResolver contentResolver = getContentResolver();
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+            startActivity(intent);
+        } else if (clickItem.equals(getString(R.string.tv_system_settings_vehicle_type))) {
+            secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
+            Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
+        } else if (clickItem.equals(getResources().getString(R.string.system_range_of))) {
+            startActivity(new Intent(SystemSetting.this, RangeSettingActivity.class));
+        } else if (clickItem.equals(getResources().getString(R.string.device_install_setting))) {
+            secondMenuItem = getResources().getStringArray(R.array.mounting_position);
+            Intent intent = new Intent(SystemSetting.this, MountingPositionSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_tool))) {
             secondMenuItem = getResources().getStringArray(R.array.system_settings_installation_tool);
             Intent intent = new Intent(mContext, InstallationToolSetting.class);
@@ -91,19 +108,19 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                     dialog.dismiss();
                 }
             });
-        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
-            ContentResolver contentResolver = getContentResolver();
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-            startActivity(intent);
-        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
-//            String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
-//            setViewAndData(list_view, vp_progress, secondCameraMenuItem);
+        } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information))) {
+
+        } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization))) {
+
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
             showDialog(this, getString(R.string.sure_to_update), okListener, cancelListener);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
         }
+//        else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_2nd_camera))) {
+//            String[] secondCameraMenuItem = getResources().getStringArray(R.array.secend_camera_array);
+//            setViewAndData(list_view, vp_progress, secondCameraMenuItem);
+//        }
     }
 
 //    private void showDialog(Context context) {

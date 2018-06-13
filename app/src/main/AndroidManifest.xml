@@ -83,10 +83,9 @@
         <activity android:name=".module.dirving.ui.SwitchActivity" />
         <activity android:name=".module.sdcard.ui.SdcardSetting" />
         <activity android:name=".module.sdcard.ui.SdcardInformation" />
-        <activity android:name=".module.dirving.ui.RangeSettingActivity" />
+        <activity android:name=".module.system.ui.RangeSettingActivity" />
         <activity android:name=".module.notifacation.ui.NotificationSetting" />
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity" />
-        <activity android:name=".module.emergency.ui.EmergencySetting" />
         <activity android:name=".module.system.ui.SystemInformation" />
         <activity android:name=".module.system.ui.SystemInfoDetailActivity" />
         <activity android:name=".module.system.ui.InstallationToolSetting" />
@@ -115,6 +114,7 @@
 
         <activity android:name=".module.user.ui.UserSelectActivity" />
         <activity android:name=".module.emergency.ui.EmergencySwitchActivity"></activity>
+        <activity android:name=".module.system.ui.VehicleTypeSetting" />
     </application>
 
 </manifest>

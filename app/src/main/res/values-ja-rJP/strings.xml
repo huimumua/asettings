@@ -171,4 +171,6 @@
     <string name="sdcard_info_title">各フォルダのファイル数</string>
     <string name="sdcard_info_context_explane">現在 / 最大</string>
 
+    <string name="system_range_of">検出範囲</string>
+
 </resources>

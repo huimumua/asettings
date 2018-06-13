@@ -66,10 +66,15 @@
         <item>Preview</item>
         <item>LCD Brightness</item>
         <item>Monitor screen Power saving setting</item>
+        <item>Installation wizard</item>
+        <item>Type of vehicle</item>
+        <item>Range of</item>
+        <item>Device install setting</item>
         <item>Installation tool</item>
         <item>Setting initialization</item>
-        <item>Installation wizard</item>
-        <item>2nd Camera</item>
+        <!--<item>2nd Camera</item>-->
+        <item>Sdcard Information</item>
+        <item>Sdcard Initialization</item>
         <item>System update</item>
         <item>System Information</item>
     </string-array>

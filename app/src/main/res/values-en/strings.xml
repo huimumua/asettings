@@ -167,4 +167,5 @@
     <string name="sdcard_info_title">Number of files in each folder</string>
     <string name="sdcard_info_context_explane">Current / Maximum</string>
 
+    <string name="system_range_of">Range of</string>
 </resources>
