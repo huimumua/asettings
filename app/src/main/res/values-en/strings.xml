@@ -6,7 +6,7 @@
     <string name="main_menu_prs">Parking Recording Setting</string>
     <string name="main_menu_fp">File Playback</string>
     <string name="main_menu_mirs">Movie/Still Image Recording Setting</string>
-    <string name="main_menu_vt">Vehicle Type</string>
+    <string name="main_menu_em">Emergency Call Setting</string>
     <string name="main_menu_dsfs">Driving Support Function Setting</string>
     <string name="main_menu_nsg">Notification Sound Guidance</string>
     <string name="main_menu_ss">System Setting</string>
@@ -68,14 +68,9 @@
     <string name="tv_monitor_operation_off">OFF</string>
     <string name="tv_monitor_operation_dim">Dim</string>
 
-    <string name="vehicle_type">Vehicle Type</string>
-    <string name="vehicle_type_mini_sedan">Mini sedan</string>
-    <string name="vehicle_type_minivan">Minivan</string>
-    <string name="vehicle_type_medium_sedan">Medium sedan</string>
-    <string name="vehicle_type_rv">RV</string>
-    <string name="vehicle_type_large_sedan">Large sedan</string>
-    <string name="vehicle_type_suv">SUV</string>
-    <string name="vehicle_type_others">Others</string>
+    <!--<string name="vehicle_type">Vehicle Type</string>-->
+    <string name="emergency_contacts">Display Emergency Contacts</string>
+    <string name="emergency_automatic_setting">Emergency Automatic Report Setting</string>
 
     <string name="sys_phone_number">Phone Number</string>
     <string name="sys_network">Network</string>
@@ -133,6 +128,7 @@
     <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
     <string name="driving_setting_marqueeText_install">Set to detect the driving lane correctly. Select the horizontal position where this unit is installed</string>
     <string name="driving_setting_marqueeText_pedestrain">When set to ON, we will let you know when a pedestrian approaches</string>
+    <string name="emergency_setting_marqueeText_auto">If set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>
 
     <string name="user_marqueeText">In the case where there is no user name registration, leave it blank, the factory setting value is "user 1" only</string>
     <string name="movie_record_marqueeText_audio">When set to OFF, audio recording by the built-in microphone is stopped</string>
