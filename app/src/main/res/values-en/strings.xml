@@ -128,6 +128,7 @@
     <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
     <string name="driving_setting_marqueeText_install">Set to detect the driving lane correctly. Select the horizontal position where this unit is installed</string>
     <string name="driving_setting_marqueeText_pedestrain">When set to ON, we will let you know when a pedestrian approaches</string>
+    <string name="emergency_setting_marqueeText_auto">If set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>
 
     <string name="user_marqueeText">In the case where there is no user name registration, leave it blank, the factory setting value is "user 1" only</string>
     <string name="movie_record_marqueeText_audio">When set to OFF, audio recording by the built-in microphone is stopped</string>
