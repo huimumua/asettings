@@ -9,9 +9,9 @@
     <string name="main_menu_em">Emergency Call Setting</string>
     <string name="main_menu_dsfs">Driving Support Function Setting</string>
     <string name="main_menu_nsg">Notification Sound Guidance</string>
-    <string name="main_menu_ss">System Setting</string>
+    <string name="main_menu_ss">Basic Setting System</string>
     <string name="main_menu_scm">SD Card Menu</string>
-    <string name="main_menu_si">Service Information</string>
+    <string name="main_menu_si">When In Trouble</string>
     <string name="main_menu_cs">Communication Function Setting</string>
 
     <string name="tv_system_settings">System settings</string>
@@ -147,21 +147,21 @@
     <string name="device_install_setting">Device install setting</string>
     <string name="departure_delay_warning">Departure delay warning</string>
 
-    <string name="reverse_run_detection">Reverse run detection</string>
-    <string name="speed_regulation_area">Speed regulation area</string>
-    <string name="pause">Pause</string>
-    <string name="accident_frequently_occurring_area">Accident frequently occurring area</string>
-    <string name="driving_time">Driving time</string>
-    <string name="rapid_acceleration_sudden_deceleration">Rapid acceleration, sudden deceleration</string>
-    <string name="handling">Handling</string>
-    <string name="fluctuation_detection">Fluctuation detection</string>
-    <string name="driving_outside_the_designated_area">Driving outside the designated area</string>
-    <string name="driving_report">Driving report</string>
+    <string name="reverse_run_detection">Highway backward traveling attention alert</string>
+    <string name="driving_outside_the_designated_area">When you go outside the designated area</string>
     <string name="advice_before_driving">Advice before driving</string>
-    <string name="notification">Notification</string>
+    <string name="driving_report">Driving report notification</string>
+    <string name="rapid_acceleration_sudden_deceleration">Rapid acceleration, rapid deceleration</string>
+    <string name="handling">handling</string>
+    <string name="fluctuation_detection">Wobble</string>
+    <string name="pause">Stop at one time</string>
+    <string name="accident_frequently_occurring_area">When the accident is close to the area</string>
+    <string name="speed_regulation_area">Regulation area of 30 km/h</string>
+    <string name="driving_time">Driving time</string>
+    <string name="road_kill">Animal attention</string>
     <string name="weather_information">Weather information</string>
-    <string name="road_kill">Road Kill</string>
-    <string name="location_information">Location information</string>
+    <string name="notification">Notice</string>
+    <string name="location_information">Notification on GPS (location information)</string>
 
     <string name="skip">Skip</string>
     <string name="sdcard_info_title">Number of files in each folder</string>

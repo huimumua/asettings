@@ -17,9 +17,25 @@
         <item>Front collision warning</item>
         <item>Lane departure warning</item>
         <item>Pedestrian Detection</item>
-        <item>Device install setting</item>
-        <item>Departure delay warning</item>
-        <item>Range of </item>
+        <!--<item>Device install setting</item>-->
+        <!--<item>Departure delay warning</item>-->
+        <!--<item>Range of </item>-->
+
+        <item>Highway backward traveling attention alert</item>
+        <item>When you go outside the designated area</item>
+        <item>Advice before driving</item>
+        <item>Driving report notification</item>
+        <item>Rapid acceleration, rapid deceleration</item>
+        <item>handling</item>
+        <item>Wobble</item>
+        <item>Stop at one time</item>
+        <item>When the accident is close to the area</item>
+        <item>Regulation area of 30 km/h</item>
+        <item>Driving time</item>
+        <item>Animal attention</item>
+        <item>Weather information</item>
+        <item>Notice</item>
+        <item>Notification on GPS (location information)</item>
     </string-array>
 
     <string-array name="movie_record">

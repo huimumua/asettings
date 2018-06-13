@@ -2,35 +2,6 @@
     <string name="app_name">ASettings</string>
 
     <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
-
-    <string name="pref_title_social_recommendations">Enable social recommendations</string>
-    <string name="pref_description_social_recommendations">Recommendations for people to contact
-        based on your message history
-    </string>
-
-    <string name="pref_title_display_name">Display name</string>
-    <string name="pref_default_display_name">John Smith</string>
-
-    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
-    <!-- Example settings for Data & Sync -->
-    <string name="pref_header_data_sync">Data &amp; sync</string>
-
-    <string name="pref_title_sync_frequency">Sync frequency</string>
-
-    <string name="pref_title_system_sync_settings">System sync settings</string>
-
-    <!-- Example settings for Notifications -->
-    <string name="pref_header_notifications">Notifications</string>
-
-    <string name="pref_title_new_message_notifications">New message notifications</string>
-
-    <string name="pref_title_ringtone">Ringtone</string>
-    <string name="pref_ringtone_silent">Silent</string>
-
-    <string name="pref_title_vibrate">Vibrate</string>
     <string name="tv_menu">メニュー</string>
     <string name="main_menu_prs">駐車録画設定</string>
     <string name="main_menu_fp">ファイル再生</string>
@@ -38,9 +9,9 @@
     <string name="main_menu_em">緊急通報設定</string>
     <string name="main_menu_dsfs">運転支援機能設定</string>
     <string name="main_menu_nsg">音声案内</string>
-    <string name="main_menu_ss">システム設定</string>
+    <string name="main_menu_ss">システム基本設定</string>
     <string name="main_menu_scm">SDカードメニュー</string>
-    <string name="main_menu_si">サービスメニュー</string>
+    <string name="main_menu_si">困ったときは</string>
     <string name="main_menu_cs">通信機能設定</string>
 
     <string name="tv_system_settings">システム設定</string>
@@ -97,9 +68,14 @@
     <string name="tv_monitor_operation_off">消灯</string>
     <string name="tv_monitor_operation_dim">暗くする</string>
 
-    <!--<string name="vehicle_type">車両タイプ</string>-->
-    <string name="emergency_contacts">緊急連絡先の表示</string>
-    <string name="emergency_automatic_setting">緊急自動通報設定</string>
+    <string name="vehicle_type">車両タイプ</string>
+    <string name="vehicle_type_mini_sedan">軽自動車セダン</string>
+    <string name="vehicle_type_minivan">軽自動車ワンボックス</string>
+    <string name="vehicle_type_medium_sedan">5、7ナンバーセダン</string>
+    <string name="vehicle_type_rv">5、7ナンバーワゴン/RV/ワンボックス</string>
+    <string name="vehicle_type_large_sedan">3ナンバーセダン</string>
+    <string name="vehicle_type_suv">3ナンバーワゴン/RV/ワンボックス</string>
+    <string name="vehicle_type_others">その他</string>
 
     <string name="sys_phone_number">電話番号</string>
     <string name="sys_network">ネットワーク</string>
@@ -157,7 +133,6 @@
     <string name="driving_setting_marqueeText_departure">ONに設定すると、自車が停車中に前走車との距離が遠くなった時にお知らせします</string>
     <string name="driving_setting_marqueeText_install">走行車線を正しく検出するために設定します。本機を取り付けた水平方向の位置を選択します</string>
     <string name="driving_setting_marqueeText_pedestrain">ONに設定すると、歩行者が近づいた時にお知らせします</string>
-    <string name="emergency_setting_marqueeText_auto">OFFに設定すると、衝撃を検知したときでもコールセンターに自動通報しません</string>
 
     <string name="user_marqueeText">運転された方ごとに運転レポートを作成するために、車を運転される方を選びます</string>
     <string name="movie_record_marqueeText_audio">OFFに設定すると、内蔵マイクによる音声の記録を停止します</string>
@@ -176,21 +151,21 @@
     <string name="device_install_setting">取付位置</string>
     <string name="departure_delay_warning">発進遅れ警告</string>
 
-    <string name="reverse_run_detection">逆走検知時</string>
-    <string name="speed_regulation_area">時速30㎞規制区域(ゾーン30)</string>
-    <string name="pause">一時停止</string>
-    <string name="accident_frequently_occurring_area">事故多発地域接近時</string>
-    <string name="driving_time">走行時間</string>
+    <string name="reverse_run_detection">高速道路逆走注意アラート</string>
+    <string name="driving_outside_the_designated_area">指定区域外走行検知時</string>
+    <string name="advice_before_driving">運転前アドバイス</string>
+    <string name="driving_report">運転レポートの通知</string>
     <string name="rapid_acceleration_sudden_deceleration">急加速,急減速時</string>
     <string name="handling">ハンドリング</string>
-    <string name="fluctuation_detection">ふらつき検知</string>
-    <string name="driving_outside_the_designated_area">指定区域外走行検知時</string>
-    <string name="driving_report">運転レポート</string>
-    <string name="advice_before_driving">運転前アドバイス</string>
-    <string name="notification">お知らせ</string>
+    <string name="fluctuation_detection">ふらつき</string>
+    <string name="pause">一時停止</string>
+    <string name="accident_frequently_occurring_area">事故多発地域接近</string>
+    <string name="speed_regulation_area">時速30㎞規制区域</string>
+    <string name="driving_time">走行時間</string>
+    <string name="road_kill">動物注意</string>
     <string name="weather_information">気象情報</string>
-    <string name="road_kill">動物飛び出し(ロードキル)</string>
-    <string name="location_information">位置情報に関する通知</string>
+    <string name="notification">お知らせ</string>
+    <string name="location_information">GPS（位置情報）に関する通知</string>
 
     <string name="skip">スキップ</string>
     <string name="sdcard_info_title">各フォルダのファイル数</string>

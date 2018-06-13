@@ -95,9 +95,9 @@
             android:screenOrientation="landscape" />
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
         <activity android:name=".module.system.ui.LevelerDetailActivity" />
-        <activity android:name=".module.communication.ui.CommunicationSetting" />
-        <activity android:name=".module.communication.ui.EmergencyAutomaticNotification" />
-        <activity android:name=".module.communication.ui.EmergencyContactPerson" />
+        <activity android:name=".module.emergency.ui.EmergencySetting" />
+        <activity android:name=".module.emergency.ui.EmergencyAutomaticNotification" />
+        <activity android:name=".module.emergency.ui.EmergencyContactPerson" />
         <activity android:name=".module.system.ui.MountingPositionSetting" />
         <activity android:name=".module.service.ui.ServiceSetting" />
         <activity android:name=".module.service.ui.HelpActivity" />

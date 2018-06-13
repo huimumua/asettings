@@ -13,7 +13,6 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
-import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -100,10 +99,10 @@ public class SetWizardHelpActivity extends BaseActivity {
                 startActivity(new Intent(mContext, LevelerDetailActivity.class));
                 finish();
             }else if(currentUi.equals("set_wizard_help_context_vehicle_type")){
-                String[] secondMenuItem = getResources().getStringArray(R.array.Emergency_call_setting);
-                Intent intent = new Intent(mContext, EmergencySetting.class);
-                intent.putExtra("menu_item", secondMenuItem);
-                startActivity(intent);
+//                String[] secondMenuItem = getResources().getStringArray(R.array.Emergency_call_setting);
+//                Intent intent = new Intent(mContext, EmergencySetting.class);
+//                intent.putExtra("menu_item", secondMenuItem);
+//                startActivity(intent);
             }else if(currentUi.equals("set_wizard_help_context_mounting_position")){
                 String[] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
                 Intent intent = new Intent(mContext, MountingPositionSetting.class);

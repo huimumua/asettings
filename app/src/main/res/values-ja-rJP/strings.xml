@@ -9,9 +9,9 @@
     <string name="main_menu_em">緊急通報設定</string>
     <string name="main_menu_dsfs">運転支援機能設定</string>
     <string name="main_menu_nsg">音声案内</string>
-    <string name="main_menu_ss">システム設定</string>
+    <string name="main_menu_ss">システム基本設定</string>
     <string name="main_menu_scm">SDカードメニュー</string>
-    <string name="main_menu_si">サービスメニュー</string>
+    <string name="main_menu_si">困ったときは</string>
     <string name="main_menu_cs">通信機能設定</string>
 
     <string name="tv_system_settings">システム設定</string>
@@ -151,21 +151,21 @@
     <string name="device_install_setting">取付位置</string>
     <string name="departure_delay_warning">発進遅れ警告</string>
 
-    <string name="reverse_run_detection">逆走検知時</string>
-    <string name="speed_regulation_area">時速30㎞規制区域(ゾーン30)</string>
-    <string name="pause">一時停止</string>
-    <string name="accident_frequently_occurring_area">事故多発地域接近時</string>
-    <string name="driving_time">走行時間</string>
+    <string name="reverse_run_detection">高速道路逆走注意アラート</string>
+    <string name="driving_outside_the_designated_area">指定区域外走行検知時</string>
+    <string name="advice_before_driving">運転前アドバイス</string>
+    <string name="driving_report">運転レポートの通知</string>
     <string name="rapid_acceleration_sudden_deceleration">急加速,急減速時</string>
     <string name="handling">ハンドリング</string>
-    <string name="fluctuation_detection">ふらつき検知</string>
-    <string name="driving_outside_the_designated_area">指定区域外走行検知時</string>
-    <string name="driving_report">運転レポート</string>
-    <string name="advice_before_driving">運転前アドバイス</string>
-    <string name="notification">お知らせ</string>
+    <string name="fluctuation_detection">ふらつき</string>
+    <string name="pause">一時停止</string>
+    <string name="accident_frequently_occurring_area">事故多発地域接近</string>
+    <string name="speed_regulation_area">時速30㎞規制区域</string>
+    <string name="driving_time">走行時間</string>
+    <string name="road_kill">動物注意</string>
     <string name="weather_information">気象情報</string>
-    <string name="road_kill">動物飛び出し(ロードキル)</string>
-    <string name="location_information">位置情報に関する通知</string>
+    <string name="notification">お知らせ</string>
+    <string name="location_information">GPS（位置情報）に関する通知</string>
 
     <string name="skip">スキップ</string>
     <string name="sdcard_info_title">各フォルダのファイル数</string>

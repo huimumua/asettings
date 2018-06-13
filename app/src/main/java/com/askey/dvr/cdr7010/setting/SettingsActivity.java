@@ -30,9 +30,8 @@ import android.widget.TextView;
 import com.askey.dvr.cdr7010.filemanagement.IAskeySettingsAidlInterface;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
-import com.askey.dvr.cdr7010.setting.module.communication.ui.CommunicationSetting;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
+import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
 import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
@@ -67,7 +66,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int lastPosition;
 
     private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_mirs, R.string.main_menu_em, R.string.main_menu_dsfs
-            , R.string.main_menu_nsg, R.string.main_menu_ss, R.string.main_menu_scm, R.string.main_menu_si, R.string.main_menu_cs};
+            , R.string.main_menu_ss, R.string.main_menu_si};
     private String[] secondMenuItem;
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
     private int LOCATION_REQUEST_CODE = 10002;//GPS位置权限
@@ -168,23 +167,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-//        if (clickItem.equals(getResources().getString(R.string.main_menu_us))) {
-//            Intent intent = new Intent(mContext, UserSelectActivity.class);
-//            startActivity(intent);
-//        } else
         if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             secondMenuItem = getResources().getStringArray(R.array.system_setting);
             Intent intent = new Intent(mContext, SystemSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }
-//        else if (clickItem.equals(getString(R.string.main_menu_prs))) {
-//            secondMenuItem = getResources().getStringArray(R.array.parking_record);
-//            Intent intent = new Intent(mContext, ParkingRecordSetting.class);
-//            intent.putExtra("menu_item", secondMenuItem);
-//            startActivity(intent);
-//        }
-        else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
             secondMenuItem = getResources().getStringArray(R.array.movie_record);
             Intent intent = new Intent(mContext, MovieRecordSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
@@ -206,14 +194,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, NotificationSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_em))) {
-            secondMenuItem = getResources().getStringArray(R.array.Emergency_call_setting);
-            Intent intent = new Intent(mContext, EmergencySetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
-            startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
+        }  else if (clickItem.equals(getString(R.string.main_menu_em))) {
             secondMenuItem = getResources().getStringArray(R.array.communication);
-            Intent intent = new Intent(mContext, CommunicationSetting.class);
+            Intent intent = new Intent(mContext, EmergencySetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_si))) {
@@ -229,15 +212,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-//        if (clickItem.equals(getResources().getString(R.string.main_menu_us))) {
-//
-//        } else
         if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_settings);
         }
-//        else if (clickItem.equals(getString(R.string.main_menu_prs))) {
-//
-//        }
         else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_movrec_setting);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
