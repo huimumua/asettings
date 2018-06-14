@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.communication.ui;
+package com.askey.dvr.cdr7010.setting.module.emergency.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,8 +18,8 @@ import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
  * 修改时间：2018/4/8 13:19
  * 修改备注：
  */
-public class CommunicationSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
-    private static final String TAG = "CommunicationSetting";
+public class EmergencySetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
+    private static final String TAG = "EmergencySetting";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

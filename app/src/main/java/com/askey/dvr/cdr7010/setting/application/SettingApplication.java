@@ -216,9 +216,10 @@ public class SettingApplication extends Application {
      */
     public  static void appExit() {
         try {
-            Logg.e(TAG,"app exit");
+            Logg.i(TAG,"app exit");
             finishAllActivity();
         } catch (Exception e) {
+            Logg.e(TAG,"appExit-》Exception-》"+e.getMessage());
         }
     }
 

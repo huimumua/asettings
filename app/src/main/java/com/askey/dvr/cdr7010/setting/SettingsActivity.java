@@ -30,15 +30,12 @@ import android.widget.TextView;
 import com.askey.dvr.cdr7010.filemanagement.IAskeySettingsAidlInterface;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
-import com.askey.dvr.cdr7010.setting.module.communication.ui.CommunicationSetting;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
+import com.askey.dvr.cdr7010.setting.module.driving.ui.DrivingSetting;
+import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
-import com.askey.dvr.cdr7010.setting.module.notifacation.ui.NotificationSetting;
-import com.askey.dvr.cdr7010.setting.module.sdcard.ui.SdcardSetting;
 import com.askey.dvr.cdr7010.setting.module.service.ui.ServiceSetting;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
-import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
@@ -66,8 +63,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int screenHeight;
     private int lastPosition;
 
-    private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_mirs, R.string.main_menu_vt, R.string.main_menu_dsfs
-            , R.string.main_menu_nsg, R.string.main_menu_ss, R.string.main_menu_scm, R.string.main_menu_si, R.string.main_menu_cs};
+    private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_mirs, R.string.main_menu_em, R.string.main_menu_dsfs
+            , R.string.main_menu_ss, R.string.main_menu_si};
     private String[] secondMenuItem;
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
     private int LOCATION_REQUEST_CODE = 10002;//GPS位置权限
@@ -80,24 +77,38 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         setContentView(R.layout.activity_settings);
 
         requestSdcardPermission();
-
         initView();
-        initData();
+        initSetting();
 
-        FileManager.getInstance().bindFileManageService();
-        GPSStatusManager.getInstance().recordLocation(true);
+    }
 
-        Intent settingIntent = new Intent();
-        settingIntent.setAction("com.askey.askeysettingservice.action");
-        settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
-        bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
+    private void initSetting() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Looper.prepare();
 
-        ContentResolver contentResolver = getContentResolver();
-        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-        if (car_type==1) {
-            Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-            startActivity(intent);
-        }
+                initData();
+
+                FileManager.getInstance().bindFileManageService();
+                GPSStatusManager.getInstance().recordLocation(true);
+
+                Intent settingIntent = new Intent();
+                settingIntent.setAction("com.askey.askeysettingservice.action");
+                settingIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
+                bindService(settingIntent, mConnection, Context.BIND_AUTO_CREATE);
+
+                ContentResolver contentResolver = getContentResolver();
+                int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+                if (car_type == 1) {
+                    Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+                    startActivity(intent);
+                }
+
+                Looper.loop();
+            }
+        }).start();
+
     }
 
     private void initView() {
@@ -128,11 +139,15 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             dataTotal.add(map);
         }
 
-        if (dataTotal.size() > PERPAGECOUNT) {
-            vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
-        } else {
-            vp_progress.setVisibility(View.INVISIBLE);
-        }
+        runOnUiThread(new Runnable() {
+            public void run() {
+                if (dataTotal.size() > PERPAGECOUNT) {
+                    vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
+                } else {
+                    vp_progress.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         getPerPageData(dataTotal, lastPosition);
 
@@ -150,52 +165,40 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-//        if (clickItem.equals(getResources().getString(R.string.main_menu_us))) {
-//            Intent intent = new Intent(mContext, UserSelectActivity.class);
-//            startActivity(intent);
-//        } else
         if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             secondMenuItem = getResources().getStringArray(R.array.system_setting);
             Intent intent = new Intent(mContext, SystemSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }
-//        else if (clickItem.equals(getString(R.string.main_menu_prs))) {
-//            secondMenuItem = getResources().getStringArray(R.array.parking_record);
-//            Intent intent = new Intent(mContext, ParkingRecordSetting.class);
-//            intent.putExtra("menu_item", secondMenuItem);
-//            startActivity(intent);
-//        }
-        else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
             secondMenuItem = getResources().getStringArray(R.array.movie_record);
             Intent intent = new Intent(mContext, MovieRecordSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
-        } else if (clickItem.equals(getString(R.string.main_menu_scm))) {
-            secondMenuItem = getResources().getStringArray(R.array.sdcard_record);
-            Intent intent = new Intent(mContext, SdcardSetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
-            startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
+        }
+//        else if (clickItem.equals(getString(R.string.main_menu_scm))) {
+//            secondMenuItem = getResources().getStringArray(R.array.sdcard_record);
+//            Intent intent = new Intent(mContext, SdcardSetting.class);
+//            intent.putExtra("menu_item", secondMenuItem);
+//            startActivity(intent);
+//        }
+        else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
             Intent intent = new Intent(mContext, DrivingSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
-            secondMenuItem = getResources().getStringArray(R.array.notify_sound_guidance);
-            Intent intent = new Intent(mContext, NotificationSetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
-            startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_vt))) {
-            secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
-            Intent intent = new Intent(mContext, VehicleTypeSetting.class);
-            intent.putExtra("menu_item", secondMenuItem);
-            startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
+        }
+//        else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
+//            secondMenuItem = getResources().getStringArray(R.array.notify_sound_guidance);
+//            Intent intent = new Intent(mContext, NotificationSetting.class);
+//            intent.putExtra("menu_item", secondMenuItem);
+//            startActivity(intent);
+//        }
+        else if (clickItem.equals(getString(R.string.main_menu_em))) {
             secondMenuItem = getResources().getStringArray(R.array.communication);
-            Intent intent = new Intent(mContext, CommunicationSetting.class);
+            Intent intent = new Intent(mContext, EmergencySetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_si))) {
@@ -211,16 +214,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
-//        if (clickItem.equals(getResources().getString(R.string.main_menu_us))) {
-//
-//        } else
         if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_settings);
-        }
-//        else if (clickItem.equals(getString(R.string.main_menu_prs))) {
-//
-//        }
-        else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_mirs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_movrec_setting);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_playback);
@@ -230,7 +226,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             iv_icon.setImageResource(R.drawable.img_menu_main_driving_support);
         } else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_audio_guide);
-        } else if (clickItem.equals(getString(R.string.main_menu_vt))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_em))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_car_types);
         } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_communication);

@@ -17,14 +17,29 @@
         <item>Front collision warning</item>
         <item>Lane departure warning</item>
         <item>Pedestrian Detection</item>
-        <item>Device install setting</item>
-        <item>Departure delay warning</item>
-        <item>Range of </item>
+        <!--<item>Device install setting</item>-->
+        <!--<item>Departure delay warning</item>-->
+        <!--<item>Range of </item>-->
+
+        <item>Highway backward traveling attention alert</item>
+        <item>When you go outside the designated area</item>
+        <item>Advice before driving</item>
+        <item>Driving report notification</item>
+        <item>Rapid acceleration, rapid deceleration</item>
+        <item>handling</item>
+        <item>Wobble</item>
+        <item>Stop at one time</item>
+        <item>When the accident is close to the area</item>
+        <item>Regulation area of 30 km/h</item>
+        <item>Driving time</item>
+        <item>Animal attention</item>
+        <item>Weather information</item>
+        <item>Notice</item>
+        <item>Notification on GPS (location information)</item>
     </string-array>
 
     <string-array name="movie_record">
         <item>Audio recording</item>
-        <item>Impact detection sensitivity</item>
         <item>Information stamp record</item>
     </string-array>
 
@@ -43,6 +58,11 @@
         <item>Others</item>
     </string-array>
 
+    <string-array name="Emergency_call_setting">
+        <item>Display Emergency Contacts</item>
+        <item>Emergency Automatic Report Setting</item>
+    </string-array>
+
     <string-array name="secend_camera_array">
         <item>Cabin</item>
         <item>rear view</item>
@@ -55,10 +75,15 @@
         <item>Preview</item>
         <item>LCD Brightness</item>
         <item>Monitor screen Power saving setting</item>
+        <item>Installation wizard</item>
+        <item>Type of vehicle</item>
+        <item>Range of</item>
+        <item>Device install setting</item>
         <item>Installation tool</item>
         <item>Setting initialization</item>
-        <item>Installation wizard</item>
-        <item>2nd Camera</item>
+        <!--<item>2nd Camera</item>-->
+        <item>Sdcard Information</item>
+        <item>Sdcard Initialization</item>
         <item>System update</item>
         <item>System Information</item>
     </string-array>
@@ -150,9 +175,7 @@
     </string-array>
 
     <string-array name="service_information">
-        <item>Weather Report</item>
-        <item>Service Information Notified</item>
-        <item>Help</item>
+        <item>Inquiries</item>
     </string-array>
 
     <string-array name="user_list">

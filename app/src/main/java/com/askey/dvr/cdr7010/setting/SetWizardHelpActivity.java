@@ -10,10 +10,11 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.RangeSettingActivity;
+import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
+import com.askey.dvr.cdr7010.setting.module.system.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
-import com.askey.dvr.cdr7010.setting.module.vehicle.ui.VehicleTypeSetting;
+import com.askey.dvr.cdr7010.setting.module.system.ui.VehicleTypeSetting;
 import com.askey.platform.AskeySettings;
 
 /**

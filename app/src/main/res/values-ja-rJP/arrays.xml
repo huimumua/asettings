@@ -17,14 +17,29 @@
         <item>前方衝突警告</item>
         <item>車線逸脱警告</item>
         <item>歩行者衝突警告</item>
-        <item>取付位置</item>
-        <item>発進遅れ警告</item>
-        <item>検出範囲 </item>
+        <!--<item>取付位置</item>-->
+        <!--<item>発進遅れ警告</item>-->
+        <!--<item>検出範囲 </item>-->
+
+        <item>高速道路逆走注意アラート</item>
+        <item>指定区域外走行検知時</item>
+        <item>運転前アドバイス</item>
+        <item>運転レポートの通知</item>
+        <item>急加速,急減速時</item>
+        <item>ハンドリング</item>
+        <item>ふらつき</item>
+        <item>一時停止</item>
+        <item>事故多発地域接近</item>
+        <item>時速30㎞規制区域</item>
+        <item>走行時間</item>
+        <item>動物注意</item>
+        <item>気象情報</item>
+        <item>お知らせ</item>
+        <item>GPS（位置情報）に関する通知</item>
     </string-array>
 
     <string-array name="movie_record">
         <item>音声記録</item>
-        <item>衝撃検知感度</item>
         <item>情報スタンプ記録</item>
     </string-array>
 
@@ -55,10 +70,15 @@
         <item>映像確認</item>
         <item>モニター明るさ</item>
         <item>モニター画面節電設定</item>
+        <item>セットアップ</item>
+        <item>車両タイプ</item>
+        <item>検出範囲</item>
+        <item>取付位置</item>
         <item>設置ツール</item>
         <item>設定初期化</item>
-        <item>セットアップ</item>
-        <item>2ndカメラ設定</item>
+        <!--<item>2ndカメラ設定</item>-->
+        <item>SDカード情報</item>
+        <item>SDカード初期化</item>
         <item>システム更新</item>
         <item>システム情報</item>
     </string-array>
@@ -150,9 +170,7 @@
     </string-array>
 
     <string-array name="service_information">
-        <item>気象通知</item>
-        <item>位置情報サービスより気象情報を通知する</item>
-        <item>ヘルプインデックス</item>
+        <item>お問合せ先</item>
     </string-array>
 
     <string-array name="user_list">

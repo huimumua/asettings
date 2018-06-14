@@ -6,12 +6,12 @@
     <string name="main_menu_prs">Parking Recording Setting</string>
     <string name="main_menu_fp">File Playback</string>
     <string name="main_menu_mirs">Movie/Still Image Recording Setting</string>
-    <string name="main_menu_vt">Vehicle Type</string>
+    <string name="main_menu_em">Emergency Call Setting</string>
     <string name="main_menu_dsfs">Driving Support Function Setting</string>
     <string name="main_menu_nsg">Notification Sound Guidance</string>
-    <string name="main_menu_ss">System Setting</string>
+    <string name="main_menu_ss">Basic Setting System</string>
     <string name="main_menu_scm">SD Card Menu</string>
-    <string name="main_menu_si">Service Information</string>
+    <string name="main_menu_si">When In Trouble</string>
     <string name="main_menu_cs">Communication Function Setting</string>
 
     <string name="tv_system_settings">System settings</string>
@@ -21,6 +21,7 @@
     <string name="tv_system_settings_lcd_brightness">LCD Brightness</string>
     <string name="tv_system_settings_screen_power_saving">Monitor screen Power saving setting</string>
     <string name="tv_system_settings_installation_tool">Installation tool</string>
+    <string name="tv_system_settings_vehicle_type">Type of vehicle</string>
     <string name="tv_system_settings_setting_initialization">Setting initialization</string>
     <string name="tv_system_settings_installation_wizard">Installation wizard</string>
     <string name="tv_system_settings_2nd_camera">2nd Camera</string>
@@ -55,7 +56,6 @@
     <string name="sdcard_init_success">Format Success</string>
     <string name="sdcard_init_fail">Format Failed</string>
 
-
     <string name="tv_notifacation_valume">Volume setting</string>
     <string name="tv_playback_valume">Volume setting</string>
     <string name="tv_brightness_title">Brightness +2</string>
@@ -76,6 +76,10 @@
     <string name="vehicle_type_large_sedan">Large sedan</string>
     <string name="vehicle_type_suv">SUV</string>
     <string name="vehicle_type_others">Others</string>
+
+    <!--<string name="vehicle_type">Vehicle Type</string>-->
+    <string name="emergency_contacts">Display Emergency Contacts</string>
+    <string name="emergency_automatic_setting">Emergency Automatic Report Setting</string>
 
     <string name="sys_phone_number">Phone Number</string>
     <string name="sys_network">Network</string>
@@ -112,7 +116,7 @@
     <string name="mounting_position_middle">Middle</string>
     <string name="mounting_position_right">Right</string>
     <string name="weather_report">Weather Report</string>
-    <string name="help">Help</string>
+    <string name="help">Inquiries</string>
     <string name="service_information_notified">Service Information Notified</string>
     <string name="main_menu_us">User Selection</string>
     <string name="set_wizard_help_context_start_setting">Setting is about to start</string>
@@ -133,6 +137,7 @@
     <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
     <string name="driving_setting_marqueeText_install">Set to detect the driving lane correctly. Select the horizontal position where this unit is installed</string>
     <string name="driving_setting_marqueeText_pedestrain">When set to ON, we will let you know when a pedestrian approaches</string>
+    <string name="emergency_setting_marqueeText_auto">If set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>
 
     <string name="user_marqueeText">In the case where there is no user name registration, leave it blank, the factory setting value is "user 1" only</string>
     <string name="movie_record_marqueeText_audio">When set to OFF, audio recording by the built-in microphone is stopped</string>
@@ -151,24 +156,25 @@
     <string name="device_install_setting">Device install setting</string>
     <string name="departure_delay_warning">Departure delay warning</string>
 
-    <string name="reverse_run_detection">Reverse run detection</string>
-    <string name="speed_regulation_area">Speed regulation area</string>
-    <string name="pause">Pause</string>
-    <string name="accident_frequently_occurring_area">Accident frequently occurring area</string>
-    <string name="driving_time">Driving time</string>
-    <string name="rapid_acceleration_sudden_deceleration">Rapid acceleration, sudden deceleration</string>
-    <string name="handling">Handling</string>
-    <string name="fluctuation_detection">Fluctuation detection</string>
-    <string name="driving_outside_the_designated_area">Driving outside the designated area</string>
-    <string name="driving_report">Driving report</string>
+    <string name="reverse_run_detection">Highway backward traveling attention alert</string>
+    <string name="driving_outside_the_designated_area">When you go outside the designated area</string>
     <string name="advice_before_driving">Advice before driving</string>
-    <string name="notification">Notification</string>
+    <string name="driving_report">Driving report notification</string>
+    <string name="rapid_acceleration_sudden_deceleration">Rapid acceleration, rapid deceleration</string>
+    <string name="handling">handling</string>
+    <string name="fluctuation_detection">Wobble</string>
+    <string name="pause">Stop at one time</string>
+    <string name="accident_frequently_occurring_area">When the accident is close to the area</string>
+    <string name="speed_regulation_area">Regulation area of 30 km/h</string>
+    <string name="driving_time">Driving time</string>
+    <string name="road_kill">Animal attention</string>
     <string name="weather_information">Weather information</string>
-    <string name="road_kill">Road Kill</string>
-    <string name="location_information">Location information</string>
+    <string name="notification">Notice</string>
+    <string name="location_information">Notification on GPS (location information)</string>
 
     <string name="skip">Skip</string>
     <string name="sdcard_info_title">Number of files in each folder</string>
     <string name="sdcard_info_context_explane">Current / Maximum</string>
 
+    <string name="system_range_of">Range of</string>
 </resources>
