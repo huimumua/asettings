@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.dirving.ui;
+package com.askey.dvr.cdr7010.setting.module.driving.ui;
 
 import android.content.ContentResolver;
 import android.os.Bundle;
@@ -33,9 +33,9 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
 
     private void focusItem() {
         list_view.requestFocus();
-        jvcRelativeLayout.setMarquee_visible(true);
         if (switch_tag.equals(getResources().getString(R.string.lane_departure_warning))) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_LDS, 0);
+            jvcRelativeLayout.setMarquee_visible(true);
             jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_lane));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
@@ -44,6 +44,7 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
             }
         } else if (switch_tag.equals(getResources().getString(R.string.front_collision_warning))) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_FCWS, 0);
+            jvcRelativeLayout.setMarquee_visible(true);
             jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_front));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF
@@ -52,6 +53,7 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
             }
         } else if (switch_tag.equals(getResources().getString(R.string.pedestrian_detection))) {
             settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_PEDESTRIAN_COLLISION, 0);
+            jvcRelativeLayout.setMarquee_visible(true);
             jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_pedestrain));
             if (settingValue == 0) {
                 focusPosition = 1;//OFF

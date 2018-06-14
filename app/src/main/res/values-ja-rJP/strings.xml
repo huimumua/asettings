@@ -112,7 +112,7 @@
     <string name="mounting_position_middle">中央</string>
     <string name="mounting_position_right">右</string>
     <string name="weather_report">気象通知</string>
-    <string name="help">ヘルプインデックス</string>
+    <string name="help">お問合せ先</string>
     <string name="service_information_notified">位置情報サービスより気象情報を通知する</string>
     <string name="main_menu_us">ユーザー選択</string>
     <string name="set_wizard_help_context_start_setting">セットアップを開始しますか？</string>

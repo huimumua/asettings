@@ -82,7 +82,6 @@
 
     <string-array name="movie_record">
         <item>音声記録</item>
-        <item>衝撃検知感度</item>
         <item>情報スタンプ記録</item>
     </string-array>
 
@@ -208,9 +207,7 @@
     </string-array>
 
     <string-array name="service_information">
-        <item>気象通知</item>
-        <item>位置情報サービスより気象情報を通知する</item>
-        <item>ヘルプインデックス</item>
+        <item>お問合せ先</item>
     </string-array>
 
     <string-array name="user_list">

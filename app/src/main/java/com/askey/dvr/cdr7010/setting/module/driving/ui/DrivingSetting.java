@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.dirving.ui;
+package com.askey.dvr.cdr7010.setting.module.driving.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -40,7 +40,6 @@
 
     <string-array name="movie_record">
         <item>Audio recording</item>
-        <item>Impact detection sensitivity</item>
         <item>Information stamp record</item>
     </string-array>
 
@@ -166,9 +165,7 @@
     </string-array>
 
     <string-array name="service_information">
-        <item>Weather Report</item>
-        <item>Service Information Notified</item>
-        <item>Help</item>
+        <item>Inquiries</item>
     </string-array>
 
     <string-array name="user_list">

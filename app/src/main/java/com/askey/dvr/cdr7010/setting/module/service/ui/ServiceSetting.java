@@ -36,14 +36,9 @@ public class ServiceSetting extends SecondBaseActivity implements AdapterView.On
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
 
-        if(clickItem.equals(getResources().getString(R.string.weather_report)) ) {
-            startActivity(new Intent(mContext, WeatherReport.class));
-        }else if(clickItem.equals(getResources().getString(R.string.service_information_notified))) {
-            startActivity(new Intent(mContext, LocationInformationNotified.class));
-        }else if(clickItem.equals(getResources().getString(R.string.help))) {
+        if(clickItem.equals(getResources().getString(R.string.help)) ) {
             startActivity(new Intent(mContext, HelpActivity.class));
         }
-
     }
 
 

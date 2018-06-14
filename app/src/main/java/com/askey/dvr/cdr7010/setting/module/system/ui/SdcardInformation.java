@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.sdcard.ui;
+package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

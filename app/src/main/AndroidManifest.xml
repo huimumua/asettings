@@ -79,10 +79,10 @@
         <activity android:name=".module.movie.ui.AudioRecordActivity" />
         <activity android:name=".module.movie.ui.ImpactSensitivityActivity" />
         <activity android:name=".module.movie.ui.InformationStampActivity" />
-        <activity android:name=".module.dirving.ui.DrivingSetting" />
-        <activity android:name=".module.dirving.ui.SwitchActivity" />
+        <activity android:name=".module.driving.ui.DrivingSetting" />
+        <activity android:name=".module.driving.ui.SwitchActivity" />
         <activity android:name=".module.sdcard.ui.SdcardSetting" />
-        <activity android:name=".module.sdcard.ui.SdcardInformation" />
+        <activity android:name=".module.system.ui.SdcardInformation" />
         <activity android:name=".module.system.ui.RangeSettingActivity" />
         <activity android:name=".module.notifacation.ui.NotificationSetting" />
         <activity android:name=".module.notifacation.ui.NotifySwitchActivity" />
@@ -100,8 +100,6 @@
         <activity android:name=".module.system.ui.MountingPositionSetting" />
         <activity android:name=".module.service.ui.ServiceSetting" />
         <activity android:name=".module.service.ui.HelpActivity" />
-        <activity android:name=".module.service.ui.LocationInformationNotified" />
-        <activity android:name=".module.service.ui.WeatherReport" />
 
         <service
             android:name=".module.system.controller.PlaybackSoundService"

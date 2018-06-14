@@ -15,7 +15,7 @@ import android.widget.FrameLayout;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.AdasSettingStatus;
+import com.askey.dvr.cdr7010.setting.module.driving.ui.AdasSettingStatus;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 import com.askey.platform.AskeySettings;

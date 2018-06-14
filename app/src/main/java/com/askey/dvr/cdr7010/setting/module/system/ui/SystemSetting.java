@@ -11,6 +11,7 @@ import android.os.RecoverySystem;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -18,7 +19,9 @@ import android.widget.Toast;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.module.system.controller.SdcardFormatAsyncTask;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 import com.askey.platform.AskeySettings;
 
@@ -36,9 +39,13 @@ import java.security.GeneralSecurityException;
  * 修改备注：
  */
 
-public class SystemSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
+public class SystemSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener ,SdcardFormatAsyncTask.PartitionCallback{
     private static final String TAG = "SystemSetting";
     private String[] secondMenuItem;
+
+    private Boolean isExist = false;
+    private SdcardFormatAsyncTask sdcardFormatAsyncTask;
+    private CommDialog commDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,6 +56,12 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         initView(getResources().getString(R.string.tv_system_settings), R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        isExist = SdcardUtil.checkSdcardExist();
     }
 
     @Override
@@ -108,10 +121,25 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                     dialog.dismiss();
                 }
             });
-        } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information))) {
-
+        } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information)) && isExist) {
+            startActivity(new Intent(mContext, SdcardInformation.class));
         } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization))) {
-
+            showDialog(this, getResources().getString(R.string.sdcard_init_prompt), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    jvcRelativeLayout.setBack_visible(false);
+                    jvcRelativeLayout.setTop_visible(false);
+                    jvcRelativeLayout.setBottom_visible(false);
+                    showFormatResultDialog(0,getResources().getString(R.string.sdcard_init_ongoing));
+                    doSdcardformat();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
             showDialog(this, getString(R.string.sure_to_update), okListener, cancelListener);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
@@ -138,13 +166,6 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 //    }
 
     private void showDialog(Context context, String content, DialogInterface.OnClickListener okListener, DialogInterface.OnClickListener cancelListener) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//        builder.setMessage(content);
-//        builder.setPositiveButton("OK", okListener);
-//        builder.setNegativeButton("Cancel", cancelListener);
-//        builder.setCancelable(true);
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
         CommDialog commDialog = new CommDialog(context);
         commDialog.setMessage(content);
         commDialog.setDialogWidth(280);
@@ -203,6 +224,49 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 
     }
 
+    private void showFormatResultDialog(int type,String title) {
+        showDialog(this,type, title, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                jvcRelativeLayout.setBack_visible(true);
+                jvcRelativeLayout.setTop_visible(true);
+                jvcRelativeLayout.setBottom_visible(true);
+            }
+        });
+    }
+
+    private void showDialog(Context context,int type, String content, DialogInterface.OnClickListener okListener) {
+        if(commDialog!=null){
+            commDialog.cancel();
+        }
+        commDialog = new CommDialog(context);
+        commDialog.setMessage(content);
+        commDialog.setDialogWidth(280);
+        commDialog.setDialogHeight(200);
+        commDialog.setPositiveButtonListener(okListener);
+        commDialog.setCancelable(true);
+        commDialog.setCanceledOnTouchOutside(false);
+        commDialog.setType(type);
+        commDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if(keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount()==0) {
+                    if(commDialog!=null && commDialog.isShowing()){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        commDialog.show();
+    }
+
+    private void doSdcardformat() {
+        sdcardFormatAsyncTask = new SdcardFormatAsyncTask(this);
+        sdcardFormatAsyncTask.execute();
+    }
+
     DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -223,4 +287,13 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             dialog.dismiss();
         }
     };
+
+    @Override
+    public void onPostExecute(boolean ready) {
+        if(ready){
+            showFormatResultDialog(1,getResources().getString(R.string.sdcard_init_success));
+        }else{
+            showFormatResultDialog(1,getResources().getString(R.string.sdcard_init_fail));
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.dirving.controller;
+package com.askey.dvr.cdr7010.setting.module.driving.controller;
 
 /**
  * 项目名称：settings

@@ -1,4 +1,4 @@
-package com.askey.dvr.cdr7010.setting.module.sdcard.controller;
+package com.askey.dvr.cdr7010.setting.module.system.controller;
 
 import android.content.ComponentName;
 import android.content.Context;

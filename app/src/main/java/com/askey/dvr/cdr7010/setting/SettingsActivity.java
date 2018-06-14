@@ -30,7 +30,7 @@ import android.widget.TextView;
 import com.askey.dvr.cdr7010.filemanagement.IAskeySettingsAidlInterface;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
-import com.askey.dvr.cdr7010.setting.module.dirving.ui.DrivingSetting;
+import com.askey.dvr.cdr7010.setting.module.driving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.service.ui.ServiceSetting;
