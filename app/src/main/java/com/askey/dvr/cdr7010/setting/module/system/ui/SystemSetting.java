@@ -91,7 +91,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.tv_system_settings_vehicle_type))) {
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_vehicle_type))) {
             secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
             Intent intent = new Intent(mContext, VehicleTypeSetting.class);
             intent.putExtra("menu_item", secondMenuItem);

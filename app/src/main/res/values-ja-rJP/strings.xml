@@ -21,6 +21,7 @@
     <string name="tv_system_settings_lcd_brightness">モニター明るさ</string>
     <string name="tv_system_settings_screen_power_saving">モニター画面節電設定</string>
     <string name="tv_system_settings_installation_tool">設置ツール</string>
+    <string name="tv_system_settings_vehicle_type">車両タイプ</string>
     <string name="tv_system_settings_setting_initialization">設定初期化</string>
     <string name="tv_system_settings_installation_wizard">セットアップ</string>
     <string name="tv_system_settings_2nd_camera">2ndカメラ設定</string>
