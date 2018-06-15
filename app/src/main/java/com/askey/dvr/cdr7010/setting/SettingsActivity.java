@@ -89,7 +89,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                 Looper.prepare();
 
                 initData();
-
                 FileManager.getInstance().bindFileManageService();
                 GPSStatusManager.getInstance().recordLocation(true);
 
@@ -139,7 +138,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             dataTotal.add(map);
         }
 
-        runOnUiThread(new Runnable() {
+      runOnUiThread(new Runnable() {
             public void run() {
                 if (dataTotal.size() > PERPAGECOUNT) {
                     vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());

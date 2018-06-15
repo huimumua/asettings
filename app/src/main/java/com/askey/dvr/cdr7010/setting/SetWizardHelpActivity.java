@@ -15,6 +15,8 @@ import com.askey.dvr.cdr7010.setting.module.system.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.VehicleTypeSetting;
+import com.askey.dvr.cdr7010.setting.util.AppUtil;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -90,10 +92,20 @@ public class SetWizardHelpActivity extends BaseActivity {
                 String str = getResources().getString(R.string.set_wizard_help_context_range);
                 setWizardhelp.setText(str);
             }else if(currentUi.equals("set_wizard_help_context_range")){
-                Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
-                Intent intent = new Intent(mContext,SettingsActivity.class);
-                startActivity(intent);
-                finish();
+                ContentResolver contentResolver = getContentResolver();
+                int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+                if (car_type == 1 && !Const.SET_WIZARD) {
+                    Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
+                    String packageName = "com.askey.dvr.cdr7010.dashcam";
+                    String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
+                    AppUtil.startActivity(mContext,packageName,className,true);
+                }else{
+                    Const.SET_WIZARD=false;
+                    Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
+                    Intent intent = new Intent(mContext,SettingsActivity.class);
+                    startActivity(intent);
+                    SettingApplication.finishActivity(SetWizardHelpActivity.class);
+                }
             }
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_ENTER){
@@ -114,10 +126,20 @@ public class SetWizardHelpActivity extends BaseActivity {
                 Intent intent = new Intent(mContext,RangeSettingActivity.class);
                 startActivity(intent);
             }else if(currentUi.equals("set_wizard_help_finish")){
-                Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
-                Intent intent = new Intent(mContext,SettingsActivity.class);
-                startActivity(intent);
-                SettingApplication.finishActivity(SetWizardHelpActivity.class);
+                ContentResolver contentResolver = getContentResolver();
+                int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+                if (car_type == 1 && !Const.SET_WIZARD) {
+                    Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
+                    String packageName = "com.askey.dvr.cdr7010.dashcam";
+                    String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
+                    AppUtil.startActivity(mContext,packageName,className,true);
+                }else{
+                    Const.SET_WIZARD=false;
+                    Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
+                    Intent intent = new Intent(mContext,SettingsActivity.class);
+                    startActivity(intent);
+                    SettingApplication.finishActivity(SetWizardHelpActivity.class);
+                }
             }
             return true;
         }

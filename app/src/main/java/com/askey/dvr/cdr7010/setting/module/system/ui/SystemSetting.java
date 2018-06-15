@@ -88,6 +88,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
             ContentResolver contentResolver = getContentResolver();
+            Const.SET_WIZARD=true;
             Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
