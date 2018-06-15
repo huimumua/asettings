@@ -26,7 +26,7 @@ public class CommDialog extends Dialog {
     public static final int TYPE_BUTTON_CANCEL = 1 << 2;
     public static final int TYPE_BUTTON_HIDE = 0;
     private String BUTTON_OK_MSG = "OK";
-    private String BUTTON_CANCEL_MSG = "Cancle";
+    private String BUTTON_CANCEL_MSG = "Cancel";
     private OnClickListener mPositiveButtonListener;
     private OnClickListener mNegativeButtonListener;
     private int width = 0;
@@ -78,7 +78,7 @@ public class CommDialog extends Dialog {
         btnOk = (Button) findViewById(R.id.ib_ok);
         btnOk.setOnClickListener(clickListener);
         btnOk.setTextColor(Color.BLACK);
-        btnOk.setText(BUTTON_OK_MSG);
+        btnOk.setText(mContext.getResources().getString(R.string.sdcard_init_ok));
         btnOk.setGravity(Gravity.CENTER);
         btnOk.getPaint().setTextSize(18);
         btnOk.getLayoutParams().width = 80;
@@ -88,7 +88,7 @@ public class CommDialog extends Dialog {
         btnCancel = (Button) findViewById(R.id.ib_cancle);
         btnCancel.setOnClickListener(clickListener);
         btnCancel.setTextColor(Color.BLACK);
-        btnCancel.setText(BUTTON_CANCEL_MSG);
+        btnCancel.setText(mContext.getResources().getString(R.string.sdcard_init_cancel));
         btnCancel.setGravity(Gravity.CENTER);
         btnCancel.getPaint().setTextSize(18);
         btnCancel.getLayoutParams().width = 80;
