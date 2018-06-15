@@ -20,7 +20,9 @@ public class HelpActivity  extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help);
-
+        setRightView(false,true,false);
+        setBottomView(R.drawable.tag_menu_sub_cancel);
+        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
     }
 
 }

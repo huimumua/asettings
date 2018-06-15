@@ -1,7 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_menu_main">
+    android:background="@drawable/bg_inquiries">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/gps_status_padding_top"
+        android:background="@drawable/title_inquiries" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dialog_inquiries"
+        android:background="@drawable/bg_dialog_inquiries"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/content_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLength="20"
+            android:text="XX見守るクルマの保険サポートデスク"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/content_size" />
+
+        <TextView
+            android:id="@+id/content_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0120-306-XXX"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/gps_status_title_top" />
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/right_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" />
+
+    <include
+        layout="@layout/bottom_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
