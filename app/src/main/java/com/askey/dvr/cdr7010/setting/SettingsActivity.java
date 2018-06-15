@@ -108,6 +108,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             }
         }).start();
 
+
     }
 
     private void initView() {
