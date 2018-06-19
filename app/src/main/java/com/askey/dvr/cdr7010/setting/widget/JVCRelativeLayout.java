@@ -8,13 +8,14 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.DensityUtil;
+
+import static android.view.Gravity.CENTER;
 
 public class JVCRelativeLayout extends RelativeLayout {
 
@@ -75,9 +76,10 @@ public class JVCRelativeLayout extends RelativeLayout {
         LayoutParams marqueeParams = new LayoutParams(DensityUtil.dp2px(context, 200), ViewGroup.LayoutParams.WRAP_CONTENT);
         marqueeParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, TRUE);
         marqueeTextView = new MarqueeTextView(context);
+        marqueeTextView.setGravity(CENTER);
         marqueeTextView.setPadding(DensityUtil.dp2px(context, 10), 0, 0, 0);
-        marqueeTextView.setTextSize(DensityUtil.sp2px(context, 16));
-        marqueeTextView.setTextColor(0xff33b5e5);
+        marqueeTextView.setTextSize(DensityUtil.sp2px(context, 12));
+        marqueeTextView.setTextColor(0xff66afff);
         marqueeTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         marqueeTextView.setMarqueeRepeatLimit(-1);
         marqueeTextView.setBackgroundResource(R.drawable.bg_menu_main_description);

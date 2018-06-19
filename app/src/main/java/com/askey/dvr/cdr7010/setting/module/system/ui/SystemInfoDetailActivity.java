@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
@@ -26,6 +27,7 @@ import java.lang.reflect.Method;
 
 public class SystemInfoDetailActivity extends AppCompatActivity {
     private String type;
+    private ScrollView scrollView;
     private ImageView title_icon;
     private TextView title_tv, phone_number, net, signal, imei, service_status, version, network_type, network_status;
     private LinearLayout sim, openLicense;
@@ -43,6 +45,9 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     }
 
     private void initView() {
+
+        scrollView = (ScrollView) findViewById(R.id.scrollview);
+
         systemVersion = (RelativeLayout) findViewById(R.id.system_version);
         sim = (LinearLayout) findViewById(R.id.sim);
         openLicense = (LinearLayout) findViewById(R.id.open_license);
@@ -62,8 +67,7 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     private void loadInfo(String type) {
         if (type.equals("version")) {
             systemVersion.setVisibility(View.VISIBLE);
-            sim.setVisibility(View.GONE);
-            openLicense.setVisibility(View.GONE);
+            scrollView.setVisibility(View.GONE);
             title_tv.setText(getString(R.string.sys_version));
 
             version = (TextView) findViewById(R.id.version);
@@ -71,8 +75,9 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             version.setText(systemVersion);
         }
         if (type.equals("SIM")) {
-            sim.setVisibility(View.VISIBLE);
             systemVersion.setVisibility(View.GONE);
+            scrollView.setVisibility(View.VISIBLE);
+            sim.setVisibility(View.VISIBLE);
             openLicense.setVisibility(View.GONE);
 
             title_tv.setText(getString(R.string.sys_sim));
@@ -86,9 +91,10 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             network_status.setText(getNetworkStatus(this));
         }
         if (type.equals("open")) {
-            openLicense.setVisibility(View.VISIBLE);
-            sim.setVisibility(View.GONE);
             systemVersion.setVisibility(View.GONE);
+            scrollView.setVisibility(View.VISIBLE);
+            sim.setVisibility(View.GONE);
+            openLicense.setVisibility(View.VISIBLE);
 
             title_tv.setText(getString(R.string.sys_open_license));
         }

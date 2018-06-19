@@ -6,169 +6,180 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_menu_main"
     tools:context=".module.system.ui.SystemInfoDetailActivity">
+
     <include
         android:id="@+id/title"
-        layout="@layout/title_layout"/>
-    <ScrollView
+        layout="@layout/title_layout" />
+
+    <RelativeLayout
+        android:id="@+id/system_version"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom"
-        android:layout_toStartOf="@id/right"
         android:layout_below="@id/title"
-        android:paddingStart="5dp"
-        android:scrollbarThumbVertical="@drawable/scroll_menu_main"
-        android:scrollbarTrackVertical="@drawable/bg_scroll_menu_main"
+        android:layout_toStartOf="@id/right"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/img_system_version"
+            android:paddingStart="10dp"
+            android:singleLine="true"
+            android:textColor="@android:color/background_light"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/title"
+        android:layout_toStartOf="@id/right"
         android:fadeScrollbars="false"
+        android:paddingStart="5dp"
         android:scrollbarSize="30dp"
-        >
+        android:background="@drawable/bg_gps_all"
+        android:scrollbarThumbVertical="@drawable/scroll_menu_main"
+        android:scrollbarTrackVertical="@drawable/bg_scroll_menu_main">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="5dp"
-            >
-            <RelativeLayout
-                android:id="@+id/system_version"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:visibility="visible"
-                >
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textColor="@android:color/background_light"-->
-                    <!--android:text="@string/system_version"-->
-                    <!--/>-->
-                <TextView
-                    android:id="@+id/version"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center_vertical"
-                    android:textSize="22sp"
-                    android:textColor="@android:color/background_light"
-                    android:paddingStart="10dp"
-                    android:drawableStart="@drawable/img_system_version"
-                    android:drawablePadding="10dp"
-                    android:singleLine="true"
-                    />
+            android:orientation="vertical">
 
-            </RelativeLayout>
             <LinearLayout
                 android:id="@+id/sim"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone"
-                >
+                android:visibility="visible">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_phone_number"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/phone_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="123456789"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_network"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/net"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="NTT"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_signal_strength"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/signal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="123456789"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/network_type"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/network_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="123456789"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_service_status"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/service_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="123456789"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_network_status"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/network_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="123456789"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:text="@string/sys_imei"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/imei"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/background_light"
                     android:paddingStart="10dp"
                     android:text="123456789"
-                    />
+                    android:textColor="@android:color/background_light"
+                    android:textSize="14sp" />
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/open_license"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone"
-                >
+                android:visibility="gone">
 
             </LinearLayout>
         </LinearLayout>
