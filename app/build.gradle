@@ -7,7 +7,7 @@ def getTime() {
 android {
     signingConfigs {
         singnedconfig {
-            keyAlias 'android'
+            keyAlias 'kenwood'
             keyPassword 'android'
             storeFile file('../tools/debug.keystore')
             storePassword 'android'
