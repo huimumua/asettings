@@ -30,17 +30,6 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
         list_view.setOnItemClickListener(this);
     }
 
-//    private void initView() {
-//        list_view = (ListView) findViewById(R.id.list_view);
-//        vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
-//
-//        list_view.setOnItemClickListener(this);
-//
-//        menuInfo = getIntent().getStringArrayExtra("menu_item");
-//
-//        setViewAndData(list_view, vp_progress, menuInfo);
-//    }
-
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(DrivingSetting.this, SwitchActivity.class);
@@ -86,33 +75,5 @@ public class DrivingSetting extends SecondBaseActivity implements AdapterView.On
         }
         intent.putExtra("switch_tag", switch_tag);
         startActivity(intent);
-
-//        switch (position) {
-//            case 0:
-//                switch_tag = getResources().getString(R.string.front_collision_warning);
-//                break;
-//            case 1:
-//                switch_tag = getResources().getString(R.string.lane_departure_warning);
-//                break;
-//            case 2:
-//                switch_tag = getResources().getString(R.string.pedestrian_detection);
-//                break;
-//            case 3:
-//                switch_tag = getResources().getString(R.string.device_install_setting);
-//                secondMenuItem = getResources().getStringArray(R.array.mounting_position);
-//                intent = new Intent(DrivingSetting.this, MountingPositionSetting.class);
-//                intent.putExtra("menu_item", secondMenuItem);
-//                startActivity(intent);
-//                return;
-//            case 4:
-//                switch_tag = getResources().getString(R.string.departure_delay_warning);
-//                break;
-//            case 5:
-//                intent = new Intent(DrivingSetting.this, RangeSettingActivity.class);
-//                startActivity(intent);
-//                return;
-//        }
-//        intent.putExtra("switch_tag", switch_tag);
-//        startActivity(intent);
     }
 }

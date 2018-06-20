@@ -67,7 +67,7 @@ public class CommDialog extends Dialog {
         messageText = (MarqueeTextView) findViewById(R.id.content);
         messageText.setText(msg);
         messageText.setTextColor(0xcc000000);
-        messageText.setTextSize(TypedValue.COMPLEX_UNIT_PX, 22);
+        messageText.setTextSize(TypedValue.COMPLEX_UNIT_PX, 20);
         messageText.setGravity(Gravity.CENTER);
         messageText.setPadding(10,0,10,0);
         messageText.setLineSpacing(1.0f, 1.2f);
@@ -80,7 +80,7 @@ public class CommDialog extends Dialog {
         btnOk.setTextColor(Color.BLACK);
         btnOk.setText(mContext.getResources().getString(R.string.sdcard_init_ok));
         btnOk.setGravity(Gravity.CENTER);
-        btnOk.getPaint().setTextSize(18);
+        btnOk.getPaint().setTextSize(20);
         btnOk.getLayoutParams().width = 80;
         btnOk.getLayoutParams().height = 26;
         ((ViewGroup.MarginLayoutParams) btnOk.getLayoutParams()).leftMargin = 52;
@@ -90,7 +90,7 @@ public class CommDialog extends Dialog {
         btnCancel.setTextColor(Color.BLACK);
         btnCancel.setText(mContext.getResources().getString(R.string.sdcard_init_cancel));
         btnCancel.setGravity(Gravity.CENTER);
-        btnCancel.getPaint().setTextSize(18);
+        btnCancel.getPaint().setTextSize(20);
         btnCancel.getLayoutParams().width = 80;
         btnCancel.getLayoutParams().height = 26;
         ((ViewGroup.MarginLayoutParams) btnCancel.getLayoutParams()).leftMargin = 20;

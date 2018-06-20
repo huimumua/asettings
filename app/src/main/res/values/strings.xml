@@ -4,10 +4,10 @@
     <!-- Strings related to Settings -->
     <string name="tv_menu">メニュー</string>
     <string name="main_menu_prs">駐車録画設定</string>
-    <string name="main_menu_fp">ファイル再生</string>
+    <string name="main_menu_fp">動画再生</string>
     <string name="main_menu_mirs">動画記録設定</string>
     <string name="main_menu_em">緊急通報設定</string>
-    <string name="main_menu_dsfs">運転支援機能設定</string>
+    <string name="main_menu_dsfs">運転支援アラート設定</string>
     <string name="main_menu_nsg">音声案内</string>
     <string name="main_menu_ss">システム基本設定</string>
     <string name="main_menu_scm">SDカードメニュー</string>
@@ -50,7 +50,7 @@
     <string name="sdcard_picture_dir">静止画 : </string>
     <string name="sdcard_not_exist">SDカードがありません</string>
     <string name="sdcard_init_prompt">SDカードを初期化しますか？</string>
-    <string name="sdcard_init_cancel">Cancel</string>
+    <string name="sdcard_init_cancel">X</string>
     <string name="sdcard_init_ok">OK</string>
     <string name="sdcard_init_ongoing">初期化中</string>
     <string name="sdcard_init_success">初期化しました</string>
@@ -147,17 +147,17 @@
     <string name="communication_emergency_notify">OFFに設定すると、事故が発生したときなどでもコールセンターに自動通報しません</string>
 
     <string name="driving_setting">運転支援機能設定</string>
-    <string name="front_collision_warning">前方衝突警告</string>
-    <string name="lane_departure_warning">車線逸脱警告</string>
-    <string name="pedestrian_detection">歩行者衝突警告</string>
+    <string name="front_collision_warning">前方衝突アラート</string>
+    <string name="lane_departure_warning">車線逸脱アラート</string>
+    <string name="pedestrian_detection">歩行者衝突アラート</string>
     <string name="device_install_setting">取付位置</string>
     <string name="departure_delay_warning">発進遅れ警告</string>
 
     <string name="reverse_run_detection">高速道路逆走注意アラート</string>
-    <string name="driving_outside_the_designated_area">指定区域外走行検知時</string>
+    <string name="driving_outside_the_designated_area">指定区域外走行アラート</string>
     <string name="advice_before_driving">運転前アドバイス</string>
     <string name="driving_report">運転レポートの通知</string>
-    <string name="rapid_acceleration_sudden_deceleration">急加速,急減速時</string>
+    <string name="rapid_acceleration_sudden_deceleration">急加速・急減速</string>
     <string name="handling">ハンドリング</string>
     <string name="fluctuation_detection">ふらつき</string>
     <string name="pause">一時停止</string>

@@ -14,8 +14,8 @@
     </string-array>
 
     <string-array name="driving_support">
-        <item>Front collision warning</item>
-        <item>Lane departure warning</item>
+        <item>Forward collision alert</item>
+        <item>Lane departure alert</item>
         <item>Pedestrian Detection</item>
         <!--<item>Device install setting</item>-->
         <!--<item>Departure delay warning</item>-->
@@ -40,7 +40,7 @@
 
     <string-array name="movie_record">
         <item>Audio recording</item>
-        <item>Information stamp record</item>
+        <item>Information stamps</item>
     </string-array>
 
     <string-array name="sdcard_record">
@@ -70,21 +70,22 @@
     </string-array>
 
     <string-array name="system_setting">
-        <item>Notification sound volume</item>
+        <item>Notification volume</item>
         <item>Playback volume</item>
         <item>Preview</item>
-        <item>LCD Brightness</item>
+        <item>Preview(Back)</item>
+        <item>Monitor brightness</item>
         <item>Monitor screen Power saving setting</item>
-        <item>Installation wizard</item>
+        <item>Setup</item>
         <item>Type of vehicle</item>
-        <item>Range of</item>
+        <item>Detection range</item>
         <item>Device install setting</item>
-        <item>Installation tool</item>
-        <item>Setting initialization</item>
+        <item>Mounting support tool</item>
+        <item>Factory reset</item>
         <!--<item>2nd Camera</item>-->
-        <item>Sdcard Information</item>
-        <item>Sdcard Initialization</item>
-        <item>System update</item>
+        <item>SD card information</item>
+        <item>Format SD card</item>
+        <item>Update system</item>
         <item>System Information</item>
     </string-array>
 

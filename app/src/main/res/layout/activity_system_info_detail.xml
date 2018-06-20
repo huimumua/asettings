@@ -43,7 +43,7 @@
         android:layout_below="@id/title"
         android:layout_toStartOf="@id/right"
         android:fadeScrollbars="false"
-        android:paddingStart="5dp"
+        android:padding="8dp"
         android:scrollbarSize="30dp"
         android:background="@drawable/bg_gps_all"
         android:scrollbarThumbVertical="@drawable/scroll_menu_main"

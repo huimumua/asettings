@@ -14,18 +14,18 @@
     </string-array>
 
     <string-array name="driving_support">
-        <item>前方衝突警告</item>
-        <item>車線逸脱警告</item>
-        <item>歩行者衝突警告</item>
+        <item>前方衝突アラート</item>
+        <item>車線逸脱アラート</item>
+        <item>歩行者衝突アラート</item>
         <!--<item>取付位置</item>-->
         <!--<item>発進遅れ警告</item>-->
         <!--<item>検出範囲 </item>-->
 
         <item>高速道路逆走注意アラート</item>
-        <item>指定区域外走行検知時</item>
+        <item>指定区域外走行アラート</item>
         <item>運転前アドバイス</item>
         <item>運転レポートの通知</item>
-        <item>急加速,急減速時</item>
+        <item>急加速・急減速</item>
         <item>ハンドリング</item>
         <item>ふらつき</item>
         <item>一時停止</item>
@@ -68,6 +68,7 @@
         <item>報知音音量</item>
         <item>再生音量</item>
         <item>映像確認</item>
+        <item>映像確認（リアカメラ）</item>
         <item>モニター明るさ</item>
         <item>モニター画面節電設定</item>
         <item>セットアップ</item>

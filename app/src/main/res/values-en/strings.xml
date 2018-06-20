@@ -5,7 +5,7 @@
     <string name="tv_menu">MENU</string>
     <string name="main_menu_prs">Parking Recording Setting</string>
     <string name="main_menu_fp">File Playback</string>
-    <string name="main_menu_mirs">Movie/Still Image Recording Setting</string>
+    <string name="main_menu_mirs">Video recording settings</string>
     <string name="main_menu_em">Emergency Call Setting</string>
     <string name="main_menu_dsfs">Driving Support Function Setting</string>
     <string name="main_menu_nsg">Notification Sound Guidance</string>
@@ -15,17 +15,21 @@
     <string name="main_menu_cs">Communication Function Setting</string>
 
     <string name="tv_system_settings">System settings</string>
-    <string name="tv_system_settings_notification_sound_volume">Notification sound volume</string>
+    <string name="tv_system_settings_notification_sound_volume">Notification volume</string>
     <string name="tv_system_settings_playback_volume">Playback volume</string>
     <string name="tv_system_settings_preview">Preview</string>
-    <string name="tv_system_settings_lcd_brightness">LCD Brightness</string>
+    <string name="tv_system_settings_preview_back">Preview(Back)</string>
+    <string name="tv_system_settings_lcd_brightness">Monitor brightness</string>
     <string name="tv_system_settings_screen_power_saving">Monitor screen Power saving setting</string>
-    <string name="tv_system_settings_installation_tool">Installation tool</string>
+    <string name="tv_system_settings_installation_tool">Mounting support tool</string>
     <string name="tv_system_settings_vehicle_type">Type of vehicle</string>
-    <string name="tv_system_settings_setting_initialization">Setting initialization</string>
-    <string name="tv_system_settings_installation_wizard">Installation wizard</string>
+    <string name="tv_system_settings_setting_initialization">Factory reset</string>
+    <string name="tv_system_settings_installation_wizard">Setup</string>
+    <string name="system_range_of">Detection range</string>
     <string name="tv_system_settings_2nd_camera">2nd Camera</string>
-    <string name="tv_system_settings_system_update">System update</string>
+    <string name="sdcard_setting_information">SD card information</string>
+    <string name="sdcard_setting_initialization">Format SD card</string>
+    <string name="tv_system_settings_system_update">Update system</string>
     <string name="tv_system_settings_system_information">System Information</string>
 
     <string name="parking_record_rt">Recording time</string>
@@ -37,20 +41,18 @@
     <string name="record_time_setting">Record Time Setting</string>
     <string name="audio_recording">Audio recording</string>
     <string name="impact_detection_sensitivity">Impact detection sensitivity</string>
-    <string name="information_stamp_record">Information stamp record</string>
+    <string name="information_stamp_record">Information stamps</string>
     <string name="movie_record_setting">Movie Record Setting</string>
     <string name="inserted_ok">OK</string>
 
     <string name="sdcard_setting">SD Card Menu</string>
-    <string name="sdcard_setting_information">Sdcard Information</string>
-    <string name="sdcard_setting_initialization">Sdcard Initialization</string>
     <string name="sdcard_normal_dir">Normal : </string>
     <string name="sdcard_event_dir">Event : </string>
     <string name="sdcard_parking_dir">Parking : </string>
     <string name="sdcard_picture_dir">Picture : </string>
     <string name="sdcard_not_exist">Sdcard not exist</string>
     <string name="sdcard_init_prompt">Sdcard Format ?</string>
-    <string name="sdcard_init_cancel">Cancel</string>
+    <string name="sdcard_init_cancel">X</string>
     <string name="sdcard_init_ok">OK</string>
     <string name="sdcard_init_ongoing">Formatting</string>
     <string name="sdcard_init_success">Format Success</string>
@@ -150,8 +152,8 @@
     <string name="communication_emergency_notify">When set to OFF, automatic notification will not be sent to the call center even when an accident occurs</string>
 
     <string name="driving_setting">Driving Setting</string>
-    <string name="front_collision_warning">Front collision warning</string>
-    <string name="lane_departure_warning">Lane departure warning</string>
+    <string name="front_collision_warning">Forward collision alert</string>
+    <string name="lane_departure_warning">Lane departure alert</string>
     <string name="pedestrian_detection">Pedestrian detection</string>
     <string name="device_install_setting">Device install setting</string>
     <string name="departure_delay_warning">Departure delay warning</string>
@@ -175,6 +177,4 @@
     <string name="skip">Skip</string>
     <string name="sdcard_info_title">Number of files in each folder</string>
     <string name="sdcard_info_context_explane">Current / Maximum</string>
-
-    <string name="system_range_of">Range of</string>
 </resources>
