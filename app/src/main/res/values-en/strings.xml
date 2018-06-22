@@ -96,16 +96,16 @@
     <string name="net_conn">Connected</string>
     <string name="net_not_conn">Not Connect</string>
 
-    <string name="driving_setting_range_horizon">Move the line to the position of the horizon and press decision button</string>
-    <string name="driving_setting_range_hood">Move the line to the position of the bonnet tip and push the decision button</string>
+    <string name="driving_setting_range_horizon">Adjust the horizon line</string>
+    <string name="driving_setting_range_hood">Adjust the hood line</string>
     <string name="driving_setting_range_center">Move the line to the center of the driving lane and press decision button</string>
 
-    <string name="installation_tool_leveler">Leveler</string>
-    <string name="installation_tool_satellite">Satellite reception status</string>
+    <string name="installation_tool_leveler">Level</string>
+    <string name="installation_tool_satellite">Satellite reception level</string>
     <string name="leveler_detail_title">Level Adjustment</string>
-    <string name="leveler_detail_context1">Adjust level of driving recording.</string>
-    <string name="leveler_detail_context2">1 . Parking the car in a safe and level place.</string>
-    <string name="leveler_detail_context3">2 . On the next screen, adjust the title of the machine so that the moving circle comes to the center.</string>
+    <string name="leveler_detail_context1">Make adjustments so that the dash cam becomes level.</string>
+    <string name="leveler_detail_context2">1. Park the car at safe and level place.</string>
+    <string name="leveler_detail_context3">2. Adjust inclination of this unit so that the moving circle is located at the center of the following screen.</string>
     <string name="gps_status_title">GPS Trusted</string>
     <string name="communication">Communication Setting</string>
     <string name="communication_emergency_contact_person">Emergency Contact Person</string>
@@ -124,7 +124,8 @@
     <string name="set_wizard_help_context_start_setting">Setting is about to start</string>
     <string name="set_wizard_help_context_vehicle_type">Vehicle Type setting confirmation</string>
     <string name="set_wizard_help_context_mounting_position">Mounting Position setting confirmation</string>
-    <string name="set_wizard_help_context_range">Range setting confirmation</string>
+    <string name="set_wizard_help_context_range">Set detection ranges for driving assistance functions.\n
+Move the guideline to the horizon line, the front end of vehicle (hood line) and center of the driving lane for setting.</string>
     <string name="set_wizard_help_finish">Setup completion</string>
 
     <string name="check_update">Is check update package</string>
@@ -134,20 +135,20 @@
     <string name="sure">OK</string>
 
     <!--底部滚动条提示内容-->
-    <string name="driving_setting_marqueeText_front">When set to ON, we will let you know when the distance between your car and the car in front is close</string>
-    <string name="driving_setting_marqueeText_lane">When set to ON, we will inform you when your car has run off the driving lane</string>
+    <string name="driving_setting_marqueeText_front">Selecting ON informs that the distance between your car and the car in front has become near.</string>
+    <string name="driving_setting_marqueeText_lane">Selecting ON informs that your car has departed from the lane.</string>
     <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
     <string name="driving_setting_marqueeText_install">Set to detect the driving lane correctly. Select the horizontal position where this unit is installed</string>
     <string name="driving_setting_marqueeText_pedestrain">When set to ON, we will let you know when a pedestrian approaches</string>
     <string name="emergency_setting_marqueeText_auto">If set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>
 
     <string name="user_marqueeText">In the case where there is no user name registration, leave it blank, the factory setting value is "user 1" only</string>
-    <string name="movie_record_marqueeText_audio">When set to OFF, audio recording by the built-in microphone is stopped</string>
+    <string name="movie_record_marqueeText_audio">Set whether or not to record audio with the microphone during recording.</string>
     <string name="movie_record_marqueeText_impact">Set shock sensor sensitivity to start event recording</string>
-    <string name="movie_record_marqueeText_information">When OFF is set, subtitle recording such as date and time and position information stops</string>
+    <string name="movie_record_marqueeText_information">Selecting OFF stops recording of character information such as date, time, and location.</string>
     <string name="Vehicle_marqueeText">It is set to increase the accuracy of the driving support function. Choose the nearest vehicle type from the number and shape of your car</string>
-    <string name="system_setting_monitor_time">Set the time for monitor screen to switch to power saving</string>
-    <string name="system_setting_monitor_operation">Sets the power saving behavior of the monitor screen. To save power, set it to OFF</string>
+    <string name="system_setting_monitor_time">Set the time that elapses before the monitor screen  enters the power saving mode.</string>
+    <string name="system_setting_monitor_operation">Set up the power saving operation of monitor screen. Select OFF when power saving is not required.</string>
     <string name="system_setting_install_leveler">It is a useful tool for installing this machine</string>
     <string name="communication_emergency_notify">When set to OFF, automatic notification will not be sent to the call center even when an accident occurs</string>
 
@@ -176,5 +177,5 @@
 
     <string name="skip">Skip</string>
     <string name="sdcard_info_title">Number of files in each folder</string>
-    <string name="sdcard_info_context_explane">Current / Maximum</string>
+    <string name="sdcard_info_context_explane">Now / Maximum</string>
 </resources>

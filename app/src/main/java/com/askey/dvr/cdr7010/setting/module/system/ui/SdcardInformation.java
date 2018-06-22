@@ -33,7 +33,7 @@ public class SdcardInformation extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sdcard_information);
 
-        initview();
+        initView();
         initData();
 
     }
@@ -77,7 +77,7 @@ public class SdcardInformation extends BaseActivity{
         }
     }
 
-    private void initview() {
+    private void initView() {
         normal = (TextView) this.findViewById(R.id.sdcard_normal_dir_count);
         event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
         picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);

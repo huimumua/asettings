@@ -142,8 +142,8 @@
     </string-array>
 
     <string-array name="system_settings_installation_tool">
-        <item>Leveler</item>
-        <item>Satellite reception status</item>
+        <item>Level</item>
+        <item>Satellite reception level</item>
     </string-array>
 
     <declare-styleable name="JVCRelativeLayout">
