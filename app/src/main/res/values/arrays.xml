@@ -86,8 +86,8 @@
         <item>走行時間</item>
         <item>動物注意</item>
         <item>気象情報</item>
-        <item>お知らせ</item>
         <item>GPS（位置情報）に関する通知</item>
+        <item>お知らせ</item>
     </string-array>
 
     <string-array name="movie_record">

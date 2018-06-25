@@ -34,8 +34,8 @@
         <item>Driving time</item>
         <item>Animal attention</item>
         <item>Weather information</item>
-        <item>Notice</item>
         <item>Notification on GPS (location information)</item>
+        <item>Notice</item>
     </string-array>
 
     <string-array name="movie_record">
