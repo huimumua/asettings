@@ -40,6 +40,9 @@ public class HorizontalListViewAdapter extends BaseAdapter{
     }
     @Override
     public int getCount() {
+        if(mGpsStatusList==null || mGpsStatusList.size()==0 ){
+            return 1;
+        }
         return mGpsStatusList.size()+1;
     }
     @Override
@@ -101,9 +104,17 @@ public class HorizontalListViewAdapter extends BaseAdapter{
             }else if(snr>63){
                 holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_blue);
             }
-            holder.mTitle.setText(mGpsStatusList.get(position-1).getSnr()+"");
-            holder.mValue.setText(prn+"");
-            holder.mImage.setText("");
+            if(snr==0.0){
+                holder.mTitle.setText("    ");
+            }else{
+                holder.mTitle.setText(snr+"");
+            }
+            if(prn==0){
+                holder.mValue.setText("    ");
+            }else{
+                holder.mValue.setText(prn+"");
+            }
+            holder.mImage.setText("   ");
         }
 
 

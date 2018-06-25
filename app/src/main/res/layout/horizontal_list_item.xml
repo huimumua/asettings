@@ -38,6 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_margin_top"
             android:padding="@dimen/view_gps_detail_padding"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:textColor="@color/white" />
 
         <TextView
@@ -63,7 +65,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="80dip"
-            android:layout_marginTop="@dimen/view_margin_top"
+            android:background="@color/white"
         >
         </TextView>
         <TextView

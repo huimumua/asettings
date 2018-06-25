@@ -102,6 +102,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                 if (car_type == 1) {
                     Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
                     startActivity(intent);
+                    finish();
                 }
 
                 Looper.loop();
