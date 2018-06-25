@@ -174,4 +174,6 @@
     <string name="sdcard_info_context_explane">現在 / 最大</string>
 
     <string name="system_range_of">検出範囲</string>
+
+    <string name="emergency_title">緊急時の連絡先\nを表示しています</string>
 </resources>

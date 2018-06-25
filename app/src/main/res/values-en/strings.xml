@@ -178,4 +178,6 @@ Move the guideline to the horizon line, the front end of vehicle (hood line) and
     <string name="skip">Skip</string>
     <string name="sdcard_info_title">Number of files in each folder</string>
     <string name="sdcard_info_context_explane">Now / Maximum</string>
+
+    <string name="emergency_title">Display emergency \n contact information</string>
 </resources>

@@ -1,7 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_menu_main">
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rl_title_background"
+        android:layout_width="@dimen/emergency_title_width"
+        android:layout_height="@dimen/emergency_title_height"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/gps_status_padding_top"
+        android:background="@drawable/bg_title">
+
+        <ImageView
+            android:id="@+id/iv_warn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/gps_status_padding_top"
+            android:background="@drawable/icon_warn" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="@string/emergency_title"
+            android:textColor="@color/color_ffffff"
+            android:textSize="@dimen/emergency_title_size"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_title_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/title_margin_top"
+        android:background="@drawable/bg_dialog_er2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/content_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLength="20"
+            android:textColor="@color/color_05a610"
+            android:textSize="@dimen/dialog_content_size" />
+
+        <TextView
+            android:id="@+id/content_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/gps_status_title_top"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <include
+        layout="@layout/right_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" />
+
+    <include
+        layout="@layout/bottom_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>
