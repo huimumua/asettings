@@ -97,9 +97,12 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         switch (sensorType) {
             case Sensor.TYPE_ORIENTATION:
                 //获取与Y轴的夹角
-                float yAngle = values[1];
+//                float yAngle = values[1];
+//                //获取与Z轴的夹角
+//                float zAngle = values[2];
+                float zAngle = values[1];
                 //获取与Z轴的夹角
-                float zAngle = values[2];
+                float yAngle = values[2];
 //                Logg.i(TAG,"=onSensorChanged=yAngle="+yAngle+"==zAngle=="+zAngle);
                 //气泡位于中间时（水平仪完全水平）
                 int x = spiritView.bubbleBitmap.getWidth()/2;
@@ -192,7 +195,6 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     private void cameraInit() {
         Sensor mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         //注册
-
         sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_GAME);
     }
 

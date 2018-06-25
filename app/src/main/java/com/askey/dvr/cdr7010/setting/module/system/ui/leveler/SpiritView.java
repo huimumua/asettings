@@ -29,6 +29,7 @@ public class SpiritView extends View {
     public Bitmap bubbleBitmapGreen;
     //定义水平仪中气泡的X、Y坐标
     public int bubbleX,bubbleY;
+    private int backBitmapX,backBitmapY;
 
     public SpiritView(Context context, AttributeSet attrs) {
         super(context, attrs);
