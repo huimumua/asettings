@@ -1,6 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
@@ -9,11 +10,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.PhoneStateListener;
+import android.telephony.CellInfo;
+import android.telephony.CellInfoGsm;
+import android.telephony.CellInfoLte;
+import android.telephony.CellInfoWcdma;
+import android.telephony.CellSignalStrengthGsm;
+import android.telephony.CellSignalStrengthLte;
+import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.ServiceState;
-import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +29,10 @@ import android.widget.TextView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.platform.AskeyTelephonyManager;
 
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class SystemInfoDetailActivity extends AppCompatActivity {
     private String type;
     private ScrollView scrollView;
@@ -32,15 +41,23 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     private LinearLayout sim, openLicense;
     private RelativeLayout systemVersion;
     private TelephonyManager mPhoneManager;
+    private Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_info_detail);
-
+        mPhoneManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
         type = getIntent().getStringExtra("info_type");
+        timer = new Timer();
         initView();
         loadInfo(type);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
     }
 
     private void initView() {
@@ -81,14 +98,24 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
 
             title_tv.setText(getString(R.string.sys_sim));
 
-            mPhoneManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-            mPhoneManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
+//            mPhoneManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
             phone_number.setText(getPhoneNumber(mPhoneManager));
             net.setText(getNet(mPhoneManager));
             imei.setText(getImei(mPhoneManager));
             network_type.setText(getNetworkType(mPhoneManager));
             network_status.setText(getNetworkStatus(this));
             service_status.setText(getServiceStatus(mPhoneManager));
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            signal.setText(getSignalStrength(mPhoneManager));
+                        }
+                    });
+                }
+            },0,1000);
         }
         if (type.equals("open")) {
             systemVersion.setVisibility(View.GONE);
@@ -139,9 +166,9 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         return type;
     }
 
-    private String getServiceStatus(TelephonyManager manager){
+    private String getServiceStatus(TelephonyManager manager) {
         String state = "N/A";
-        switch (AskeyTelephonyManager.getServiceState(manager).getState()){
+        switch (AskeyTelephonyManager.getServiceState(manager).getState()) {
             case ServiceState.STATE_IN_SERVICE:
                 state = getString(R.string.sim_info_in_service);
                 break;
@@ -177,39 +204,39 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         return manager.getDeviceId();
     }
 
-    PhoneStateListener phoneStateListener = new PhoneStateListener() {
-        @Override
-        public void onSignalStrengthsChanged(SignalStrength signalStrength) {
-            super.onSignalStrengthsChanged(signalStrength);
-            Log.i("lte", signalStrength.toString() + "");
-            String[] params = signalStrength.toString().split(" ");
-            signal.setText(params[9]+" dBm");
-//            try {
-//                Method method;
-//                int strenth = 0;
-//                int networkType = mPhoneManager.getNetworkType();
-//                if (networkType == TelephonyManager.NETWORK_TYPE_LTE) {
-//                    method = signalStrength.getClass().getDeclaredMethod("getLteDbm");
-//                    int lteRsrp = (int) method.invoke(signalStrength);
-//                    if (lteRsrp > -44) signal.setText("UNKNOWN");
-//                    else if (lteRsrp >= -97) signal.setText("GREAT");
-//                    else if (lteRsrp >= -105) signal.setText("GOOD");
-//                    else if (lteRsrp >= -113) signal.setText("MODERATE");
-//                    else if (lteRsrp >= -120) signal.setText("POOR");
-//                    else if (lteRsrp >= -140) signal.setText("UNKNOWN");
-//                    Log.i("lte", lteRsrp + "");
-//                } else {
-//                    method = signalStrength.getClass().getDeclaredMethod("getLevel");
-//                    strenth = (int) method.invoke(signalStrength);
-//                    Log.i("非lte", strenth + "");
-//                }
-//            } catch (NoSuchMethodException e) {
-//                e.printStackTrace();
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            } catch (InvocationTargetException e) {
-//                e.printStackTrace();
-//            }
+//    PhoneStateListener phoneStateListener = new PhoneStateListener() {
+//        @Override
+//        public void onSignalStrengthsChanged(SignalStrength signalStrength) {
+//            super.onSignalStrengthsChanged(signalStrength);
+//            Log.i("lte", signalStrength.toString() + "");
+//            String[] params = signalStrength.toString().split(" ");
+//            signal.setText(params[9] + " dBm");
+//        }
+//    };
+
+    @SuppressLint("MissingPermission")
+    public String getSignalStrength(TelephonyManager telephonyManager){
+        List<CellInfo> cellInfos = telephonyManager.getAllCellInfo();
+        String strength = " ";
+        if(cellInfos!=null){
+            for (int i = 0 ; i<cellInfos.size(); i++){
+                if (cellInfos.get(i).isRegistered()){
+                    if(cellInfos.get(i) instanceof CellInfoWcdma){
+                        CellInfoWcdma cellInfoWcdma = (CellInfoWcdma) telephonyManager.getAllCellInfo().get(0);
+                        CellSignalStrengthWcdma cellSignalStrengthWcdma = cellInfoWcdma.getCellSignalStrength();
+                        strength = String.valueOf(cellSignalStrengthWcdma.getDbm()+" dBm "+cellSignalStrengthWcdma.getAsuLevel()+" asu");
+                    }else if(cellInfos.get(i) instanceof CellInfoGsm){
+                        CellInfoGsm cellInfogsm = (CellInfoGsm) telephonyManager.getAllCellInfo().get(0);
+                        CellSignalStrengthGsm cellSignalStrengthGsm = cellInfogsm.getCellSignalStrength();
+                        strength = String.valueOf(cellSignalStrengthGsm.getDbm()+" dBm "+cellSignalStrengthGsm.getAsuLevel()+" asu");
+                    }else if(cellInfos.get(i) instanceof CellInfoLte){
+                        CellInfoLte cellInfoLte = (CellInfoLte) telephonyManager.getAllCellInfo().get(0);
+                        CellSignalStrengthLte cellSignalStrengthLte = cellInfoLte.getCellSignalStrength();
+                        strength = String.valueOf(cellSignalStrengthLte.getDbm()+" dBm "+cellSignalStrengthLte.getAsuLevel()+" asu");
+                    }
+                }
+            }
         }
-    };
+        return strength;
+    }
 }
