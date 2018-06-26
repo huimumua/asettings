@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.PhoneStateListener;
+import android.telephony.ServiceState;
 import android.telephony.SignalStrength;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -21,9 +22,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
+import com.askey.platform.AskeyTelephonyManager;
 
 public class SystemInfoDetailActivity extends AppCompatActivity {
     private String type;
@@ -89,6 +88,7 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             imei.setText(getImei(mPhoneManager));
             network_type.setText(getNetworkType(mPhoneManager));
             network_status.setText(getNetworkStatus(this));
+            service_status.setText(getServiceStatus(mPhoneManager));
         }
         if (type.equals("open")) {
             systemVersion.setVisibility(View.GONE);
@@ -139,9 +139,18 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         return type;
     }
 
-//    private String getServiceStatus(TelephonyManager manager){
-//        return
-//    }
+    private String getServiceStatus(TelephonyManager manager){
+        String state = "N/A";
+        switch (AskeyTelephonyManager.getServiceState(manager).getState()){
+            case ServiceState.STATE_IN_SERVICE:
+                state = getString(R.string.sim_info_in_service);
+                break;
+            case ServiceState.STATE_OUT_OF_SERVICE:
+                state = getString(R.string.sim_info_out_service);
+                break;
+        }
+        return state;
+    }
 
     private String getNetworkStatus(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -173,32 +182,34 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         public void onSignalStrengthsChanged(SignalStrength signalStrength) {
             super.onSignalStrengthsChanged(signalStrength);
             Log.i("lte", signalStrength.toString() + "");
-            try {
-                Method method;
-                int strenth = 0;
-                int networkType = mPhoneManager.getNetworkType();
-                if (networkType == TelephonyManager.NETWORK_TYPE_LTE) {
-                    method = signalStrength.getClass().getDeclaredMethod("getLteDbm");
-                    int lteRsrp = (int) method.invoke(signalStrength);
-                    if (lteRsrp > -44) signal.setText("UNKNOWN");
-                    else if (lteRsrp >= -97) signal.setText("GREAT");
-                    else if (lteRsrp >= -105) signal.setText("GOOD");
-                    else if (lteRsrp >= -113) signal.setText("MODERATE");
-                    else if (lteRsrp >= -120) signal.setText("POOR");
-                    else if (lteRsrp >= -140) signal.setText("UNKNOWN");
-                    Log.i("lte", lteRsrp + "");
-                } else {
-                    method = signalStrength.getClass().getDeclaredMethod("getLevel");
-                    strenth = (int) method.invoke(signalStrength);
-                    Log.i("非lte", strenth + "");
-                }
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+            String[] params = signalStrength.toString().split(" ");
+            signal.setText(params[9]+" dBm");
+//            try {
+//                Method method;
+//                int strenth = 0;
+//                int networkType = mPhoneManager.getNetworkType();
+//                if (networkType == TelephonyManager.NETWORK_TYPE_LTE) {
+//                    method = signalStrength.getClass().getDeclaredMethod("getLteDbm");
+//                    int lteRsrp = (int) method.invoke(signalStrength);
+//                    if (lteRsrp > -44) signal.setText("UNKNOWN");
+//                    else if (lteRsrp >= -97) signal.setText("GREAT");
+//                    else if (lteRsrp >= -105) signal.setText("GOOD");
+//                    else if (lteRsrp >= -113) signal.setText("MODERATE");
+//                    else if (lteRsrp >= -120) signal.setText("POOR");
+//                    else if (lteRsrp >= -140) signal.setText("UNKNOWN");
+//                    Log.i("lte", lteRsrp + "");
+//                } else {
+//                    method = signalStrength.getClass().getDeclaredMethod("getLevel");
+//                    strenth = (int) method.invoke(signalStrength);
+//                    Log.i("非lte", strenth + "");
+//                }
+//            } catch (NoSuchMethodException e) {
+//                e.printStackTrace();
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            } catch (InvocationTargetException e) {
+//                e.printStackTrace();
+//            }
         }
     };
 }

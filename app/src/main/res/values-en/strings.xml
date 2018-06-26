@@ -95,6 +95,8 @@
     <string name="sys_open_license">Open Source License</string>
     <string name="net_conn">Connected</string>
     <string name="net_not_conn">Not Connect</string>
+    <string name="sim_info_in_service">In Service</string>
+    <string name="sim_info_out_service">Out of Service</string>
 
     <string name="driving_setting_range_horizon">Adjust the horizon line</string>
     <string name="driving_setting_range_hood">Adjust the hood line</string>

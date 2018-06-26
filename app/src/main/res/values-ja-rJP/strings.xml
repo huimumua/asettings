@@ -90,6 +90,8 @@
     <string name="sys_open_license">オープンソースライセンス</string>
     <string name="net_conn">接続</string>
     <string name="net_not_conn">接続されていない</string>
+    <string name="sim_info_in_service">データ通信：圏内</string>
+    <string name="sim_info_out_service">データ通信：圏外</string>
 
 
     <string name="driving_setting_range_horizon">地平線の位置に線を移動させ、決定ボタンを押してください</string>
