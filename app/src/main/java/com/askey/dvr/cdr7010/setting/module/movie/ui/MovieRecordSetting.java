@@ -40,12 +40,6 @@ public class MovieRecordSetting extends SecondBaseActivity implements AdapterVie
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         }
-//        if (clickItem.equals(getResources().getString(R.string.impact_detection_sensitivity))) {
-//            secondMenuItem = getResources().getStringArray(R.array.impact_setting);
-//            intent = new Intent(MovieRecordSetting.this, ImpactSensitivityActivity.class);
-//            intent.putExtra("menu_item", secondMenuItem);
-//            startActivity(intent);
-//        }
         if (clickItem.equals(getResources().getString(R.string.information_stamp_record))) {
             secondMenuItem = getResources().getStringArray(R.array.all_switch_item);
             intent = new Intent(MovieRecordSetting.this, InformationStampActivity.class);

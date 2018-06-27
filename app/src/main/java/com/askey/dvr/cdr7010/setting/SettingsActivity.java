@@ -140,7 +140,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             dataTotal.add(map);
         }
 
-      runOnUiThread(new Runnable() {
+        runOnUiThread(new Runnable() {
             public void run() {
                 if (dataTotal.size() > PERPAGECOUNT) {
                     vp_progress.setProgress(0, PERPAGECOUNT, dataTotal.size());
@@ -178,26 +178,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
-        }
-//        else if (clickItem.equals(getString(R.string.main_menu_scm))) {
-//            secondMenuItem = getResources().getStringArray(R.array.sdcard_record);
-//            Intent intent = new Intent(mContext, SdcardSetting.class);
-//            intent.putExtra("menu_item", secondMenuItem);
-//            startActivity(intent);
-//        }
-        else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
             Intent intent = new Intent(mContext, DrivingSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        }
-//        else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
-//            secondMenuItem = getResources().getStringArray(R.array.notify_sound_guidance);
-//            Intent intent = new Intent(mContext, NotificationSetting.class);
-//            intent.putExtra("menu_item", secondMenuItem);
-//            startActivity(intent);
-//        }
-        else if (clickItem.equals(getString(R.string.main_menu_em))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_em))) {
             secondMenuItem = getResources().getStringArray(R.array.communication);
             Intent intent = new Intent(mContext, EmergencySetting.class);
             intent.putExtra("menu_item", secondMenuItem);

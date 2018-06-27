@@ -166,15 +166,6 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
                 focusPosition = 0;
             }
         }
-//        else if (switch_tag.equals(getResources().getString(R.string.departure_delay_warning))) {
-//            settingValue = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 0);
-//            jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_departure));
-//            if (settingValue == 0) {
-//                focusPosition = 1;//OFF
-//            } else if (settingValue == 1) {//ON
-//                focusPosition = 0;
-//            }
-//        }
         list_view.setSelection(focusPosition);
     }
 
@@ -290,14 +281,5 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
                 Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_LOCATION_INFO, 0);
             }
         }
-
-
-//        else if (switch_tag.equals(getResources().getString(R.string.departure_delay_warning))) {
-//            if (clickItem.equals(Const.ON)) {
-//                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 1);
-//            } else if (clickItem.equals(Const.OFF)) {
-//                Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_DELAY_START, 0);
-//            }
-//        }
     }
 }
