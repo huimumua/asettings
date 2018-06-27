@@ -189,18 +189,18 @@ public class CommDialog extends Dialog {
     public boolean onKeyDown(int keyCode, @NonNull KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (btnOk.isFocused()) {
-                    btnCancel.requestFocus();
-                } /*else if (btnCancel.isFocused()) {
-                    btnOk.requestFocus();
-                }*/
-                return true;
-            case KeyEvent.KEYCODE_DPAD_DOWN:
                 /*if (btnOk.isFocused()) {
                     btnCancel.requestFocus();
-                } else*/ if (btnCancel.isFocused()) {
+                } else */if (btnCancel.isFocused()) {
                     btnOk.requestFocus();
                 }
+                return true;
+            case KeyEvent.KEYCODE_DPAD_DOWN:
+                if (btnOk.isFocused()) {
+                    btnCancel.requestFocus();
+                }/* else if (btnCancel.isFocused()) {
+                    btnOk.requestFocus();
+                }*/
                 return true;
         }
         return super.onKeyDown(keyCode, event);
