@@ -12,6 +12,7 @@
     <string name="main_menu_ss">Basic Setting System</string>
     <string name="main_menu_scm">SD Card Menu</string>
     <string name="main_menu_si">When In Trouble</string>
+    <string name="main_menu_all_query">All kinds of query</string>
     <string name="main_menu_cs">Communication Function Setting</string>
 
     <string name="tv_system_settings">System settings</string>
@@ -120,7 +121,11 @@
     <string name="mounting_position_middle">Middle</string>
     <string name="mounting_position_right">Right</string>
     <string name="weather_report">Weather Report</string>
-    <string name="help">Inquiries</string>
+    <string name="notification_list">Notification list</string>
+    <string name="query_notification">Notification</string>
+    <string name="help">Help Desk</string>
+    <string name="help_background_info">Questions about DVR contact</string>
+    <string name="help_default_info">XX insurance support desk of the car watching</string>
     <string name="service_information_notified">Service Information Notified</string>
     <string name="main_menu_us">User Selection</string>
     <string name="set_wizard_help_context_start_setting">Setting is about to start</string>

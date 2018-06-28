@@ -12,6 +12,7 @@
     <string name="main_menu_ss">システム基本設定</string>
     <string name="main_menu_scm">SDカードメニュー</string>
     <string name="main_menu_si">困ったときは</string>
+    <string name="main_menu_all_query">各種照会</string>
     <string name="main_menu_cs">通信機能設定</string>
 
     <string name="tv_system_settings">システム基本設定</string>
@@ -116,7 +117,11 @@
     <string name="mounting_position_middle">中央</string>
     <string name="mounting_position_right">右</string>
     <string name="weather_report">気象通知</string>
+    <string name="notification_list">お知らせ一覧</string>
+    <string name="query_notification">お知らせ</string>
     <string name="help">お問合せ先</string>
+    <string name="help_background_info">ドライブレコーダーに関するお問い合わせ先</string>
+    <string name="help_default_info">XX見守るクルマの保険サポートデスク</string>
     <string name="service_information_notified">位置情報サービスより気象情報を通知する</string>
     <string name="main_menu_us">ユーザー選択</string>
     <string name="set_wizard_help_context_start_setting">セットアップを開始しますか？</string>

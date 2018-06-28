@@ -4,43 +4,63 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_inquiries">
 
-    <ImageView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="@dimen/emergency_title_width"
+        android:layout_height="@dimen/help_title_height"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/gps_status_padding_top"
-        android:background="@drawable/title_inquiries" />
+        android:background="@drawable/title_inquiries"
+        android:gravity="center"
+        android:text="@string/help"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/title_size"
+        android:textStyle="bold" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_background_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/title"
+        android:layout_below="@id/tv_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/gps_status_padding_top"
+        android:text="@string/help_background_info"
+        android:textColor="@color/color_ffffff"
+        android:textSize="@dimen/inquiries_background_info_size" />
+
+    <LinearLayout
+        android:layout_width="@dimen/emergency_title_width"
+        android:layout_height="@dimen/help_content_height"
+        android:layout_below="@id/tv_background_info"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/dialog_inquiries"
         android:background="@drawable/bg_dialog_inquiries"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/content_info"
+            android:id="@+id/tv_content_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_centerHorizontal="true"
+            android:ellipsize="none"
             android:gravity="center"
-            android:maxLength="20"
-            android:text="XX見守るクルマの保険サポートデスク"
+            android:maxLines="2"
+            android:padding="20dp"
+            android:scrollHorizontally="false"
+            android:singleLine="false"
+            android:text="@string/help_default_info"
             android:textColor="@color/text_color_black"
-            android:textSize="@dimen/content_size" />
+            android:textSize="@dimen/emergency_title_size" />
 
         <TextView
-            android:id="@+id/content_number"
+            android:id="@+id/tv_content_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:text="0120-306-XXX"
             android:textColor="@color/text_color_black"
-            android:textSize="@dimen/gps_status_title_top" />
+            android:textSize="@dimen/title_size"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

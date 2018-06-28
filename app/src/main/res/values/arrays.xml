@@ -218,6 +218,7 @@
     </string-array>
 
     <string-array name="service_information">
+        <item>お知らせ一覧</item>
         <item>お問合せ先</item>
     </string-array>
 
