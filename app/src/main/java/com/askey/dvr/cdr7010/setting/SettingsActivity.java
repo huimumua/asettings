@@ -339,10 +339,19 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             if (null != askeySettingsAidlInterface) {
                 askeySettingsAidlInterface.sync();
             }
+            menuTransition(1);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
         super.onBackPressed();
+    }
+    public void menuTransition(int status){
+        Intent intent = new Intent(Const.ACTION_MENU_TRANSITION);
+        intent.putExtra("status", status);
+        sendOutBroadcast(intent);
+    }
+    private void sendOutBroadcast(Intent intent){
+        sendBroadcastAsUser(intent, android.os.Process.myUserHandle());
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {

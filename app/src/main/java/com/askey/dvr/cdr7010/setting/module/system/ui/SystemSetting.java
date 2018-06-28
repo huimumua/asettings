@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.RecoverySystem;
 import android.provider.Settings;
@@ -123,8 +124,14 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                 }
             });
         } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information)) && isExist) {
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                return;
+            }
             startActivity(new Intent(mContext, SdcardInformation.class));
         } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization))) {
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                return;
+            }
             showDialog(this, getResources().getString(R.string.sdcard_init_prompt), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {

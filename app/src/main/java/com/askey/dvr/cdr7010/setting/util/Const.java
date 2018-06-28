@@ -31,5 +31,5 @@ public class Const {
     public static final String ON = "ON";
     public static final String OFF = "OFF";
     public static  boolean SET_WIZARD = false;
-
+    public static final String ACTION_MENU_TRANSITION = "android.intent.action.MENU_TRANSITION";
 }
