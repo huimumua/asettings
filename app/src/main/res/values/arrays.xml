@@ -112,7 +112,7 @@
     </string-array>
 
     <string-array name="system_setting">
-        <item>報知音音量</item>
+        <item>報知音量</item>
         <item>再生音量</item>
         <item>映像確認</item>
         <item>映像確認（リアカメラ）</item>

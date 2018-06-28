@@ -16,7 +16,7 @@
     <string name="main_menu_cs">通信機能設定</string>
 
     <string name="tv_system_settings">システム基本設定</string>
-    <string name="tv_system_settings_notification_sound_volume">報知音音量</string>
+    <string name="tv_system_settings_notification_sound_volume">報知音量</string>
     <string name="tv_system_settings_playback_volume">再生音量</string>
     <string name="tv_system_settings_preview">映像確認</string>
     <string name="tv_system_settings_lcd_brightness">モニター明るさ</string>
