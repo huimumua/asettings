@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_menu_main">
+
+    <include
+        android:id="@+id/title"
+        layout="@layout/title_layout" />
+
+    <ScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/title"
+        android:layout_toStartOf="@id/right"
+        android:background="@drawable/bg_gps_all"
+        android:fadeScrollbars="false"
+        android:padding="8dp"
+        android:scrollbarSize="30dp"
+        android:scrollbarThumbVertical="@drawable/scroll_menu_main"
+        android:scrollbarTrackVertical="@drawable/bg_scroll_menu_main">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!--<TextView-->
+            <!--android:id="@+id/tv_notice_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="@android:color/background_light"-->
+            <!--android:text="サーバーメンテナンスについて 7月"/>-->
+            <TextView
+                android:id="@+id/tv_notice_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXXX年6月25日"
+                android:textColor="@android:color/background_light"
+                android:textSize="@dimen/emergency_title_size" />
+
+            <TextView
+                android:id="@+id/tv_notice_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="XXXX年7月XX日~XX日の期間、サーバーのメンテナンスを行います。
+                メンテナンス中は、走行データなどが受信できません。お客様には?XXXX年7月XX日~XX日の期間、サーバーのメンテナンスを行います。/1/
+                メンテナンス中は、走行データなどが受信できません。お客様には?XXXX年7月XX日~XX日の期間、サーバーのメンテナンスを行います。/2/
+                メンテナンス中は、走行データなどが受信できません。お客様には?XXXX年7月XX日~XX日の期間、サーバーのメンテナンスを行います。/3/
+                メンテナンス中は、走行データなどが受信できません。お客様には?XXXX年7月XX日~XX日の期間、サーバーのメンテナンスを行います。/4/
+                メンテナンス中は、走行データなどが受信できません。お客様には"
+                android:textColor="@android:color/background_light"
+                android:textSize="@dimen/emergency_title_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/right"
+        layout="@layout/right_button_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true" />
+
+    <include
+        android:id="@+id/bottom"
+        layout="@layout/bottom_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -99,6 +99,8 @@
         <activity android:name=".module.system.ui.MountingPositionSetting" />
         <activity android:name=".module.service.ui.ServiceSetting" />
         <activity android:name=".module.service.ui.HelpActivity" />
+        <activity android:name=".module.service.ui.NotificationListActivity" />
+        <activity android:name=".module.service.ui.NotificationInfoActivity" />
 
         <service
             android:name=".module.system.controller.PlaybackSoundService"

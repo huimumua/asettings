@@ -12,7 +12,7 @@
     <string name="main_menu_ss">Basic Setting System</string>
     <string name="main_menu_scm">SD Card Menu</string>
     <string name="main_menu_si">When In Trouble</string>
-    <string name="main_menu_all_query">All kinds of query</string>
+    <string name="main_menu_all_query">Various Inquiries</string>
     <string name="main_menu_cs">Communication Function Setting</string>
 
     <string name="tv_system_settings">System settings</string>
@@ -123,6 +123,7 @@
     <string name="weather_report">Weather Report</string>
     <string name="notification_list">Notification list</string>
     <string name="query_notification">Notification</string>
+    <string name="empty_notification">Data can not find</string>
     <string name="help">Help Desk</string>
     <string name="help_background_info">Questions about DVR contact</string>
     <string name="help_default_info">XX insurance support desk of the car watching</string>

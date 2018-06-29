@@ -64,7 +64,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private int lastPosition;
 
     private int[] menuInfo = {R.string.main_menu_fp, R.string.main_menu_mirs, R.string.main_menu_em, R.string.main_menu_dsfs
-            , R.string.main_menu_ss, R.string.main_menu_si};
+            , R.string.main_menu_ss, R.string.main_menu_all_query};
     private String[] secondMenuItem;
     private int SDCARD_REQUEST_CODE = 10001;//SD卡读写
     private int LOCATION_REQUEST_CODE = 10002;//GPS位置权限
@@ -188,7 +188,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             Intent intent = new Intent(mContext, EmergencySetting.class);
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
-        } else if (clickItem.equals(getString(R.string.main_menu_si))) {
+        } else if (clickItem.equals(getString(R.string.main_menu_all_query))) {
             secondMenuItem = getResources().getStringArray(R.array.service_information);
             Intent intent = new Intent(mContext, ServiceSetting.class);
             intent.putExtra("menu_item", secondMenuItem);
@@ -217,8 +217,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             iv_icon.setImageResource(R.drawable.img_menu_main_car_types);
         } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_communication);
-        } else if (clickItem.equals(getString(R.string.main_menu_si))) {
-            iv_icon.setImageResource(R.drawable.img_menu_main_help);
+        } else if (clickItem.equals(getString(R.string.main_menu_all_query))) {
+            iv_icon.setImageResource(R.drawable.img_menu_main_trouble);
         }
     }
 

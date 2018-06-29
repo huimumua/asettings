@@ -119,6 +119,7 @@
     <string name="weather_report">気象通知</string>
     <string name="notification_list">お知らせ一覧</string>
     <string name="query_notification">お知らせ</string>
+    <string name="empty_notification">データを取得できませんでした</string>
     <string name="help">お問合せ先</string>
     <string name="help_background_info">ドライブレコーダーに関するお問い合わせ先</string>
     <string name="help_default_info">XX見守るクルマの保険サポートデスク</string>
