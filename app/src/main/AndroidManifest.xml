@@ -71,6 +71,11 @@
             android:enabled="true"
             android:exported="true" />
 
+        <receiver
+            android:name=".broadcast.VersionUpReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
         <provider
             android:name=".module.settingsprovider.SettingsProvider"
             android:authorities="com.askey.dvr.cdr7010.setting.provider"
