@@ -13,6 +13,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.JVCRelativeLayout;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
@@ -57,10 +58,10 @@ public class SecondBaseActivity extends AppCompatActivity {
     }
 
     protected void setIndex(int index) {
-        this.index = index+1;//从1开始算
+        this.index = index + 1;//从1开始算
     }
 
-    protected void initView(String title,int titleIconRes,String[] menuInfo,int layoutId){
+    protected void initView(String title, int titleIconRes, String[] menuInfo, int layoutId) {
 
         jvcRelativeLayout = (JVCRelativeLayout) findViewById(R.id.root);
         jvcRelativeLayout.setContentView(layoutId);
@@ -120,10 +121,10 @@ public class SecondBaseActivity extends AppCompatActivity {
 
         list_view.setAdapter(simpleAdapter);
         if (index > 6) {
-            list_view.setSelection(index % PERPAGECOUNT-1);
-            vp_progress.setProgress(firstPosition, firstPosition +PERPAGECOUNT,dataTotal.size());
+            list_view.setSelection(index % PERPAGECOUNT - 1);
+            vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
         } else {
-            list_view.setSelection(index-1);
+            list_view.setSelection(index - 1);
         }
     }
 
@@ -131,7 +132,7 @@ public class SecondBaseActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
-                if (!Utils.isFastDoubleClick()) {
+                if (!Utils.isFastDoubleClick() && null != dataTotal && dataTotal.size() > 0) {
                     firstPosition += PERPAGECOUNT;
                     Log.d("tag", "down" + firstPosition);
                     if (firstPosition < dataTotal.size()) {
@@ -146,7 +147,7 @@ public class SecondBaseActivity extends AppCompatActivity {
                 }
                 break;
             case KeyEvent.KEYCODE_DPAD_UP:
-                if (!Utils.isFastDoubleClick()) {
+                if (!Utils.isFastDoubleClick() && null != dataTotal && dataTotal.size() > 0) {
                     if (firstPosition >= PERPAGECOUNT) {
                         Log.d("tag", "up" + firstPosition);
                         firstPosition -= PERPAGECOUNT;
