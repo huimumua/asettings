@@ -118,7 +118,7 @@
     </string-array>
 
     <string-array name="system_information">
-        <item>System Version</item>
+        <item>System Version </item>
         <item>SIM Information</item>
         <item>Open Source License</item>
     </string-array>

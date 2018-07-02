@@ -113,7 +113,7 @@
     </string-array>
 
     <string-array name="system_information">
-        <item>システムバージョン X.XX</item>
+        <item>システムバージョン </item>
         <item>SIM情報</item>
         <item>オープンソースライセンス</item>
     </string-array>

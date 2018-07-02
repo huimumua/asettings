@@ -1,6 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -25,6 +26,7 @@ public class SystemInformation extends SecondBaseActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_jvclayout);
         menuInfo = getResources().getStringArray(R.array.system_information);
+        menuInfo[0] = menuInfo[0] + " " + Build.DISPLAY;
         initView(getResources().getString(R.string.tv_system_settings_system_information),R.drawable.icon_submenu_setting,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
     }
@@ -36,6 +38,7 @@ public class SystemInformation extends SecondBaseActivity implements AdapterView
 
         if (menuInfo[position].equals(menuInfo[0])) {
             intent.putExtra("info_type","version");
+
         }
         if (menuInfo[position].equals(menuInfo[1])) {
             intent.putExtra("info_type","SIM");
