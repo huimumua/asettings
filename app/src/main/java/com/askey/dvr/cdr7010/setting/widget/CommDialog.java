@@ -112,7 +112,7 @@ public class CommDialog extends Dialog {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                btnOk.requestFocusFromTouch();
+                btnCancel.requestFocusFromTouch();
             }
         }, 20);
     }
