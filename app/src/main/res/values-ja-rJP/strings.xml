@@ -86,7 +86,7 @@
     <string name="sys_imei">IMEI</string>
     <string name="sys_service_status">サービスの状態</string>
     <string name="sys_network_status">ネットワークの状態</string>
-    <string name="sys_version">システムバージョン X.XX</string>
+    <string name="sys_version">システムバージョン</string>
     <string name="sys_sim">SIM情報</string>
     <string name="sys_open_license">オープンソースライセンス</string>
     <string name="net_conn">接続</string>
