@@ -9,11 +9,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.askey.dvr.cdr7010.setting.MyAdapter;
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.JVCRelativeLayout;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
@@ -36,7 +35,8 @@ public class SecondBaseActivity extends AppCompatActivity {
     private ImageView menuTitle_icon;
     protected VerticalProgressBar vp_progress;
 
-    protected SimpleAdapter simpleAdapter;
+//    protected SimpleAdapter simpleAdapter;
+    protected MyAdapter simpleAdapter;
 
     protected List<HashMap<String, Object>> dataTotal;
     protected List<HashMap<String, Object>> currentData;
@@ -117,7 +117,8 @@ public class SecondBaseActivity extends AppCompatActivity {
         }
         getPerPageData(dataTotal, firstPosition);
 
-        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
+//        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
+        simpleAdapter = new MyAdapter(this,currentData);
 
         list_view.setAdapter(simpleAdapter);
         if (index > 6) {

@@ -1,7 +1,10 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
@@ -32,6 +35,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     private static final String TAG = "SystemSetting";
     private String[] secondMenuItem;
     private Boolean isExist = false;
+    private SDcardReceiver sdCardReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +45,20 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         menuInfo = getIntent().getStringArrayExtra("menu_item");
         initView(getResources().getString(R.string.tv_system_settings), R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+//        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+//        intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
+        sdCardReceiver = new SDcardReceiver();
+        registerReceiver(sdCardReceiver,intentFilter);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(sdCardReceiver);
     }
 
     @Override
@@ -124,5 +141,13 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 //        }
     }
 
+    class SDcardReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive: ");
+            simpleAdapter.notifyDataSetChanged();
+        }
+    }
 
 }
