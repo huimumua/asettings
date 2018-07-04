@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemProperties;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.CellInfo;
@@ -136,7 +135,8 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
 
             title_tv.setText(getString(R.string.sys_open_license));
 
-            final String path = SystemProperties.get(PROPERTY_LICENSE_PATH, DEFAULT_LICENSE_PATH);
+//            final String path = SystemProperties.get(PROPERTY_LICENSE_PATH, DEFAULT_LICENSE_PATH);
+            final String path = "/system/etc/NOTICE.html.gz";
             if (TextUtils.isEmpty(path)) {
                 Logg.e(TAG, "The system property for the license file is empty");
                 showErrorAndFinish();
@@ -270,7 +270,7 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     }
 
     private void showErrorAndFinish() {
-        Toast.makeText(this, "settings_license_activity_unavailable", Toast.LENGTH_LONG)
+        Toast.makeText(this, "settings license activity unavailable", Toast.LENGTH_LONG)
                 .show();// R.string.settings_license_activity_unavailable
         finish();
     }
