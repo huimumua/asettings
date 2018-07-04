@@ -168,16 +168,16 @@ public class CommDialog extends Dialog {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.ib_ok:
-                    dismiss();
                     if (mPositiveButtonListener != null) {
                         mPositiveButtonListener.onClick(CommDialog.this, BUTTON_POSITIVE);
                     }
+                    dismiss();
                     break;
                 case R.id.ib_cancle:
-                    dismiss();
                     if (mNegativeButtonListener != null) {
                         mNegativeButtonListener.onClick(CommDialog.this, BUTTON_NEGATIVE);
                     }
+                    dismiss();
                     break;
                 default:
             }

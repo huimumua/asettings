@@ -193,4 +193,5 @@
     <string name="dialog_version_up_2">バージョンが古い</string>
     <string name="dialog_version_up_3">チェック異常</string>
     <string name="dialog_version_up_4">更新可能なファイルがありません</string>
+    <string name="dialog_setting_init_finish">設定をリセットしました</string>
 </resources>

@@ -196,4 +196,5 @@ Move the guideline to the horizon line, the front end of vehicle (hood line) and
     <string name="dialog_version_up_2">Old version</string>
     <string name="dialog_version_up_3">Check abnormality</string>
     <string name="dialog_version_up_4">There are no updatable files</string>
+    <string name="dialog_setting_init_finish">Settings reset</string>
 </resources>

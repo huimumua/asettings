@@ -13,6 +13,7 @@ import android.view.KeyEvent;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.controller.SdcardFormatAsyncTask;
 import com.askey.dvr.cdr7010.setting.util.Const;
+import com.askey.dvr.cdr7010.setting.util.FileUtils;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 import com.askey.dvr.cdr7010.setting.widget.CommDialogNoButton;
@@ -50,6 +51,11 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
             startSytemUpdateDialog();
         }
 
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Const.ACTION_VERSIONUP_CHECK);
+        upReceiver = new VersionUpReceiver();
+        registerReceiver(upReceiver, intentFilter);
+
 //            jvcRelativeLayout.setBottom_img(R.drawable.tag_menu_sub_left);
 //            jvcRelativeLayout.setTop_img(R.drawable.tag_menu_sub_right);
 //            jvcRelativeLayout.setCenter_img(R.drawable.tag_menu_sub_ok);
@@ -74,9 +80,32 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
         //恢复出厂设置
         showDialog(this, getResources().getString(R.string.sure_to_restore_factory_Settings), new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
-                finish();
+            public void onClick(final DialogInterface dialog, int which) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        FileUtils.deleteFile("/data/system/users/0/settings_global.xml");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.dismiss();
+                                showDialog(DialogActivity.this, CommDialog.TYPE_BUTTON_OK, getString(R.string.dialog_setting_init_finish), false, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(Intent.ACTION_REBOOT);
+                                        intent.putExtra("nowait",1);
+                                        intent.putExtra("interval",1);
+                                        intent.putExtra("window",0);
+                                        sendBroadcast(intent);
+                                        //恢复出厂设置
+//                                        sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+                                        finish();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                }).start();
             }
         }, new DialogInterface.OnClickListener() {
             @Override
@@ -175,11 +204,35 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
         commDialog.show();
     }
 
+    private void showDialog(Context context, int type, String content, boolean isBackCancel, DialogInterface.OnClickListener okListener) {
+        if (commDialog != null) {
+            commDialog.cancel();
+        }
+        commDialog = new CommDialog(context);
+        commDialog.setMessage(content);
+        commDialog.setDialogWidth(280);
+        commDialog.setDialogHeight(200);
+        commDialog.setPositiveButtonListener(okListener);
+        commDialog.setCancelable(true);
+        commDialog.setCanceledOnTouchOutside(false);
+        commDialog.setType(type);
+        //back键是否能取消弹窗
+        if (!isBackCancel) {
+            commDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    Logg.i(TAG, "====setOnKeyListener== KeyEvent.KEYCODE_BACK=0=");
+                    if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+                        return true;
+                    }
+                    return false;
+                }
+            });
+        }
+        commDialog.show();
+    }
+
     private void showDialogNoButton(Context context, String content, int iconRes, boolean isShowIcon) {
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Const.ACTION_VERSIONUP_CHECK);
-        upReceiver = new VersionUpReceiver();
-        registerReceiver(upReceiver, intentFilter);
         if (commDialogNoButton != null) {
             commDialogNoButton.cancel();
         }
@@ -215,7 +268,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
             Intent intent = new Intent("com.jvckenwood.versionup.UPDATE_START");
             sendBroadcast(intent);
             dialog.dismiss();
-            showDialogNoButton(DialogActivity.this, getString(R.string.dialog_version_up_preparing), R.mipmap.ic_launcher, true);
+            showDialogNoButton(DialogActivity.this, getString(R.string.dialog_version_up_preparing), R.drawable.icon_versionup_process, true);
         }
     };
 
@@ -252,6 +305,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                     break;
                 default:
                     finish();
+                    return;
 
             }
             showDialog(context, CommDialog.TYPE_BUTTON_OK, str, new DialogInterface.OnClickListener() {
