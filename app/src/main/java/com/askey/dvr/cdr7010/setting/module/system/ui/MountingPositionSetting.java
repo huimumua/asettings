@@ -11,8 +11,6 @@ import android.widget.AdapterView;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -64,7 +62,7 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
         if (car_type==1) {
             Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
-            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_range");
+            intent.putExtra("set_wizard_help_index", "set_wizard_help_finish");
             startActivity(intent);
             finish();
         }

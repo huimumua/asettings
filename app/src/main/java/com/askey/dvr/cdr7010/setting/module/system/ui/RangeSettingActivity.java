@@ -57,7 +57,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
                 previewWidth = preview.getWidth();
                 previewHeight = preview.getHeight();
                 Log.i("height", previewHeight + "");
-                //注意这里设置的是上边外距，给的是下边距，设置下外边距貌似没用，所以这里做了一下减法
+                //注意这里设置的是上外边距，设置下外边距貌似没用
                 fullLineCurrentMarginTop =Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 120);
                 Log.d("full",fullLineCurrentMarginTop+"");
                 setLineMarginTop(fullLineCurrentMarginTop);
@@ -157,7 +157,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
                         if (car_type == 1) {
                             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-                            intent.putExtra("set_wizard_help_index", "set_wizard_help_finish");
+                            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
                             startActivity(intent);
                         }
                         finish();
