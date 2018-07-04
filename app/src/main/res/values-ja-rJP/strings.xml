@@ -182,4 +182,12 @@
     <string name="sdcard_info_context_explane">現在 / 最大</string>
 
     <string name="system_range_of">検出範囲</string>
+
+    <!--弹窗中的信息-->
+    <string name="dialog_version_up_preparing">システム更新準備中しばらくお待ちください</string>
+    <string name="dialog_version_up_0">成功</string>
+    <string name="dialog_version_up_1">システムの更新に失敗しました</string>
+    <string name="dialog_version_up_2">バージョンが古い</string>
+    <string name="dialog_version_up_3">チェック異常</string>
+    <string name="dialog_version_up_4">更新可能なファイルがありません</string>
 </resources>
