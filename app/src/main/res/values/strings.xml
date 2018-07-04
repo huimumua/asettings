@@ -184,4 +184,13 @@
     <string name="system_range_of">検出範囲</string>
 
     <string name="emergency_title">緊急時の連絡先\nを表示しています</string>
+
+    <!--弹窗中的信息-->
+    <string name="dialog_version_up_preparing">システム更新準備中しばらくお待ちください</string>
+
+    <string name="dialog_version_up_0">成功</string>
+    <string name="dialog_version_up_1">システムの更新に失敗しました</string>
+    <string name="dialog_version_up_2">バージョンが古い</string>
+    <string name="dialog_version_up_3">チェック異常</string>
+    <string name="dialog_version_up_4">更新可能なファイルがありません</string>
 </resources>

@@ -188,4 +188,12 @@ Move the guideline to the horizon line, the front end of vehicle (hood line) and
     <string name="sdcard_info_context_explane">Now / Maximum</string>
 
     <string name="emergency_title">Display emergency \n contact information</string>
+
+    <!--弹窗中的信息-->
+    <string name="dialog_version_up_preparing">Please wait while system update is being prepared</string>
+    <string name="dialog_version_up_0">success</string>
+    <string name="dialog_version_up_1">System update failed</string>
+    <string name="dialog_version_up_2">Old version</string>
+    <string name="dialog_version_up_3">Check abnormality</string>
+    <string name="dialog_version_up_4">There are no updatable files</string>
 </resources>
