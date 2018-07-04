@@ -2,12 +2,16 @@ package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemProperties;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.telephony.CellInfo;
@@ -19,21 +23,26 @@ import android.telephony.CellSignalStrengthLte;
 import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.platform.AskeyTelephonyManager;
 
+import java.io.File;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SystemInfoDetailActivity extends AppCompatActivity {
+    private static final String TAG = "SystemInfoDetailActivity";
     private String type;
     private ScrollView scrollView;
     private ImageView title_icon;
@@ -42,6 +51,8 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
     private RelativeLayout systemVersion;
     private TelephonyManager mPhoneManager;
     private Timer timer;
+    private static final String DEFAULT_LICENSE_PATH = "/system/etc/NOTICE.html.gz";
+    private static final String PROPERTY_LICENSE_PATH = "ro.config.license_path";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +135,38 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             openLicense.setVisibility(View.VISIBLE);
 
             title_tv.setText(getString(R.string.sys_open_license));
+
+            final String path = SystemProperties.get(PROPERTY_LICENSE_PATH, DEFAULT_LICENSE_PATH);
+            if (TextUtils.isEmpty(path)) {
+                Logg.e(TAG, "The system property for the license file is empty");
+                showErrorAndFinish();
+                return;
+            }
+
+            final File file = new File(path);
+            if (!file.exists() || file.length() == 0) {
+                Logg.e(TAG, "License file " + path + " does not exist");
+                showErrorAndFinish();
+                return;
+            }
+
+            // Kick off external viewer due to WebView security restrictions; we
+            // carefully point it at HTMLViewer, since it offers to decompress
+            // before viewing.
+            final Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.fromFile(file), "text/html");
+//            intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.settings_license_activity_title));
+            intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.sys_open_license));
+            intent.addCategory(Intent.CATEGORY_DEFAULT);
+            intent.setPackage("com.android.htmlviewer");
+
+            try {
+                startActivity(intent);
+                finish();
+            } catch (ActivityNotFoundException e) {
+                Logg.e(TAG, "Failed to find viewer", e);
+                showErrorAndFinish();
+            }
         }
     }
 
@@ -224,5 +267,11 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             }
         }
         return strength;
+    }
+
+    private void showErrorAndFinish() {
+        Toast.makeText(this, "settings_license_activity_unavailable", Toast.LENGTH_LONG)
+                .show();// R.string.settings_license_activity_unavailable
+        finish();
     }
 }
