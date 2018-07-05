@@ -65,7 +65,7 @@ public class MyAdapter extends BaseAdapter {
                 holder.item.setTextColor(0xffffffff);
             }
         }
-        holder.item.setText((String) data.get(position).get("menu_item"));
+        holder.item.setText(clickItem);
 
         return convertView;
     }
