@@ -23,7 +23,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -40,6 +39,7 @@ import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.util.Utils;
+import com.askey.dvr.cdr7010.setting.widget.MyListView;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 import com.askey.platform.AskeySettings;
 
@@ -50,7 +50,8 @@ import java.util.List;
 public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private final String LOG_TAG = "SettingsActivity";
     private TextView tv_title;
-    private ListView list_view;
+//    private ListView list_view;
+    private MyListView list_view;
     private ImageView iv_icon;
     private VerticalProgressBar vp_progress;
 
@@ -114,7 +115,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     private void initView() {
         tv_title = (TextView) findViewById(R.id.tv_title);
-        list_view = (ListView) findViewById(R.id.list_view);
+        list_view = (MyListView) findViewById(R.id.list_view);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
         vp_progress = (VerticalProgressBar) findViewById(R.id.vp_progress);
 

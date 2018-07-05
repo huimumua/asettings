@@ -22,7 +22,7 @@
             android:textColor="@android:color/background_light"
             android:textSize="24sp" />
 
-        <ListView
+        <com.askey.dvr.cdr7010.setting.widget.MyListView
             android:id="@+id/list_view"
             android:layout_width="250dp"
             android:layout_height="match_parent" />

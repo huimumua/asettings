@@ -8,13 +8,13 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.MyAdapter;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.JVCRelativeLayout;
+import com.askey.dvr.cdr7010.setting.widget.MyListView;
 import com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class SecondBaseActivity extends AppCompatActivity {
 
     protected JVCRelativeLayout jvcRelativeLayout;
 
-    protected ListView list_view;
+    protected MyListView list_view;
     protected static Context mContext;
     private TextView menuTitle;
     private ImageView menuTitle_icon;
@@ -66,7 +66,7 @@ public class SecondBaseActivity extends AppCompatActivity {
         jvcRelativeLayout.setContentView(layoutId);
         View view = jvcRelativeLayout.getMyView();
 
-        list_view = (ListView) view.findViewById(R.id.list_view);
+        list_view = (MyListView) view.findViewById(R.id.list_view);
         list_view.setVerticalScrollBarEnabled(false);
         list_view.setDivider(null);
         menuTitle = (TextView) view.findViewById(R.id.title_tv);
@@ -77,7 +77,7 @@ public class SecondBaseActivity extends AppCompatActivity {
         setViewAndData(list_view, vp_progress, menuInfo);
     }
 
-    protected void setViewAndData(ListView list_view, VerticalProgressBar vp_progress, String[] menuInfo) {
+    protected void setViewAndData(MyListView list_view, VerticalProgressBar vp_progress, String[] menuInfo) {
         this.list_view = list_view;
         this.vp_progress = vp_progress;
         this.menuInfo = menuInfo;

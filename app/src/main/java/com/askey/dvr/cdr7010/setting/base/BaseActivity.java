@@ -1,23 +1,17 @@
 package com.askey.dvr.cdr7010.setting.base;
 
 import android.content.Context;
-import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.application.SettingApplication;
-import com.askey.dvr.cdr7010.setting.util.Logg;
-
-import java.io.IOException;
 
 /**
  * 项目名称：settings
@@ -156,7 +150,7 @@ public class BaseActivity extends AppCompatActivity  {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         event.startTracking();
-
+        Log.d(TAG, "onKeyDown: ");
         if(keydowmRepeatCount==1){
             onContinueKeyHoldHalfASecond(keyCode);
         }else if(keydowmRepeatCount==2){
@@ -170,6 +164,7 @@ public class BaseActivity extends AppCompatActivity  {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         event.startTracking();
+        Log.d(TAG, "onKeyUp: ");
         if (keydowmRepeatCount==0) {
             onKeyShortPressed(keyCode);
         }else{

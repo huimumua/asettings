@@ -22,7 +22,7 @@
             android:layout_width="0dp"
             android:layout_weight="7"
             android:layout_height="180dp">
-            <ListView
+            <com.askey.dvr.cdr7010.setting.widget.MyListView
                 android:id="@+id/list_view"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content" />
