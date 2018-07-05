@@ -35,8 +35,7 @@ public class SecondBaseActivity extends AppCompatActivity {
     private ImageView menuTitle_icon;
     protected VerticalProgressBar vp_progress;
 
-//    protected SimpleAdapter simpleAdapter;
-    protected MyAdapter simpleAdapter;
+    protected MyAdapter myAdapter;
 
     protected List<HashMap<String, Object>> dataTotal;
     protected List<HashMap<String, Object>> currentData;
@@ -117,10 +116,9 @@ public class SecondBaseActivity extends AppCompatActivity {
         }
         getPerPageData(dataTotal, firstPosition);
 
-//        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.system_settings_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
-        simpleAdapter = new MyAdapter(this,currentData);
+        myAdapter = new MyAdapter(this,currentData);
 
-        list_view.setAdapter(simpleAdapter);
+        list_view.setAdapter(myAdapter);
         if (index > 6) {
             list_view.setSelection(index % PERPAGECOUNT - 1);
             vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
@@ -143,7 +141,7 @@ public class SecondBaseActivity extends AppCompatActivity {
                         getPerPageData(dataTotal, firstPosition);
                     }
                     vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
-                    simpleAdapter.notifyDataSetChanged();
+                    myAdapter.notifyDataSetChanged();
                     list_view.setSelection(0);
                 }
                 break;
@@ -155,7 +153,7 @@ public class SecondBaseActivity extends AppCompatActivity {
                         if (firstPosition >= 0) {
                             getPerPageData(dataTotal, firstPosition);
                             vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
-                            simpleAdapter.notifyDataSetChanged();
+                            myAdapter.notifyDataSetChanged();
                             list_view.setSelection(PERPAGECOUNT - 1);
                         }
                     } else {
@@ -165,14 +163,14 @@ public class SecondBaseActivity extends AppCompatActivity {
                                 Log.d("tag", "up+another = " + firstPosition);
                                 getPerPageData(dataTotal, firstPosition);
                                 vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
-                                simpleAdapter.notifyDataSetChanged();
+                                myAdapter.notifyDataSetChanged();
                                 list_view.setSelection(dataTotal.size() % PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             } else {
                                 firstPosition = dataTotal.size() - PERPAGECOUNT;
                                 Log.d("tag", "up+another = " + firstPosition);
                                 getPerPageData(dataTotal, firstPosition);
                                 vp_progress.setProgress(firstPosition, firstPosition + PERPAGECOUNT, dataTotal.size());
-                                simpleAdapter.notifyDataSetChanged();
+                                myAdapter.notifyDataSetChanged();
                                 list_view.setSelection(PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             }
                         }

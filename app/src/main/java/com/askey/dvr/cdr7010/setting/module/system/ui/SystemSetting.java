@@ -46,10 +46,11 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         initView(getResources().getString(R.string.tv_system_settings), R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addDataScheme("file");
         intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
         intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
-//        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
-//        intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
+        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
         sdCardReceiver = new SDcardReceiver();
         registerReceiver(sdCardReceiver,intentFilter);
 
@@ -146,7 +147,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.d(TAG, "onReceive: ");
-            simpleAdapter.notifyDataSetChanged();
+            myAdapter.notifyDataSetChanged();
         }
     }
 
