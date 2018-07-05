@@ -61,7 +61,7 @@ public class CommDialog extends Dialog {
     }
 
     private void initViews() {
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(80, 26);
         layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
 
         messageText = (MarqueeTextView) findViewById(R.id.content);
