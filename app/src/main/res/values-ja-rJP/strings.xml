@@ -60,7 +60,7 @@
 
     <string name="tv_notifacation_valume">音量設定画面</string>
     <string name="tv_playback_valume">音量設定画面</string>
-    <string name="tv_brightness_title">モニター明るさ +2</string>
+    <string name="tv_brightness_title">モニター明るさ</string>
     <string name="tv_monitor_time_settings">時間設定</string>
     <string name="tv_monitor_time_10sec">10秒</string>
     <string name="tv_monitor_time_1min">１分</string>

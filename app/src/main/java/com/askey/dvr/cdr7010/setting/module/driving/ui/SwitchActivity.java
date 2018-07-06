@@ -281,5 +281,6 @@ public class SwitchActivity extends SecondBaseActivity implements AdapterView.On
                 Settings.Global.putInt(contentResolver, AskeySettings.Global.NOTIFY_LOCATION_INFO, 0);
             }
         }
+        finish();
     }
 }

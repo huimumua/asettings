@@ -27,7 +27,7 @@ import com.askey.platform.AskeySettings;
 public class NotificationSoundSetting extends BaseActivity {
 
     private ImageView notificationView;
-    int maxVolume, currentVolume;
+    int maxVolume, currentVolume, oldVolume;
     private AudioManager mAudioManager;
     private SoundPool pool;
     private TextView title;
@@ -46,6 +46,7 @@ public class NotificationSoundSetting extends BaseActivity {
         title.setText(getResources().getString(R.string.tv_system_settings_notification_sound_volume));
         notificationView = (ImageView) findViewById(R.id.iv_notification);
         refreshView();
+        oldVolume = currentVolume;
         setRightView(true, true, true);
         setBottomView(R.drawable.tag_menu_sub_cancel);
         setRightView(true, R.drawable.tag_menu_sub_increase, true, R.drawable.tag_menu_sub_ok, true, R.drawable.tag_menu_sub_decrease);
@@ -60,7 +61,7 @@ public class NotificationSoundSetting extends BaseActivity {
                     currentVolume = 0;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
+//                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
                 refreshView();
                 testSound();
                 break;
@@ -70,9 +71,19 @@ public class NotificationSoundSetting extends BaseActivity {
                     currentVolume = 5;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
-                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
+//                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
                 refreshView();
                 testSound();
+                break;
+            case KeyEvent.KEYCODE_ENTER:
+                mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
+                finish();
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, oldVolume, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, oldVolume);
+                finish();
                 break;
         }
         return super.onKeyDown(keyCode, event);

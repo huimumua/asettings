@@ -80,5 +80,6 @@ public class MonitorTimeSettings extends SecondBaseActivity implements AdapterVi
                 Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 1);   //設成1表示要進入DIM不關屏
             }
         }
+        finish();
     }
 }

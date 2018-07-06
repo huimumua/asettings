@@ -2,6 +2,7 @@ package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -82,7 +83,7 @@ public class SdcardInformation extends BaseActivity{
         event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
         picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);
 
-        setRightView(true,0,true,R.drawable.tag_menu_sub_ok,true,0);
+        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
 
         String title = getResources().getString(R.string.sdcard_setting_information);
         setTitleView(title,R.drawable.icon_submenu_sdcard);
@@ -91,5 +92,14 @@ public class SdcardInformation extends BaseActivity{
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

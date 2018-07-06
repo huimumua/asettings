@@ -26,7 +26,7 @@ import com.askey.platform.AskeySettings;
  */
 public class PlaybackSoundSetting extends BaseActivity {
     private ImageView playBackSoundView;
-    private int currentVolumeMusic;
+    private int currentVolumeMusic, oldVolumeMusic;
     private AudioManager mAudioManager;
     private SoundPool pool;
     private TextView title;
@@ -46,6 +46,7 @@ public class PlaybackSoundSetting extends BaseActivity {
         title.setText(getResources().getString(R.string.tv_system_settings_playback_volume));
         playBackSoundView = (ImageView) findViewById(R.id.iv_playback);
         refreshView();
+        oldVolumeMusic = currentVolumeMusic;
         setRightView(true, true, true);
         setBottomView(R.drawable.tag_menu_sub_cancel);
         setRightView(true, R.drawable.tag_menu_sub_increase, true, R.drawable.tag_menu_sub_ok, true, R.drawable.tag_menu_sub_decrease);
@@ -60,7 +61,7 @@ public class PlaybackSoundSetting extends BaseActivity {
                     currentVolumeMusic = 0;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
-                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, currentVolumeMusic);
+//                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, currentVolumeMusic);
                 refreshView();
                 testPlaybackSound();
                 break;
@@ -70,9 +71,19 @@ public class PlaybackSoundSetting extends BaseActivity {
                     currentVolumeMusic = 5;
                 }
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
-                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, currentVolumeMusic);
+//                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, currentVolumeMusic);
                 refreshView();
                 testPlaybackSound();
+                break;
+            case KeyEvent.KEYCODE_ENTER:
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, currentVolumeMusic);
+                finish();
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, oldVolumeMusic, 0);
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, oldVolumeMusic);
+                finish();
                 break;
         }
         return super.onKeyDown(keyCode, event);

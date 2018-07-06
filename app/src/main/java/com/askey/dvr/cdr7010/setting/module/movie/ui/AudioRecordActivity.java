@@ -49,5 +49,6 @@ public class AudioRecordActivity extends SecondBaseActivity implements AdapterVi
         } else if (clickItem.equals(Const.OFF)) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.RECSET_VOICE_RECORD, 0);
         }
+        finish();
     }
 }

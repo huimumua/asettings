@@ -74,7 +74,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
             startActivity(intent);
             finish();
         }
-
+        finish();
     }
 
 

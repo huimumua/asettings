@@ -60,5 +60,6 @@ public class MonitorOperationSettings extends SecondBaseActivity implements Adap
             Settings.System.putInt(getContentResolver(), SCREEN_OFF_TIMEOUT, monitorTime);
             Settings.System.putInt(getContentResolver(), "screen_dim_timeout", 1);   //設成1表示要進入DIM不關屏
         }
+        finish();
     }
 }

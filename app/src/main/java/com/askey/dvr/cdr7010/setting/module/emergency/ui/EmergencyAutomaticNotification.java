@@ -58,5 +58,6 @@ public class EmergencyAutomaticNotification extends SecondBaseActivity implement
         } else if (clickItem.equals(getResources().getString(R.string.communication_emergency_automatic_notification_off))) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.COMM_EMERGENCY_AUTO, 0);
         }
+        finish();
     }
 }

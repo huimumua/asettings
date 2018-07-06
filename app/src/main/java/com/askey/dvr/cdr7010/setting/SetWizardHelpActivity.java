@@ -47,7 +47,7 @@ public class SetWizardHelpActivity extends BaseActivity {
         if (null == currentUi || currentUi.equals("")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_start_setting);
             currentUi = "set_wizard_help_start_setting";
-            setBottomView(false, R.drawable.tag_menu_sub_skip);
+            setBottomView(true, R.drawable.tag_menu_main_back);
         } else if (currentUi.equals("set_wizard_help_context_leveler")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
@@ -62,7 +62,7 @@ public class SetWizardHelpActivity extends BaseActivity {
             setBottomView(true, R.drawable.tag_menu_sub_skip);
         } else if (currentUi.equals("set_wizard_help_finish")) {
             indexStr = getResources().getString(R.string.set_wizard_help_finish);
-            setBottomView(true, R.drawable.tag_menu_sub_skip);
+            setBottomView(false, 0);
         }
 
         setWizardhelp.setText(indexStr);
@@ -77,6 +77,7 @@ public class SetWizardHelpActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (currentUi.equals("set_wizard_help_start_setting")) {
+                finish();
                 return true;
             } else if (currentUi.equals("set_wizard_help_context_leveler")) {
                 currentUi = "set_wizard_help_context_vehicle_type";

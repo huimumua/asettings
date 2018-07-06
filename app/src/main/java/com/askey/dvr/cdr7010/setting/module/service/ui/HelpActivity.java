@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
@@ -44,5 +45,15 @@ public class HelpActivity extends BaseActivity {
         if (null != contactNumber) {
             number.setText(contactNumber);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

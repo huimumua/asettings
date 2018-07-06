@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
@@ -39,5 +40,15 @@ public class EmergencyContactPerson extends BaseActivity {
         number = (TextView) findViewById(R.id.content_number);
         String emergencyNumber = Settings.Global.getString(contentResolver, AskeySettings.Global.COMM_EMERGENCY_NUMBER);
         number.setText(emergencyNumber);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

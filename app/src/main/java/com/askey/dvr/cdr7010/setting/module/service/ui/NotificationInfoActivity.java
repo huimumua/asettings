@@ -3,6 +3,7 @@ package com.askey.dvr.cdr7010.setting.module.service.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -29,5 +30,15 @@ public class NotificationInfoActivity extends AppCompatActivity {
         title_icon = (ImageView) findViewById(R.id.title_icon);
         title_icon.setImageDrawable(getResources().getDrawable(R.drawable.icon_submenu_help));
         scrollView = (ScrollView) findViewById(R.id.scrollview);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

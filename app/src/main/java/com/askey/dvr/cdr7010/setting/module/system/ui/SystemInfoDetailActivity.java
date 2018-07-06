@@ -23,6 +23,7 @@ import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.platform.AskeyTelephonyManager;
 
@@ -40,7 +42,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SystemInfoDetailActivity extends AppCompatActivity {
+public class SystemInfoDetailActivity extends BaseActivity {
     private static final String TAG = "SystemInfoDetailActivity";
     private String type;
     private ScrollView scrollView;
@@ -94,8 +96,8 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
         if (type.equals("version")) {
             systemVersion.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.GONE);
-            title_tv.setText(getString(R.string.sys_version));
-
+            title_tv.setText(getString(R.string.sys_version) + " " + Build.DISPLAY);
+            setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
             version = (TextView) findViewById(R.id.version);
             String systemVersion = Build.DISPLAY;
             version.setText(systemVersion);
@@ -267,6 +269,16 @@ public class SystemInfoDetailActivity extends AppCompatActivity {
             }
         }
         return strength;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void showErrorAndFinish() {

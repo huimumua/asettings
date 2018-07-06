@@ -66,8 +66,7 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
             startActivity(intent);
             finish();
         }
-
-
+        finish();
     }
 
 

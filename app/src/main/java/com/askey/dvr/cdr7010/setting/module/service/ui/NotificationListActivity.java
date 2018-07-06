@@ -3,6 +3,7 @@ package com.askey.dvr.cdr7010.setting.module.service.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -42,5 +43,15 @@ public class NotificationListActivity extends SecondBaseActivity implements Adap
         Intent intent = new Intent(mContext, NotificationInfoActivity.class);
         intent.putExtra("clickItem", clickItem);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

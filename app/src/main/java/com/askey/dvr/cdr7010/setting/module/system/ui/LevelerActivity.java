@@ -231,7 +231,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
                 finish();
                 return true;
             }
-
+            finish();
         }if (keyCode == KeyEvent.KEYCODE_BACK) {
             int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (car_type==1) {

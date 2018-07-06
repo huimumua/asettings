@@ -2,6 +2,7 @@ package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
@@ -30,6 +31,15 @@ public class PreviewActivity extends CameraBaseActivity {
         startPreview();
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_ENTER:
+                finish();
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onDestroy() {

@@ -29,6 +29,7 @@ import com.askey.platform.AskeySettings;
  */
 public class LCDBrightnessSetting extends BaseActivity {
     private int currentBrightness = 0;
+    private int oldBrightness = 0;
     private ImageView brightness0, brightness1, brightness2, brightness3, brightness4, brightness5,
             brightness6, brightness7, brightness8, brightness9, brightness10;
     private ContentResolver contentResolver;
@@ -43,6 +44,7 @@ public class LCDBrightnessSetting extends BaseActivity {
         contentResolver = getContentResolver();
         initView();
         getScreenBrightness();
+        oldBrightness = currentBrightness;
         refresh(currentBrightness, "current");
     }
 
@@ -63,9 +65,9 @@ public class LCDBrightnessSetting extends BaseActivity {
         r = getResources();
         layers = new Drawable[2];
         layers[1] = r.getDrawable(R.drawable.img_brightness_selected);
-        setRightView(true,true,true);
+        setRightView(true, true, true);
         setBottomView(R.drawable.tag_menu_sub_cancel);
-        setRightView(true,R.drawable.tag_menu_sub_increase,true,R.drawable.tag_menu_sub_ok,true,R.drawable.tag_menu_sub_decrease);
+        setRightView(true, R.drawable.tag_menu_sub_increase, true, R.drawable.tag_menu_sub_ok, true, R.drawable.tag_menu_sub_decrease);
     }
 
     @Override
@@ -82,6 +84,14 @@ public class LCDBrightnessSetting extends BaseActivity {
                 currentBrightness = (currentBrightness + 25);
                 setScreenBrightness(currentBrightness);
                 refresh(currentBrightness, "up");
+                break;
+            case KeyEvent.KEYCODE_ENTER:
+                setScreenBrightness(currentBrightness);
+                finish();
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                setScreenBrightness(oldBrightness);
+                finish();
                 break;
         }
         return super.onKeyDown(keyCode, event);

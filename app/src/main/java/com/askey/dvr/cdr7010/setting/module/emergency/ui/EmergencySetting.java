@@ -27,7 +27,7 @@ public class EmergencySetting extends SecondBaseActivity implements AdapterView.
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
-        initView(getResources().getString(R.string.communication),R.drawable.icon_submenu_communication,menuInfo,R.layout.second_menu_layout);
+        initView(getResources().getString(R.string.main_menu_em),R.drawable.icon_submenu_communication,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
 
     }

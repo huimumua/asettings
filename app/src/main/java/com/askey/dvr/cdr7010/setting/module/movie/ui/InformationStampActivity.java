@@ -49,5 +49,6 @@ public class InformationStampActivity extends SecondBaseActivity implements Adap
         } else if (clickItem.equals(Const.OFF)) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.RECSET_INFO_STAMP, 0);
         }
+        finish();
     }
 }
