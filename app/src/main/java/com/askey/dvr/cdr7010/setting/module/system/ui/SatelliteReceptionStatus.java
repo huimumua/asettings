@@ -5,8 +5,6 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
@@ -74,8 +72,8 @@ public class SatelliteReceptionStatus extends BaseActivity{
 
 
     public void initUI(){
-        marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
-        marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
+//        marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
+//        marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
         setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
         setTitleView(getResources().getString(R.string.gps_status_title));
 
