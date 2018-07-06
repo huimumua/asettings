@@ -247,7 +247,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
         commDialogNoButton.setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                return false;
+                return true;
             }
         });
         commDialogNoButton.show();
@@ -285,7 +285,6 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            commDialogNoButton.dismiss();
             Log.d(TAG, "onReceive: " + intent.getIntExtra("result", 0));
             switch (intent.getIntExtra("result", 0)) {
                 case 0:
@@ -308,6 +307,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                     return;
 
             }
+            commDialogNoButton.dismiss();
             showDialog(context, CommDialog.TYPE_BUTTON_OK, str, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
