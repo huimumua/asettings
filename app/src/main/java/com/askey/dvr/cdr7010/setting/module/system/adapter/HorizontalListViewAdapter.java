@@ -105,16 +105,16 @@ public class HorizontalListViewAdapter extends BaseAdapter{
                 holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_blue);
             }
             if(snr==0.0){
-                holder.mTitle.setText("    ");
+                holder.mTitle.setText("");
             }else{
                 holder.mTitle.setText(snr+"");
             }
             if(prn==0){
-                holder.mValue.setText("    ");
+                holder.mValue.setText("");
             }else{
                 holder.mValue.setText(prn+"");
             }
-            holder.mImage.setText("   ");
+            holder.mImage.setText("");
         }
 
 

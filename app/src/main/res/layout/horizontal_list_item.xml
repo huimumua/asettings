@@ -34,10 +34,11 @@
 
         <TextView
             android:id="@+id/gps_satellite_number"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/view_gps_detail_width"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/view_margin_top"
-            android:padding="@dimen/view_gps_detail_padding"
+            android:paddingTop="@dimen/view_gps_detail_padding"
+            android:paddingBottom="@dimen/view_gps_detail_padding"
             android:layout_gravity="center"
             android:gravity="center"
             android:textColor="@color/white" />
@@ -54,7 +55,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginTop="@dimen/view_margin_top"
-            android:padding="@dimen/view_gps_detail_padding"
+            android:paddingTop="@dimen/view_gps_detail_padding"
+            android:paddingBottom="@dimen/view_gps_detail_padding"
             android:textColor="@color/white" />
     </LinearLayout>
     <LinearLayout

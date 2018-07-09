@@ -17,7 +17,7 @@
         android:background="@drawable/bg_gps_all"
         android:layout_marginTop="@dimen/gps_margin_top"
         android:layout_marginBottom="@dimen/gps_margin_top"
-        android:layout_marginRight="@dimen/gps_margin_top"
+        android:layout_marginRight="@dimen/gps_margin_right"
         android:layout_marginLeft="@dimen/gps_margin_left"
         >
     </com.askey.dvr.cdr7010.setting.view.HorizontalListView>

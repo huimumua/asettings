@@ -3,4 +3,7 @@
     <dimen name="view_pading_left">10dip</dimen>
     <dimen name="view_pading_top">5dip</dimen>
     <dimen name="view_gps_detail_padding">8dip</dimen>
+    <dimen name="view_gps_detail_padding_left">6.5dip</dimen>
+    <dimen name="gps_margin_right">28dip</dimen>
+    <dimen name="view_gps_detail_width">30dip</dimen>
 </resources>
