@@ -102,8 +102,6 @@ public class SetWizardHelpActivity extends BaseActivity {
                 } else {
                     Const.SET_WIZARD = false;
                     Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
-                    Intent intent = new Intent(mContext, SettingsActivity.class);
-                    startActivity(intent);
                     SettingApplication.finishActivity(SetWizardHelpActivity.class);
                 }
             }
