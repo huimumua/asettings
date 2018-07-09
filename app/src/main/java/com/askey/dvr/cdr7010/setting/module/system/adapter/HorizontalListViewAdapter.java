@@ -32,18 +32,21 @@ public class HorizontalListViewAdapter extends BaseAdapter{
     private LayoutInflater mInflater;
     Bitmap iconBitmap;
     private int selectIndex = -1;
+    private int mGpsStatusListSize = 0;
 
     public HorizontalListViewAdapter(Context context, ArrayList<GpsSvInfo> gpsStatusList){
         this.mContext = context;
         this.mGpsStatusList = gpsStatusList;
         mInflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);//LayoutInflater.from(mContext);
+        this.mGpsStatusListSize = mGpsStatusList.size();
     }
     @Override
     public int getCount() {
         if(mGpsStatusList==null || mGpsStatusList.size()==0 ){
             return 1;
         }
-        return mGpsStatusList.size()+1;
+        return 9;
+//        return mGpsStatusList.size()+1;
     }
     @Override
     public Object getItem(int position) {
@@ -78,6 +81,7 @@ public class HorizontalListViewAdapter extends BaseAdapter{
         LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) holder.mImage.getLayoutParams(); //取控件textView当前的布局参数
 
 
+
         if(position==0){
             holder.mTitle.setText("LV.");
             holder.mValue.setText("");
@@ -93,28 +97,34 @@ public class HorizontalListViewAdapter extends BaseAdapter{
 //            超過38%, 63%以下(含63%) - 黃色
 //            超過63% - 藍色
 
-            int prn = mGpsStatusList.get(position-1).getPrn();
-            int snr = (int) mGpsStatusList.get(position-1).getSnr();
-            linearParams.height = snr;// 控件的高强制设成20
-            holder.mImage.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
-            if(snr>=0 && snr<=38){
-                holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_orange);
-            }else if(snr>38 && snr<=63){
-                holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_yellow);
-            }else if(snr>63){
-                holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_blue);
-            }
-            if(snr==0.0){
-                holder.mTitle.setText("");
+            if(position <= mGpsStatusListSize){
+                int prn = mGpsStatusList.get(position-1).getPrn();
+                int snr = (int) mGpsStatusList.get(position-1).getSnr();
+                linearParams.height = snr;// 控件的高强制设成20
+                holder.mImage.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
+                if(snr>=0 && snr<=38){
+                    holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_orange);
+                }else if(snr>38 && snr<=63){
+                    holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_yellow);
+                }else if(snr>63){
+                    holder.mImage.setBackgroundResource(R.drawable.icon_gpscolor_blue);
+                }
+                if(snr==0.0){
+                    holder.mTitle.setText("");
+                }else{
+                    holder.mTitle.setText(snr+"");
+                }
+                if(prn==0){
+                    holder.mValue.setText("");
+                }else{
+                    holder.mValue.setText(prn+"");
+                }
+                holder.mImage.setText("");
             }else{
-                holder.mTitle.setText(snr+"");
+                linearParams.height = 0;// 控件的高强制设成20
+                holder.mImage.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
             }
-            if(prn==0){
-                holder.mValue.setText("");
-            }else{
-                holder.mValue.setText(prn+"");
-            }
-            holder.mImage.setText("");
+
         }
 
 

@@ -11,6 +11,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.adapter.HorizontalListViewAdapter;
 import com.askey.dvr.cdr7010.setting.module.system.bean.GpsSvInfo;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
+import com.askey.dvr.cdr7010.setting.module.system.controller.SdcardFormatAsyncTask;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.view.HorizontalListView;
 import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
@@ -26,8 +27,8 @@ import java.util.ArrayList;
  * 修改时间：2018/4/24 15:39
  * 修改备注：
  */
-public class SatelliteReceptionStatus extends BaseActivity{
-    private static final String TAG = "SatelliteReceptionStatus";
+public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusManager.GpsStatusChangedCallback{
+        private static final String TAG = "SatelliteReceptionStatus";
     private ArrayList<GpsSvInfo> gpsStatusList = new ArrayList<GpsSvInfo>();
     private HorizontalListView hListView;
     private HorizontalListViewAdapter hListViewAdapter;
@@ -38,9 +39,15 @@ public class SatelliteReceptionStatus extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_installation_satellite);
 
+        GPSStatusManager.getInstance(this).recordLocation(true);
+
+        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
+        setTitleView(getResources().getString(R.string.gps_status_title));
+        hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
+
         //获取当前星数
-        GPSStatusManager.getInstance().getGpsUsedInFix();
-        gpsStatusList = GPSStatusManager.getInstance().getGpsStatusList();
+        GPSStatusManager.getInstance(this).getGpsUsedInFix();
+        gpsStatusList = GPSStatusManager.getInstance(this).getGpsStatusList();
 
         if(null!=gpsStatusList && gpsStatusList.size()>0){
             Logg.i(TAG,"=gpsStatusList.size()="+gpsStatusList.size());
@@ -55,6 +62,8 @@ public class SatelliteReceptionStatus extends BaseActivity{
         }
 
         initUI();
+
+
 
     }
 
@@ -72,12 +81,6 @@ public class SatelliteReceptionStatus extends BaseActivity{
 
 
     public void initUI(){
-//        marqueeTextView = (MarqueeTextView) findViewById(R.id.marquee_text);
-//        marqueeTextView.setText(getString(R.string.system_setting_install_leveler));
-        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
-        setTitleView(getResources().getString(R.string.gps_status_title));
-
-        hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
         if(null != gpsStatusList && gpsStatusList.size()>0){
             hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
             hListView.setAdapter(hListViewAdapter);
@@ -111,9 +114,31 @@ public class SatelliteReceptionStatus extends BaseActivity{
 
     @Override
     protected void onDestroy() {
+        GPSStatusManager.getInstance(this).recordLocation(false);
         super.onDestroy();
-
     }
 
 
+    @Override
+    public void onPostExecute() {
+        gpsStatusList = GPSStatusManager.getInstance(this).getGpsStatusList();
+        Logg.i(TAG,"=======onPostExecute======");
+        runOnUiThread(new Runnable() {
+            public void run() {
+                if(null!=gpsStatusList && gpsStatusList.size()>0){
+                    Logg.i(TAG,"=gpsStatusList.size()="+gpsStatusList.size());
+                    for (GpsSvInfo gpsSvInfo : gpsStatusList){
+                        Logg.i(TAG,"=gpsSvInfo.getSnr()="+gpsSvInfo.getSnr());
+                        Logg.i(TAG,"=gpsSvInfo.getAzimuth()="+gpsSvInfo.getAzimuth());
+                        Logg.i(TAG,"=gpsSvInfo.getPrn()="+gpsSvInfo.getPrn());
+                        Logg.i(TAG,"=gpsSvInfo.getElevation()="+gpsSvInfo.getElevation());
+                    }
+                }else{
+                    initData();
+                }
+
+                initUI();
+            }
+        });
+    }
 }

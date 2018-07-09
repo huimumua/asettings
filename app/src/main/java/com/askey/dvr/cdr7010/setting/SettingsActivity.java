@@ -91,7 +91,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
                 initData();
                 FileManager.getInstance().bindFileManageService();
-                GPSStatusManager.getInstance().recordLocation(true);
 
                 Intent settingIntent = new Intent();
                 settingIntent.setAction("com.askey.askeysettingservice.action");
@@ -326,7 +325,6 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         super.onDestroy();
         try {
             FileManager.getInstance().unBindFileManageService();
-            GPSStatusManager.getInstance().recordLocation(false);
             unbindService(mConnection);
         } catch (Exception e) {
             Logg.e(LOG_TAG, "onDestroy-->Exception" + e.getMessage());

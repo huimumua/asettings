@@ -38,6 +38,7 @@ public class GPSStatusManager {
     private static GPSStatusManager mnLocationManager;
     private int mGpsUsedInFix;
     private ArrayList<GpsSvInfo> gpsStatusList;
+    private final GPSStatusManager.GpsStatusChangedCallback mCallback;
 
     LocationListener[] mLocationListeners = new LocationListener[]{
             new LocationListener(android.location.LocationManager.GPS_PROVIDER)
@@ -49,20 +50,24 @@ public class GPSStatusManager {
         void hideGpsOnScreenIndicator();
     }
 
-    public GPSStatusManager(Context context, Listener listener) {
+    public GPSStatusManager(Context context, Listener listener,GPSStatusManager.GpsStatusChangedCallback callback) {
         mContext = context;
         mListener = listener;
+        mCallback = callback;
+    }
+    public GPSStatusManager(GPSStatusManager.GpsStatusChangedCallback callback){
+        this.mCallback = callback;
     }
 
-    public static GPSStatusManager getInstance(Context context) {
+    public static GPSStatusManager getInstance(Context context,GPSStatusManager.GpsStatusChangedCallback callback) {
         if (mnLocationManager == null)
-            mnLocationManager = new GPSStatusManager(context, null);
+            mnLocationManager = new GPSStatusManager(context, null,callback);
         return mnLocationManager;
     }
 
-    public static GPSStatusManager getInstance() {
+    public static GPSStatusManager getInstance(GPSStatusManager.GpsStatusChangedCallback callback) {
         if (mnLocationManager == null)
-            mnLocationManager = new GPSStatusManager(SettingApplication.getContext(), null);
+            mnLocationManager = new GPSStatusManager(SettingApplication.getContext(), null,callback);
         return mnLocationManager;
     }
 
@@ -251,6 +256,17 @@ public class GPSStatusManager {
                     mLocationListeners[0].setHaveSatelUsedInFix(gpsCount > 3);
                     mGpsUsedInFix = gpsCount;
                     setGpsStatusList(gpsStatusList);
+
+                    try{
+                        if(mCallback != null){
+                            mCallback.onPostExecute();
+                            Logg.i(TAG,"=======onPostExecute======");
+                        }
+
+                    }catch (Exception e){
+                        Logg.e(TAG, "onPostExecute: " + e.getMessage());
+                    }
+
                     break;
                 // 定位启动
                 case GpsStatus.GPS_EVENT_STARTED:
@@ -360,5 +376,8 @@ public class GPSStatusManager {
 
     }
 
+    public interface GpsStatusChangedCallback{
+        void onPostExecute();
+    }
 
 }
