@@ -33,6 +33,7 @@ public class SetWizardHelpActivity extends BaseActivity {
     private String currentUi = "set_wizard_help_start_setting";
     private TextView setWizardhelp;
     private ContentResolver contentResolver;
+    private String title;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,20 +53,24 @@ public class SetWizardHelpActivity extends BaseActivity {
         } else if (currentUi.equals("set_wizard_help_context_leveler")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
+            title = getResources().getString(R.string.leveler_detail_title);
         } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
+            title = getResources().getString(R.string.vehicle_type);
         } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_mounting_position);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
+            title = getResources().getString(R.string.mounting_position);
         } else if (currentUi.equals("set_wizard_help_context_range")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_range);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
+            title = getResources().getString(R.string.system_range_of);
         } else if (currentUi.equals("set_wizard_help_finish")) {
             indexStr = getResources().getString(R.string.set_wizard_help_finish);
             setBottomView(false, 0);
         }
-
+        setTitleView(title);
         setWizardhelp.setText(indexStr);
     }
 
@@ -84,14 +89,20 @@ public class SetWizardHelpActivity extends BaseActivity {
                 currentUi = "set_wizard_help_context_vehicle_type";
                 String str = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
                 setWizardhelp.setText(str);
+                title = getResources().getString(R.string.vehicle_type);
+                setTitleView(title);
             } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
                 currentUi = "set_wizard_help_context_range";
                 String str = getResources().getString(R.string.set_wizard_help_context_range);
                 setWizardhelp.setText(str);
+                title = getResources().getString(R.string.system_range_of);
+                setTitleView(title);
             } else if (currentUi.equals("set_wizard_help_context_range")) {
                 currentUi = "set_wizard_help_context_mounting_position";
                 String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
                 setWizardhelp.setText(str);
+                title = getResources().getString(R.string.mounting_position);
+                setTitleView(title);
             } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
                 finishSetWizard();
             }
