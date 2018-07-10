@@ -58,12 +58,12 @@ public class RangeSettingActivity extends CameraBaseActivity {
                 previewHeight = preview.getHeight();
                 Log.i("height", previewHeight + "");
                 //注意这里设置的是上外边距，设置下外边距貌似没用
-                fullLineCurrentMarginTop =Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 120);
-                Log.d("full",fullLineCurrentMarginTop+"");
+                fullLineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 120);
+                Log.d("full", fullLineCurrentMarginTop + "");
                 setLineMarginTop(fullLineCurrentMarginTop);
 
-                dottedLineCurrentMarginTop =Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, 178);
-                Log.d("dotted",dottedLineCurrentMarginTop+"");
+                dottedLineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, 178);
+                Log.d("dotted", dottedLineCurrentMarginTop + "");
             }
         });
 
@@ -81,21 +81,21 @@ public class RangeSettingActivity extends CameraBaseActivity {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 switch (status) {
                     case SETTING_HORIZON:
-                        Log.i("top_down", fullLineCurrentMarginTop + "");
+                        Log.i("down_SETTING_HORIZON", fullLineCurrentMarginTop + "");
                         if (fullLineCurrentMarginTop < previewHeight - 1) {
                             fullLineCurrentMarginTop += 1;
                             setLineMarginTop(fullLineCurrentMarginTop);
                         }
                         break;
                     case SETTING_HOOD:
-                        Log.i("top_down", dottedLineCurrentMarginTop + "");
+                        Log.i("down_SETTING_HOOD", dottedLineCurrentMarginTop + "");
                         if (dottedLineCurrentMarginTop < previewHeight - 1) {
                             dottedLineCurrentMarginTop += 1;
                             setLineMarginTop(dottedLineCurrentMarginTop);
                         }
                         break;
                     case SETTING_CENTER:
-                        Log.i("right", lineCurrentMarginLeft + "");
+                        Log.i("right_SETTING_CENTER", lineCurrentMarginLeft + "");
                         if (lineCurrentMarginLeft > 1) {
                             lineCurrentMarginLeft -= 1;
                             setLineMarginLeft(lineCurrentMarginLeft);
@@ -128,6 +128,14 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         break;
                 }
                 break;
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 Logg.i(TAG, "===KeyEvent.KEYCODE_ENTER===");
 
@@ -150,9 +158,9 @@ public class RangeSettingActivity extends CameraBaseActivity {
                     //车道中线标记线
                     case SETTING_CENTER:
 
-                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_SKYLINE_RANGE,fullLineCurrentMarginTop);
-                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_BONNETY,dottedLineCurrentMarginTop);
-                        Settings.Global.putInt(contentResolver,AskeySettings.Global.ADAS_CENTERX,lineCurrentMarginLeft);
+                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, fullLineCurrentMarginTop);
+                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, dottedLineCurrentMarginTop);
+                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, lineCurrentMarginLeft);
 
                         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
                         if (car_type == 1) {
@@ -189,7 +197,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         return true;
                 }
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyUp(keyCode, event);
     }
 
     private void setLineMarginTop(int lineCurrentMarginTop) {
