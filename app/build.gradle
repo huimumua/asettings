@@ -7,10 +7,10 @@ def getTime() {
 android {
     signingConfigs {
         singnedconfig {
-            keyAlias 'android'
-            keyPassword 'android'
-            storeFile file('../tools/CDR7010.keystore')
-            storePassword 'android'
+            storeFile file(PLATFORM_STORE_FILE)
+            keyAlias PLATFORM_KEY_ALIAS
+            keyPassword PLATFORM_KEY_PASSWORD
+            storePassword PLATFORM_STORE_PASSWORD
         }
     }
     compileSdkVersion 25
