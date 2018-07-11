@@ -53,6 +53,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     private MarqueeTextView marqueeTextView;
     private int screenWidth ,screenHeight;
     private  ContentResolver contentResolver;
+    private float yawAngle,pitchAngle;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -87,6 +88,10 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
             }
         }).start();
 
+        int pitchAngle = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_PITCH_ANGLE, -1);
+        int yawAngle = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_YAW_ANGLE, -1);
+        Logg.i(TAG,"=====pitchAngle==="+pitchAngle);
+        Logg.i(TAG,"=====yawAngle==="+yawAngle);
     }
 
     @Override
@@ -97,13 +102,15 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         switch (sensorType) {
             case Sensor.TYPE_ORIENTATION:
                 //获取与Y轴的夹角
-//                float yAngle = values[1];
-//                //获取与Z轴的夹角
-//                float zAngle = values[2];
+//                yaw = event.values[0];
+//                pitch = event.values[1];
+//                roll = event.values[2];
+                yawAngle = values[2];
+                pitchAngle = values[1];
                 float zAngle = values[1];
                 //获取与Z轴的夹角
                 float yAngle = values[2];
-//                Logg.i(TAG,"=onSensorChanged=yAngle="+yAngle+"==zAngle=="+zAngle);
+                Logg.i(TAG,"=onSensorChanged=yawAngle="+yawAngle+"==pitchAngle=="+pitchAngle);
                 //气泡位于中间时（水平仪完全水平）
                 int x = spiritView.bubbleBitmap.getWidth()/2;
                 int y = spiritView.bubbleBitmap.getHeight()/2;
@@ -223,6 +230,8 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_YAW_ANGLE, (int) yawAngle);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_PITCH_ANGLE, (int) pitchAngle);
             int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (car_type==1) {
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
