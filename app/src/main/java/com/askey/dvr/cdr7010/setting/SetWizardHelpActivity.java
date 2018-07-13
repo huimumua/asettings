@@ -16,7 +16,6 @@ import com.askey.dvr.cdr7010.setting.module.system.ui.RangeSettingActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.VehicleTypeSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -49,7 +48,12 @@ public class SetWizardHelpActivity extends BaseActivity {
         if (null == currentUi || currentUi.equals("")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_start_setting);
             currentUi = "set_wizard_help_start_setting";
-            setBottomView(true, R.drawable.tag_menu_main_back);
+            if (Const.SET_WIZARD) {
+                setBottomView(true, R.drawable.tag_menu_main_back);
+            } else {
+                setBottomView(false, R.drawable.tag_menu_main_back);
+            }
+
         } else if (currentUi.equals("set_wizard_help_context_leveler")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
@@ -80,8 +84,13 @@ public class SetWizardHelpActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+            if (!Const.SET_WIZARD) {
+                return true;
+            }
+
             if (currentUi.equals("set_wizard_help_start_setting")) {
                 finishSetWizard();
                 return true;
@@ -128,7 +137,7 @@ public class SetWizardHelpActivity extends BaseActivity {
             }
             return true;
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyUp(keyCode, event);
     }
 
     private void finishSetWizard(){
