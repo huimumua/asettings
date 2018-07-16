@@ -86,7 +86,7 @@ public class SetWizardHelpActivity extends BaseActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-
+            //第一次启动设备的设置向导，首页提示不能返回
             if (!Const.SET_WIZARD) {
                 return true;
             }
@@ -118,6 +118,7 @@ public class SetWizardHelpActivity extends BaseActivity {
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_ENTER) {
             if (currentUi.equals("set_wizard_help_start_setting")) {
+                Const.SET_WIZARD = true;//为了让第一次启动时能够跳过一些选项
                 startActivity(new Intent(mContext, LevelerDetailActivity.class));
             } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
                 String[] secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
@@ -143,13 +144,13 @@ public class SetWizardHelpActivity extends BaseActivity {
     private void finishSetWizard(){
         ContentResolver contentResolver = getContentResolver();
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-        if (car_type == 1 && !Const.SET_WIZARD) {
+        if (car_type == 1) {
             String packageName = "com.askey.dvr.cdr7010.dashcam";
             String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
             AppUtil.startActivity(mContext, packageName, className, true);
         } else {
             Const.SET_WIZARD = false;
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
+//            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
             SettingApplication.finishActivity(SetWizardHelpActivity.class);
         }
     }

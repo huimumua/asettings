@@ -19,12 +19,10 @@ import android.view.WindowManager;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
-import com.askey.dvr.cdr7010.setting.util.PreferencesUtils;
 import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 import com.askey.platform.AskeySettings;
 
@@ -237,12 +235,12 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_YAW_ANGLE, (int) yawAngle);
             Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_PITCH_ANGLE, (int) pitchAngle);
-            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-            if (car_type==1) {
+//            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+            if (Const.SET_WIZARD) {
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
                 intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
                 startActivity(intent);
@@ -251,8 +249,8 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
             }
             finish();
         }if (keyCode == KeyEvent.KEYCODE_BACK) {
-            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-            if (car_type==1) {
+//            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+            if (Const.SET_WIZARD) {
                 startActivity(new Intent(mContext, LevelerDetailActivity.class));
                 finish();
             }

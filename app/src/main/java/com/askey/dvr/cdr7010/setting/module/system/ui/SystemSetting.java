@@ -1,13 +1,11 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
 import android.content.BroadcastReceiver;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +17,6 @@ import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
-import com.askey.platform.AskeySettings;
 
 /**
  * 项目名称：settings
@@ -91,9 +88,9 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
-            ContentResolver contentResolver = getContentResolver();
+//            ContentResolver contentResolver = getContentResolver();
             Const.SET_WIZARD=true;
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+//            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_vehicle_type))) {

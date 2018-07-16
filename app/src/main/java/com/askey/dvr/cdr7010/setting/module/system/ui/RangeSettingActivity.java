@@ -16,6 +16,7 @@ import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.driving.ui.AdasSettingStatus;
+import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 import com.askey.platform.AskeySettings;
@@ -162,8 +163,8 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, dottedLineCurrentMarginTop);
                         Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, lineCurrentMarginLeft);
 
-                        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
-                        if (car_type == 1) {
+//                        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+                        if (Const.SET_WIZARD) {
                             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
                             intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
                             startActivity(intent);
