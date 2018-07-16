@@ -141,6 +141,7 @@
     <string name="driving_setting_marqueeText_front">ONに設定すると、自車と前走車との距離が近くなった時にお知らせします</string>
     <string name="driving_setting_marqueeText_lane">ONに設定すると、自車が走行車線をはみ出した時にお知らせします</string>
     <string name="driving_setting_marqueeText_departure">ONに設定すると、自車が停車中に前走車との距離が遠くなった時にお知らせします</string>
+    <string name="driving_setting_marqueeText_vehicle">運転支援機能の精度を上げるために設定します。ご使用の車のナンバーと形状から、最も近い車両タイプを選択します。</string>
     <string name="driving_setting_marqueeText_install">走行車線を正しく検出するために設定します。本機を取り付けた水平方向の位置を選択します</string>
     <string name="driving_setting_marqueeText_pedestrain">ONに設定すると、歩行者が近づいた時にお知らせします</string>
 

@@ -146,6 +146,7 @@ Move the guideline to the horizon line, the front end of vehicle (hood line) and
     <string name="driving_setting_marqueeText_front">Selecting ON informs that the distance between your car and the car in front has become near.</string>
     <string name="driving_setting_marqueeText_lane">Selecting ON informs that your car has departed from the lane.</string>
     <string name="driving_setting_marqueeText_departure">When set to ON, we will inform you when your vehicle is stopped and the distance to the vehicle ahead is far away</string>
+    <string name="driving_setting_marqueeText_vehicle">In order to improve the accuracy of driving function. Select the closest vehicle type from the license plate number and shape used.</string>
     <string name="driving_setting_marqueeText_install">Set to detect the driving lane correctly. Select the horizontal position where this unit is installed</string>
     <string name="driving_setting_marqueeText_pedestrain">When set to ON, we will let you know when a pedestrian approaches</string>
     <string name="emergency_setting_marqueeText_auto">If set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>

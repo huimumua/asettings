@@ -38,7 +38,7 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
         setIndex(car_type);
         initView(getResources().getString(R.string.vehicle_type), R.drawable.icon_submenu_car_types, menuInfo, R.layout.second_menu_layout);
         jvcRelativeLayout.setMarquee_visible(true);
-        jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_install));
+        jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_vehicle));
         list_view.setOnItemClickListener(this);
         focusItem();
     }
