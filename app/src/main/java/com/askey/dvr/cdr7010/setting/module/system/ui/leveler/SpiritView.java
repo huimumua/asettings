@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 /**
@@ -29,7 +30,6 @@ public class SpiritView extends View {
     public Bitmap bubbleBitmapGreen;
     //定义水平仪中气泡的X、Y坐标
     public int bubbleX,bubbleY;
-    private int backBitmapX,backBitmapY;
 
     public SpiritView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -44,8 +44,7 @@ public class SpiritView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //绘制水平仪表盘
-        int with = backBitmap.getWidth()/2;
-        canvas.drawBitmap(backBitmap, getWidth()/2-with, getHeight()/2-with, null);
+        canvas.drawBitmap(backBitmap, LevelerActivity.backBitmapX, LevelerActivity.backBitmapY, null);
         //根据气泡坐标绘制气泡  bubbleX = 125 bubbleY = 85
         if(bubbleX>95 && bubbleX<155 && bubbleY>75 && bubbleY< 95){
             canvas.drawBitmap(bubbleBitmapGreen, bubbleX, bubbleY, null);

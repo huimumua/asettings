@@ -46,14 +46,16 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     private SpiritView spiritView;
     //定义水平仪能处理的最大倾斜角度，超过该角度气泡直接位于边界
 //    private int MAX_ANGLE = 30;
-//    private int MAX_ANGLE = 60;
-    private int MAX_ANGLE = 90;
+    private int MAX_ANGLE = 60;
+//    private int MAX_ANGLE = 90;
     //定义Sensor管理器
     private SensorManager sensorManager;
     private MarqueeTextView marqueeTextView;
     private int screenWidth ,screenHeight;
     private  ContentResolver contentResolver;
     private float yawAngle,pitchAngle;
+    public static int backBitmapX,backBitmapY;
+    private int spBubbleBitmapWidth,spBubbleBitmapHeight;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +83,13 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         display.getMetrics(metrics);
         screenWidth = metrics.widthPixels;
         screenHeight = metrics.heightPixels;
+        int with = spiritView.backBitmap.getWidth()/2;
+
+        backBitmapX = screenWidth/2-with;
+        backBitmapY = screenHeight/2-with;
+        spBubbleBitmapWidth = spiritView.bubbleBitmap.getWidth()/2;
+        spBubbleBitmapHeight = spiritView.bubbleBitmap.getHeight()/2;
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -110,12 +119,11 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
                 float zAngle = values[1];
                 //获取与Z轴的夹角
                 float yAngle = values[2];
-                Logg.i(TAG,"=onSensorChanged=yawAngle="+yawAngle+"==pitchAngle=="+pitchAngle);
+//                Logg.i(TAG,"=onSensorChanged=yawAngle="+yawAngle+"==pitchAngle=="+pitchAngle);
                 //气泡位于中间时（水平仪完全水平）
-                int x = spiritView.bubbleBitmap.getWidth()/2;
-                int y = spiritView.bubbleBitmap.getHeight()/2;
-                x= screenWidth/2-x;
-                y = screenHeight/2-y;
+
+                int x= screenWidth/2-spBubbleBitmapWidth;
+                int y= screenHeight/2-spBubbleBitmapHeight;
 //                Logg.i(TAG,"=onSensorChanged=x="+x+ "==y=="+y);
                 //如果与Z轴的倾斜角还在最大角度之内
                 if (Math.abs(zAngle) <= MAX_ANGLE) {
@@ -130,7 +138,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
                 }
                 //如果与Z轴的倾斜角已经小于负的Max_ANGLE,气泡应到最右边
                 else {
-                    x = screenWidth - spiritView.bubbleBitmap.getWidth();
+                    x = screenWidth - spBubbleBitmapWidth;
                 }
 
                 //如果与Y轴的倾斜角还在最大角度之内
@@ -142,7 +150,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
                 }
                 //如果与Y轴的倾斜角已经大于MAX_ANGLE，气泡应到最下边
                 else if (yAngle > MAX_ANGLE) {
-                    y = screenHeight - spiritView.bubbleBitmap.getHeight();
+                    y = screenHeight - spBubbleBitmapHeight;
                 }
                 //如果与Y轴的倾斜角已经小于负的Max_ANGLE,气泡应到最上边
                 else {
@@ -163,16 +171,17 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
 
     private boolean isContain(int x, int y) {
         //计算气泡的圆心坐标X，y
-        int bubbleCx = x + spiritView.bubbleBitmap.getWidth() / 2;
-        int bubbleCy = y + spiritView.bubbleBitmap.getWidth() / 2;
+        int spBackBitmapWidth = spiritView.backBitmap.getWidth();
+        int bubbleCx = x + spBubbleBitmapWidth / 2;
+        int bubbleCy = y + spBubbleBitmapWidth / 2;
         //计算水平仪仪表盘圆心的坐标
-        int backCx = spiritView.backBitmap.getWidth() / 2;
-        int backCy = spiritView.backBitmap.getWidth() / 2;
+        int backCx = spBackBitmapWidth / 2;
+        int backCy = spBackBitmapWidth / 2;
         //计算气泡的圆心与水平仪表盘的圆心之间的距离
         double distance = Math.sqrt((bubbleCx - backCx) * (bubbleCx * backCx) +
                 (bubbleCy - backCy) * (bubbleCy - backCy));
         //若两圆心的距离小于他们的半径差，即可认为处于该点的气泡任然位于仪表盘内
-        if (distance < (spiritView.backBitmap.getWidth() - spiritView.bubbleBitmap.getWidth())) {
+        if (distance < (spBackBitmapWidth - spBubbleBitmapWidth)) {
             return true;
         } else {
             return false;
