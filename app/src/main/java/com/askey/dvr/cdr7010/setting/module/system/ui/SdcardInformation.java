@@ -29,10 +29,10 @@ import java.util.List;
  * 修改时间：2018/4/17 15:50
  * 修改备注：
  */
-public class SdcardInformation extends BaseActivity{
+public class SdcardInformation extends BaseActivity {
     private static final String TAG = "SdcardInformation";
-    private TextView normal,event,picture;
-    private String backslash= "/";
+    private TextView normal, event, picture;
+    private String backslash = "/";
     private SDcardReceiver sdCardReceiver;
 
     @Override
@@ -55,17 +55,14 @@ public class SdcardInformation extends BaseActivity{
     private void initBroadCast() {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addDataScheme("file");
-        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
         intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
-        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
-        intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
         sdCardReceiver = new SDcardReceiver();
-        registerReceiver(sdCardReceiver,intentFilter);
+        registerReceiver(sdCardReceiver, intentFilter);
     }
 
     private void initData() {
         List<SdcardInfo> sdcardInfo = FileManager.getInstance().getSdcardInfo();
-        if(sdcardInfo!=null && sdcardInfo.size()>0){
+        if (sdcardInfo != null && sdcardInfo.size() > 0) {
             String totalSize = sdcardInfo.get(0).getTotalSize();
             String normalCurrentSize = sdcardInfo.get(0).getNormalCurrentSize();
             String eventCurrentSize = sdcardInfo.get(0).getEventCurrentSize();
@@ -75,19 +72,19 @@ public class SdcardInformation extends BaseActivity{
             String eventSize = sdcardInfo.get(0).getEventSize();
             String parkingSize = sdcardInfo.get(0).getParkingSize();
             String pictureSize = sdcardInfo.get(0).getPictureSize();
-            Logg.i(TAG,"==getTotalSize=="+totalSize);
-            Logg.i(TAG,"==getNormalCurrentSize=="+normalCurrentSize);
-            Logg.i(TAG,"==getEventCurrentSize=="+eventCurrentSize);
-            Logg.i(TAG,"==getParkingCurrentSize=="+parkingCurrentSize);
-            Logg.i(TAG,"==getPictureCurrentSize=="+pictureCurrentSize);
-            Logg.i(TAG,"==getNormalSize=="+normalSize);
-            Logg.i(TAG,"==getEventSize=="+eventSize);
-            Logg.i(TAG,"==getParkingSize=="+parkingSize);
-            Logg.i(TAG,"==getPictureSize=="+pictureSize);
-            normal.setText(normalCurrentSize+backslash+normalSize);
-            event.setText(eventCurrentSize+backslash+eventSize);
-            picture.setText(pictureCurrentSize+backslash+pictureSize);
-        }else{
+            Logg.i(TAG, "==getTotalSize==" + totalSize);
+            Logg.i(TAG, "==getNormalCurrentSize==" + normalCurrentSize);
+            Logg.i(TAG, "==getEventCurrentSize==" + eventCurrentSize);
+            Logg.i(TAG, "==getParkingCurrentSize==" + parkingCurrentSize);
+            Logg.i(TAG, "==getPictureCurrentSize==" + pictureCurrentSize);
+            Logg.i(TAG, "==getNormalSize==" + normalSize);
+            Logg.i(TAG, "==getEventSize==" + eventSize);
+            Logg.i(TAG, "==getParkingSize==" + parkingSize);
+            Logg.i(TAG, "==getPictureSize==" + pictureSize);
+            normal.setText(normalCurrentSize + backslash + normalSize);
+            event.setText(eventCurrentSize + backslash + eventSize);
+            picture.setText(pictureCurrentSize + backslash + pictureSize);
+        } else {
             TextView title = (TextView) this.findViewById(R.id.sdcard_setting_information);
             ImageView normanTitle = (ImageView) this.findViewById(R.id.sdcard_normal_dir);
             ImageView eventTitle = (ImageView) this.findViewById(R.id.sdcard_event_dir);
@@ -107,10 +104,10 @@ public class SdcardInformation extends BaseActivity{
         event = (TextView) this.findViewById(R.id.sdcard_event_dir_count);
         picture = (TextView) this.findViewById(R.id.sdcard_picture_dir_count);
 
-        setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
+        setRightView(false, 0, true, R.drawable.tag_menu_sub_ok, false, 0);
 
         String title = getResources().getString(R.string.sdcard_setting_information);
-        setTitleView(title,R.drawable.icon_submenu_sdcard);
+        setTitleView(title, R.drawable.icon_submenu_sdcard);
 
         setBottomView(R.drawable.tag_menu_sub_cancel);
 
@@ -130,8 +127,10 @@ public class SdcardInformation extends BaseActivity{
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: ");
-            finish();
+            if (Intent.ACTION_MEDIA_EJECT.equals(intent.getAction())) {
+                Log.d(TAG, "onReceive: ");
+                finish();
+            }
         }
     }
 

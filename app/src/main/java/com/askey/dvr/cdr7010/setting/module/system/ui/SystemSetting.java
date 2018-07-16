@@ -16,7 +16,6 @@ import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Const;
-import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 
 /**
  * 项目名称：settings
@@ -31,7 +30,6 @@ import com.askey.dvr.cdr7010.setting.util.SdcardUtil;
 public class SystemSetting extends SecondBaseActivity implements AdapterView.OnItemClickListener {
     private static final String TAG = "SystemSetting";
     private String[] secondMenuItem;
-    private Boolean isExist = false;
     private SDcardReceiver sdCardReceiver;
 
     @Override
@@ -46,8 +44,6 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         intentFilter.addDataScheme("file");
         intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
         intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
-        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
-        intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
         sdCardReceiver = new SDcardReceiver();
         registerReceiver(sdCardReceiver,intentFilter);
 
@@ -62,7 +58,6 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        isExist = SdcardUtil.checkSdcardExist();
     }
 
     @Override
@@ -114,7 +109,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             Intent intent = new Intent(mContext, DialogActivity.class);
             intent .putExtra("index_dialog", "system_init");
             startActivity(intent);
-        } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information)) && isExist) {
+        } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information))) {
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 return;
             }
@@ -143,8 +138,12 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: ");
-            myAdapter.notifyDataSetChanged();
+
+            if (Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction()) || Intent.ACTION_MEDIA_EJECT.equals(intent.getAction())) {
+                Log.d(TAG, "onReceive: ");
+                myAdapter.notifyDataSetChanged();
+            }
+
         }
     }
 
