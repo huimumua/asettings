@@ -1,7 +1,12 @@
 package com.askey.dvr.cdr7010.setting.module.system.ui;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +33,7 @@ public class SdcardInformation extends BaseActivity{
     private static final String TAG = "SdcardInformation";
     private TextView normal,event,picture;
     private String backslash= "/";
+    private SDcardReceiver sdCardReceiver;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +42,25 @@ public class SdcardInformation extends BaseActivity{
 
         initView();
         initData();
+        initBroadCast();
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(sdCardReceiver);
+    }
+
+    private void initBroadCast() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addDataScheme("file");
+        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+        intentFilter.addAction(Intent.ACTION_MEDIA_REMOVED);
+        intentFilter.addAction(Intent.ACTION_MEDIA_BAD_REMOVAL);
+        sdCardReceiver = new SDcardReceiver();
+        registerReceiver(sdCardReceiver,intentFilter);
     }
 
     private void initData() {
@@ -100,6 +124,15 @@ public class SdcardInformation extends BaseActivity{
                 break;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    class SDcardReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d(TAG, "onReceive: ");
+            finish();
+        }
     }
 
 }
