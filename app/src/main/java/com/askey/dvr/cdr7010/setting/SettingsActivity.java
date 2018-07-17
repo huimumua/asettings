@@ -33,7 +33,6 @@ import com.askey.dvr.cdr7010.setting.module.driving.ui.DrivingSetting;
 import com.askey.dvr.cdr7010.setting.module.emergency.ui.EmergencySetting;
 import com.askey.dvr.cdr7010.setting.module.movie.ui.MovieRecordSetting;
 import com.askey.dvr.cdr7010.setting.module.service.ui.ServiceSetting;
-import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
 import com.askey.dvr.cdr7010.setting.module.system.ui.SystemSetting;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
@@ -48,7 +47,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
-    private final String LOG_TAG = "SettingsActivity";
+    private final String TAG = "SettingsActivity";
     private TextView tv_title;
 //    private ListView list_view;
     private MyListView list_view;
@@ -229,6 +228,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Log.d(TAG, "onKeyDown: ");
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
 
@@ -236,7 +236,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (!Utils.isFastDoubleClick()) {
                     lastPosition += PERPAGECOUNT;
-                    Log.d(LOG_TAG, "down" + lastPosition);
+                    Log.d(TAG, "down" + lastPosition);
                     if (lastPosition < dataTotal.size()) {
                         getPerPageData(dataTotal, lastPosition);
                     } else {
@@ -251,7 +251,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (!Utils.isFastDoubleClick()) {
                     if (lastPosition >= PERPAGECOUNT) {
-                        Log.d(LOG_TAG, "up" + lastPosition);
+                        Log.d(TAG, "up" + lastPosition);
                         lastPosition -= PERPAGECOUNT;
                         if (lastPosition >= 0) {
                             getPerPageData(dataTotal, lastPosition);
@@ -263,14 +263,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                         if (lastPosition == 0) {
                             if (dataTotal.size() % PERPAGECOUNT != 0) {
                                 lastPosition = dataTotal.size() - dataTotal.size() % PERPAGECOUNT;
-                                Log.d(LOG_TAG, "up+another = " + lastPosition);
+                                Log.d(TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
                                 vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
                                 list_view.setSelection(dataTotal.size() % PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             } else {
                                 lastPosition = dataTotal.size() - PERPAGECOUNT;
-                                Log.d(LOG_TAG, "up+another = " + lastPosition);
+                                Log.d(TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
                                 vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
                                 simpleAdapter.notifyDataSetChanged();
@@ -298,7 +298,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, SDCARD_REQUEST_CODE);
         } else {
-            Log.i(LOG_TAG, "requestSdcardPermission:true");
+            Log.i(TAG, "requestSdcardPermission:true");
             requestLocationPermission();
         }
     }
@@ -309,7 +309,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             ActivityCompat.requestPermissions((Activity) mContext,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
         } else {
-            Logg.i(LOG_TAG, "requestLocationPermission:true");
+            Logg.i(TAG, "requestLocationPermission:true");
         }
     }
 
@@ -327,7 +327,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             FileManager.getInstance().unBindFileManageService();
             unbindService(mConnection);
         } catch (Exception e) {
-            Logg.e(LOG_TAG, "onDestroy-->Exception" + e.getMessage());
+            Logg.e(TAG, "onDestroy-->Exception" + e.getMessage());
         }
 
     }

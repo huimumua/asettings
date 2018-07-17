@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
+import android.widget.RadioButton;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
@@ -35,10 +36,15 @@ public class RangeSettingActivity extends CameraBaseActivity {
     private MarqueeTextView notify_msg;
     private ContentResolver contentResolver;
 
+    private RadioButton right_top,right_bottom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_range_setting);
+
+        right_top = (RadioButton) findViewById(R.id.top_btn);
+        right_bottom = (RadioButton) findViewById(R.id.bottom_btn);
 
         status = AdasSettingStatus.SETTING_HORIZON;
         startPreview();
@@ -155,6 +161,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         line_center.setVisibility(View.VISIBLE);
                         setLineMarginLeft(lineCurrentMarginLeft);
                         notify_msg.setText(getString(R.string.driving_setting_range_center));
+                        setRightView(R.drawable.tag_menu_sub_right,R.drawable.tag_menu_sub_left);
                         break;
                     //车道中线标记线
                     case SETTING_CENTER:
@@ -186,6 +193,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         line.setBackgroundResource(R.drawable.range_setting_horizon_line);
                         setLineMarginTop(fullLineCurrentMarginTop);
                         notify_msg.setText(getString(R.string.driving_setting_range_horizon));
+                        setRightView(R.drawable.tag_menu_main_moveup,R.drawable.tag_menu_main_movedown);
                         return true;
                     //车道中线标记线
                     case SETTING_CENTER:
@@ -195,6 +203,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         line.setBackgroundResource(R.drawable.range_setting_hood_line);
                         setLineMarginTop(dottedLineCurrentMarginTop);
                         notify_msg.setText(getString(R.string.driving_setting_range_hood));
+                        setRightView(R.drawable.tag_menu_main_moveup,R.drawable.tag_menu_main_movedown);
                         return true;
                 }
         }
@@ -224,5 +233,10 @@ public class RangeSettingActivity extends CameraBaseActivity {
         //取消注册
         Logg.i(TAG, "=====onPause=======");
         stopPreview();
+    }
+
+    private void setRightView(int top,int bottom) {
+        right_top.setBackgroundResource(top);
+        right_bottom.setBackgroundResource(bottom);
     }
 }
