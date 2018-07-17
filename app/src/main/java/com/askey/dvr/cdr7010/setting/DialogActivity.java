@@ -294,14 +294,14 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                     str = getString(R.string.dialog_version_up_1);
                     break;
                 case -2:
-                    str = getString(R.string.dialog_version_up_2);
-                    break;
-                case -3:
-                    str = getString(R.string.dialog_version_up_3);
-                    break;
-                case -4:
                     str = getString(R.string.dialog_version_up_4);
                     break;
+                case -3:
+                    str = getString(R.string.dialog_version_up_4);
+                    break;
+//                case -4:
+//                    str = getString(R.string.dialog_version_up_4);
+//                    break;
                 default:
                     finish();
                     return;
