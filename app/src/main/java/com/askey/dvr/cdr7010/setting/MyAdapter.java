@@ -57,7 +57,7 @@ public class MyAdapter extends BaseAdapter {
 //        }
         String clickItem = data.get(position).get("menu_item").toString();
         Log.d("MyAdapter", clickItem);
-        if (context.getString(R.string.sdcard_setting_information).equals(clickItem) || context.getString(R.string.sdcard_setting_initialization).equals(clickItem)) {
+        if (context.getString(R.string.sdcard_setting_information).equals(clickItem) || context.getString(R.string.sdcard_setting_initialization).equals(clickItem) || context.getString(R.string.main_menu_fp).equals(clickItem)) {
             Log.d("MyAdapter", "getView: ");
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 holder.item.setTextColor(0xffa9a9a9);

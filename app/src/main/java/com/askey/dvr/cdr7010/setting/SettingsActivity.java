@@ -3,14 +3,17 @@ package com.askey.dvr.cdr7010.setting;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
@@ -23,7 +26,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.filemanagement.IAskeySettingsAidlInterface;
@@ -54,7 +56,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private ImageView iv_icon;
     private VerticalProgressBar vp_progress;
 
-    private SimpleAdapter simpleAdapter;
+    private MyAdapter mAdapter;
 
     private List<HashMap<String, Object>> dataTotal;
     private List<HashMap<String, Object>> currentData;
@@ -71,6 +73,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     private IAskeySettingsAidlInterface askeySettingsAidlInterface;
 
+    private SDcardReceiver sdCardReceiver;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +82,13 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         requestSdcardPermission();
         initView();
         initSetting();
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addDataScheme("file");
+        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+        sdCardReceiver = new SDcardReceiver();
+        registerReceiver(sdCardReceiver,intentFilter);
 
     }
 
@@ -151,8 +161,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         getPerPageData(dataTotal, lastPosition);
 
-        simpleAdapter = new SimpleAdapter(this, currentData, R.layout.menu_list_item, new String[]{"menu_item"}, new int[]{R.id.list_item});
-        list_view.setAdapter(simpleAdapter);
+        mAdapter = new MyAdapter(this, currentData);
+        list_view.setAdapter(mAdapter);
         list_view.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -176,6 +186,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                return;
+            }
             AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
         } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
@@ -244,7 +257,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                         getPerPageData(dataTotal, lastPosition);
                     }
                     vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
-                    simpleAdapter.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
                     list_view.setSelection(0);
                 }
                 break;
@@ -256,7 +269,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                         if (lastPosition >= 0) {
                             getPerPageData(dataTotal, lastPosition);
                             vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
-                            simpleAdapter.notifyDataSetChanged();
+                            mAdapter.notifyDataSetChanged();
                             list_view.setSelection(PERPAGECOUNT - 1);
                         }
                     } else {
@@ -266,14 +279,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                                 Log.d(TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
                                 vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
-                                simpleAdapter.notifyDataSetChanged();
+                                mAdapter.notifyDataSetChanged();
                                 list_view.setSelection(dataTotal.size() % PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             } else {
                                 lastPosition = dataTotal.size() - PERPAGECOUNT;
                                 Log.d(TAG, "up+another = " + lastPosition);
                                 getPerPageData(dataTotal, lastPosition);
                                 vp_progress.setProgress(lastPosition, lastPosition + PERPAGECOUNT, dataTotal.size());
-                                simpleAdapter.notifyDataSetChanged();
+                                mAdapter.notifyDataSetChanged();
                                 list_view.setSelection(PERPAGECOUNT - 1);//将最后一页的焦点设置到最后一项
                             }
                         }
@@ -323,6 +336,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(sdCardReceiver);
         try {
             FileManager.getInstance().unBindFileManageService();
             unbindService(mConnection);
@@ -365,5 +379,16 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }
     };
 
+    class SDcardReceiver extends BroadcastReceiver {
 
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            if (Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction()) || Intent.ACTION_MEDIA_EJECT.equals(intent.getAction())) {
+                Log.d(TAG, "onReceive: ");
+                mAdapter.notifyDataSetChanged();
+            }
+
+        }
+    }
 }
