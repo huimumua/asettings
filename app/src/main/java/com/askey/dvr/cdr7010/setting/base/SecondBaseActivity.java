@@ -131,6 +131,7 @@ public class SecondBaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        event.startTracking();
         Log.d(TAG, "onKeyDownSecond: ");
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
