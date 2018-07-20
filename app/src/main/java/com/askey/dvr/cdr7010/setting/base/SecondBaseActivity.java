@@ -27,6 +27,8 @@ import java.util.List;
 
 public class SecondBaseActivity extends AppCompatActivity {
 
+    private static final String TAG = "SecondBaseActivity";
+
     protected JVCRelativeLayout jvcRelativeLayout;
 
     protected MyListView list_view;
@@ -129,6 +131,7 @@ public class SecondBaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Log.d(TAG, "onKeyDownSecond: ");
         switch (keyCode) {
             case KeyEvent.KEYCODE_DPAD_DOWN:
                 if (!Utils.isFastDoubleClick() && null != dataTotal && dataTotal.size() > 0) {
@@ -179,7 +182,12 @@ public class SecondBaseActivity extends AppCompatActivity {
                 }
                 break;
         }
-        return super.onKeyDown(keyCode, event);
+        return true;
+    }
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return super.onKeyLongPress(keyCode, event);
     }
 
     protected void getPerPageData(List<HashMap<String, Object>> dataTotal, int lastPosition) {
