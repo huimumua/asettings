@@ -28,7 +28,7 @@ import com.askey.platform.AskeySettings;
  * 修改备注：
  */
 public class SetWizardHelpActivity extends BaseActivity {
-    private final String LOG_TAG = "SetWizardHelpActivity";
+    private static final String TAG = "SetWizardHelpActivity";
     private String currentUi = "set_wizard_help_start_setting";
     private TextView setWizardhelp;
     private ContentResolver contentResolver;
@@ -145,6 +145,7 @@ public class SetWizardHelpActivity extends BaseActivity {
         ContentResolver contentResolver = getContentResolver();
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
         if (car_type == 1) {
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
             String packageName = "com.askey.dvr.cdr7010.dashcam";
             String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
             AppUtil.startActivity(mContext, packageName, className, true);
