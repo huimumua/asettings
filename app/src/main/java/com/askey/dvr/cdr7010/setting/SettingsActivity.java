@@ -13,7 +13,6 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
@@ -51,7 +50,7 @@ import java.util.List;
 public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private final String TAG = "SettingsActivity";
     private TextView tv_title;
-//    private ListView list_view;
+    //    private ListView list_view;
     private MyListView list_view;
     private ImageView iv_icon;
     private VerticalProgressBar vp_progress;
@@ -74,6 +73,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private IAskeySettingsAidlInterface askeySettingsAidlInterface;
 
     private SDcardReceiver sdCardReceiver;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,11 +84,13 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         initSetting();
 
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addDataScheme("file");
-        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
-        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+//        intentFilter.addDataScheme("file");
+//        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
+//        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+        intentFilter.addAction("action_sdcard_status");
+//        intentFilter.addAction("show_sdcard_not_supported");
         sdCardReceiver = new SDcardReceiver();
-        registerReceiver(sdCardReceiver,intentFilter);
+        registerReceiver(sdCardReceiver, intentFilter);
 
     }
 
@@ -161,7 +163,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         getPerPageData(dataTotal, lastPosition);
 
-        mAdapter = new MyAdapter(this, currentData);
+        mAdapter = new MyAdapter(this, currentData, R.layout.menu_list_item);
+        mAdapter.setFileManager(FileManager.getInstance());
         list_view.setAdapter(mAdapter);
         list_view.postDelayed(new Runnable() {
             @Override
@@ -175,6 +178,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         String clickItem = currentData.get(position).get("menu_item").toString();
+        int sdCardStatus = FileManager.getInstance().getSdcardStatus();
         if (clickItem.equals(getResources().getString(R.string.main_menu_ss))) {
             secondMenuItem = getResources().getStringArray(R.array.system_setting);
             Intent intent = new Intent(mContext, SystemSetting.class);
@@ -186,10 +190,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
-            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                return;
+            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST)) {
+                AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
             }
-            AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
         } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
             secondMenuItem = getResources().getStringArray(R.array.driving_support);
             Intent intent = new Intent(mContext, DrivingSetting.class);
@@ -358,12 +361,14 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         }
         super.onBackPressed();
     }
-    public void menuTransition(int status){
+
+    public void menuTransition(int status) {
         Intent intent = new Intent(Const.ACTION_MENU_TRANSITION);
         intent.putExtra("status", status);
         sendOutBroadcast(intent);
     }
-    private void sendOutBroadcast(Intent intent){
+
+    private void sendOutBroadcast(Intent intent) {
         sendBroadcastAsUser(intent, android.os.Process.myUserHandle());
     }
 
@@ -383,12 +388,12 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
-            if (Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction()) || Intent.ACTION_MEDIA_EJECT.equals(intent.getAction())) {
-                Log.d(TAG, "onReceive: ");
+            Log.d(TAG, "onReceive: " + intent.getStringExtra("data"));
+            Log.d(TAG, "onReceive: " + FileManager.getInstance().getSdcardStatus());
+            String status = intent.getStringExtra("data");
+            if (status.equals(Const.BROADCAST_SDCARD_MOUNTED) || status.equals(Const.BROADCAST_SDCARD_NOT_EXIST) || status.equals(Const.BROADCAST_SDCARD_NOT_SUPPORTED)) {
                 mAdapter.notifyDataSetChanged();
             }
-
         }
     }
 }

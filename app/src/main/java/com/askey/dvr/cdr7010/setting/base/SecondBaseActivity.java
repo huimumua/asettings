@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.MyAdapter;
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Utils;
 import com.askey.dvr.cdr7010.setting.widget.JVCRelativeLayout;
 import com.askey.dvr.cdr7010.setting.widget.MyListView;
@@ -118,8 +119,8 @@ public class SecondBaseActivity extends AppCompatActivity {
         }
         getPerPageData(dataTotal, firstPosition);
 
-        myAdapter = new MyAdapter(this,currentData);
-
+        myAdapter = new MyAdapter(this, currentData, R.layout.system_settings_list_item);
+        myAdapter.setFileManager(FileManager.getInstance());
         list_view.setAdapter(myAdapter);
         if (index > 6) {
             list_view.setSelection(index % PERPAGECOUNT - 1);

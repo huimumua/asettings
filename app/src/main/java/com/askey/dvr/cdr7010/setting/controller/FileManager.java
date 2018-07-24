@@ -64,6 +64,17 @@ public class FileManager {
         return null;
     }
 
+    public int getSdcardStatus() {
+        if(!waitFileServiceConnected())
+            return 2;
+        try {
+            return mInterface.checkSdcardAvailable();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        return 2;
+    }
+
     public boolean bindFileManageService() {
         Context appContext = SettingApplication.getContext();
         Intent bindIntent = new Intent();

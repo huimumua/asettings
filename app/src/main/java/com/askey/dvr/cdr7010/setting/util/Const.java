@@ -33,4 +33,14 @@ public class Const {
     public static  boolean SET_WIZARD = false;
     public static final String ACTION_MENU_TRANSITION = "android.intent.action.MENU_TRANSITION";
     public static final String ACTION_VERSIONUP_CHECK = "action_update_check";
+
+    public static final int SDCARD_NOT_SUPPORT = 0;
+    public static final int SDCARD_UNRECOGNIZABLE = 1;
+    public static final int SDCARD_NOT_EXIST = 2;
+    public static final int SDCARD_INIT_SUCCESS = 4;
+    public static final int SDCARD_MOUNTED = 5;
+
+    public static final String BROADCAST_SDCARD_NOT_EXIST = "show_sdcard_not_exist";
+    public static final String BROADCAST_SDCARD_MOUNTED = "show_sdcard_mounted";
+    public static final String BROADCAST_SDCARD_NOT_SUPPORTED = "show_sdcard_not_supported";
 }

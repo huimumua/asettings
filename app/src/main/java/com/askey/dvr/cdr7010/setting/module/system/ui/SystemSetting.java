@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +14,7 @@ import com.askey.dvr.cdr7010.setting.DialogActivity;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.SecondBaseActivity;
+import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Const;
 
 /**
@@ -41,11 +41,9 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         initView(getResources().getString(R.string.tv_system_settings), R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addDataScheme("file");
-        intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
-        intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
+        intentFilter.addAction("action_sdcard_status");
         sdCardReceiver = new SDcardReceiver();
-        registerReceiver(sdCardReceiver,intentFilter);
+        registerReceiver(sdCardReceiver, intentFilter);
 
     }
 
@@ -63,6 +61,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Log.i("SetingActivity", "=position==" + position);
+        int sdCardStatus = FileManager.getInstance().getSdcardStatus();
         String clickItem = currentData.get(position).get("menu_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
             Intent intent = new Intent(mContext, NotificationSoundSetting.class);
@@ -84,7 +83,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_wizard))) {
 //            ContentResolver contentResolver = getContentResolver();
-            Const.SET_WIZARD=true;
+            Const.SET_WIZARD = true;
 //            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
             startActivity(intent);
@@ -103,28 +102,28 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_installation_tool))) {
             secondMenuItem = getResources().getStringArray(R.array.system_settings_installation_tool);
             Intent intent = new Intent(mContext, InstallationToolSetting.class);
-            intent .putExtra("menu_item", secondMenuItem);
+            intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_setting_initialization))) {
             Intent intent = new Intent(mContext, DialogActivity.class);
-            intent .putExtra("index_dialog", "system_init");
+            intent.putExtra("index_dialog", "system_init");
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_information))) {
-            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                return;
+            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST)) {
+                startActivity(new Intent(mContext, SdcardInformation.class));
             }
-            startActivity(new Intent(mContext, SdcardInformation.class));
         } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization))) {
-            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                return;
+            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST) || sdCardStatus == Const.SDCARD_NOT_SUPPORT) {
+                Intent intent = new Intent(mContext, DialogActivity.class);
+                intent.putExtra("index_dialog", "sdcard_init");
+                startActivity(intent);
             }
-            Intent intent = new Intent(mContext, DialogActivity.class);
-            intent .putExtra("index_dialog", "sdcard_init");
-            startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_update))) {
-            Intent intent = new Intent(mContext, DialogActivity.class);
-            intent .putExtra("index_dialog", "system_update");
-            startActivity(intent);
+            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST)) {
+                Intent intent = new Intent(mContext, DialogActivity.class);
+                intent.putExtra("index_dialog", "system_update");
+                startActivity(intent);
+            }
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_system_information))) {
             startActivity(new Intent(this, SystemInformation.class));
         }
@@ -138,12 +137,8 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
 
         @Override
         public void onReceive(Context context, Intent intent) {
-
-            if (Intent.ACTION_MEDIA_MOUNTED.equals(intent.getAction()) || Intent.ACTION_MEDIA_EJECT.equals(intent.getAction())) {
-                Log.d(TAG, "onReceive: ");
-                myAdapter.notifyDataSetChanged();
-            }
-
+            Log.d(TAG, "onReceive: ");
+            myAdapter.notifyDataSetChanged();
         }
     }
 
