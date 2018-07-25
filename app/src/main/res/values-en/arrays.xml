@@ -16,7 +16,7 @@
     <string-array name="driving_support">
         <item>Forward collision alert</item>
         <item>Lane departure alert</item>
-        <item>Pedestrian Detection</item>
+        <!--<item>Pedestrian Detection</item>-->
         <!--<item>Device install setting</item>-->
         <!--<item>Departure delay warning</item>-->
         <!--<item>Range of </item>-->

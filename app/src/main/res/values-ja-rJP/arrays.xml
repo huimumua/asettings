@@ -16,7 +16,7 @@
     <string-array name="driving_support">
         <item>前方衝突アラート</item>
         <item>車線逸脱アラート</item>
-        <item>歩行者衝突アラート</item>
+        <!--<item>歩行者衝突アラート</item>-->
         <!--<item>取付位置</item>-->
         <!--<item>発進遅れ警告</item>-->
         <!--<item>検出範囲 </item>-->
