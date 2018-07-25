@@ -155,14 +155,14 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
                     y = 0;
                 }
                 //如果计算出来的X，Y坐标还位于水平仪的仪表盘之内，则更新水平仪气泡坐标
-                if (true) {
+                if (/*isContain(x,y)*/true) {
                     spiritView.bubbleX = x;
                     spiritView.bubbleY = y;
                 }
 //                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
                 //通知组件更新
                 spiritView.postInvalidate();
-                //show.invalidate();
+//                spiritView.invalidate();
                 break;
         }
     }
@@ -209,7 +209,9 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     private void cameraInit() {
         Sensor mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
         //注册
-        sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_GAME);
+//        sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_GAME);
+        sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_UI);
+
     }
 
     @Override
