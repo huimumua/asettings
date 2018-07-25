@@ -252,8 +252,8 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
 //            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (Const.SET_WIZARD) {
                 startActivity(new Intent(mContext, LevelerDetailActivity.class));
-                finish();
             }
+            finish();
         }
         return super.onKeyDown(keyCode, event);
     }
