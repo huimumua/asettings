@@ -144,14 +144,13 @@ public class SetWizardHelpActivity extends BaseActivity {
     private void finishSetWizard(){
         ContentResolver contentResolver = getContentResolver();
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
+        Const.SET_WIZARD = false;
         if (car_type == 1) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
             String packageName = "com.askey.dvr.cdr7010.dashcam";
             String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
             AppUtil.startActivity(mContext, packageName, className, true);
         } else {
-            Const.SET_WIZARD = false;
-//            Settings.Global.putInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 0);
             SettingApplication.finishActivity(SetWizardHelpActivity.class);
         }
     }
