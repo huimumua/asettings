@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ListView;
 
+import com.askey.dvr.cdr7010.setting.util.Utils;
+
 public class MyListView extends ListView {
 
     private static final String TAG = "MyListView";
@@ -40,22 +42,31 @@ public class MyListView extends ListView {
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (downEventCount == 0 && isFirstDownEvent) {
                     isFirstDownEvent = false;
-                    if (super.onKeyDown(keyCode, event)) {
-                        Log.d(TAG, "onKeyDown: true");
-                        return true;
-                    } else {
-                        Log.d(TAG, "onKeyDown: false");
-                        return false;
-                    }
+//                    if (super.onKeyDown(keyCode, event)) {
+//                        Log.d(TAG, "onKeyDown: true");
+//                        return true;
+//                    } else {
+//                        Log.d(TAG, "onKeyDown: false");
+//                        return false;
+//                    }
+                    return super.onKeyDown(keyCode, event);
                 } else if (downEventCount > 1) {
                     Log.d(TAG, "onKeyDown>1");
-                    if (super.onKeyDown(keyCode, event)) {
-                        Log.d(TAG, "onKeyDown>1: true");
-                        return true;
-                    } else {
-                        Log.d(TAG, "onKeyDown>1: false");
-                        return false;
+                    if (downEventCount == 2 && !Utils.isFastDoubleClick()) {
+                        Log.d(TAG, "onKeyDown==2");
+                        return super.onKeyDown(keyCode, event);
                     }
+                    if (downEventCount == 3) {
+                        Log.d(TAG, "onKeyDown==3");
+                        return super.onKeyDown(keyCode, event);
+                    }
+//                    if (super.onKeyDown(keyCode, event)) {
+//                        Log.d(TAG, "onKeyDown>1: true");
+//                        return true;
+//                    } else {
+//                        Log.d(TAG, "onKeyDown>1: false");
+//                        return false;
+//                    }
 //                    return super.onKeyDown(keyCode, event);
                 }
         }
