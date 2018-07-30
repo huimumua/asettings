@@ -44,7 +44,7 @@ public class MountingPositionSetting extends SecondBaseActivity implements Adapt
         list_view.requestFocus();
         jvcRelativeLayout.setMarquee_visible(true);
         jvcRelativeLayout.setMarquee_text(getString(R.string.driving_setting_marqueeText_install));
-        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 0);
+        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_MOUNT_POSITION, 1);
         list_view.setSelection(car_type);
     }
 

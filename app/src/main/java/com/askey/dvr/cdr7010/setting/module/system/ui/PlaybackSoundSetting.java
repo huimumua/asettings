@@ -38,6 +38,10 @@ public class PlaybackSoundSetting extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playback_sound_setting);
         contentResolver = getContentResolver();
+        //音量控制,初始化定义
+        mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
+        int musicVolume = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, 3);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, musicVolume, 0);
         initView();
     }
 
@@ -122,8 +126,6 @@ public class PlaybackSoundSetting extends BaseActivity {
     }
 
     private void getPlaybackSoundInfo() {
-        //音量控制,初始化定义
-        mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
         //最大音量
         int maxVolumeMusic = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         Log.i("PlaybackSoundSetting", "==maxVolumeMusic=" + maxVolumeMusic);

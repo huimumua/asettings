@@ -38,6 +38,10 @@ public class NotificationSoundSetting extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_sound_setting);
         contentResolver = getContentResolver();
+        //音量控制,初始化定义
+        mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
+        int notifyVolume = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, 3);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifyVolume, 0);
         initView();
     }
 
@@ -121,8 +125,6 @@ public class NotificationSoundSetting extends BaseActivity {
     }
 
     private void getNotificationSoundInfo() {
-        //音量控制,初始化定义
-        mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
         //最大音量
         maxVolume = mAudioManager.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
         Log.i("NotificationSound", "==maxVolume=" + maxVolume);

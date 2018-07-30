@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -36,12 +35,15 @@ public class LCDBrightnessSetting extends BaseActivity {
     private TextView title;
     private Resources r;
     private Drawable[] layers;
+    private int process;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lcd_brightness);
         contentResolver = getContentResolver();
+        process = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_MONITOR_BRIGHTNESS, 5);
+        setScreenBrightness(process * 25);
         initView();
         getScreenBrightness();
         oldBrightness = currentBrightness;
@@ -86,6 +88,7 @@ public class LCDBrightnessSetting extends BaseActivity {
                 refresh(currentBrightness, "up");
                 break;
             case KeyEvent.KEYCODE_ENTER:
+                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_MONITOR_BRIGHTNESS, process);
                 setScreenBrightness(currentBrightness);
                 finish();
                 break;
@@ -108,18 +111,18 @@ public class LCDBrightnessSetting extends BaseActivity {
     /**
      * 设置屏幕的亮度
      */
-    private void setScreenBrightness(int process) {
+    private void setScreenBrightness(int brightness) {
         WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-        if (process > 255) {
-            process = 255;
-        } else if (process < 0) {
-            process = 0;
+        if (brightness > 255) {
+            brightness = 255;
+        } else if (brightness < 0) {
+            brightness = 0;
         }
-        float f = process / 255.0F;
+        float f = brightness / 255.0F;
         localLayoutParams.screenBrightness = f;
         getWindow().setAttributes(localLayoutParams);
         //修改系统的亮度值,以至于退出应用程序亮度保持
-        saveBrightness(getContentResolver(), process);
+        saveBrightness(getContentResolver(), brightness);
     }
 
     public static void saveBrightness(ContentResolver resolver, int brightness) {
@@ -138,8 +141,7 @@ public class LCDBrightnessSetting extends BaseActivity {
         } else if (currentBrightness < 0) {
             currentBrightness = 0;
         }
-        int process = currentBrightness * 10 / 250;
-        Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_MONITOR_BRIGHTNESS, process);
+        process = currentBrightness * 10 / 250;
         if (type.equals("down")) {
             if (process == 9) {
                 layers[0] = r.getDrawable(R.drawable.img_brightness_9);
