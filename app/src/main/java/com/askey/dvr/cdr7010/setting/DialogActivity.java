@@ -269,6 +269,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
     DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
+            setBottomView(false,R.drawable.tag_menu_main_back);
             Intent intent = new Intent("com.jvckenwood.versionup.UPDATE_START");
             sendBroadcast(intent);
             dialog.dismiss();
