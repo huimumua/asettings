@@ -94,14 +94,15 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                                 showDialog(DialogActivity.this, CommDialog.TYPE_BUTTON_OK, getString(R.string.dialog_setting_init_finish), false, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(Intent.ACTION_REBOOT);
-                                        intent.putExtra("nowait", 1);
-                                        intent.putExtra("interval", 1);
-                                        intent.putExtra("window", 0);
-                                        sendBroadcast(intent);
-                                        finish();
+//                                        Intent intent = new Intent(Intent.ACTION_REBOOT);
+//                                        intent.putExtra("nowait", 1);
+//                                        intent.putExtra("interval", 1);
+//                                        intent.putExtra("window", 0);
+//                                        sendBroadcast(intent);
+//                                        finish();
                                         //恢复出厂设置
-//                                        sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+                                        sendBroadcast(new Intent("android.intent.action.MASTER_CLEAR"));
+                                        finish();
                                     }
                                 });
                             }
