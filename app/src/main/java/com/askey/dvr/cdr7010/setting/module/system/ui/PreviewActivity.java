@@ -5,9 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Logg;
 
 /**
  * 项目名称：settings
@@ -28,7 +26,18 @@ public class PreviewActivity extends CameraBaseActivity {
 
         setRightView(false,true,false);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         startPreview();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        stopPreview();
     }
 
     @Override
@@ -39,14 +48,6 @@ public class PreviewActivity extends CameraBaseActivity {
                 break;
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Logg.i(TAG,"=====onDestroy=======");
-        //取消注册
-        stopPreview();
     }
 
 }
