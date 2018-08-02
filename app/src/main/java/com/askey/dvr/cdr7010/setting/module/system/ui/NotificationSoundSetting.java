@@ -40,8 +40,6 @@ public class NotificationSoundSetting extends BaseActivity {
         contentResolver = getContentResolver();
         //音量控制,初始化定义
         mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
-        int notifyVolume = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, 3);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, notifyVolume, 0);
         initView();
     }
 

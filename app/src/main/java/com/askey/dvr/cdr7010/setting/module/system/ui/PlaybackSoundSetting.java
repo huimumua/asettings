@@ -40,8 +40,6 @@ public class PlaybackSoundSetting extends BaseActivity {
         contentResolver = getContentResolver();
         //音量控制,初始化定义
         mAudioManager = (AudioManager) getSystemService(this.AUDIO_SERVICE);
-        int musicVolume = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, 3);
-        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, musicVolume, 0);
         initView();
     }
 

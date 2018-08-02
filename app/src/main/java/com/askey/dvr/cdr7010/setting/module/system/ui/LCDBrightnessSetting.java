@@ -42,8 +42,6 @@ public class LCDBrightnessSetting extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lcd_brightness);
         contentResolver = getContentResolver();
-        process = Settings.Global.getInt(contentResolver, AskeySettings.Global.SYSSET_MONITOR_BRIGHTNESS, 5);
-        setScreenBrightness(process * 25);
         initView();
         getScreenBrightness();
         oldBrightness = currentBrightness;
