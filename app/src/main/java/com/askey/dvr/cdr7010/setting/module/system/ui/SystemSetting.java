@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -38,6 +39,9 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
         setContentView(R.layout.base_jvclayout);
 
         menuInfo = getIntent().getStringArrayExtra("menu_item");
+        if (Camera.getNumberOfCameras() == 1) {
+            menuInfo = delete(menuInfo, 4);
+        }
         initView(getResources().getString(R.string.tv_system_settings), R.drawable.icon_submenu_setting, menuInfo, R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
         IntentFilter intentFilter = new IntentFilter();
@@ -71,6 +75,11 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_preview))) {
             Intent intent = new Intent(mContext, PreviewActivity.class);
+            intent.putExtra("cameraId",0);
+            startActivity(intent);
+        } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_preview_back))) {
+            Intent intent = new Intent(mContext, PreviewActivity.class);
+            intent.putExtra("cameraId",1);
             startActivity(intent);
         } else if (clickItem.equals(getResources().getString(R.string.tv_system_settings_lcd_brightness))) {
             Intent intent = new Intent();
@@ -141,5 +150,18 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
             myAdapter.notifyDataSetChanged();
         }
     }
+
+    public static String[] delete(String a[], int index) {
+        String b[] = new String[a.length - 1];
+        for (int i = 0; i < b.length; i++) {
+            if (i < index - 1) {
+                b[i] = a[i];
+            } else {
+                b[i] = a[i + 1];
+            }
+        }
+        return b;
+    }
+
 
 }

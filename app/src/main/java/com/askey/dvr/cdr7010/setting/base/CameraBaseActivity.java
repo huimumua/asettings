@@ -1,11 +1,8 @@
 package com.askey.dvr.cdr7010.setting.base;
 
-import android.content.Context;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -27,6 +24,7 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
     private Camera camera;
     private SurfaceHolder surfaceHolder;
     private boolean isPreviewing = false;
+    private int cameraId = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +33,11 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
     }
 
     protected void startPreview(){
+        startPreview(0);
+    }
+
+    protected void startPreview(int cameraId){
+        this.cameraId = cameraId;
         if((SurfaceView) this.findViewById(R.id.preview)!=null){
             surfaceHolder = ((SurfaceView) findViewById(R.id.preview)).getHolder();
             surfaceHolder.addCallback(this);
@@ -61,7 +64,7 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
             stopPreview();
         }
         try {
-            camera = Camera.open();
+            camera = Camera.open(cameraId);
             camera.setPreviewDisplay(surfaceHolder);
             camera.startPreview();
             isPreviewing = true;
