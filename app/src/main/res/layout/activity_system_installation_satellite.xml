@@ -12,7 +12,7 @@
     <com.askey.dvr.cdr7010.setting.view.HorizontalListView
         android:id="@+id/horizon_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:background="@drawable/bg_gps_all"
         android:layout_marginTop="@dimen/gps_margin_top"

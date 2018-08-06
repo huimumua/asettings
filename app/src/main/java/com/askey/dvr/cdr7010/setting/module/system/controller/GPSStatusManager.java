@@ -37,7 +37,7 @@ public class GPSStatusManager {
     private boolean mRecordLocation;
     private static GPSStatusManager mnLocationManager;
     private int mGpsUsedInFix;
-    private ArrayList<GpsSvInfo> gpsStatusList;
+    private ArrayList<GpsSvInfo>  gpsStatusList;
     private final GPSStatusManager.GpsStatusChangedCallback mCallback;
 
     LocationListener[] mLocationListeners = new LocationListener[]{
@@ -142,8 +142,12 @@ public class GPSStatusManager {
         if (mRecordLocation != recordLocation) {
             mRecordLocation = recordLocation;
             if (recordLocation) {
+                gpsStatusList = new ArrayList<GpsSvInfo>();;
                 startReceivingLocationUpdates();
             } else {
+                if(mnLocationManager!=null){
+                    mnLocationManager=null;
+                }
                 stopReceivingLocationUpdates();
             }
         }
@@ -202,6 +206,7 @@ public class GPSStatusManager {
             Logg.d(TAG, "stopReceivingLocationUpdates");
         }
         if (mListener != null) mListener.hideGpsOnScreenIndicator();
+
 //        closeGPS(SettingApplication.getContext()); //gps不关闭，关闭后Mainapp使用异常
     }
 
@@ -226,7 +231,7 @@ public class GPSStatusManager {
                         // for ActivityCompat#requestPermissions for more details.
                         return;
                     }
-                    ArrayList<GpsSvInfo> gpsStatusList = new ArrayList<GpsSvInfo>();
+                    gpsStatusList .clear();
                     GpsStatus gpsStauts = mLocationManager.getGpsStatus(null); // 取当前状态
                     int maxSatellites = gpsStauts.getMaxSatellites(); //获取卫星颗数的默认最大值
                     Iterator<GpsSatellite> it = gpsStauts.getSatellites().iterator();//创建一个迭代器保存所有卫星
@@ -257,16 +262,15 @@ public class GPSStatusManager {
                     mGpsUsedInFix = gpsCount;
                     setGpsStatusList(gpsStatusList);
 
-                    try{
-                        if(mCallback != null){
-                            mCallback.onPostExecute();
-                            Logg.i(TAG,"=======onPostExecute======");
+                    if(gpsStatusList!=null && gpsStatusList.size()>0){
+                        try{
+                            if(mCallback != null){
+                                mCallback.onPostExecute();
+                            }
+                        }catch (Exception e){
+                            Logg.e(TAG, "onPostExecute: " + e.getMessage());
                         }
-
-                    }catch (Exception e){
-                        Logg.e(TAG, "onPostExecute: " + e.getMessage());
                     }
-
                     break;
                 // 定位启动
                 case GpsStatus.GPS_EVENT_STARTED:

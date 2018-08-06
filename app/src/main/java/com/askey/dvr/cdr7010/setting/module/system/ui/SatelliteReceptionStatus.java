@@ -3,18 +3,14 @@ package com.askey.dvr.cdr7010.setting.module.system.ui;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.AdapterView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.adapter.HorizontalListViewAdapter;
 import com.askey.dvr.cdr7010.setting.module.system.bean.GpsSvInfo;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
-import com.askey.dvr.cdr7010.setting.module.system.controller.SdcardFormatAsyncTask;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.view.HorizontalListView;
-import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
 
 import java.util.ArrayList;
 
@@ -28,17 +24,17 @@ import java.util.ArrayList;
  * 修改备注：
  */
 public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusManager.GpsStatusChangedCallback{
-        private static final String TAG = "SatelliteReceptionStatus";
-    private ArrayList<GpsSvInfo> gpsStatusList = new ArrayList<GpsSvInfo>();
+    private static final String TAG = "SatelliteReceptionStatus";
+    private ArrayList<GpsSvInfo> gpsStatusList;
     private HorizontalListView hListView;
     private HorizontalListViewAdapter hListViewAdapter;
-    private MarqueeTextView marqueeTextView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_installation_satellite);
 
+        gpsStatusList = new ArrayList<GpsSvInfo>();
         GPSStatusManager.getInstance(this).recordLocation(true);
 
         setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
@@ -51,24 +47,13 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
 
         if(null!=gpsStatusList && gpsStatusList.size()>0){
             Logg.i(TAG,"=gpsStatusList.size()="+gpsStatusList.size());
-            for (GpsSvInfo gpsSvInfo : gpsStatusList){
-                Logg.i(TAG,"=gpsSvInfo.getSnr()="+gpsSvInfo.getSnr());
-                Logg.i(TAG,"=gpsSvInfo.getAzimuth()="+gpsSvInfo.getAzimuth());
-                Logg.i(TAG,"=gpsSvInfo.getPrn()="+gpsSvInfo.getPrn());
-                Logg.i(TAG,"=gpsSvInfo.getElevation()="+gpsSvInfo.getElevation());
-            }
         }else{
             initData();
         }
-
         initUI();
-
-
-
     }
 
     private void initData() {
-        gpsStatusList = new ArrayList<GpsSvInfo>();
         for(int i=0;i<=7;i++){
             GpsSvInfo gpsSvInfo =new GpsSvInfo();
             gpsSvInfo.setAzimuth(0);
@@ -81,25 +66,9 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
 
 
     public void initUI(){
-        if(null != gpsStatusList && gpsStatusList.size()>0){
-            hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
-            hListView.setAdapter(hListViewAdapter);
-        }else{
-            hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
-            hListView.setAdapter(hListViewAdapter);
-        }
-
-        hListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-                hListViewAdapter.setSelectIndex(position);
-                hListViewAdapter.notifyDataSetChanged();
-
-            }
-        });
-
+        hListViewAdapter = new HorizontalListViewAdapter(getApplicationContext(),gpsStatusList);
+        hListViewAdapter.setmGpsStatusListSize(gpsStatusList.size());
+        hListView.setAdapter(hListViewAdapter);
     }
 
     @Override
@@ -114,6 +83,12 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
 
     @Override
     protected void onDestroy() {
+        if(hListView!=null){
+            hListView=null;
+        }
+        if(hListViewAdapter!=null){
+            hListViewAdapter=null;
+        }
         GPSStatusManager.getInstance(this).recordLocation(false);
         super.onDestroy();
     }
@@ -122,22 +97,20 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
     @Override
     public void onPostExecute() {
         gpsStatusList = GPSStatusManager.getInstance(this).getGpsStatusList();
-        Logg.i(TAG,"=======onPostExecute======");
         runOnUiThread(new Runnable() {
             public void run() {
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 if(null!=gpsStatusList && gpsStatusList.size()>0){
                     Logg.i(TAG,"=gpsStatusList.size()="+gpsStatusList.size());
-                    for (GpsSvInfo gpsSvInfo : gpsStatusList){
-                        Logg.i(TAG,"=gpsSvInfo.getSnr()="+gpsSvInfo.getSnr());
-                        Logg.i(TAG,"=gpsSvInfo.getAzimuth()="+gpsSvInfo.getAzimuth());
-                        Logg.i(TAG,"=gpsSvInfo.getPrn()="+gpsSvInfo.getPrn());
-                        Logg.i(TAG,"=gpsSvInfo.getElevation()="+gpsSvInfo.getElevation());
-                    }
                 }else{
                     initData();
                 }
-
-                initUI();
+                hListViewAdapter.setmGpsStatusListSize(gpsStatusList.size());
+                hListViewAdapter.notifyDataSetChanged();
             }
         });
     }

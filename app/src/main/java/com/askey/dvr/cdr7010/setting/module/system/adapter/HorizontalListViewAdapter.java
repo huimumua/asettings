@@ -23,22 +23,29 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.module.system.bean.GpsSvInfo;
+import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.util.ArrayList;
 
 public class HorizontalListViewAdapter extends BaseAdapter{
-    ArrayList<GpsSvInfo> mGpsStatusList;
+    private ArrayList<GpsSvInfo> mGpsStatusList;
     private Context mContext;
     private LayoutInflater mInflater;
-    Bitmap iconBitmap;
     private int selectIndex = -1;
     private int mGpsStatusListSize = 0;
+
+    public int getmGpsStatusListSize() {
+        return mGpsStatusListSize;
+    }
+
+    public void setmGpsStatusListSize(int mGpsStatusListSize) {
+        this.mGpsStatusListSize = mGpsStatusListSize;
+    }
 
     public HorizontalListViewAdapter(Context context, ArrayList<GpsSvInfo> gpsStatusList){
         this.mContext = context;
         this.mGpsStatusList = gpsStatusList;
         mInflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);//LayoutInflater.from(mContext);
-        this.mGpsStatusListSize = mGpsStatusList.size();
     }
     @Override
     public int getCount() {
@@ -46,8 +53,8 @@ public class HorizontalListViewAdapter extends BaseAdapter{
             return 1;
         }
         return 9;
-//        return mGpsStatusList.size()+1;
     }
+
     @Override
     public Object getItem(int position) {
         return position;
@@ -72,6 +79,7 @@ public class HorizontalListViewAdapter extends BaseAdapter{
         }else{
             holder=(ViewHolder)convertView.getTag();
         }
+
         if(position == selectIndex){
             convertView.setSelected(true);
         }else{
@@ -79,7 +87,6 @@ public class HorizontalListViewAdapter extends BaseAdapter{
         }
 
         LinearLayout.LayoutParams linearParams =(LinearLayout.LayoutParams) holder.mImage.getLayoutParams(); //取控件textView当前的布局参数
-
 
 
         if(position==0){
@@ -97,9 +104,10 @@ public class HorizontalListViewAdapter extends BaseAdapter{
 //            超過38%, 63%以下(含63%) - 黃色
 //            超過63% - 藍色
 
-            if(position <= mGpsStatusListSize){
+            if(position <= getmGpsStatusListSize()){
                 int prn = mGpsStatusList.get(position-1).getPrn();
                 int snr = (int) mGpsStatusList.get(position-1).getSnr();
+                Logg.i("SatelliteReceptionStatus","=====snr====="+snr + "====prn==="+prn);
                 linearParams.height = snr;// 控件的高强制设成20
                 holder.mImage.setLayoutParams(linearParams); //使设置好的布局参数应用到控件
                 if(snr>=0 && snr<=38){
@@ -127,7 +135,6 @@ public class HorizontalListViewAdapter extends BaseAdapter{
 
         }
 
-
         return convertView;
     }
 
@@ -136,17 +143,7 @@ public class HorizontalListViewAdapter extends BaseAdapter{
         private TextView mValue ;
         private TextView mImage;
     }
-//    private Bitmap getPropThumnail(int id){
-//        Drawable d = mContext.getResources().getDrawable(id);
-//        Bitmap b = BitmapUtil.drawableToBitmap(d);
-////      Bitmap bb = BitmapUtil.getRoundedCornerBitmap(b, 100);
-//        int w = mContext.getResources().getDimensionPixelOffset(R.dimen.thumnail_default_width);
-//        int h = mContext.getResources().getDimensionPixelSize(R.dimen.thumnail_default_height);
-//
-//        Bitmap thumBitmap = ThumbnailUtils.extractThumbnail(b, w, h);
-//
-//        return thumBitmap;
-//    }
+
     public void setSelectIndex(int i){
         selectIndex = i;
     }
