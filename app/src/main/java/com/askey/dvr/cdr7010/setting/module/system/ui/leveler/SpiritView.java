@@ -51,7 +51,5 @@ public class SpiritView extends View {
         }else{
             canvas.drawBitmap(bubbleBitmap, bubbleX, bubbleY, null);
         }
-
     }
-
 }

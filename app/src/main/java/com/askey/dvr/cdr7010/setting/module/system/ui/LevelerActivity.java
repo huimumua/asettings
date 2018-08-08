@@ -54,6 +54,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     private float yawAngle,pitchAngle;
     public static int backBitmapX,backBitmapY;
     private int spBubbleBitmapWidth,spBubbleBitmapHeight;
+    private int count = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,12 +89,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         spBubbleBitmapWidth = spiritView.bubbleBitmap.getWidth()/2;
         spBubbleBitmapHeight = spiritView.bubbleBitmap.getHeight()/2;
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                cameraInit();
-            }
-        }).start();
+        initSensorManager();
 
         int pitchAngle = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_PITCH_ANGLE, -1);
         int yawAngle = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_YAW_ANGLE, -1);
@@ -101,90 +97,125 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         Logg.i(TAG,"=====yawAngle==="+yawAngle);
     }
 
+    private Sensor accelSensor = null, compassSensor = null, orientSensor = null;
+    private float[] accelValues = new float[3], compassValues = new float[3],orientValues = new float[3];
+    private boolean ready = false; //检查传感器是否正常工作，即是否同时具有加速传感器和磁场传感器。
+    private float[] inR = new float[9];
+    private float[] inclineMatrix = new float[9];
+    private float[] prefValues = new float[3];
+    private double mInclination;
+
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
-        float values[] = sensorEvent.values;
-        //获取传感器的类型
-        int sensorType = sensorEvent.sensor.getType();
-        switch (sensorType) {
+        switch (sensorEvent.sensor.getType()) {
+            case Sensor.TYPE_ACCELEROMETER:
+                for (int i = 0; i < 3; i++) {
+                    accelValues[i] = sensorEvent.values[i];
+                }
+                if (compassValues[0] != 0) //如果accelerator和magnetic传感器都有数值，设置为真
+                    ready = true;
+                break;
+
+            case Sensor.TYPE_MAGNETIC_FIELD:
+                for (int i = 0; i < 3; i++) {
+                    compassValues[i] = sensorEvent.values[i];
+                }
+                if (accelValues[2] != 0) //检查accelerator和magnetic传感器都有数值，只是换一个轴向检查
+                    ready = true;
+                break;
+
             case Sensor.TYPE_ORIENTATION:
-                //获取与Y轴的夹角
-//                yaw = event.values[0];
-//                pitch = event.values[1];
-//                roll = event.values[2];
-                yawAngle = values[2];
-                pitchAngle = values[1];
-                float zAngle = values[1];
-                //获取与Z轴的夹角
-                float yAngle = values[2];
-//                Logg.i(TAG,"=onSensorChanged=yawAngle="+yawAngle+"==pitchAngle=="+pitchAngle);
-                //气泡位于中间时（水平仪完全水平）
-
-                int x= screenWidth/2-spBubbleBitmapWidth;
-                int y= screenHeight/2-spBubbleBitmapHeight;
-//                Logg.i(TAG,"=onSensorChanged=x="+x+ "==y=="+y);
-                //如果与Z轴的倾斜角还在最大角度之内
-                if (Math.abs(zAngle) <= MAX_ANGLE) {
-                    //根据与Z轴的倾斜角度计算X坐标轴的变化值
-                    int deltaX = (int)(x * zAngle / MAX_ANGLE);
-//                    Logg.i(TAG,"=onSensorChanged=deltaX="+deltaX);
-                    x += deltaX;
+                for (int i = 0; i < 3; i++) {
+                    orientValues[i] = sensorEvent.values[i];
                 }
-                //如果与Z轴的倾斜角已经大于MAX_ANGLE，气泡应到最左边
-                else if (zAngle > MAX_ANGLE) {
-                    x = 0;
-                }
-                //如果与Z轴的倾斜角已经小于负的Max_ANGLE,气泡应到最右边
-                else {
-                    x = screenWidth - spBubbleBitmapWidth;
-                }
-
-                //如果与Y轴的倾斜角还在最大角度之内
-                if (Math.abs(yAngle) <= MAX_ANGLE) {
-                    //根据与Z轴的倾斜角度计算X坐标轴的变化值
-                    int deltaY = (int)(y * yAngle / MAX_ANGLE);
-//                    Logg.i(TAG,"=onSensorChanged=deltaY="+deltaY);
-                    y += deltaY;
-                }
-                //如果与Y轴的倾斜角已经大于MAX_ANGLE，气泡应到最下边
-                else if (yAngle > MAX_ANGLE) {
-                    y = screenHeight - spBubbleBitmapHeight;
-                }
-                //如果与Y轴的倾斜角已经小于负的Max_ANGLE,气泡应到最上边
-                else {
-                    y = 0;
-                }
-                //如果计算出来的X，Y坐标还位于水平仪的仪表盘之内，则更新水平仪气泡坐标
-                if (/*isContain(x,y)*/true) {
-                    spiritView.bubbleX = x;
-                    spiritView.bubbleY = y;
-                }
-//                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
-                //通知组件更新
-                spiritView.postInvalidate();
-//                spiritView.invalidate();
                 break;
         }
-    }
 
-    private boolean isContain(int x, int y) {
-        //计算气泡的圆心坐标X，y
-        int spBackBitmapWidth = spiritView.backBitmap.getWidth();
-        int bubbleCx = x + spBubbleBitmapWidth / 2;
-        int bubbleCy = y + spBubbleBitmapWidth / 2;
-        //计算水平仪仪表盘圆心的坐标
-        int backCx = spBackBitmapWidth / 2;
-        int backCy = spBackBitmapWidth / 2;
-        //计算气泡的圆心与水平仪表盘的圆心之间的距离
-        double distance = Math.sqrt((bubbleCx - backCx) * (bubbleCx * backCx) +
-                (bubbleCy - backCy) * (bubbleCy - backCy));
-        //若两圆心的距离小于他们的半径差，即可认为处于该点的气泡任然位于仪表盘内
-        if (distance < (spBackBitmapWidth - spBubbleBitmapWidth)) {
-            return true;
-        } else {
-            return false;
+        if (!ready)
+            return;
+
+        //【2】根据加速传感器的数值accelValues[3]和磁力感应器的数值compassValues[3]，进行矩阵计算，获得方位
+        //【2.1】计算rotation matrix R(inR)和inclination matrix I(inclineMatrix)
+        if (SensorManager.getRotationMatrix(inR, inclineMatrix, accelValues, compassValues)) {
+            /* 【2.2】根据rotation matrix计算设备的方位。，范围数组：
+            values[0]: azimuth, rotation around the Z axis.
+            values[1]: pitch, rotation around the X axis.
+            values[2]: roll, rotation around the Y axis.*/
+            SensorManager.getOrientation(inR, prefValues);
+            //【2.2】根据inclination matrix计算磁仰角，地球表面任一点的地磁场总强度的矢量方向与水平面的夹角。
+            mInclination = SensorManager.getInclination(inclineMatrix);
+            if(count++ % 10 == 0){
+                doUpdate();
+                count = 1;
+            }
+
         }
     }
+
+    private void doUpdate() {
+
+        //preValues[0]是方位角，单位是弧度，范围是-pi到pi，通过Math.toDegrees()转换为角度
+        float mAzimuth = (float)Math.toDegrees(prefValues[0]);
+        /*//纠正为orientation的数值。
+         * if(mAzimuth < 0)
+            mAzimuth += 360.0;*/
+
+        float zAngle = (float) Math.toDegrees(prefValues[1]);
+        float yAngle = (float) Math.toDegrees(prefValues[2]);
+//        float yawAngle = (float) Math.toDegrees(mInclination);
+
+
+//        Logg.i(TAG,"=onSensorChanged=yawAngle="+yawAngle+"==pitchAngle=="+pitchAngle);
+        //气泡位于中间时（水平仪完全水平）
+
+        int x= screenWidth/2-spBubbleBitmapWidth;
+        int y= screenHeight/2-spBubbleBitmapHeight;
+//                Logg.i(TAG,"=onSensorChanged=x="+x+ "==y=="+y);
+        //如果与Z轴的倾斜角还在最大角度之内
+        if (Math.abs(zAngle) <= MAX_ANGLE) {
+            //根据与Z轴的倾斜角度计算X坐标轴的变化值
+            int deltaX = (int)(x * zAngle / MAX_ANGLE);
+//                    Logg.i(TAG,"=onSensorChanged=deltaX="+deltaX);
+            x += deltaX;
+        }
+        //如果与Z轴的倾斜角已经大于MAX_ANGLE，气泡应到最左边
+        else if (zAngle > MAX_ANGLE) {
+            x = 0;
+        }
+        //如果与Z轴的倾斜角已经小于负的Max_ANGLE,气泡应到最右边
+        else {
+            x = screenWidth - spBubbleBitmapWidth;
+        }
+
+        //如果与Y轴的倾斜角还在最大角度之内
+        if (Math.abs(yAngle) <= MAX_ANGLE) {
+            //根据与Z轴的倾斜角度计算X坐标轴的变化值
+            int deltaY = (int)(y * yAngle / MAX_ANGLE);
+//                    Logg.i(TAG,"=onSensorChanged=deltaY="+deltaY);
+            y += deltaY;
+        }
+        //如果与Y轴的倾斜角已经大于MAX_ANGLE，气泡应到最下边
+        else if (yAngle > MAX_ANGLE) {
+            y = screenHeight - spBubbleBitmapHeight;
+        }
+        //如果与Y轴的倾斜角已经小于负的Max_ANGLE,气泡应到最上边
+        else {
+            y = 0;
+        }
+        //如果计算出来的X，Y坐标还位于水平仪的仪表盘之内，则更新水平仪气泡坐标
+        if (/*isContain(x,y)*/true) {
+            spiritView.bubbleX = x+8;
+            spiritView.bubbleY = y;
+        }
+//                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
+        //通知组件更新
+        spiritView.postInvalidate();
+//                spiritView.invalidate();
+
+
+    }
+
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int i) {
@@ -206,11 +237,13 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
 
     }
 
-    private void cameraInit() {
-        Sensor mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION);
-        //注册
-//        sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_GAME);
-        sensorManager.registerListener(this,mSensor, SensorManager.SENSOR_DELAY_UI);
+    private void initSensorManager() {
+        //地磁场
+        Sensor magnetic = sensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
+        //加速度
+        Sensor acceleromter = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, magnetic, SensorManager.SENSOR_DELAY_UI);
+        sensorManager.registerListener(this, acceleromter, SensorManager.SENSOR_DELAY_UI);
 
     }
 
