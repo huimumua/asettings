@@ -19,7 +19,6 @@ import android.telephony.CellInfoWcdma;
 import android.telephony.CellSignalStrengthGsm;
 import android.telephony.CellSignalStrengthLte;
 import android.telephony.CellSignalStrengthWcdma;
-import android.telephony.ServiceState;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -34,7 +33,6 @@ import android.widget.Toast;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
 import com.askey.dvr.cdr7010.setting.util.Logg;
-import com.askey.platform.AskeyTelephonyManager;
 
 import java.io.File;
 import java.util.List;
@@ -115,7 +113,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
             imei.setText(getImei(mPhoneManager));
             network_type.setText(getNetworkType(mPhoneManager));
             network_status.setText(getNetworkStatus(this));
-            service_status.setText(getServiceStatus(mPhoneManager));
+            service_status.setText(getDataState(mPhoneManager));
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
@@ -203,14 +201,11 @@ public class SystemInfoDetailActivity extends BaseActivity {
         return type;
     }
 
-    private String getServiceStatus(TelephonyManager manager) {
-        String state = "N/A";
-        switch (AskeyTelephonyManager.getServiceState(manager).getState()) {
-            case ServiceState.STATE_IN_SERVICE:
+    private String getDataState(TelephonyManager manager) {
+        String state = getString(R.string.sim_info_out_service);
+        switch (manager.getDataState()) {
+            case TelephonyManager.DATA_CONNECTED:
                 state = getString(R.string.sim_info_in_service);
-                break;
-            case ServiceState.STATE_OUT_OF_SERVICE:
-                state = getString(R.string.sim_info_out_service);
                 break;
         }
         return state;
