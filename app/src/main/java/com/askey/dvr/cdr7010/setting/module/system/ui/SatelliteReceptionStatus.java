@@ -35,15 +35,15 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
         setContentView(R.layout.activity_system_installation_satellite);
 
         gpsStatusList = new ArrayList<GpsSvInfo>();
-        GPSStatusManager.getInstance(this).recordLocation(true);
+        GPSStatusManager.getInstance(this,this).recordLocation(true);
 
         setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
         setTitleView(getResources().getString(R.string.gps_status_title));
         hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
 
         //获取当前星数
-        GPSStatusManager.getInstance(this).getGpsUsedInFix();
-        gpsStatusList = GPSStatusManager.getInstance(this).getGpsStatusList();
+        GPSStatusManager.getInstance(this,this).getGpsUsedInFix();
+        gpsStatusList = GPSStatusManager.getInstance(this,this).getGpsStatusList();
 
         if(null!=gpsStatusList && gpsStatusList.size()>0){
             Logg.i(TAG,"=gpsStatusList.size()="+gpsStatusList.size());
@@ -89,14 +89,14 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
         if(hListViewAdapter!=null){
             hListViewAdapter=null;
         }
-        GPSStatusManager.getInstance(this).recordLocation(false);
+        GPSStatusManager.getInstance(this,this).recordLocation(false);
         super.onDestroy();
     }
 
 
     @Override
     public void onPostExecute() {
-        gpsStatusList = GPSStatusManager.getInstance(this).getGpsStatusList();
+        gpsStatusList = GPSStatusManager.getInstance(this,this).getGpsStatusList();
         runOnUiThread(new Runnable() {
             public void run() {
                 try {

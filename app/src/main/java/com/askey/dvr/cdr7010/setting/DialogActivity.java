@@ -17,6 +17,7 @@ import com.askey.dvr.cdr7010.setting.util.FileUtils;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.dvr.cdr7010.setting.widget.CommDialog;
 import com.askey.dvr.cdr7010.setting.widget.CommDialogNoButton;
+import com.askey.platform.storage.AskeyStorageManager;
 
 /**
  * 项目名称：settings
@@ -90,7 +91,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                             public void run() {
                                 dialog.dismiss();
                                 setRightView(false, true, false);
-                                setBottomView(false,R.drawable.tag_menu_main_back);
+                                setBottomView(false, R.drawable.tag_menu_main_back);
                                 showDialog(DialogActivity.this, CommDialog.TYPE_BUTTON_OK, getString(R.string.dialog_setting_init_finish), false, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -125,7 +126,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 setRightView(false, R.drawable.tag_menu_sub_right, true, R.drawable.tag_menu_sub_ok, false, R.drawable.tag_menu_sub_left);
-                setBottomView(false,R.drawable.tag_menu_main_back);
+                setBottomView(false, R.drawable.tag_menu_main_back);
                 showFormatResultDialog(0, getResources().getString(R.string.sdcard_init_ongoing));
                 doSdcardformat();
             }
@@ -165,7 +166,8 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
     }
 
     private void doSdcardformat() {
-        sdcardFormatAsyncTask = new SdcardFormatAsyncTask(this);
+        AskeyStorageManager storageManager = AskeyStorageManager.getInstance(this);
+        sdcardFormatAsyncTask = new SdcardFormatAsyncTask(storageManager, this);
         sdcardFormatAsyncTask.execute();
     }
 
@@ -270,7 +272,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
     DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            setBottomView(false,R.drawable.tag_menu_main_back);
+            setBottomView(false, R.drawable.tag_menu_main_back);
             Intent intent = new Intent("com.jvckenwood.versionup.UPDATE_START");
             sendBroadcast(intent);
             dialog.dismiss();

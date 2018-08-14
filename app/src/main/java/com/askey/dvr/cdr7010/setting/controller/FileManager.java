@@ -53,8 +53,8 @@ public class FileManager {
         return mFileManager;
     }
 
-    public List<SdcardInfo> getSdcardInfo() {
-        if(!waitFileServiceConnected())
+    public List<SdcardInfo> getSdcardInfo(Context context) {
+        if(!waitFileServiceConnected(context))
             return null;
         try {
             return mInterface.getSdcardInfo();
@@ -64,8 +64,8 @@ public class FileManager {
         return null;
     }
 
-    public int getSdcardStatus() {
-        if(!waitFileServiceConnected())
+    public int getSdcardStatus(Context context) {
+        if(!waitFileServiceConnected(context))
             return 2;
         try {
             return mInterface.checkSdcardAvailable();
@@ -75,23 +75,21 @@ public class FileManager {
         return 2;
     }
 
-    public boolean bindFileManageService() {
-        Context appContext = SettingApplication.getContext();
+    public boolean bindFileManageService(Context appContext) {
         Intent bindIntent = new Intent();
         bindIntent.setAction("com.askey.filemanagerservice.action");
         bindIntent.setPackage("com.askey.dvr.cdr7010.filemanagement");
         return appContext.bindService(bindIntent, mConn, Context.BIND_AUTO_CREATE);
     }
 
-    public void unBindFileManageService() {
-        Context appContext = SettingApplication.getContext();
+    public void unBindFileManageService(Context appContext) {
         appContext.unbindService(mConn);
     }
 
-    private boolean waitFileServiceConnected(){
+    private boolean waitFileServiceConnected(Context context){
         if(mInterface != null)
             return true;
-        if (bindFileManageService()){
+        if (bindFileManageService(context)){
             Logg.d(LOG_TAG, "waitFileServiceConnected: start");
             long frontTime = SystemClock.elapsedRealtime();
             while(mInterface == null && SystemClock.elapsedRealtime() - frontTime <= 2000){

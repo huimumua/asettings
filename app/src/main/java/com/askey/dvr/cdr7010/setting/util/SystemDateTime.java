@@ -1,10 +1,9 @@
 package com.askey.dvr.cdr7010.setting.util;
 
+import android.content.Context;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.util.Log;
-
-import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -14,18 +13,18 @@ import java.util.Calendar;
 public class SystemDateTime {
     static final String TAG = "SystemDateTime";
 
-    public static void setDateTime(int year, int month, int day, int hour, int minute,int second) throws IOException, InterruptedException {
+    public static void setDateTime(int year, int month, int day, int hour, int minute, int second) throws IOException, InterruptedException {
 
 //        requestPermission();
 
         Calendar c = Calendar.getInstance();
 
         c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month-1);
+        c.set(Calendar.MONTH, month - 1);
         c.set(Calendar.DAY_OF_MONTH, day);
         c.set(Calendar.HOUR_OF_DAY, hour);
         c.set(Calendar.MINUTE, minute);
-        c.set(Calendar.SECOND,second);
+        c.set(Calendar.SECOND, second);
 
         long when = c.getTimeInMillis();
 
@@ -36,7 +35,7 @@ public class SystemDateTime {
         long now = Calendar.getInstance().getTimeInMillis();
         //Log.d(TAG, "set tm="+when + ", now tm="+now);
 
-        if(now - when > 1000)
+        if (now - when > 1000)
             throw new IOException("failed to set Date.");
 
     }
@@ -73,7 +72,7 @@ public class SystemDateTime {
         long now = Calendar.getInstance().getTimeInMillis();
         //Log.d(TAG, "set tm="+when + ", now tm="+now);
 
-        if(now - when > 1000)
+        if (now - when > 1000)
             throw new IOException("failed to set Date.");
     }
 
@@ -94,7 +93,7 @@ public class SystemDateTime {
         long now = Calendar.getInstance().getTimeInMillis();
         //Log.d(TAG, "set tm="+when + ", now tm="+now);
 
-        if(now - when > 1000)
+        if (now - when > 1000)
             throw new IOException("failed to set Time.");
     }
 
@@ -102,10 +101,10 @@ public class SystemDateTime {
         createSuProcess("chmod 666 /dev/alarm").waitFor();
     }
 
-    static Process createSuProcess() throws IOException  {
+    static Process createSuProcess() throws IOException {
         File rootUser = new File("/system/xbin/ru");
-        Log.i(TAG,"=rootUser.exists()=="+rootUser.exists());
-        if(rootUser.exists()) {
+        Log.i(TAG, "=rootUser.exists()==" + rootUser.exists());
+        if (rootUser.exists()) {
             return Runtime.getRuntime().exec(rootUser.getAbsolutePath());
         } else {
             return Runtime.getRuntime().exec("su");
@@ -122,7 +121,7 @@ public class SystemDateTime {
             os.writeBytes(cmd + "\n");
             os.writeBytes("exit $?\n");
         } finally {
-            if(os != null) {
+            if (os != null) {
                 try {
                     os.close();
                 } catch (IOException e) {
@@ -153,9 +152,9 @@ public class SystemDateTime {
         return false;
     }
 
-    public static boolean isDateTimeAuto(){
+    public static boolean isDateTimeAuto(Context context) {
         try {
-            return android.provider.Settings.Global.getInt(SettingApplication.getContext().getContentResolver(),
+            return android.provider.Settings.Global.getInt(context.getContentResolver(),
                     android.provider.Settings.Global.AUTO_TIME) > 0;
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
@@ -163,8 +162,8 @@ public class SystemDateTime {
         }
     }
 
-    public static void setAutoDateTime(int checked){
-        android.provider.Settings.Global.putInt(SettingApplication.getContext().getContentResolver(),
+    public static void setAutoDateTime(Context context, int checked) {
+        android.provider.Settings.Global.putInt(context.getContentResolver(),
                 android.provider.Settings.Global.AUTO_TIME, checked);
     }
 }

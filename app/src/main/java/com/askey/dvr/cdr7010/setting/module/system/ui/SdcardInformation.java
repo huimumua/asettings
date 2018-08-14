@@ -61,7 +61,7 @@ public class SdcardInformation extends BaseActivity {
     }
 
     private void initData() {
-        List<SdcardInfo> sdcardInfo = FileManager.getInstance().getSdcardInfo();
+        List<SdcardInfo> sdcardInfo = FileManager.getInstance().getSdcardInfo(this);
         if (sdcardInfo != null && sdcardInfo.size() > 0) {
             String totalSize = sdcardInfo.get(0).getTotalSize();
             String normalCurrentSize = sdcardInfo.get(0).getNormalCurrentSize();

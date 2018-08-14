@@ -62,7 +62,7 @@ public class MyAdapter extends BaseAdapter {
         Log.d("MyAdapter", clickItem);
         if (context.getString(R.string.sdcard_setting_initialization).equals(clickItem)) {
             if (null != fileManager) {
-                sdCardStatus = fileManager.getSdcardStatus();
+                sdCardStatus = fileManager.getSdcardStatus(context);
             }
             if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST) || sdCardStatus == Const.SDCARD_NOT_SUPPORT) {
                 holder.item.setTextColor(0xffffffff);
@@ -73,7 +73,7 @@ public class MyAdapter extends BaseAdapter {
         if (context.getString(R.string.sdcard_setting_information).equals(clickItem) || context.getString(R.string.main_menu_fp).equals(clickItem) || context.getString(R.string.tv_system_settings_system_update).equals(clickItem)) {
             Log.d("MyAdapter", "getView: ");
             if (null != fileManager) {
-                sdCardStatus = fileManager.getSdcardStatus();
+                sdCardStatus = fileManager.getSdcardStatus(context);
             }
             if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST)) {
                 holder.item.setTextColor(0xffffffff);

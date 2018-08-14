@@ -2,12 +2,10 @@ package com.askey.dvr.cdr7010.setting.application;
 
 import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 
-import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Logg;
+//import com.squareup.leakcanary.LeakCanary;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -24,9 +22,7 @@ import java.util.List;
  */
 public class SettingApplication extends Application {
 
-    private final static String  TAG = "SettingApplication";
-    private static SettingApplication instance;
-    protected static Context context;
+    private final static String TAG = "SettingApplication";
     /**
      * 维护Activity 的list
      */
@@ -36,33 +32,28 @@ public class SettingApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
-
-        context = this.getApplicationContext();
-
         registerActivityListener();
+//        setupLeakCanary();
     }
 
-
-    public static SettingApplication getInstance() {
-        return instance;
-    }
-
-    public static Context getContext() {
-        return context;
-    }
+//    private void setupLeakCanary() {
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            return;
+//        }
+//        LeakCanary.install(this);
+//    }
 
     /**
      * @param activity 作用说明 ：添加一个activity到管理里
      */
     public static void pushActivity(Activity activity) {
         mActivitys.add(activity);
-        Logg.e(TAG,"=pushActivity=activityList:size:"+mActivitys.size());
+        Logg.e(TAG, "=pushActivity=activityList:size:" + mActivitys.size());
     }
 
     public static void addActivity(Activity activity) {
         mActivitys.add(activity);
-        Logg.e(TAG,"=addActivity=activityList:size:"+mActivitys.size());
+        Logg.e(TAG, "=addActivity=activityList:size:" + mActivitys.size());
     }
 
     /**
@@ -70,30 +61,28 @@ public class SettingApplication extends Application {
      */
     public void popActivity(Activity activity) {
         mActivitys.remove(activity);
-        Logg.e(TAG,"=popActivity=activityList:size:"+mActivitys.size());
+        Logg.e(TAG, "=popActivity=activityList:size:" + mActivitys.size());
     }
-
 
 
     /**
      * get current Activity 获取当前Activity（栈中最后一个压入的）
      */
     public static Activity currentActivity() {
-        if (mActivitys == null||mActivitys.isEmpty()) {
+        if (mActivitys == null || mActivitys.isEmpty()) {
             return null;
         }
-        Activity activity = mActivitys.get(mActivitys.size()-1);
-        return activity;
+        return mActivitys.get(mActivitys.size() - 1);
     }
 
     /**
      * 结束当前Activity（栈中最后一个压入的）
      */
     public static void finishCurrentActivity() {
-        if (mActivitys == null||mActivitys.isEmpty()) {
+        if (mActivitys == null || mActivitys.isEmpty()) {
             return;
         }
-        Activity activity = mActivitys.get(mActivitys.size()-1);
+        Activity activity = mActivitys.get(mActivitys.size() - 1);
         finishActivity(activity);
     }
 
@@ -101,12 +90,11 @@ public class SettingApplication extends Application {
      * 结束指定的Activity
      */
     public static void finishActivity(Activity activity) {
-        if (mActivitys == null||mActivitys.isEmpty()) {
+        if (mActivitys == null || mActivitys.isEmpty()) {
             return;
         }
         if (activity != null) {
             activity.finish();
-            activity = null;
         }
     }
 
@@ -114,7 +102,7 @@ public class SettingApplication extends Application {
      * 结束指定类名的Activity
      */
     public static void finishActivity(Class<?> cls) {
-        if (mActivitys == null||mActivitys.isEmpty()) {
+        if (mActivitys == null || mActivitys.isEmpty()) {
             return;
         }
         for (Activity activity : mActivitys) {
@@ -123,20 +111,17 @@ public class SettingApplication extends Application {
             }
         }
         try {
-            for (int i=0;i<=mActivitys.size();i++){
+            for (int i = 0; i <= mActivitys.size(); i++) {
                 mActivitys.remove(mActivitys.get(i));
             }
-        }catch (Exception e){
-            Logg.e(TAG,"==finishActivity==Exception="+e.getMessage());
+        } catch (Exception e) {
+            Logg.e(TAG, "==finishActivity==Exception=" + e.getMessage());
         }
 
     }
 
     /**
      * 按照指定类名找到activity
-     *
-     * @param cls
-     * @return
      */
     public static Activity findActivity(Class<?> cls) {
         Activity targetActivity = null;
@@ -155,8 +140,8 @@ public class SettingApplication extends Application {
      * @return 作用说明 ：获取当前最顶部activity的实例
      */
     public Activity getTopActivity() {
-        Activity mBaseActivity = null;
-        synchronized (mActivitys) {
+        Activity mBaseActivity;
+        synchronized (Activity.class) {
             final int size = mActivitys.size() - 1;
             if (size < 0) {
                 return null;
@@ -171,8 +156,8 @@ public class SettingApplication extends Application {
      * @return 作用说明 ：获取当前最顶部的acitivity 名字
      */
     public String getTopActivityName() {
-        Activity mBaseActivity = null;
-        synchronized (mActivitys) {
+        Activity mBaseActivity;
+        synchronized (Activity.class) {
             final int size = mActivitys.size() - 1;
             if (size < 0) {
                 return null;
@@ -189,9 +174,9 @@ public class SettingApplication extends Application {
         if (mActivitys == null) {
             return;
         }
-        Logg.e(TAG,"=finishAllActivity=mActivitys.size()"+mActivitys.size());
+        Logg.e(TAG, "=finishAllActivity=mActivitys.size()" + mActivitys.size());
         for (Activity activity : mActivitys) {
-            Logg.e(TAG,"activity.finish()");
+            Logg.e(TAG, "activity.finish()");
             activity.finish();
         }
         mActivitys.clear();
@@ -201,80 +186,78 @@ public class SettingApplication extends Application {
         if (mActivitys == null) {
             return;
         }
-        Logg.e(TAG,"=finishAllActivity=mActivitys.size()"+mActivitys.size());
-        for (int i=0;i<mActivitys.size()-1;i++){
+        Logg.e(TAG, "=finishAllActivity=mActivitys.size()" + mActivitys.size());
+        for (int i = 0; i < mActivitys.size() - 1; i++) {
             Activity activity = mActivitys.get(i);
-            Logg.e(TAG,"activity.finish()"+activity);
-            if(!activity.getClass().getName().equals("DeviceGuideHomeActivity")){
+            Logg.e(TAG, "activity.finish()" + activity);
+            if (!activity.getClass().getName().equals("DeviceGuideHomeActivity")) {
                 mActivitys.remove(activity);
                 activity.finish();
             }
         }
     }
+
     /**
      * 退出应用程序
      */
-    public  static void appExit() {
+    public static void appExit() {
         try {
-            Logg.i(TAG,"app exit");
+            Logg.i(TAG, "app exit");
             finishAllActivity();
         } catch (Exception e) {
-            Logg.e(TAG,"appExit-》Exception-》"+e.getMessage());
+            Logg.e(TAG, "appExit-》Exception-》" + e.getMessage());
         }
     }
 
 
     private void registerActivityListener() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
-                @Override
-                public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                    /**
-                     *  监听到 Activity创建事件 将该 Activity 加入list
+        registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+            @Override
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                /*
+                 *  监听到 Activity创建事件 将该 Activity 加入list
+                 */
+                pushActivity(activity);
+
+            }
+
+            @Override
+            public void onActivityStarted(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityResumed(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityPaused(Activity activity) {
+
+            }
+
+            @Override
+            public void onActivityStopped(Activity activity) {
+                System.gc();
+            }
+
+            @Override
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+
+            }
+
+            @Override
+            public void onActivityDestroyed(Activity activity) {
+                if (null == mActivitys || mActivitys.isEmpty()) {
+                    return;
+                }
+                if (mActivitys.contains(activity)) {
+                    /*
+                     *  监听到 Activity销毁事件 将该Activity 从list中移除
                      */
-                    pushActivity(activity);
-
+                    popActivity(activity);
                 }
-
-                @Override
-                public void onActivityStarted(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityResumed(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityPaused(Activity activity) {
-
-                }
-
-                @Override
-                public void onActivityStopped(Activity activity) {
-                    System.gc();
-                }
-
-                @Override
-                public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
-                }
-
-                @Override
-                public void onActivityDestroyed(Activity activity) {
-                    if (null==mActivitys&&mActivitys.isEmpty()){
-                        return;
-                    }
-                    if (mActivitys.contains(activity)){
-                        /**
-                         *  监听到 Activity销毁事件 将该Activity 从list中移除
-                         */
-                        popActivity(activity);
-                    }
-                }
-            });
-        }
+            }
+        });
     }
-
 }

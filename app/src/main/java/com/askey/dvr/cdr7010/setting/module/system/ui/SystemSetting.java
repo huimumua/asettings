@@ -65,7 +65,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
         Log.i("SetingActivity", "=position==" + position);
-        int sdCardStatus = FileManager.getInstance().getSdcardStatus();
+        int sdCardStatus = FileManager.getInstance().getSdcardStatus(this);
         String clickItem = currentData.get(position).get("menu_item").toString();
         if (clickItem.equals(getResources().getString(R.string.tv_system_settings_notification_sound_volume))) {
             Intent intent = new Intent(mContext, NotificationSoundSetting.class);

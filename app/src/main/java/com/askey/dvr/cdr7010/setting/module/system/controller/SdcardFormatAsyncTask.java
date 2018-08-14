@@ -1,9 +1,7 @@
 package com.askey.dvr.cdr7010.setting.module.system.controller;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
-import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.platform.storage.AskeyStorageManager;
 import com.askey.platform.storage.DiskInfo;
@@ -20,17 +18,16 @@ import com.askey.platform.storage.DiskInfo;
 public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
     private static final String LOG_TAG = SdcardFormatAsyncTask.class.getSimpleName();
     private final PartitionCallback mCallback;
+    private AskeyStorageManager storageManager;
 
-    public SdcardFormatAsyncTask(PartitionCallback callback){
+    public SdcardFormatAsyncTask(AskeyStorageManager storageManager, PartitionCallback callback) {
+        this.storageManager = storageManager;
         this.mCallback = callback;
     }
 
     @Override
     protected Boolean doInBackground(Void... voids) {
-        Context appContext = SettingApplication.getContext();
         //这里需要停止sdcard读写操作：
-
-        AskeyStorageManager  storageManager = AskeyStorageManager.getInstance(appContext);
         for (final DiskInfo disk : storageManager.getDisks()) {
             Logg.d(LOG_TAG, "doInBackground: disk " + disk.sysPath);
             if (disk.isSd()) {
@@ -54,16 +51,16 @@ public class SdcardFormatAsyncTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean ready) {
-        try{
-            if(mCallback != null)
+        try {
+            if (mCallback != null)
                 mCallback.onPostExecute(ready);
-        }catch (Exception e){
+        } catch (Exception e) {
             Logg.e(LOG_TAG, "onPostExecute: " + e.getMessage());
         }
         super.onPostExecute(ready);
     }
 
-    public interface PartitionCallback{
+    public interface PartitionCallback {
         void onPostExecute(boolean ready);
     }
 

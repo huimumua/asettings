@@ -65,12 +65,6 @@ public class GPSStatusManager {
         return mnLocationManager;
     }
 
-    public static GPSStatusManager getInstance(GPSStatusManager.GpsStatusChangedCallback callback) {
-        if (mnLocationManager == null)
-            mnLocationManager = new GPSStatusManager(SettingApplication.getContext(), null,callback);
-        return mnLocationManager;
-    }
-
     public ArrayList<GpsSvInfo> getGpsStatusList() {
         return gpsStatusList;
     }
@@ -221,7 +215,7 @@ public class GPSStatusManager {
                 // 卫星状态改变
                 case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
                     Logg.i(TAG, " gpsStatusListener GPS_EVENT_SATELLITE_STATUS.");
-                    if (ActivityCompat.checkSelfPermission(SettingApplication.getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         // TODO: Consider calling
                         //    ActivityCompat#requestPermissions
                         // here to request the missing permissions, and then overriding

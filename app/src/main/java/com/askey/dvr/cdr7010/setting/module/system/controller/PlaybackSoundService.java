@@ -9,15 +9,14 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.askey.dvr.cdr7010.setting.PlaybackSound;
-import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 
 public class PlaybackSoundService extends Service {
-    private AudioManager mAudioManager = (AudioManager) SettingApplication.getContext().getSystemService(this.AUDIO_SERVICE);
-    private int currentVolume;
+    private AudioManager mAudioManager;
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        mAudioManager = (AudioManager) this.getApplicationContext().getSystemService(AUDIO_SERVICE);
         return mBinder;
     }
 
@@ -29,7 +28,7 @@ public class PlaybackSoundService extends Service {
 
         @Override
         public int getPlaybackSoundVolume() throws RemoteException {
-            currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            int currentVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
             Log.i("PlaybackSoundService", "==currentVolume==" + currentVolume);
             return currentVolume;
         }
