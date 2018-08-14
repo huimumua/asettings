@@ -159,7 +159,7 @@ Move the guideline to the horizon line, the front end of vehicle (hood line) and
     <string name="system_setting_monitor_time">Set the time that elapses before the monitor screen  enters the power saving mode.</string>
     <string name="system_setting_monitor_operation">Sets the power saving behavior of the monitor screen. To save power, set it to OFF.</string>
     <string name="system_setting_install_leveler">It is a useful tool for installing this machine</string>
-    <string name="communication_emergency_notify">When set to OFF, automatic notification will not be sent to the call center even when an accident occurs</string>
+    <string name="communication_emergency_notify">When set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>
 
     <string name="driving_setting">Driving Setting</string>
     <string name="front_collision_warning">Forward collision alert</string>
