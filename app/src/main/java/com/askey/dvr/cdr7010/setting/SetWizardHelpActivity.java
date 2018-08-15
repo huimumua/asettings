@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ public class SetWizardHelpActivity extends BaseActivity {
         String indexStr = "";
         if (null == currentUi || currentUi.equals("")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_start_setting);
+            setWizardhelp.setGravity(Gravity.CENTER);
             currentUi = "set_wizard_help_start_setting";
             if (Const.SET_WIZARD) {
                 setBottomView(true, R.drawable.tag_menu_main_back);
@@ -73,6 +75,7 @@ public class SetWizardHelpActivity extends BaseActivity {
         } else if (currentUi.equals("set_wizard_help_finish")) {
             indexStr = getResources().getString(R.string.set_wizard_help_finish);
             setBottomView(false, 0);
+            setWizardhelp.setGravity(Gravity.CENTER);
         }
         setTitleView(title);
         setWizardhelp.setText(indexStr);

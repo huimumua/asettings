@@ -127,9 +127,9 @@
     <string name="service_information_notified">位置情報サービスより気象情報を通知する</string>
     <string name="main_menu_us">ユーザー選択</string>
     <string name="set_wizard_help_context_start_setting">セットアップを開始しますか？</string>
-    <string name="set_wizard_help_context_vehicle_type">運転支援機能の精度を上げるために設定します。\n本機を取り付ける車のナンバーと形状から、\n最も近い車両タイプを選択してください。</string>
+    <string name="set_wizard_help_context_vehicle_type">運転支援機能の精度を上げるために設定します。\n本機を取り付ける車のナンバーと形状から、最も近い車両タイプを選択してください。</string>
     <string name="set_wizard_help_context_mounting_position">走行車線を正しく検出するために設定します。\n中央から15㎝以内に設置したときは中央、\n中央から15㎝より右側に設置したときは右、\n中央から15㎝より左側に設置したときは左を選択してください</string>
-    <string name="set_wizard_help_context_range">運転支援機能の検出範囲を設定します。\n走行車線を正しく検出するために必要な設定です。\n地平線の位置、車体の先端部（ボンネットなど）、\n走行車線の中心にガイド線を移動して設定します。</string>
+    <string name="set_wizard_help_context_range">運転支援機能の検出範囲を設定します。\n走行車線を正しく検出するために必要な設定です。\n地平線の位置、車体の先端部（ボンネットなど）、走行車線の中心にガイド線を移動して設定します。</string>
     <string name="set_wizard_help_finish">セットアップが完了しました</string>
 
     <string name="check_update">Is check update package</string>
