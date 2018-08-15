@@ -61,7 +61,7 @@ public class GPSStatusManager {
 
     public static GPSStatusManager getInstance(Context context,GPSStatusManager.GpsStatusChangedCallback callback) {
         if (mnLocationManager == null)
-            mnLocationManager = new GPSStatusManager(context, null,callback);
+            mnLocationManager = new GPSStatusManager(context.getApplicationContext(), null,callback);
         return mnLocationManager;
     }
 

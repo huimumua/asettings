@@ -166,7 +166,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
     }
 
     private void doSdcardformat() {
-        AskeyStorageManager storageManager = AskeyStorageManager.getInstance(this);
+        AskeyStorageManager storageManager = AskeyStorageManager.getInstance(this.getApplicationContext());
         sdcardFormatAsyncTask = new SdcardFormatAsyncTask(storageManager, this);
         sdcardFormatAsyncTask.execute();
     }
