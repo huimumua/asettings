@@ -152,7 +152,7 @@
     <string name="movie_record_marqueeText_information">OFFに設定すると、日時や位置情報などの字幕記録を停止します</string>
     <string name="Vehicle_marqueeText">運転支援機能の精度を上げるために設定します。ご使用の車のナンバーと形状から、最も近い車両タイプを選択します</string>
     <string name="system_setting_monitor_time">モニター画面が節電に移行する時間を設定します</string>
-    <string name="system_setting_monitor_operation">モニター画面の節電動作を設定します。節電を行わないときはOFFに設定します</string>
+    <string name="system_setting_monitor_operation">モニター画面の節電動作を設定します。節電を行わないときは常時点灯に設定します</string>
     <string name="system_setting_install_leveler">本機を設置するときに便利なツールです</string>
     <string name="communication_emergency_notify">OFFに設定すると、衝撃を検知したときでもコールセンターに自動通報しません</string>
 

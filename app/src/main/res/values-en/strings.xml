@@ -157,7 +157,7 @@ Move the guideline to the horizon line, the front end of vehicle (hood line) and
     <string name="movie_record_marqueeText_information">Selecting OFF stops recording of character information such as date, time, and location.</string>
     <string name="Vehicle_marqueeText">It is set to increase the accuracy of the driving support function. Choose the nearest vehicle type from the number and shape of your car</string>
     <string name="system_setting_monitor_time">Set the time that elapses before the monitor screen  enters the power saving mode.</string>
-    <string name="system_setting_monitor_operation">Sets the power saving behavior of the monitor screen. To save power, set it to OFF.</string>
+    <string name="system_setting_monitor_operation">Set up the power saving operation of monitor screen. Select OFF when power saving is not required</string>
     <string name="system_setting_install_leveler">It is a useful tool for installing this machine</string>
     <string name="communication_emergency_notify">When set to OFF, automatic notification will not be sent to the call center even when an impact is detected</string>
 
