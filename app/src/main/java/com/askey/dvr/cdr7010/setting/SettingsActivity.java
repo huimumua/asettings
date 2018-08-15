@@ -312,6 +312,9 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
                 askeySettingsAidlInterface.sync();
             }
             menuTransition(1);
+            String packageName = "com.askey.dvr.cdr7010.dashcam";
+            String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
+            AppUtil.startActivity(mContext, packageName, className, true);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
