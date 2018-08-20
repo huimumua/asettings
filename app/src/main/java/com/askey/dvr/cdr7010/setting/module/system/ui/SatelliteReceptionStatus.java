@@ -41,6 +41,13 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
         setTitleView(getResources().getString(R.string.gps_status_title));
         hListView = (HorizontalListView)findViewById(R.id.horizon_listview);
 
+        initData();
+        initUI();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         //获取当前星数
         GPSStatusManager.getInstance(this,this).getGpsUsedInFix();
         gpsStatusList = GPSStatusManager.getInstance(this,this).getGpsStatusList();
@@ -48,9 +55,8 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
         if(null!=gpsStatusList && gpsStatusList.size()>0){
             Logg.i(TAG,"=gpsStatusList.size()="+gpsStatusList.size());
         }else{
-            initData();
+
         }
-        initUI();
     }
 
     private void initData() {
