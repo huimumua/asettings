@@ -3,6 +3,7 @@ package com.askey.dvr.cdr7010.setting.module.system.ui;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,24 +21,30 @@ import android.telephony.CellSignalStrengthGsm;
 import android.telephony.CellSignalStrengthLte;
 import android.telephony.CellSignalStrengthWcdma;
 import android.telephony.TelephonyManager;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Logg;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.zip.GZIPInputStream;
 
 public class SystemInfoDetailActivity extends BaseActivity {
     private static final String TAG = "SystemInfoDetailActivity";
@@ -45,7 +52,8 @@ public class SystemInfoDetailActivity extends BaseActivity {
     private ScrollView scrollView;
     private ImageView title_icon;
     private TextView title_tv, phone_number, net, signal, imei, service_status, version, network_type, network_status;
-    private LinearLayout sim, openLicense;
+    private LinearLayout sim;
+    private WebView mWebView;
     private RelativeLayout systemVersion;
     private TelephonyManager mPhoneManager;
     private Timer timer;
@@ -75,7 +83,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
 
         systemVersion = (RelativeLayout) findViewById(R.id.system_version);
         sim = (LinearLayout) findViewById(R.id.sim);
-        openLicense = (LinearLayout) findViewById(R.id.open_license);
+        mWebView = (WebView) findViewById(R.id.open_license);
 
         phone_number = (TextView) findViewById(R.id.phone_number);
         net = (TextView) findViewById(R.id.net);
@@ -93,8 +101,9 @@ public class SystemInfoDetailActivity extends BaseActivity {
         if (type.equals("version")) {
             systemVersion.setVisibility(View.VISIBLE);
             scrollView.setVisibility(View.GONE);
+            mWebView.setVisibility(View.GONE);
             title_tv.setText(getString(R.string.sys_version) + " " + Build.DISPLAY);
-            setRightView(false,0,true,R.drawable.tag_menu_sub_ok,false,0);
+            setRightView(false, 0, true, R.drawable.tag_menu_sub_ok, false, 0);
             version = (TextView) findViewById(R.id.version);
             String systemVersion = Build.DISPLAY;
             version.setText(systemVersion);
@@ -103,7 +112,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
             systemVersion.setVisibility(View.GONE);
             scrollView.setVisibility(View.VISIBLE);
             sim.setVisibility(View.VISIBLE);
-            openLicense.setVisibility(View.GONE);
+            mWebView.setVisibility(View.GONE);
 
             title_tv.setText(getString(R.string.sys_sim));
 
@@ -124,49 +133,67 @@ public class SystemInfoDetailActivity extends BaseActivity {
                         }
                     });
                 }
-            },0,1000);
+            }, 0, 1000);
         }
         if (type.equals("open")) {
+
+            setRightView(true, false, true);
+
             systemVersion.setVisibility(View.GONE);
-            scrollView.setVisibility(View.VISIBLE);
+            scrollView.setVisibility(View.GONE);
             sim.setVisibility(View.GONE);
-            openLicense.setVisibility(View.VISIBLE);
+            mWebView.setVisibility(View.VISIBLE);
 
             title_tv.setText(getString(R.string.sys_open_license));
 
-//            final String path = SystemProperties.get(PROPERTY_LICENSE_PATH, DEFAULT_LICENSE_PATH);
-            final String path = "/system/etc/NOTICE.html.gz";
-            if (TextUtils.isEmpty(path)) {
-                Logg.e(TAG, "The system property for the license file is empty");
-                showErrorAndFinish();
-                return;
-            }
+            mWebView.setWebChromeClient(new WebChromeClient());
+            mWebView.setWebViewClient(new ViewClient());
+            WebSettings webSettings = mWebView.getSettings();
+            //支持javascript
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setUseWideViewPort(true);
+            webSettings.setSupportZoom(true);
+            webSettings.setBuiltInZoomControls(true);
+            webSettings.setDisplayZoomControls(false);
+            webSettings.setSavePassword(false);
+            webSettings.setSaveFormData(false);
+            webSettings.setBlockNetworkLoads(true);
 
-            final File file = new File(path);
-            if (!file.exists() || file.length() == 0) {
-                Logg.e(TAG, "License file " + path + " does not exist");
-                showErrorAndFinish();
-                return;
-            }
+            // Javascript is purposely disabled, so that nothing can be
+            // automatically run.
+            webSettings.setJavaScriptEnabled(false);
+            webSettings.setDefaultTextEncodingName("utf-8");
+            // 设置可以支持缩放
+            requestPermissionAndLoad();
+        }
+    }
 
-            // Kick off external viewer due to WebView security restrictions; we
-            // carefully point it at HTMLViewer, since it offers to decompress
-            // before viewing.
-            final Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.fromFile(file), "text/html");
-//            intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.settings_license_activity_title));
-            intent.putExtra(Intent.EXTRA_TITLE, getString(R.string.sys_open_license));
-            intent.addCategory(Intent.CATEGORY_DEFAULT);
-            intent.setPackage("com.android.htmlviewer");
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        // We only ever request 1 permission, so these arguments should always have the same form.
+        if (permissions.length != 1) throw new AssertionError();
+        if (!Manifest.permission.READ_EXTERNAL_STORAGE.equals(permissions[0]))
+            throw new AssertionError();
 
-            try {
-                startActivity(intent);
-                finish();
-            } catch (ActivityNotFoundException e) {
-                Logg.e(TAG, "Failed to find viewer", e);
-                showErrorAndFinish();
+        if (grantResults.length == 1 && PackageManager.PERMISSION_GRANTED == grantResults[0]) {
+            // Try again now that we have the permission.
+            mWebView.loadUrl("file:///system/etc/NOTICE.html.gz");
+        } else {
+            finish();
+        }
+    }
+
+    private void requestPermissionAndLoad() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (PackageManager.PERMISSION_DENIED ==
+                    checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
+            } else {
+                mWebView.loadUrl("file:///system/etc/NOTICE.html.gz");
             }
         }
+
     }
 
     private String getPhoneNumber(TelephonyManager manager) {
@@ -240,24 +267,24 @@ public class SystemInfoDetailActivity extends BaseActivity {
 //    };
 
     @SuppressLint("MissingPermission")
-    public String getSignalStrength(TelephonyManager telephonyManager){
+    public String getSignalStrength(TelephonyManager telephonyManager) {
         List<CellInfo> cellInfos = telephonyManager.getAllCellInfo();
         String strength = " ";
-        if(cellInfos!=null){
-            for (int i = 0 ; i<cellInfos.size(); i++){
-                if (cellInfos.get(i).isRegistered()){
-                    if(cellInfos.get(i) instanceof CellInfoWcdma){
+        if (cellInfos != null) {
+            for (int i = 0; i < cellInfos.size(); i++) {
+                if (cellInfos.get(i).isRegistered()) {
+                    if (cellInfos.get(i) instanceof CellInfoWcdma) {
                         CellInfoWcdma cellInfoWcdma = (CellInfoWcdma) telephonyManager.getAllCellInfo().get(0);
                         CellSignalStrengthWcdma cellSignalStrengthWcdma = cellInfoWcdma.getCellSignalStrength();
-                        strength = String.valueOf(cellSignalStrengthWcdma.getDbm()+" dBm "+cellSignalStrengthWcdma.getAsuLevel()+" asu");
-                    }else if(cellInfos.get(i) instanceof CellInfoGsm){
+                        strength = String.valueOf(cellSignalStrengthWcdma.getDbm() + " dBm " + cellSignalStrengthWcdma.getAsuLevel() + " asu");
+                    } else if (cellInfos.get(i) instanceof CellInfoGsm) {
                         CellInfoGsm cellInfogsm = (CellInfoGsm) telephonyManager.getAllCellInfo().get(0);
                         CellSignalStrengthGsm cellSignalStrengthGsm = cellInfogsm.getCellSignalStrength();
-                        strength = String.valueOf(cellSignalStrengthGsm.getDbm()+" dBm "+cellSignalStrengthGsm.getAsuLevel()+" asu");
-                    }else if(cellInfos.get(i) instanceof CellInfoLte){
+                        strength = String.valueOf(cellSignalStrengthGsm.getDbm() + " dBm " + cellSignalStrengthGsm.getAsuLevel() + " asu");
+                    } else if (cellInfos.get(i) instanceof CellInfoLte) {
                         CellInfoLte cellInfoLte = (CellInfoLte) telephonyManager.getAllCellInfo().get(0);
                         CellSignalStrengthLte cellSignalStrengthLte = cellInfoLte.getCellSignalStrength();
-                        strength = String.valueOf(cellSignalStrengthLte.getDbm()+" dBm "+cellSignalStrengthLte.getAsuLevel()+" asu");
+                        strength = String.valueOf(cellSignalStrengthLte.getDbm() + " dBm " + cellSignalStrengthLte.getAsuLevel() + " asu");
                     }
                 }
             }
@@ -271,13 +298,86 @@ public class SystemInfoDetailActivity extends BaseActivity {
             case KeyEvent.KEYCODE_ENTER:
                 finish();
                 break;
+            case KeyEvent.KEYCODE_BACK:
+                if (mWebView.canGoBack()) {
+                    mWebView.goBack();
+                    return true;
+                }
+
+                break;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    private void showErrorAndFinish() {
-        Toast.makeText(this, "settings license activity unavailable", Toast.LENGTH_LONG)
-                .show();// R.string.settings_license_activity_unavailable
-        finish();
+    private class ViewClient extends WebViewClient {
+        @Override
+        public void onPageFinished(WebView view, String url) {
+
+        }
+
+        @Override
+        public boolean shouldOverrideKeyEvent(WebView view,
+                                              KeyEvent event) {
+            int keyCode = event.getKeyCode();
+            if ((keyCode == KeyEvent.KEYCODE_DPAD_UP) || (keyCode == KeyEvent.KEYCODE_DPAD_DOWN)) {
+                return false;
+            }
+
+            return super.shouldOverrideKeyEvent(view, event);
+        }
+
+        @Override
+        public void onUnhandledKeyEvent(WebView view,
+                                        KeyEvent event) {
+            super.onUnhandledKeyEvent(view, event);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Intent intent;
+            // Perform generic parsing of the URI to turn it into an Intent.
+            try {
+                intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+            } catch (URISyntaxException ex) {
+                return true;
+            }
+            // Sanitize the Intent, ensuring web pages can not bypass browser
+            // security (only access to BROWSABLE activities).
+            intent.addCategory(Intent.CATEGORY_BROWSABLE);
+            intent.setComponent(null);
+            Intent selector = intent.getSelector();
+            if (selector != null) {
+                selector.addCategory(Intent.CATEGORY_BROWSABLE);
+                selector.setComponent(null);
+            }
+
+            try {
+                view.getContext().startActivity(intent);
+            } catch (ActivityNotFoundException ex) {
+//                Log.w(TAG, "No application can handle " + url);
+            }
+            return true;
+        }
+
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view,
+                                                          WebResourceRequest request) {
+            final Uri uri = request.getUrl();
+            if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())
+                    && uri.getPath().endsWith(".gz")) {
+//                Log.d(TAG, "Trying to decompress " + uri + " on the fly");
+                try {
+                    final InputStream in = new GZIPInputStream(
+                            getContentResolver().openInputStream(uri));
+                    final WebResourceResponse resp = new WebResourceResponse(
+                            getIntent().getType(), "utf-8", in);
+                    resp.setStatusCodeAndReasonPhrase(200, "OK");
+                    return resp;
+                } catch (IOException e) {
+//                    Log.w(TAG, "Failed to decompress; falling back", e);
+                }
+            }
+            return null;
+        }
     }
 }

@@ -59,17 +59,17 @@ public class BaseActivity extends AppCompatActivity  {
             if(top){
                 topMenu.setVisibility(View.VISIBLE);
             }else{
-                topMenu.setVisibility(View.GONE);
+                topMenu.setVisibility(View.INVISIBLE);
             }
             if(middle){
                 centerMenu.setVisibility(View.VISIBLE);
             }else{
-                centerMenu.setVisibility(View.GONE);
+                centerMenu.setVisibility(View.INVISIBLE);
             }
             if(bottom){
                 bottomMenu.setVisibility(View.VISIBLE);
             }else{
-                bottomMenu.setVisibility(View.GONE);
+                bottomMenu.setVisibility(View.INVISIBLE);
             }
         }
     }

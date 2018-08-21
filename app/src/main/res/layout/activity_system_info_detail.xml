@@ -173,18 +173,21 @@
                     android:textColor="@android:color/background_light"
                     android:textSize="14sp" />
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/open_license"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
+
+    <WebView
+        android:id="@+id/open_license"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/title"
+        android:layout_toStartOf="@id/right"
+        android:layout_marginStart="12dp"
+        android:visibility="gone">
+
+    </WebView>
 
     <include
         android:id="@+id/right"
