@@ -127,7 +127,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                 dialog.dismiss();
                 setRightView(false, R.drawable.tag_menu_sub_right, true, R.drawable.tag_menu_sub_ok, false, R.drawable.tag_menu_sub_left);
                 setBottomView(false, R.drawable.tag_menu_main_back);
-                showFormatResultDialog(0, getResources().getString(R.string.sdcard_init_ongoing));
+                showDialogNoButton(DialogActivity.this,getResources().getString(R.string.sdcard_init_ongoing),R.drawable.icon_versionup_process,false);
                 doSdcardformat();
             }
         }, new DialogInterface.OnClickListener() {
@@ -198,11 +198,6 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                 Logg.i(TAG, "====setOnKeyListener== KeyEvent.KEYCODE_BACK=0=");
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-//                    Logg.i(TAG, "====setOnKeyListener== KeyEvent.KEYCODE_BACK=1=");
-//                    if (commDialog != null && commDialog.isShowing()) {
-//                        commDialog.cancel();
-//                        finish();
-//                    }
                     return true;
                 }
                 return false;

@@ -62,7 +62,7 @@ public class CommDialog extends Dialog {
 
     private void initViews() {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(80, 26);
-        layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 
         messageText = (MarqueeTextView) findViewById(R.id.content);
         messageText.setText(msg);
@@ -79,7 +79,7 @@ public class CommDialog extends Dialog {
         btnOk.setOnClickListener(clickListener);
         btnOk.setTextColor(Color.BLACK);
         btnOk.setText(mContext.getResources().getString(R.string.sdcard_init_ok));
-        btnOk.setGravity(Gravity.CENTER);
+//        btnOk.setGravity(Gravity.CENTER);
         btnOk.getPaint().setTextSize(20);
         btnOk.getLayoutParams().width = 80;
         btnOk.getLayoutParams().height = 26;
@@ -89,7 +89,7 @@ public class CommDialog extends Dialog {
         btnCancel.setOnClickListener(clickListener);
         btnCancel.setTextColor(Color.BLACK);
         btnCancel.setText(mContext.getResources().getString(R.string.sdcard_init_cancel));
-        btnCancel.setGravity(Gravity.CENTER);
+//        btnCancel.setGravity(Gravity.CENTER);
         btnCancel.getPaint().setTextSize(20);
         btnCancel.getLayoutParams().width = 80;
         btnCancel.getLayoutParams().height = 26;
