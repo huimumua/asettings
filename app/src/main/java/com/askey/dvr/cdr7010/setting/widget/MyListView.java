@@ -23,6 +23,7 @@ public class MyListView extends ListView {
 
     public MyListView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        setSoundEffectsEnabled(false);//关闭listview按键音
     }
 
     @Override
