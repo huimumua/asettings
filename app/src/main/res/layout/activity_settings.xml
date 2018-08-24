@@ -25,7 +25,7 @@
             <com.askey.dvr.cdr7010.setting.widget.MyListView
                 android:id="@+id/list_view"
                 android:layout_width="170dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="180dp" />
 
             <com.askey.dvr.cdr7010.setting.widget.VerticalProgressBar
                 android:id="@+id/vp_progress"
