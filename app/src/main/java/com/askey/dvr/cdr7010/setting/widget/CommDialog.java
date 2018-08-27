@@ -76,6 +76,7 @@ public class CommDialog extends Dialog {
         messageText.setMarqueeRepeatLimit(-1);
 
         btnOk = (Button) findViewById(R.id.ib_ok);
+        btnOk.setSoundEffectsEnabled(false);
         btnOk.setOnClickListener(clickListener);
         btnOk.setTextColor(Color.BLACK);
         btnOk.setText(mContext.getResources().getString(R.string.sdcard_init_ok));
@@ -86,6 +87,7 @@ public class CommDialog extends Dialog {
         ((ViewGroup.MarginLayoutParams) btnOk.getLayoutParams()).leftMargin = 52;
 
         btnCancel = (Button) findViewById(R.id.ib_cancle);
+        btnCancel.setSoundEffectsEnabled(false);
         btnCancel.setOnClickListener(clickListener);
         btnCancel.setTextColor(Color.BLACK);
         btnCancel.setText(mContext.getResources().getString(R.string.sdcard_init_cancel));
