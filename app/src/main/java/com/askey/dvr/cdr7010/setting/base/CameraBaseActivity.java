@@ -8,8 +8,6 @@ import android.view.SurfaceView;
 
 import com.askey.dvr.cdr7010.setting.R;
 
-import java.io.IOException;
-
 /**
  * 项目名称：settings
  * 类描述：
@@ -38,7 +36,7 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
 
     protected void startPreview(int cameraId){
         this.cameraId = cameraId;
-        if((SurfaceView) this.findViewById(R.id.preview)!=null){
+        if(this.findViewById(R.id.preview) !=null){
             surfaceHolder = ((SurfaceView) findViewById(R.id.preview)).getHolder();
             surfaceHolder.addCallback(this);
         }
@@ -68,7 +66,7 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
             camera.setPreviewDisplay(surfaceHolder);
             camera.startPreview();
             isPreviewing = true;
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -76,8 +74,8 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
     protected void stopPreview() {
         try {
             if(camera!=null){
-                camera.setPreviewDisplay(null);
                 camera.stopPreview();
+                camera.setPreviewDisplay(null);
                 camera.release();
                 camera = null ;
                 isPreviewing = false;
@@ -86,7 +84,7 @@ public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Ca
                 surfaceHolder.getSurface().release();
                 surfaceHolder =null;
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
