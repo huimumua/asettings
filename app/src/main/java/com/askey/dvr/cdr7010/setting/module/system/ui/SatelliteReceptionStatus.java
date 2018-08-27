@@ -78,13 +78,13 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 finish();
                 break;
         }
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override

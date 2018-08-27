@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.widget.JVCRelativeLayout;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -43,12 +42,12 @@ public class EmergencyContactPerson extends BaseActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 finish();
                 break;
         }
-        return super.onKeyDown(keyCode, event);
     }
 }

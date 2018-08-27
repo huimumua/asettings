@@ -85,6 +85,14 @@ public class LCDBrightnessSetting extends BaseActivity {
                 setScreenBrightness(currentBrightness);
                 refresh(currentBrightness, "up");
                 break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
+        switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_MONITOR_BRIGHTNESS, process);
                 setScreenBrightness(currentBrightness);
@@ -95,7 +103,6 @@ public class LCDBrightnessSetting extends BaseActivity {
                 finish();
                 break;
         }
-        return super.onKeyDown(keyCode, event);
     }
 
     //获取屏幕亮度值

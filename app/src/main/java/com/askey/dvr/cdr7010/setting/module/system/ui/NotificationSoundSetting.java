@@ -77,6 +77,14 @@ public class NotificationSoundSetting extends BaseActivity {
                 refreshView();
                 testSound();
                 break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
+        switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 mAudioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, currentVolume, 0);
                 Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
@@ -88,7 +96,6 @@ public class NotificationSoundSetting extends BaseActivity {
                 finish();
                 break;
         }
-        return super.onKeyDown(keyCode, event);
     }
 
     private void refreshView() {

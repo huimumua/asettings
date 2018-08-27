@@ -293,7 +293,8 @@ public class SystemInfoDetailActivity extends BaseActivity {
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 finish();
@@ -301,12 +302,10 @@ public class SystemInfoDetailActivity extends BaseActivity {
             case KeyEvent.KEYCODE_BACK:
                 if (mWebView.canGoBack()) {
                     mWebView.goBack();
-                    return true;
                 }
 
                 break;
         }
-        return super.onKeyDown(keyCode, event);
     }
 
     private class ViewClient extends WebViewClient {

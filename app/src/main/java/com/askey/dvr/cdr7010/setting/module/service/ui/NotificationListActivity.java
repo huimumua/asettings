@@ -46,12 +46,26 @@ public class NotificationListActivity extends SecondBaseActivity implements Adap
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_ENTER:
-                finish();
-                break;
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        event.startTracking();
+        if (keydowmRepeatCount==0) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_ENTER:
+                    finish();
+                    break;
+            }
+        }else{
+            keydowmRepeatCount= 0;
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyUp(keyCode, event);
     }
+
+    private int keydowmRepeatCount =0;
+
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        keydowmRepeatCount++;
+        return true;
+    }
+
 }

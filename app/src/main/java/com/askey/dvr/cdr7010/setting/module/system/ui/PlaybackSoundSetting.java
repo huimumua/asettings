@@ -77,6 +77,14 @@ public class PlaybackSoundSetting extends BaseActivity {
                 refreshView();
                 testPlaybackSound();
                 break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
+        switch (keyCode) {
             case KeyEvent.KEYCODE_ENTER:
                 mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, currentVolumeMusic, 0);
                 Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_PLAYBACK_VOL, currentVolumeMusic);
@@ -88,7 +96,6 @@ public class PlaybackSoundSetting extends BaseActivity {
                 finish();
                 break;
         }
-        return super.onKeyDown(keyCode, event);
     }
 
     private void refreshView() {
