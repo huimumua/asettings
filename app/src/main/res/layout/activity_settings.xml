@@ -63,18 +63,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true" />
-    <!--<com.askey.dvr.cdr7010.setting.widget.MarqueeTextView-->
-        <!--android:id="@+id/bottom_notify"-->
-        <!--android:layout_width="180dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:paddingStart="10dp"-->
-        <!--android:background="@drawable/bg_menu_main_description"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:singleLine="true"-->
-        <!--android:ellipsize="marquee"-->
-        <!--android:marqueeRepeatLimit="marquee_forever"-->
-        <!--android:textColor="@android:color/holo_blue_light"-->
-        <!--android:textSize="16sp"-->
-        <!--android:text="this is item's detail discrible"-->
-        <!--/>-->
+
 </RelativeLayout>
