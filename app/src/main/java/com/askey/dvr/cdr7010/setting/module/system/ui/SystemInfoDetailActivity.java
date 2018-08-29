@@ -148,6 +148,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
 
             mWebView.setWebChromeClient(new WebChromeClient());
             mWebView.setWebViewClient(new ViewClient());
+            mWebView.setBackgroundColor(0x00000000);
             WebSettings webSettings = mWebView.getSettings();
             //支持javascript
             webSettings.setJavaScriptEnabled(true);
