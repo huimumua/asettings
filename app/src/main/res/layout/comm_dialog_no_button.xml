@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/dialog_sdcard_bg"
     android:orientation="vertical">
 
@@ -20,21 +21,19 @@
             android:src="@mipmap/ic_launcher_round"
             />
 
-        <com.askey.dvr.cdr7010.setting.widget.MarqueeTextView
+        <com.askey.dvr.cdr7010.setting.widget.JVCMarqueeTextView
             android:id="@+id/content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:ellipsize="marquee"
-            android:focusableInTouchMode="true"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textColor="@android:color/black"
+            app:scroll_first_delay="2000"
+            app:scroll_interval="6000"
+            app:scroll_mode="mode_forever"
             />
     </LinearLayout>
 

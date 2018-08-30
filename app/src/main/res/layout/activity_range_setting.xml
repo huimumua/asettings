@@ -25,20 +25,20 @@
         android:background="@android:color/background_light"
         android:visibility="gone" />
 
-    <com.askey.dvr.cdr7010.setting.widget.MarqueeTextView
+    <com.askey.dvr.cdr7010.setting.widget.JVCMarqueeTextView
         android:id="@+id/notify_msg"
         android:layout_width="250dp"
         android:layout_height="30dp"
+        android:paddingTop="4dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
         android:background="@android:color/background_dark"
-        android:gravity="center"
         android:text="这里显示提示信息"
         android:textColor="@android:color/background_light"
         android:textSize="16sp"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="marquee_forever"
+        app:scroll_first_delay="2000"
+        app:scroll_interval="8000"
+        app:scroll_mode="mode_forever"
         />
 
     <include

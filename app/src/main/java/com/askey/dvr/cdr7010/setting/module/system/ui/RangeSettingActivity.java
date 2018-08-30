@@ -19,7 +19,7 @@ import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.driving.ui.AdasSettingStatus;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
-import com.askey.dvr.cdr7010.setting.widget.MarqueeTextView;
+import com.askey.dvr.cdr7010.setting.widget.JVCMarqueeTextView;
 import com.askey.platform.AskeySettings;
 
 public class RangeSettingActivity extends CameraBaseActivity {
@@ -33,7 +33,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
     private FrameLayout.LayoutParams layoutParams;
     private int fullLineCurrentMarginTop, dottedLineCurrentMarginTop, lineCurrentMarginLeft;
     private AdasSettingStatus status;
-    private MarqueeTextView notify_msg;
+    private JVCMarqueeTextView notify_msg;
     private ContentResolver contentResolver;
 
     private RadioButton right_top,right_bottom;
@@ -50,7 +50,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
         startPreview();
         preview = (SurfaceView) findViewById(R.id.preview);
         line = findViewById(R.id.line);
-        notify_msg = (MarqueeTextView) findViewById(R.id.notify_msg);
+        notify_msg = (JVCMarqueeTextView) findViewById(R.id.notify_msg);
         marginTopLayoutParams = new ViewGroup.MarginLayoutParams(line.getLayoutParams());
         line_center = findViewById(R.id.line_center);
         marginLeftLayoutParams = new ViewGroup.MarginLayoutParams(line_center.getLayoutParams());
@@ -77,7 +77,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
 
         lineCurrentMarginLeft = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, 160);
 
-        notify_msg.setText(getString(R.string.driving_setting_range_horizon));
+        notify_msg.setContentText(getString(R.string.driving_setting_range_horizon));
 
     }
 
@@ -152,7 +152,8 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         status = AdasSettingStatus.SETTING_HOOD;
                         line.setBackgroundResource(R.drawable.range_setting_hood_line);
                         setLineMarginTop(dottedLineCurrentMarginTop);
-                        notify_msg.setText(getString(R.string.driving_setting_range_hood));
+                        notify_msg.stopScroll();
+                        notify_msg.setContentText(getString(R.string.driving_setting_range_hood));
                         break;
                     //引擎盖标记线
                     case SETTING_HOOD:
@@ -160,7 +161,8 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         line.setVisibility(View.GONE);
                         line_center.setVisibility(View.VISIBLE);
                         setLineMarginLeft(lineCurrentMarginLeft);
-                        notify_msg.setText(getString(R.string.driving_setting_range_center));
+                        notify_msg.stopScroll();
+                        notify_msg.setContentText(getString(R.string.driving_setting_range_center));
                         setRightView(R.drawable.tag_menu_sub_right,R.drawable.tag_menu_sub_left);
                         break;
                     //车道中线标记线
@@ -192,7 +194,8 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         status = AdasSettingStatus.SETTING_HORIZON;
                         line.setBackgroundResource(R.drawable.range_setting_horizon_line);
                         setLineMarginTop(fullLineCurrentMarginTop);
-                        notify_msg.setText(getString(R.string.driving_setting_range_horizon));
+                        notify_msg.stopScroll();
+                        notify_msg.setContentText(getString(R.string.driving_setting_range_horizon));
                         setRightView(R.drawable.tag_menu_main_moveup,R.drawable.tag_menu_main_movedown);
                         return true;
                     //车道中线标记线
@@ -202,7 +205,8 @@ public class RangeSettingActivity extends CameraBaseActivity {
                         line.setVisibility(View.VISIBLE);
                         line.setBackgroundResource(R.drawable.range_setting_hood_line);
                         setLineMarginTop(dottedLineCurrentMarginTop);
-                        notify_msg.setText(getString(R.string.driving_setting_range_hood));
+                        notify_msg.stopScroll();
+                        notify_msg.setContentText(getString(R.string.driving_setting_range_hood));
                         setRightView(R.drawable.tag_menu_main_moveup,R.drawable.tag_menu_main_movedown);
                         return true;
                 }

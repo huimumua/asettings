@@ -6,9 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import android.widget.RelativeLayout;
 import com.askey.dvr.cdr7010.setting.R;
 
 public class CommDialog extends Dialog {
-    private MarqueeTextView messageText;
+    private JVCMarqueeTextView messageText;
     private Context mContext;
     private String msg;
     private int type = TYPE_BUTTON_OK | TYPE_BUTTON_CANCEL;
@@ -64,16 +62,13 @@ public class CommDialog extends Dialog {
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(80, 26);
         layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
 
-        messageText = (MarqueeTextView) findViewById(R.id.content);
-        messageText.setText(msg);
+        messageText = (JVCMarqueeTextView) findViewById(R.id.content);
         messageText.setTextColor(0xcc000000);
         messageText.setTextSize(TypedValue.COMPLEX_UNIT_PX, 20);
-        messageText.setGravity(Gravity.CENTER);
-        messageText.setPadding(10,0,10,0);
-        messageText.setLineSpacing(1.0f, 1.2f);
-        messageText.setSingleLine();
-        messageText.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        messageText.setMarqueeRepeatLimit(-1);
+//        messageText.setGravity(Gravity.CENTER);
+//        messageText.setLineSpacing(1.0f, 1.2f);
+        messageText.setPadding(10,28,10,0);
+        messageText.setContentText(msg);
 
         btnOk = (Button) findViewById(R.id.ib_ok);
         btnOk.setSoundEffectsEnabled(false);
@@ -122,14 +117,14 @@ public class CommDialog extends Dialog {
     public void setMessage(int resId) {
         this.msg = mContext.getResources().getString(resId);
         if (messageText != null) {
-            messageText.setText(msg);
+            messageText.setContentText(msg);
         }
     }
 
     public void setMessage(String msg) {
         this.msg = msg;
         if (messageText != null) {
-            messageText.setText(msg);
+            messageText.setContentText(msg);
         }
     }
 

@@ -12,7 +12,7 @@ import com.askey.dvr.cdr7010.setting.R;
 
 public class CommDialogNoButton extends Dialog {
     private static final String TAG = "CommDialogNoButton";
-    private MarqueeTextView messageText;
+    private JVCMarqueeTextView messageText;
     private ImageView icon;
     private int iconResId;
     private boolean isShow;
@@ -48,8 +48,8 @@ public class CommDialogNoButton extends Dialog {
 
     private void initView() {
         Log.d(TAG, "initView: "+isShow);
-        messageText = (MarqueeTextView) findViewById(R.id.content);
-        messageText.setText(msg);
+        messageText = (JVCMarqueeTextView) findViewById(R.id.content);
+        messageText.setContentText(msg);
         icon = (ImageView) findViewById(R.id.icon);
         if (isShow) {
             icon.setImageResource(iconResId);

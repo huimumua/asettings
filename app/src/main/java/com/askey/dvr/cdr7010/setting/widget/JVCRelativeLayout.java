@@ -3,7 +3,6 @@ package com.askey.dvr.cdr7010.setting.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +14,6 @@ import android.widget.RelativeLayout;
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.util.DensityUtil;
 
-import static android.view.Gravity.CENTER;
-
 public class JVCRelativeLayout extends RelativeLayout {
 
     private RadioButton back_btn;
@@ -26,7 +23,7 @@ public class JVCRelativeLayout extends RelativeLayout {
     private LinearLayout right_button_layout, bottom_button_layout;
     private Context context;
     private View myView;
-    private MarqueeTextView marqueeTextView;
+    private JVCMarqueeTextView marqueeTextView;
 
     public JVCRelativeLayout(Context context) {
         super(context);
@@ -75,15 +72,18 @@ public class JVCRelativeLayout extends RelativeLayout {
 
         LayoutParams marqueeParams = new LayoutParams(DensityUtil.dp2px(context, 200), ViewGroup.LayoutParams.WRAP_CONTENT);
         marqueeParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, TRUE);
-        marqueeTextView = new MarqueeTextView(context);
-        marqueeTextView.setGravity(CENTER);
-        marqueeTextView.setPadding(DensityUtil.dp2px(context, 10), 0, 0, 0);
+        marqueeTextView = new JVCMarqueeTextView(context);
+//        marqueeTextView.setGravity(CENTER);
+        marqueeTextView.setPadding(DensityUtil.dp2px(context, 10), DensityUtil.dp2px(context, 5), 0, 0);
         marqueeTextView.setTextSize(DensityUtil.sp2px(context, 12));
         marqueeTextView.setTextColor(0xff66afff);
-        marqueeTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-        marqueeTextView.setMarqueeRepeatLimit(-1);
         marqueeTextView.setBackgroundResource(R.drawable.bg_menu_main_description);
-        marqueeTextView.setSingleLine();
+//        marqueeTextView.setEllipsize(TextUtils.TruncateAt.MARQUEE);
+//        marqueeTextView.setMarqueeRepeatLimit(-1);
+//        marqueeTextView.setSingleLine();
+        marqueeTextView.setScrollFirstDelay(2000);
+        marqueeTextView.setRndDuration(10000);
+        marqueeTextView.setScrollMode(JVCMarqueeTextView.SCROLL_FOREVER);
         addView(marqueeTextView, marqueeParams);
         setMarquee_visible(showMarqueeTextView);
 
@@ -180,6 +180,7 @@ public class JVCRelativeLayout extends RelativeLayout {
 
     public void setMarquee_text(String content) {
         marqueeTextView.setText(content);
+        marqueeTextView.startScroll();
     }
 
 
