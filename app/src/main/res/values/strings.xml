@@ -91,7 +91,7 @@
     <string name="sys_sim">SIM情報</string>
     <string name="sys_open_license">オープンソースライセンス</string>
     <string name="net_conn">接続</string>
-    <string name="net_not_conn">接続されていない</string>
+    <string name="net_not_conn">未接続</string>
     <string name="sim_info_in_service">データ通信：圏内</string>
     <string name="sim_info_out_service">データ通信：圏外</string>
 
