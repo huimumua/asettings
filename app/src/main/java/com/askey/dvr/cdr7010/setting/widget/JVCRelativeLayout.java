@@ -179,8 +179,8 @@ public class JVCRelativeLayout extends RelativeLayout {
     }
 
     public void setMarquee_text(String content) {
-        marqueeTextView.setText(content);
-        marqueeTextView.startScroll();
+        marqueeTextView.setContentText(content);
+//        marqueeTextView.startScroll();
     }
 
 

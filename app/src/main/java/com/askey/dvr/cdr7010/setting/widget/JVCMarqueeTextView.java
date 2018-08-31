@@ -8,36 +8,68 @@ import android.os.Looper;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
 import com.askey.dvr.cdr7010.setting.R;
 
-public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextView{
+public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextView {
     private static final String TAG = "MarqueeTextView";
-    /** 默认滚动时间 */
+    /**
+     * 默认滚动时间
+     */
     private static final int ROLLING_INTERVAL_DEFAULT = 10000;
-    /** 第一次滚动默认延迟 */
+    /**
+     * 第一次滚动默认延迟
+     */
     private static final int FIRST_SCROLL_DELAY_DEFAULT = 1000;
-    /** 滚动模式-一直滚动 */
+    /**
+     * 滚动模式-一直滚动
+     */
     public static final int SCROLL_FOREVER = 100;
-    /** 滚动模式-只滚动一次 */
+    /**
+     * 滚动模式-只滚动一次
+     */
     public static final int SCROLL_ONCE = 101;
 
-    /** 滚动器 */
+    /**
+     * 滚动器
+     */
     private Scroller mScroller;
-    /** 滚动一次的时间 */
+    /**
+     * 滚动一次的时间
+     */
     private int mRollingInterval;
-    /** 滚动的初始 X 位置 */
+    /**
+     * 滚动的初始 X 位置
+     */
     private int mXPaused = 0;
-    /** 是否暂停 */
+    /**
+     * 是否暂停
+     */
     private boolean mPaused = true;
-    /** 是否第一次 */
+    /**
+     * 是否第一次
+     */
     private boolean mFirst = true;
-    /** 滚动模式 */
+    /**
+     * 滚动模式
+     */
     private int mScrollMode;
-    /** 初次滚动时间间隔 */
+    /**
+     * 初次滚动时间间隔
+     */
     private int mFirstScrollDelay;
+    /**
+     * 是否允许滚动
+     */
+    private boolean canScroll = true;
+
+    /**
+     * 控件宽度
+     */
+    private int viewWidth;
 
     public JVCMarqueeTextView(Context context) {
         this(context, null);
@@ -63,9 +95,22 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
 //        startScroll();
     }
 
-    public void setContentText(CharSequence text){
-        setText(text);
-        startScroll();
+    public void setContentText(final CharSequence text) {
+        //临时应急，以最小的字符长度来判断是否滚动
+        post(new Runnable() {
+            @Override
+            public void run() {
+                //控件中内容可以滚动的长度
+                viewWidth = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
+                Log.d(TAG, "setContentText: " + viewWidth + ", " + calculateScrollingLen(text));
+                if (viewWidth > calculateScrollingLen(text)) {
+                    setGravity(Gravity.CENTER);
+                    canScroll = false;
+                }
+                setText(text);
+                startScroll();
+            }
+        });
     }
 
     /**
@@ -82,7 +127,7 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
      * 继续滚动
      */
     public void resumeScroll() {
-        if (!mPaused)
+        if (!mPaused || !canScroll)
             return;
         // 设置水平滚动
         setHorizontallyScrolling(true);
@@ -92,23 +137,24 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
             mScroller = new Scroller(this.getContext(), new LinearInterpolator());
             setScroller(mScroller);
         }
-        int scrollingLen = calculateScrollingLen();
-        Log.d(TAG, "scrollingLen: "+scrollingLen);
-        final int distance = scrollingLen -  mXPaused +2;//这里+2是因为在系统更新dialog里文字最后的问号在滚动完成后会露出一点儿，原因未知
+        int scrollingLen = calculateScrollingLen(getText());
+
+        Log.d(TAG, "scrollingLen: " + scrollingLen);
+        final int distance = scrollingLen - mXPaused + 2;//这里+2是因为在系统更新dialog里文字最后的问号在滚动完成后会露出一点儿，原因未知
         final int duration = (Double.valueOf(mRollingInterval * distance * 1.00000
                 / scrollingLen)).intValue();
         if (mFirst) {
             new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d(TAG, "run_1: "+mXPaused+","+distance+", "+duration);
+                    Log.d(TAG, "run_1: " + mXPaused + "," + distance + ", " + duration);
                     mScroller.startScroll(mXPaused, 0, distance, 0, duration);
                     invalidate();
                     mPaused = false;
                 }
             }, mFirstScrollDelay);
         } else {
-            Log.d(TAG, "run_2: "+mXPaused+","+distance+", "+duration);
+            Log.d(TAG, "run_2: " + mXPaused + "," + distance + ", " + duration);
             mScroller.startScroll(mXPaused, 0, distance, 0, duration);
             invalidate();
             mPaused = false;
@@ -148,10 +194,10 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
      *
      * @return 滚动的距离
      */
-    private int calculateScrollingLen() {
+    private int calculateScrollingLen(CharSequence text) {
         TextPaint tp = getPaint();
         Rect rect = new Rect();
-        String strTxt = getText().toString();
+        String strTxt = text.toString();
         tp.getTextBounds(strTxt, 0, strTxt.length(), rect);
         return rect.width();
     }
@@ -173,22 +219,51 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
                 public void run() {
                     resumeScroll();
                 }
-            },1000);
+            }, 1000);
         }
     }
 
-    /** 获取滚动一次的时间 */
-    public int getRndDuration() {return mRollingInterval;}
-    /** 设置滚动一次的时间 */
-    public void setRndDuration(int duration) {this.mRollingInterval = duration;}
-    /** 设置滚动模式 */
-    public void setScrollMode(int mode) {this.mScrollMode = mode;}
-    /** 获取滚动模式 */
-    public int getScrollMode() {return this.mScrollMode;}
-    /** 设置第一次滚动延迟 */
-    public void setScrollFirstDelay(int delay) {this.mFirstScrollDelay = delay;}
-    /** 获取第一次滚动延迟 */
-    public int getScrollFirstDelay() {return mFirstScrollDelay;}
+    /**
+     * 获取滚动一次的时间
+     */
+    public int getRndDuration() {
+        return mRollingInterval;
+    }
+
+    /**
+     * 设置滚动一次的时间
+     */
+    public void setRndDuration(int duration) {
+        this.mRollingInterval = duration;
+    }
+
+    /**
+     * 设置滚动模式
+     */
+    public void setScrollMode(int mode) {
+        this.mScrollMode = mode;
+    }
+
+    /**
+     * 获取滚动模式
+     */
+    public int getScrollMode() {
+        return this.mScrollMode;
+    }
+
+    /**
+     * 设置第一次滚动延迟
+     */
+    public void setScrollFirstDelay(int delay) {
+        this.mFirstScrollDelay = delay;
+    }
+
+    /**
+     * 获取第一次滚动延迟
+     */
+    public int getScrollFirstDelay() {
+        return mFirstScrollDelay;
+    }
 
     public boolean isPaused() {
         return mPaused;
