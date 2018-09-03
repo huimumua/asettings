@@ -115,6 +115,7 @@ public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusM
                 }else{
                     initData();
                 }
+                hListViewAdapter.setmGpsStatusList(gpsStatusList);
                 hListViewAdapter.setmGpsStatusListSize(gpsStatusList.size());
                 hListViewAdapter.notifyDataSetChanged();
             }

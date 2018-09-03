@@ -26,6 +26,7 @@ import com.askey.dvr.cdr7010.setting.module.system.bean.GpsSvInfo;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class HorizontalListViewAdapter extends BaseAdapter{
     private ArrayList<GpsSvInfo> mGpsStatusList;
@@ -40,6 +41,9 @@ public class HorizontalListViewAdapter extends BaseAdapter{
 
     public void setmGpsStatusListSize(int mGpsStatusListSize) {
         this.mGpsStatusListSize = mGpsStatusListSize;
+    }
+    public void setmGpsStatusList(ArrayList<GpsSvInfo> gpsStatusList){
+        this.mGpsStatusList = gpsStatusList;
     }
 
     public HorizontalListViewAdapter(Context context, ArrayList<GpsSvInfo> gpsStatusList){
