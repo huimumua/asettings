@@ -138,6 +138,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
         if (type.equals("open")) {
 
             setRightView(true, false, true);
+            setBottomView(R.drawable.tag_menu_sub_cancel);
 
             systemVersion.setVisibility(View.GONE);
             scrollView.setVisibility(View.GONE);
