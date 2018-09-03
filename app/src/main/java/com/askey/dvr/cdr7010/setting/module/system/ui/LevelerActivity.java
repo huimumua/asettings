@@ -204,7 +204,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         }
         //如果计算出来的X，Y坐标还位于水平仪的仪表盘之内，则更新水平仪气泡坐标
         if (/*isContain(x,y)*/true) {
-            spiritView.bubbleX = x+8;
+            spiritView.bubbleX = x;
             spiritView.bubbleY = y;
         }
 //                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
