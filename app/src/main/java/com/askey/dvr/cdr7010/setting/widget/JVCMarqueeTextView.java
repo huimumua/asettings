@@ -3,8 +3,6 @@ package com.askey.dvr.cdr7010.setting.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Rect;
-import android.os.Handler;
-import android.os.Looper;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -71,6 +69,8 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
      */
     private int viewWidth;
 
+    private Runnable runnable;
+
     public JVCMarqueeTextView(Context context) {
         this(context, null);
     }
@@ -96,7 +96,7 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
     }
 
     public void setContentText(final CharSequence text) {
-        //临时应急，以最小的字符长度来判断是否滚动
+
         post(new Runnable() {
             @Override
             public void run() {
@@ -138,13 +138,28 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
             setScroller(mScroller);
         }
         int scrollingLen = calculateScrollingLen(getText());
+//        int scrollingLen = (int)getLayout().getLineWidth(0);
 
         Log.d(TAG, "scrollingLen: " + scrollingLen);
-        final int distance = scrollingLen - mXPaused + 2;//这里+2是因为在系统更新dialog里文字最后的问号在滚动完成后会露出一点儿，原因未知
+        final int distance = scrollingLen - mXPaused ;
         final int duration = (Double.valueOf(mRollingInterval * distance * 1.00000
                 / scrollingLen)).intValue();
         if (mFirst) {
-            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//            new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Log.d(TAG, "run_1: " + mXPaused + "," + distance + ", " + duration);
+//                    mScroller.startScroll(mXPaused, 0, distance, 0, duration);
+//                    invalidate();
+//                    mPaused = false;
+//                }
+//            }, mFirstScrollDelay);
+            //由于存在会延迟开始滚动，这里是为了避免在开始滚动之前此方法被多次连续调用而导致滚动重叠
+            if (null != runnable) {
+                removeCallbacks(runnable);
+                runnable = null;
+            }
+            runnable = new Runnable() {
                 @Override
                 public void run() {
                     Log.d(TAG, "run_1: " + mXPaused + "," + distance + ", " + duration);
@@ -152,7 +167,8 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
                     invalidate();
                     mPaused = false;
                 }
-            }, mFirstScrollDelay);
+            };
+            postDelayed(runnable, mFirstScrollDelay);
         } else {
             Log.d(TAG, "run_2: " + mXPaused + "," + distance + ", " + duration);
             mScroller.startScroll(mXPaused, 0, distance, 0, duration);
@@ -199,7 +215,7 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
         Rect rect = new Rect();
         String strTxt = text.toString();
         tp.getTextBounds(strTxt, 0, strTxt.length(), rect);
-        return rect.width();
+        return rect.width()+rect.left;//getTextBounds获取的是文本的绝对宽度，而真实的绘制会在第一个字符开头留一点空白，rect.left就是这个空白的宽度
     }
 
     @Override
