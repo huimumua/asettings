@@ -127,7 +127,7 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
                 dialog.dismiss();
                 setRightView(false, R.drawable.tag_menu_sub_right, true, R.drawable.tag_menu_sub_ok, false, R.drawable.tag_menu_sub_left);
                 setBottomView(false, R.drawable.tag_menu_main_back);
-                showDialogNoButton(DialogActivity.this,getResources().getString(R.string.sdcard_init_ongoing),R.drawable.icon_versionup_process,false);
+                showDialogNoButton(DialogActivity.this, getResources().getString(R.string.sdcard_init_ongoing), R.drawable.icon_versionup_process, false);
                 doSdcardformat();
             }
         }, new DialogInterface.OnClickListener() {
@@ -288,11 +288,12 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(TAG, "onReceive: " + intent.getIntExtra("result", 0));
-            switch (intent.getIntExtra("result", 0)) {
-                case 0:
-                    str = getString(R.string.dialog_version_up_0);
-                    break;
+            int status = intent.getIntExtra("result", 0);
+            Log.d(TAG, "onReceive: " + status);
+            if (status == 0) {
+                return;
+            }
+            switch (status) {
                 case -1:
                     str = getString(R.string.dialog_version_up_1);
                     break;
