@@ -19,15 +19,16 @@ import com.askey.dvr.cdr7010.setting.util.Const;
  * 修改时间：2018/4/25 10:33
  * 修改备注：
  */
-public class LevelerDetailActivity extends BaseActivity {
-    private static final String TAG = "LevelerDetailActivity";
+public class VehicleTypeDetailActivity extends BaseActivity {
+    private static final String TAG = "VehicleTypeDetailActivity";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leveler_detail);
 
-        String title = getResources().getString(R.string.leveler_detail_title);
+//        String title = getResources().getString(R.string.leveler_detail_title);
+        String title = getResources().getString(R.string.vehicle_type);
         setTitleView(title);
         setRightView(false, true, false);
         setBottomView(R.drawable.tag_menu_sub_skip);
@@ -37,15 +38,16 @@ public class LevelerDetailActivity extends BaseActivity {
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            startActivity(new Intent(mContext, LevelerActivity.class));
+            String[] secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
+            Intent intent = new Intent(mContext, VehicleTypeSetting.class);
+            intent.putExtra("menu_item", secondMenuItem);
+            startActivity(intent);
             finish();
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-//            ContentResolver contentResolver = getContentResolver();
-//            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (Const.SET_WIZARD) {
                 Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
                 startActivity(intent);
                 finish();
             }

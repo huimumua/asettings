@@ -277,7 +277,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
 //            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (Const.SET_WIZARD) {
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
-                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_range");
                 startActivity(intent);
                 finish();
                 return true;
@@ -286,7 +286,9 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         }if (keyCode == KeyEvent.KEYCODE_BACK) {
 //            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (Const.SET_WIZARD) {
-                startActivity(new Intent(mContext, LevelerDetailActivity.class));
+                Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
+                startActivity(intent);
             }
             finish();
         }

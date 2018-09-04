@@ -175,7 +175,7 @@ public class RangeSettingActivity extends CameraBaseActivity {
 //                        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
                         if (Const.SET_WIZARD) {
                             Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-                            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
+                            intent.putExtra("set_wizard_help_index", "set_wizard_help_finish");
                             startActivity(intent);
                         }
                         finish();

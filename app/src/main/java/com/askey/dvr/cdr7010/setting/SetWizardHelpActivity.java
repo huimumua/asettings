@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerDetailActivity;
+import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.RangeSettingActivity;
-import com.askey.dvr.cdr7010.setting.module.system.ui.VehicleTypeSetting;
+import com.askey.dvr.cdr7010.setting.module.system.ui.VehicleTypeDetailActivity;
 import com.askey.dvr.cdr7010.setting.util.AppUtil;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.platform.AskeySettings;
@@ -57,7 +57,7 @@ public class SetWizardHelpActivity extends BaseActivity {
             }
 
         } else if (currentUi.equals("set_wizard_help_context_leveler")) {
-            indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
+            indexStr = getResources().getString(R.string.leveler_detail_context1);
             setBottomView(true, R.drawable.tag_menu_sub_skip);
             title = getResources().getString(R.string.leveler_detail_title);
         } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
@@ -98,35 +98,41 @@ public class SetWizardHelpActivity extends BaseActivity {
                 finishSetWizard();
                 return true;
             } else if (currentUi.equals("set_wizard_help_context_leveler")) {
-                currentUi = "set_wizard_help_context_vehicle_type";
-                String str = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
-                setWizardhelp.setText(str);
-                title = getResources().getString(R.string.vehicle_type);
-                setTitleView(title);
-            } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
                 currentUi = "set_wizard_help_context_range";
                 String str = getResources().getString(R.string.set_wizard_help_context_range);
                 setWizardhelp.setText(str);
                 title = getResources().getString(R.string.system_range_of);
                 setTitleView(title);
-            } else if (currentUi.equals("set_wizard_help_context_range")) {
+            } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
+//                currentUi = "set_wizard_help_context_range";
                 currentUi = "set_wizard_help_context_mounting_position";
+//                String str = getResources().getString(R.string.set_wizard_help_context_range);
                 String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
                 setWizardhelp.setText(str);
+//                title = getResources().getString(R.string.system_range_of);
                 title = getResources().getString(R.string.mounting_position);
                 setTitleView(title);
-            } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
+            } else if (currentUi.equals("set_wizard_help_context_range")) {
+//                currentUi = "set_wizard_help_context_mounting_position";
+//                String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
+//                setWizardhelp.setText(str);
+//                title = getResources().getString(R.string.mounting_position);
+//                setTitleView(title);
                 finishSetWizard();
+            } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
+                currentUi = "set_wizard_help_context_leveler";
+                String str = getResources().getString(R.string.leveler_detail_context1);
+                setWizardhelp.setText(str);
+                title = getResources().getString(R.string.leveler_detail_title);
+                setTitleView(title);
             }
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_ENTER) {
             if (currentUi.equals("set_wizard_help_start_setting")) {
                 Const.SET_WIZARD = true;//为了让第一次启动时能够跳过一些选项
-                startActivity(new Intent(mContext, LevelerDetailActivity.class));
-            } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
-                String[] secondMenuItem = getResources().getStringArray(R.array.vehicle_type);
-                Intent intent = new Intent(mContext, VehicleTypeSetting.class);
-                intent.putExtra("menu_item", secondMenuItem);
+                startActivity(new Intent(mContext, VehicleTypeDetailActivity.class));
+            } else if (currentUi.equals("set_wizard_help_context_leveler")) {
+                Intent intent = new Intent(mContext, LevelerActivity.class);
                 startActivity(intent);
             } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
                 String[] secondMenuItem = getResources().getStringArray(R.array.mounting_position);
@@ -146,6 +152,7 @@ public class SetWizardHelpActivity extends BaseActivity {
 
     private void finishSetWizard(){
         ContentResolver contentResolver = getContentResolver();
+        //1表示没有经过设置向导，0表示已经走过设置向导
         int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
         Const.SET_WIZARD = false;
         if (car_type == 1) {

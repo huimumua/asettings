@@ -230,12 +230,7 @@ public class JVCMarqueeTextView extends android.support.v7.widget.AppCompatTextV
             mPaused = true;
             mXPaused = -1 * getWidth();
             mFirst = false;
-            postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    resumeScroll();
-                }
-            }, 1000);
+            resumeScroll();
         }
     }
 

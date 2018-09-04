@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -71,13 +72,23 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
 //        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
         if (Const.SET_WIZARD) {
             Intent intent = new Intent(mContext,SetWizardHelpActivity.class);
-            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_range");
+            intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
             startActivity(intent);
             finish();
         }
         finish();
     }
 
-
-
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (Const.SET_WIZARD) {
+                Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
+                startActivity(intent);
+            }
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

@@ -100,7 +100,7 @@
             android:name=".module.system.ui.LevelerActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".module.system.ui.SatelliteReceptionStatus" />
-        <activity android:name=".module.system.ui.LevelerDetailActivity" />
+        <activity android:name=".module.system.ui.VehicleTypeDetailActivity" />
         <activity android:name=".module.emergency.ui.EmergencySetting" />
         <activity android:name=".module.emergency.ui.EmergencyAutomaticNotification" />
         <activity android:name=".module.emergency.ui.EmergencyContactPerson" />

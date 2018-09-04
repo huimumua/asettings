@@ -103,9 +103,9 @@
     <string name="installation_tool_leveler">水準器</string>
     <string name="installation_tool_satellite">衛星受信状態</string>
     <string name="leveler_detail_title">水準器画面</string>
-    <string name="leveler_detail_context1">ドライブレコーダーが水平になるように調節します。</string>
-    <string name="leveler_detail_context2">1.車を安全で水平な場所に駐車します。</string>
-    <string name="leveler_detail_context3">2.次の画面で、動く円が中央に来るように本機の傾きを調節してください。</string>
+    <string name="leveler_detail_context1">ドライブレコーダーが水平になるように調節します。\n\n1.車を安全で水平な場所に駐車します。\n\n2.次の画面で、動く円が中央に来るように本機の傾きを調節してください。</string>
+    <!--<string name="leveler_detail_context2"></string>-->
+    <!--<string name="leveler_detail_context3"></string>-->
     <string name="gps_status_title">ＧＰＳ受信強度画面</string>
     <string name="communication">通信機能設定</string>
     <string name="communication_emergency_contact_person">緊急連絡先の表示</string>
