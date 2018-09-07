@@ -43,6 +43,13 @@ public class MyListView extends ListView {
             case KeyEvent.KEYCODE_DPAD_UP:
                 if (downEventCount == 0 && isFirstDownEvent) {
                     isFirstDownEvent = false;
+//                    if (super.onKeyDown(keyCode, event)) {
+//                        Log.d(TAG, "onKeyDown: true");
+//                        return true;
+//                    } else {
+//                        Log.d(TAG, "onKeyDown: false");
+//                        return false;
+//                    }
                     return super.onKeyDown(keyCode, event);
                 } else if (downEventCount > 1) {
                     Log.d(TAG, "onKeyDown>1");
@@ -54,6 +61,14 @@ public class MyListView extends ListView {
                         Log.d(TAG, "onKeyDown==3");
                         return super.onKeyDown(keyCode, event);
                     }
+//                    if (super.onKeyDown(keyCode, event)) {
+//                        Log.d(TAG, "onKeyDown>1: true");
+//                        return true;
+//                    } else {
+//                        Log.d(TAG, "onKeyDown>1: false");
+//                        return false;
+//                    }
+//                    return super.onKeyDown(keyCode, event);
                 }
         }
         return true;
@@ -72,7 +87,7 @@ public class MyListView extends ListView {
                 downEventCount = 0;
                 break;
         }
-        return (endTime - starTime) > 3000 || super.onKeyUp(keyCode, event);
+        return (endTime - starTime) > 500 || super.onKeyUp(keyCode, event);
     }
 
     @Override

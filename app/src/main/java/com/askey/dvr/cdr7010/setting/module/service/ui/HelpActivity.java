@@ -51,7 +51,6 @@ public class HelpActivity extends BaseActivity {
     public void onKeyShortPressed(int keyCode) {
         super.onKeyShortPressed(keyCode);
         switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
             case KeyEvent.KEYCODE_ENTER:
                 finish();
                 break;

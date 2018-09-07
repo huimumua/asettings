@@ -187,10 +187,10 @@ public class SecondBaseActivity extends AppCompatActivity {
         return true;
     }
 
-//    @Override
-//    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
-//        return true;
-//    }
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+        return true;
+    }
 
     protected void getPerPageData(List<HashMap<String, Object>> dataTotal, int lastPosition) {
         currentData.clear();
