@@ -52,8 +52,8 @@
     <string name="sdcard_picture_dir">静止画 : </string>
     <string name="sdcard_not_exist">SDカードがありません</string>
     <string name="sdcard_init_prompt">SDカードを初期化しますか？</string>
-    <string name="sdcard_init_cancel">X</string>
-    <string name="sdcard_init_ok">いいえ</string>
+    <string name="sdcard_init_cancel">いいえ</string>
+    <string name="sdcard_init_ok">はい</string>
     <string name="sdcard_init_ongoing">初期化中</string>
     <string name="sdcard_init_success">初期化しました</string>
     <string name="sdcard_init_fail">初期化に失敗しました</string>
