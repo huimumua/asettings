@@ -13,6 +13,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.WindowManager;
@@ -51,7 +52,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     private JVCMarqueeTextView marqueeTextView;
     private int screenWidth ,screenHeight;
     private  ContentResolver contentResolver;
-    private float yawAngle,pitchAngle;
+    private int yawAngle,pitchAngle;
     public static int backBitmapX,backBitmapY;
     private int spBubbleBitmapWidth,spBubbleBitmapHeight;
     private int count = 1;
@@ -163,6 +164,7 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         float zAngle = (float) Math.toDegrees(prefValues[1]);
         float yAngle = (float) Math.toDegrees(prefValues[2]);
 //        float yawAngle = (float) Math.toDegrees(mInclination);
+//        Log.d(TAG, "zAngle："+zAngle+", yAngle："+yAngle);
 
 
 //        Logg.i(TAG,"=onSensorChanged=yawAngle="+yawAngle+"==pitchAngle=="+pitchAngle);
@@ -207,6 +209,9 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
             spiritView.bubbleX = x;
             spiritView.bubbleY = y;
         }
+        yawAngle = (int)(yAngle+0.5f);
+        pitchAngle = (int)(zAngle+0.5f);
+        Log.d(TAG, "doUpdate: "+yawAngle+", "+pitchAngle);
 //                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
         //通知组件更新
         spiritView.postInvalidate();
