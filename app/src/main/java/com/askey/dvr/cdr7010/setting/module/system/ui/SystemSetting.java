@@ -122,7 +122,7 @@ public class SystemSetting extends SecondBaseActivity implements AdapterView.OnI
                 startActivity(new Intent(mContext, SdcardInformation.class));
             }
         } else if (clickItem.equals(getResources().getString(R.string.sdcard_setting_initialization))) {
-            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST) || sdCardStatus == Const.SDCARD_NOT_SUPPORT) {
+            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST) || sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE) {
                 Intent intent = new Intent(mContext, DialogActivity.class);
                 intent.putExtra("index_dialog", "sdcard_init");
                 startActivity(intent);

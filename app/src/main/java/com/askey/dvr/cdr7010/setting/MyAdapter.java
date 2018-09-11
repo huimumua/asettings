@@ -64,7 +64,7 @@ public class MyAdapter extends BaseAdapter {
             if (null != fileManager) {
                 sdCardStatus = fileManager.getSdcardStatus(context);
             }
-            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST) || sdCardStatus == Const.SDCARD_NOT_SUPPORT) {
+            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST) || sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE) {
                 holder.item.setTextColor(0xffffffff);
             } else {
                 holder.item.setTextColor(0xffa9a9a9);
