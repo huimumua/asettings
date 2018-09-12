@@ -191,7 +191,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         } else if (clickItem.equals(getString(R.string.main_menu_nsg))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_audio_guide);
         } else if (clickItem.equals(getString(R.string.main_menu_em))) {
-            iv_icon.setImageResource(R.drawable.img_menu_main_car_types);
+            iv_icon.setImageResource(R.drawable.img_menu_main_ercall);
         } else if (clickItem.equals(getString(R.string.main_menu_cs))) {
             iv_icon.setImageResource(R.drawable.img_menu_main_communication);
         } else if (clickItem.equals(getString(R.string.main_menu_all_query))) {
