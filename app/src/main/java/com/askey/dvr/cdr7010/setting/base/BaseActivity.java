@@ -165,11 +165,11 @@ public class BaseActivity extends AppCompatActivity  {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         event.startTracking();
         Log.d(TAG, "onKeyUp: ");
-        if (keydowmRepeatCount==0) {
+//        if (keydowmRepeatCount==0) {
             onKeyShortPressed(keyCode);
-        }else{
+//        }else{
             keydowmRepeatCount= 0;
-        }
+//        }
         return super.onKeyUp(keyCode, event);
 //        return true;
     }

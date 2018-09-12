@@ -305,8 +305,8 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     }
 
     @Override
-    public void onBackPressed() {
-        Logg.d(TAG,"onBackPressed....");
+    public void onKeyShortPressed(int keyCode) {
+        super.onKeyShortPressed(keyCode);
         try {
             if (null != askeySettingsAidlInterface) {
                 askeySettingsAidlInterface.sync();

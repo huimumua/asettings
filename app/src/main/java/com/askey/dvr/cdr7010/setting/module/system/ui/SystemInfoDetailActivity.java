@@ -302,10 +302,11 @@ public class SystemInfoDetailActivity extends BaseActivity {
                 finish();
                 break;
             case KeyEvent.KEYCODE_BACK:
-                if (mWebView.canGoBack()) {
+                if (null != mWebView && mWebView.canGoBack()) {
                     mWebView.goBack();
+                    return;
                 }
-
+                finish();
                 break;
         }
     }
