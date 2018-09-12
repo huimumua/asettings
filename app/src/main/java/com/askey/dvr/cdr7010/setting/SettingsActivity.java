@@ -289,7 +289,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
 
     @Override
     protected void onDestroy() {
-        Logg.d(TAG,"onDestroy....");
+        Logg.d(TAG, "onDestroy....");
         unregisterReceiver(sdCardReceiver);
         try {
             FileManager.getInstance().unBindFileManageService(this);
@@ -307,18 +307,19 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     @Override
     public void onKeyShortPressed(int keyCode) {
         super.onKeyShortPressed(keyCode);
-        try {
-            if (null != askeySettingsAidlInterface) {
-                askeySettingsAidlInterface.sync();
-            }
-            menuTransition(1);
-//            String packageName = "com.askey.dvr.cdr7010.dashcam";
-//            String className = "com.askey.dvr.cdr7010.dashcam.ui.MainActivity";
-//            AppUtil.startActivity(mContext, packageName, className, true);
-        } catch (RemoteException e) {
-            e.printStackTrace();
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                try {
+                    if (null != askeySettingsAidlInterface) {
+                        askeySettingsAidlInterface.sync();
+                    }
+                    menuTransition(1);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                super.onBackPressed();
+                break;
         }
-        super.onBackPressed();
     }
 
     public void menuTransition(int status) {

@@ -170,8 +170,8 @@ public class BaseActivity extends AppCompatActivity  {
 //        }else{
             keydowmRepeatCount= 0;
 //        }
-        return super.onKeyUp(keyCode, event);
-//        return true;
+//        return super.onKeyUp(keyCode, event);
+        return true;
     }
 
     public void onKeyShortPressed(int keyCode) {
