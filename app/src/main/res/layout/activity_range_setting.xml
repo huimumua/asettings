@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.askey.dvr.cdr7010.setting.module.driving.ui.RangeSettingActivity">
+    tools:context="com.askey.dvr.cdr7010.setting.module.system.ui.RangeSettingActivity">
 
     <SurfaceView
         android:id="@+id/preview"
