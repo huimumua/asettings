@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.askey.dvr.cdr7010.filemanagement.SdcardInfo;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Const;
 
@@ -70,7 +71,7 @@ public class MyAdapter extends BaseAdapter {
                 holder.item.setTextColor(0xffa9a9a9);
             }
         }
-        if (context.getString(R.string.sdcard_setting_information).equals(clickItem) || context.getString(R.string.main_menu_fp).equals(clickItem) || context.getString(R.string.tv_system_settings_system_update).equals(clickItem)) {
+        if (context.getString(R.string.sdcard_setting_information).equals(clickItem) || context.getString(R.string.tv_system_settings_system_update).equals(clickItem)) {
             Log.d("MyAdapter", "getView: ");
             if (null != fileManager) {
                 sdCardStatus = fileManager.getSdcardStatus(context);
@@ -79,6 +80,25 @@ public class MyAdapter extends BaseAdapter {
                 holder.item.setTextColor(0xffffffff);
             } else {
                 holder.item.setTextColor(0xffa9a9a9);
+            }
+        }
+        // TODO: 2018/9/14 此处还要在item点击事件处进行判断，可以设置tag进行判断 
+        if (context.getString(R.string.main_menu_fp).equals(clickItem)) {
+            if (null != fileManager) {
+                List<SdcardInfo> sdcardInfoList = fileManager.getSdcardInfo(context);
+                if (null != sdcardInfoList && sdcardInfoList.size()>0) {
+                    SdcardInfo sdcardInfo = sdcardInfoList.get(0);
+                    if (sdcardInfo.getNormal1CurrentSize().equals("0")&&sdcardInfo.getNormal2CurrentSize().equals("0")&&sdcardInfo.getPictureCurrentSize().equals("0")&&sdcardInfo.getEventCurrentSize().equals("0")) {
+                        Const.isCan2MediaPlayer = false;
+                        holder.item.setTextColor(0xffa9a9a9);
+                    } else {
+                        Const.isCan2MediaPlayer = true;
+                        holder.item.setTextColor(0xffffffff);
+                    }
+                } else {
+                    Const.isCan2MediaPlayer = false;
+                    holder.item.setTextColor(0xffa9a9a9);
+                }
             }
         }
         Log.d(TAG, "getView: " + sdCardStatus);

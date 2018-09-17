@@ -43,4 +43,9 @@ public class Const {
     public static final String BROADCAST_SDCARD_NOT_EXIST = "show_sdcard_not_exist";
     public static final String BROADCAST_SDCARD_MOUNTED = "show_sdcard_mounted";
     public static final String BROADCAST_SDCARD_NOT_SUPPORTED = "show_sdcard_not_supported";
+
+    /*
+        是否能够进入mediaPlayer的标志位
+     */
+    public static boolean isCan2MediaPlayer = true;
 }

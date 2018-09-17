@@ -81,6 +81,13 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         registerReceiver(sdCardReceiver, intentFilter);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //播放器把文件全部删除后会回到menu界面，此时录影item要变灰，具体逻辑写在adapter
+        mAdapter.notifyDataSetChanged();
+    }
+
     private void initView() {
         list_view = (MyListView) findViewById(R.id.list_view);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
@@ -154,7 +161,10 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             intent.putExtra("menu_item", secondMenuItem);
             startActivity(intent);
         } else if (clickItem.equals(getString(R.string.main_menu_fp))) {
-            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST)) {
+//            if (!(sdCardStatus == Const.SDCARD_NOT_SUPPORT || sdCardStatus == Const.SDCARD_UNRECOGNIZABLE || sdCardStatus == Const.SDCARD_NOT_EXIST)) {
+//                AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
+//            }
+            if (Const.isCan2MediaPlayer) {
                 AppUtil.runAppWithPackageName(mContext, Const.PLAY_BACK_PAKAGE);
             }
         } else if (clickItem.equals(getString(R.string.main_menu_dsfs))) {
