@@ -182,11 +182,11 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
         }
         //如果与Z轴的倾斜角已经大于MAX_ANGLE，气泡应到最左边
         else if (zAngle > MAX_ANGLE) {
-            x = 0;
+            x = screenWidth - spBubbleBitmapWidth*2;
         }
         //如果与Z轴的倾斜角已经小于负的Max_ANGLE,气泡应到最右边
         else {
-            x = screenWidth - spBubbleBitmapWidth;
+            x = 0;
         }
 
         //如果与Y轴的倾斜角还在最大角度之内
