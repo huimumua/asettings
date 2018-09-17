@@ -83,8 +83,8 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (Const.SET_WIZARD) {
-                Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
+                Intent intent = new Intent(mContext, VehicleTypeDetailActivity.class);
+//                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_vehicle_type");
                 startActivity(intent);
             }
             finish();
