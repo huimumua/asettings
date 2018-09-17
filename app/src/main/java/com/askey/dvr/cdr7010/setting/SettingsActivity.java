@@ -44,6 +44,8 @@ import com.askey.platform.AskeySettings;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SettingsActivity extends BaseActivity implements AdapterView.OnItemSelectedListener, AdapterView.OnItemClickListener {
     private final String TAG = "SettingsActivity";
@@ -67,6 +69,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     private IAskeySettingsAidlInterface askeySettingsAidlInterface;
 
     private SDcardReceiver sdCardReceiver;
+    private boolean mAllowBackToRecording;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,6 +82,15 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         intentFilter.addAction("action_sdcard_status");
         sdCardReceiver = new SDcardReceiver();
         registerReceiver(sdCardReceiver, intentFilter);
+
+        // [PUCDR-2209] Don't back to Record Screen to fast when just enter MENU
+        mAllowBackToRecording = false;
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                mAllowBackToRecording = true;
+            }
+        }, 600);
     }
 
     @Override
@@ -319,6 +331,10 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         super.onKeyShortPressed(keyCode);
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
+                // PUCDR-2209: wait for a while then can back to Recording
+                if (!mAllowBackToRecording) {
+                    return;
+                }
                 try {
                     if (null != askeySettingsAidlInterface) {
                         askeySettingsAidlInterface.sync();
