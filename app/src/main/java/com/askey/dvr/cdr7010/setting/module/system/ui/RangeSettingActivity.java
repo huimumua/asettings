@@ -25,6 +25,25 @@ import com.askey.platform.AskeySettings;
 public class RangeSettingActivity extends CameraBaseActivity {
 
     private static final String TAG = "RangeSettingActivity";
+    private static final int DEFAULT_SKYLINE = 360;
+    private static final int DEFAULT_BONNET_Y = 534;
+    private static final int DEFAULT_CENTER_X = 640;
+
+    /**
+     * Just for ADAS_X_SCALE / ADAS_Y_SCALE
+     */
+    private static final int ADAS_IMAGE_WIDTH = 1280;
+    private static final int ADAS_IMAGE_HEIGHT = 720;
+    private static final int LCD_WIDTH = 320;
+    private static final int LCD_HEIGHT = 240;
+
+    /** X/Y scale is Image Resolution divide by the LCD resolution
+     * ADAS Image Resolution = 1280x720
+     * LCD resolution = 320x240
+     */
+    private static final int ADAS_X_SCALE = ADAS_IMAGE_WIDTH / LCD_WIDTH;
+    private static final int ADAS_Y_SCALE = ADAS_IMAGE_HEIGHT / LCD_HEIGHT;
+
     private SurfaceView preview;
     private int previewHeight, previewWidth;
     private View line, line_center;
@@ -65,17 +84,17 @@ public class RangeSettingActivity extends CameraBaseActivity {
                 previewHeight = preview.getHeight();
                 Log.i("height", previewHeight + "");
                 //注意这里设置的是上外边距，设置下外边距貌似没用
-                fullLineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, 120);
+                fullLineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, DEFAULT_SKYLINE) / ADAS_Y_SCALE;
                 Log.d("full", fullLineCurrentMarginTop + "");
                 setLineMarginTop(fullLineCurrentMarginTop);
 
-                dottedLineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, 178);
+                dottedLineCurrentMarginTop = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, DEFAULT_BONNET_Y) / ADAS_Y_SCALE;
                 Log.d("dotted", dottedLineCurrentMarginTop + "");
             }
         });
 
 
-        lineCurrentMarginLeft = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, 160);
+        lineCurrentMarginLeft = Settings.Global.getInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, DEFAULT_CENTER_X) / ADAS_X_SCALE;
 
         notify_msg.setContentText(getString(R.string.driving_setting_range_horizon));
 
@@ -168,9 +187,9 @@ public class RangeSettingActivity extends CameraBaseActivity {
                     //车道中线标记线
                     case SETTING_CENTER:
 
-                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, fullLineCurrentMarginTop);
-                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, dottedLineCurrentMarginTop);
-                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, lineCurrentMarginLeft);
+                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_SKYLINE_RANGE, fullLineCurrentMarginTop * ADAS_Y_SCALE);
+                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_BONNETY, dottedLineCurrentMarginTop * ADAS_Y_SCALE);
+                        Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_CENTERX, lineCurrentMarginLeft * ADAS_X_SCALE);
 
 //                        int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
                         if (Const.SET_WIZARD) {
