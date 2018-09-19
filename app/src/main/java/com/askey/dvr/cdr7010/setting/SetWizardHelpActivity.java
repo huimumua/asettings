@@ -43,8 +43,9 @@ public class SetWizardHelpActivity extends BaseActivity {
         setWizardhelp = (TextView) this.findViewById(R.id.set_wizard_help_context);
         setRightView(false, true, false);
         contentResolver = getContentResolver();
-
         currentUi = getIntent().getStringExtra("set_wizard_help_index");
+        setBottomView(false, R.drawable.tag_menu_main_back);
+
         String indexStr = "";
         if (null == currentUi || currentUi.equals("")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_start_setting);
@@ -52,29 +53,27 @@ public class SetWizardHelpActivity extends BaseActivity {
             currentUi = "set_wizard_help_start_setting";
             if (Const.SET_WIZARD) {
                 setBottomView(true, R.drawable.tag_menu_main_back);
-            } else {
-                setBottomView(false, R.drawable.tag_menu_main_back);
             }
 
         } else if (currentUi.equals("set_wizard_help_context_leveler")) {
             indexStr = getResources().getString(R.string.leveler_detail_context1);
-            setBottomView(true, R.drawable.tag_menu_sub_skip);
+//            setBottomView(true, R.drawable.tag_menu_sub_skip);
             title = getResources().getString(R.string.leveler_detail_title);
         } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_vehicle_type);
-            setBottomView(true, R.drawable.tag_menu_sub_skip);
+//            setBottomView(true, R.drawable.tag_menu_sub_skip);
             title = getResources().getString(R.string.vehicle_type);
         } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_mounting_position);
-            setBottomView(true, R.drawable.tag_menu_sub_skip);
+//            setBottomView(true, R.drawable.tag_menu_sub_skip);
             title = getResources().getString(R.string.mounting_position);
         } else if (currentUi.equals("set_wizard_help_context_range")) {
             indexStr = getResources().getString(R.string.set_wizard_help_context_range);
-            setBottomView(true, R.drawable.tag_menu_sub_skip);
+//            setBottomView(true, R.drawable.tag_menu_sub_skip);
             title = getResources().getString(R.string.system_range_of);
         } else if (currentUi.equals("set_wizard_help_finish")) {
             indexStr = getResources().getString(R.string.set_wizard_help_finish);
-            setBottomView(false, 0);
+//            setBottomView(false, 0);
             setWizardhelp.setGravity(Gravity.CENTER);
         }
         setTitleView(title);
@@ -97,35 +96,36 @@ public class SetWizardHelpActivity extends BaseActivity {
             if (currentUi.equals("set_wizard_help_start_setting")) {
                 finishSetWizard();
                 return true;
-            } else if (currentUi.equals("set_wizard_help_context_leveler")) {
-                currentUi = "set_wizard_help_context_range";
-                String str = getResources().getString(R.string.set_wizard_help_context_range);
-                setWizardhelp.setText(str);
-                title = getResources().getString(R.string.system_range_of);
-                setTitleView(title);
-            } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
+            }
+//            else if (currentUi.equals("set_wizard_help_context_leveler")) {
 //                currentUi = "set_wizard_help_context_range";
-                currentUi = "set_wizard_help_context_mounting_position";
 //                String str = getResources().getString(R.string.set_wizard_help_context_range);
-                String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
-                setWizardhelp.setText(str);
+//                setWizardhelp.setText(str);
 //                title = getResources().getString(R.string.system_range_of);
-                title = getResources().getString(R.string.mounting_position);
-                setTitleView(title);
-            } else if (currentUi.equals("set_wizard_help_context_range")) {
+//                setTitleView(title);
+//            } else if (currentUi.equals("set_wizard_help_context_vehicle_type")) {
+////                currentUi = "set_wizard_help_context_range";
 //                currentUi = "set_wizard_help_context_mounting_position";
+////                String str = getResources().getString(R.string.set_wizard_help_context_range);
 //                String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
 //                setWizardhelp.setText(str);
+////                title = getResources().getString(R.string.system_range_of);
 //                title = getResources().getString(R.string.mounting_position);
 //                setTitleView(title);
-                finishSetWizard();
-            } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
-                currentUi = "set_wizard_help_context_leveler";
-                String str = getResources().getString(R.string.leveler_detail_context1);
-                setWizardhelp.setText(str);
-                title = getResources().getString(R.string.leveler_detail_title);
-                setTitleView(title);
-            }
+//            } else if (currentUi.equals("set_wizard_help_context_range")) {
+////                currentUi = "set_wizard_help_context_mounting_position";
+////                String str = getResources().getString(R.string.set_wizard_help_context_mounting_position);
+////                setWizardhelp.setText(str);
+////                title = getResources().getString(R.string.mounting_position);
+////                setTitleView(title);
+//                finishSetWizard();
+//            } else if (currentUi.equals("set_wizard_help_context_mounting_position")) {
+//                currentUi = "set_wizard_help_context_leveler";
+//                String str = getResources().getString(R.string.leveler_detail_context1);
+//                setWizardhelp.setText(str);
+//                title = getResources().getString(R.string.leveler_detail_title);
+//                setTitleView(title);
+//            }
             return true;
         } else if (keyCode == KeyEvent.KEYCODE_ENTER) {
             if (currentUi.equals("set_wizard_help_start_setting")) {

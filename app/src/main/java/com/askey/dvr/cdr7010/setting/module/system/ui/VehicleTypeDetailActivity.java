@@ -6,9 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.SetWizardHelpActivity;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
-import com.askey.dvr.cdr7010.setting.util.Const;
 
 /**
  * 项目名称：settings
@@ -31,7 +29,7 @@ public class VehicleTypeDetailActivity extends BaseActivity {
         String title = getResources().getString(R.string.vehicle_type);
         setTitleView(title);
         setRightView(false, true, false);
-        setBottomView(R.drawable.tag_menu_sub_skip);
+        setBottomView(false,R.drawable.tag_menu_sub_skip);
 
     }
 
@@ -44,14 +42,15 @@ public class VehicleTypeDetailActivity extends BaseActivity {
             startActivity(intent);
             finish();
             return true;
-        } else if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (Const.SET_WIZARD) {
-                Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
-                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
-                startActivity(intent);
-                finish();
-            }
         }
+//        else if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (Const.SET_WIZARD) {
+//                Intent intent = new Intent(mContext, SetWizardHelpActivity.class);
+//                intent.putExtra("set_wizard_help_index", "set_wizard_help_context_mounting_position");
+//                startActivity(intent);
+//                finish();
+//            }
+//        }
         return super.onKeyUp(keyCode, event);
     }
 
