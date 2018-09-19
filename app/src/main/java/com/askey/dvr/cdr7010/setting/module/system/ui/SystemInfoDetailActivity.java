@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.CellInfo;
 import android.telephony.CellInfoGsm;
@@ -37,6 +38,7 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
 import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.platform.AskeySettings;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -57,6 +59,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
     private RelativeLayout systemVersion;
     private TelephonyManager mPhoneManager;
     private Timer timer;
+    private ContentResolver contentResolver;
     private static final String DEFAULT_LICENSE_PATH = "/system/etc/NOTICE.html.gz";
     private static final String PROPERTY_LICENSE_PATH = "ro.config.license_path";
 
@@ -65,6 +68,7 @@ public class SystemInfoDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_info_detail);
         mPhoneManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+        contentResolver = getContentResolver();
         type = getIntent().getStringExtra("info_type");
         timer = new Timer();
         initView();
@@ -119,7 +123,8 @@ public class SystemInfoDetailActivity extends BaseActivity {
 //            mPhoneManager.listen(phoneStateListener, PhoneStateListener.LISTEN_SIGNAL_STRENGTHS);
             phone_number.setText(getPhoneNumber(mPhoneManager));
             net.setText(getNet(mPhoneManager));
-            imei.setText(getImei(mPhoneManager));
+//            imei.setText(getImei(mPhoneManager));
+            imei.setText(Settings.Global.getString(contentResolver, AskeySettings.Global.DEVICE_IMEI));
             network_type.setText(getNetworkType(mPhoneManager));
             network_status.setText(getNetworkStatus(this));
             service_status.setText(getDataState(mPhoneManager));
