@@ -82,6 +82,10 @@ public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTas
         showDialog(this, getResources().getString(R.string.sure_to_restore_factory_Settings), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
+                if (!Const.isBatteryConnected) {
+                    finish();
+                    return;
+                }
                 new Thread(new Runnable() {
                     @Override
                     public void run() {

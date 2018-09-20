@@ -48,4 +48,6 @@ public class Const {
         是否能够进入mediaPlayer的标志位
      */
     public static boolean isCan2MediaPlayer = true;
+
+    public static boolean isBatteryConnected = true;
 }

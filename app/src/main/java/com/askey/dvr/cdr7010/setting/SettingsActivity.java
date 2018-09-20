@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -82,6 +83,11 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
         intentFilter.addAction("action_sdcard_status");
         sdCardReceiver = new SDcardReceiver();
         registerReceiver(sdCardReceiver, intentFilter);
+
+        IntentFilter batteryIntentFilter = new IntentFilter();
+        batteryIntentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        batteryIntentFilter.setPriority(1000);
+        registerReceiver(mBatteryStateReceiver, batteryIntentFilter);
 
         // [PUCDR-2209] Don't back to Record Screen to fast when just enter MENU
         mAllowBackToRecording = false;
@@ -313,6 +319,7 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
     protected void onDestroy() {
         Logg.d(TAG, "onDestroy....");
         unregisterReceiver(sdCardReceiver);
+        unregisterReceiver(mBatteryStateReceiver);
         try {
             FileManager.getInstance().unBindFileManageService(this);
         } catch (Exception e) {
@@ -382,4 +389,24 @@ public class SettingsActivity extends BaseActivity implements AdapterView.OnItem
             }
         }
     }
+
+    private BroadcastReceiver mBatteryStateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (Intent.ACTION_BATTERY_CHANGED.equals(intent.getAction())) {
+                int status = intent.getIntExtra("status", 0);
+                switch (status) {
+                    case BatteryManager.BATTERY_STATUS_CHARGING:
+                    case BatteryManager.BATTERY_STATUS_FULL:
+                        Logg.d(TAG, "battery status is charging");
+                        Const.isBatteryConnected = true;
+                        break;
+                    case BatteryManager.BATTERY_STATUS_DISCHARGING:
+                        Logg.d(TAG, "battery status is discharging");
+                        Const.isBatteryConnected = false;
+                        break;
+                }
+            }
+        }
+    };
 }
