@@ -32,7 +32,8 @@ public class InstallationToolSetting extends SecondBaseActivity implements Adapt
         menuInfo = getIntent().getStringArrayExtra("menu_item");
         initView(getResources().getString(R.string.tv_system_settings_installation_tool),R.drawable.icon_submenu_setting,menuInfo,R.layout.second_menu_layout);
         list_view.setOnItemClickListener(this);
-
+        jvcRelativeLayout.setMarquee_visible(true);
+        jvcRelativeLayout.setMarquee_text(getString(R.string.system_setting_install_leveler));
     }
 
     @Override

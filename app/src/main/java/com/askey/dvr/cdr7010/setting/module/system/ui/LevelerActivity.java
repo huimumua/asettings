@@ -24,7 +24,6 @@ import com.askey.dvr.cdr7010.setting.base.CameraBaseActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.Logg;
-import com.askey.dvr.cdr7010.setting.widget.JVCMarqueeTextView;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -49,7 +48,6 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
 //    private int MAX_ANGLE = 90;
     //定义Sensor管理器
     private SensorManager sensorManager;
-    private JVCMarqueeTextView marqueeTextView;
     private int screenWidth ,screenHeight;
     private  ContentResolver contentResolver;
     private int yawAngle,pitchAngle;
@@ -64,8 +62,6 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
 
         String title = getResources().getString(R.string.installation_tool_leveler);
         setTitleView(title);
-        marqueeTextView = (JVCMarqueeTextView) findViewById(R.id.marquee_text);
-        marqueeTextView.setContentText(getString(R.string.system_setting_install_leveler));
 
         //获取水平仪的主组件
         spiritView = (SpiritView) findViewById(R.id.show);

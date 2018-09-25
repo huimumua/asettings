@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
 
     <SurfaceView
@@ -11,10 +11,10 @@
         android:layout_height="match_parent" />
 
     <com.askey.dvr.cdr7010.setting.module.system.ui.leveler.SpiritView
+        android:id="@+id/show"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_00ffffff"
-        android:id="@+id/show"/>
+        android:background="@color/color_00ffffff" />
 
     <include
         android:id="@+id/leveler_detail_title"
@@ -31,22 +31,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        />
-
-    <com.askey.dvr.cdr7010.setting.widget.JVCMarqueeTextView
-        android:id="@+id/marquee_text"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:textSize="12sp"
-        android:layout_alignParentBottom="true"
-        android:textColor="@android:color/holo_blue_light"
-        android:background="@drawable/bg_menu_main_description"
-        android:paddingTop="5dp"
-        app:scroll_first_delay="2000"
-        app:scroll_mode="mode_forever"
-        app:scroll_interval="8000"
-        />
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
