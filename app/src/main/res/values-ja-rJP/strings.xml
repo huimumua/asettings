@@ -126,7 +126,7 @@
     <string name="main_menu_us">ユーザー選択</string>
     <string name="set_wizard_help_context_start_setting">セットアップを開始しますか？</string>
     <string name="set_wizard_help_context_vehicle_type">運転支援機能の精度を上げるために設定します。\n本機を取り付ける車のナンバーと形状から、最も近い車両タイプを選択してください。</string>
-    <string name="set_wizard_help_context_mounting_position">走行車線を正しく検出するために設定します。\n中央から15㎝以内に設置したときは中央、中央から15㎝より右側に設置したときは右、中央から15㎝より左側に設置したときは左を選択してください</string>
+    <string name="set_wizard_help_context_mounting_position">走行車線を正しく検出するために設定します。\n中央から15㎝以内に設置したときは中央、中央から15㎝より右側に設置したときは右、中央から15㎝より左側に設置したときは左を選択してください。</string>
     <string name="set_wizard_help_context_range">運転支援機能の検出範囲を設定します。\n走行車線を正しく検出するために必要な設定です。\n地平線の位置、車体の先端部（ボンネットなど）、走行車線の中心にガイド線を移動して設定します。</string>
     <string name="set_wizard_help_finish">セットアップが完了しました</string>
 
@@ -137,20 +137,20 @@
     <string name="sure">OK</string>
 
     <!--底部滚动条提示内容-->
-    <string name="driving_setting_marqueeText_front">ONに設定すると、自車と前走車との距離が近くなった時にお知らせします</string>
-    <string name="driving_setting_marqueeText_lane">ONに設定すると、自車が走行車線をはみ出した時にお知らせします</string>
-    <string name="driving_setting_marqueeText_departure">ONに設定すると、自車が停車中に前走車との距離が遠くなった時にお知らせします</string>
+    <string name="driving_setting_marqueeText_front">ONに設定すると、自車と前走車との距離が近くなった時にお知らせします。</string>
+    <string name="driving_setting_marqueeText_lane">ONに設定すると、自車が走行車線をはみ出した時にお知らせします。</string>
+    <string name="driving_setting_marqueeText_departure">ONに設定すると、自車が停車中に前走車との距離が遠くなった時にお知らせします。</string>
     <string name="driving_setting_marqueeText_vehicle">運転支援機能の精度を上げるために設定します。ご使用の車のナンバーと形状から、最も近い車両タイプを選択します。</string>
-    <string name="driving_setting_marqueeText_install">走行車線を正しく検出するために設定します。本機を取り付けた水平方向の位置を選択します</string>
+    <string name="driving_setting_marqueeText_install">走行車線を正しく検出するために設定します。本機を取り付けた水平方向の位置を選択します。</string>
     <string name="driving_setting_marqueeText_pedestrain">ONに設定すると、歩行者が近づいた時にお知らせします</string>
 
-    <string name="user_marqueeText">運転された方ごとに運転レポートを作成するために、車を運転される方を選びます</string>
-    <string name="movie_record_marqueeText_audio">OFFに設定すると、内蔵マイクによる音声の記録を停止します</string>
-    <string name="movie_record_marqueeText_impact">イベント記録を開始するための衝撃センサー感度を設定します</string>
+    <string name="user_marqueeText">運転された方ごとに運転レポートを作成するために、車を運転される方を選びます。</string>
+    <string name="movie_record_marqueeText_audio">OFFに設定すると、内蔵マイクによる音声の記録を停止します。</string>
+    <string name="movie_record_marqueeText_impact">イベント記録を開始するための衝撃センサー感度を設定します。</string>
     <string name="movie_record_marqueeText_information">OFFに設定すると、日時や位置情報などの字幕記録を停止します。</string>
-    <string name="Vehicle_marqueeText">運転支援機能の精度を上げるために設定します。ご使用の車のナンバーと形状から、最も近い車両タイプを選択します</string>
-    <string name="system_setting_monitor_time">モニター画面が節電に移行する時間を設定します</string>
-    <string name="system_setting_monitor_operation">モニター画面の節電動作を設定します。節電を行わないときは常時点灯に設定します</string>
+    <string name="Vehicle_marqueeText">運転支援機能の精度を上げるために設定します。ご使用の車のナンバーと形状から、最も近い車両タイプを選択します。</string>
+    <string name="system_setting_monitor_time">モニター画面が節電に移行する時間を設定します。</string>
+    <string name="system_setting_monitor_operation">モニター画面の節電動作を設定します。節電を行わないときは常時点灯に設定します。</string>
     <string name="system_setting_install_leveler">本機を設置するときに便利なツールです</string>
     <string name="communication_emergency_notify">OFFに設定すると、衝撃を検知したときでもコールセンターに自動通報しません。</string>
 
