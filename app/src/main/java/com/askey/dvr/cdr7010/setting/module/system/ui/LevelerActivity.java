@@ -205,10 +205,10 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
             spiritView.bubbleX = x;
             spiritView.bubbleY = y;
         }
-        yawAngle = (int)(yAngle+0.5f);
-        pitchAngle = (int)(zAngle+0.5f);
+        pitchAngle = (int)(yAngle+0.5f);
+        yawAngle = (int)(zAngle+0.5f);
         Log.d(TAG, "doUpdate: "+yawAngle+", "+pitchAngle);
-//                Logg.i(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
+        Logg.d(TAG,"onDraw==bubbleX="+x +"====bubbleY===="+y);
         //通知组件更新
         spiritView.postInvalidate();
 //                spiritView.invalidate();
