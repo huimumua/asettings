@@ -60,12 +60,8 @@ public class VehicleTypeSetting extends SecondBaseActivity implements AdapterVie
             Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 2);
         } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_rv))) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 3);
-        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_large_sedan))) {
+        }  else if (clickItem.equals(getResources().getString(R.string.vehicle_type_others))) {
             Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 4);
-        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_suv))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 5);
-        } else if (clickItem.equals(getResources().getString(R.string.vehicle_type_others))) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.CAR_TYPE, 6);
         }
 
         ContentResolver contentResolver = getContentResolver();

@@ -49,12 +49,10 @@
     </string-array>
 
     <string-array name="vehicle_type">
-        <item>軽自動車セダン</item>
-        <item>軽自動車ワンボックス</item>
-        <item>5、7ナンバーセダン</item>
-        <item>5、7ナンバーワゴン/RV/ワンボックス</item>
-        <item>3ナンバーセダン</item>
-        <item>3ナンバーワゴン/RV/ワンボックス</item>
+        <item>軽自動車</item>
+        <item>軽自動車(ハイルーフ)</item>
+        <item>乗用車</item>
+        <item>乗用車（ハイルーフ）</item>
         <item>その他</item>
     </string-array>
 

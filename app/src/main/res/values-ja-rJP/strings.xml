@@ -72,12 +72,10 @@
     <string name="tv_monitor_operation_dim">暗くする</string>
 
     <string name="vehicle_type">車両タイプ</string>
-    <string name="vehicle_type_mini_sedan">軽自動車セダン</string>
-    <string name="vehicle_type_minivan">軽自動車ワンボックス</string>
-    <string name="vehicle_type_medium_sedan">5、7ナンバーセダン</string>
-    <string name="vehicle_type_rv">5、7ナンバーワゴン/RV/ワンボックス</string>
-    <string name="vehicle_type_large_sedan">3ナンバーセダン</string>
-    <string name="vehicle_type_suv">3ナンバーワゴン/RV/ワンボックス</string>
+    <string name="vehicle_type_mini_sedan">軽自動車</string>
+    <string name="vehicle_type_minivan">軽自動車(ハイルーフ)</string>
+    <string name="vehicle_type_medium_sedan">乗用車</string>
+    <string name="vehicle_type_rv">乗用車（ハイルーフ）</string>
     <string name="vehicle_type_others">その他</string>
 
     <string name="sys_phone_number">電話番号</string>
