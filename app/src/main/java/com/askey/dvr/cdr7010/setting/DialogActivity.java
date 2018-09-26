@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.KeyEvent;
 
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.dvr.cdr7010.setting.module.system.controller.SdcardFormatAsyncTask;
 import com.askey.dvr.cdr7010.setting.util.Const;
 import com.askey.dvr.cdr7010.setting.util.FileUtils;
@@ -28,7 +28,7 @@ import com.askey.platform.storage.AskeyStorageManager;
  * 修改时间：2018/7/2 11:09
  * 修改备注：
  */
-public class DialogActivity extends BaseActivity implements SdcardFormatAsyncTask.PartitionCallback {
+public class DialogActivity extends BaseKeyAudioActivity implements SdcardFormatAsyncTask.PartitionCallback {
     private static final String TAG = "DialogActivity";
     private SdcardFormatAsyncTask sdcardFormatAsyncTask;
     private CommDialog commDialog;

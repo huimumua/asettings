@@ -10,7 +10,7 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.application.SettingApplication;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.LevelerActivity;
 import com.askey.dvr.cdr7010.setting.module.system.ui.MountingPositionSetting;
 import com.askey.dvr.cdr7010.setting.module.system.ui.RangeSettingActivity;
@@ -28,7 +28,7 @@ import com.askey.platform.AskeySettings;
  * 修改时间：2018/5/9 18:41
  * 修改备注：
  */
-public class SetWizardHelpActivity extends BaseActivity {
+public class SetWizardHelpActivity extends BaseKeyAudioActivity {
     private static final String TAG = "SetWizardHelpActivity";
     private String currentUi = "set_wizard_help_start_setting";
     private TextView setWizardhelp;

@@ -8,7 +8,7 @@ import android.view.KeyEvent;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 import com.askey.platform.AskeySettings;
 
@@ -21,7 +21,7 @@ import com.askey.platform.AskeySettings;
  * 修改时间：2018/4/28 13:50
  * 修改备注：
  */
-public class HelpActivity extends BaseActivity {
+public class HelpActivity extends BaseKeyAudioActivity {
     private TextView name, number;
     private ContentResolver contentResolver;
 

@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.RemoteException;
 import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -76,6 +77,20 @@ public class NotificationSoundSetting extends BaseActivity {
 //                Settings.Global.putInt(contentResolver, AskeySettings.Global.SYSSET_NOTIFY_VOL, currentVolume);
                 refreshView();
                 testSound();
+                break;
+            case KeyEvent.KEYCODE_ENTER:
+                try {
+                    ttsServer.startTtsMenuItemClick();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case KeyEvent.KEYCODE_BACK:
+                try {
+                    ttsServer.startTtsMenuItemBack();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
                 break;
         }
         return super.onKeyDown(keyCode, event);

@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 
 /**
  * 项目名称：settings
@@ -17,7 +17,7 @@ import com.askey.dvr.cdr7010.setting.base.BaseActivity;
  * 修改时间：2018/4/25 10:33
  * 修改备注：
  */
-public class VehicleTypeDetailActivity extends BaseActivity {
+public class VehicleTypeDetailActivity extends BaseKeyAudioActivity {
     private static final String TAG = "VehicleTypeDetailActivity";
 
     @Override

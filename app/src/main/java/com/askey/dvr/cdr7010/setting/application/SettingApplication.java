@@ -2,14 +2,17 @@ package com.askey.dvr.cdr7010.setting.application;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 
+import com.askey.dvr.cdr7010.setting.controller.TtsServer;
 import com.askey.dvr.cdr7010.setting.util.Logg;
-//import com.squareup.leakcanary.LeakCanary;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
+//import com.squareup.leakcanary.LeakCanary;
 
 /**
  * 项目名称：settings
@@ -23,6 +26,8 @@ import java.util.List;
 public class SettingApplication extends Application {
 
     private final static String TAG = "SettingApplication";
+    private static Context context;
+    private TtsServer ttsServer;
     /**
      * 维护Activity 的list
      */
@@ -32,6 +37,9 @@ public class SettingApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        context = this;
+        ttsServer = TtsServer.getInstance();
+        ttsServer.bindTtsService();
         registerActivityListener();
 //        setupLeakCanary();
     }
@@ -43,6 +51,9 @@ public class SettingApplication extends Application {
 //        LeakCanary.install(this);
 //    }
 
+    public static Context getAppContext(){
+        return context;
+    }
     /**
      * @param activity 作用说明 ：添加一个activity到管理里
      */

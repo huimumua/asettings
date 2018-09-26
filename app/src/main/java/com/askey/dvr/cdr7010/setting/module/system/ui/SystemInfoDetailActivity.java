@@ -37,7 +37,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.platform.AskeySettings;
 
 import java.io.IOException;
@@ -48,7 +48,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.zip.GZIPInputStream;
 
-public class SystemInfoDetailActivity extends BaseActivity {
+public class SystemInfoDetailActivity extends BaseKeyAudioActivity {
     private static final String TAG = "SystemInfoDetailActivity";
     private String type;
     private ScrollView scrollView;

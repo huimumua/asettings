@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.dvr.cdr7010.setting.module.system.adapter.HorizontalListViewAdapter;
 import com.askey.dvr.cdr7010.setting.module.system.bean.GpsSvInfo;
 import com.askey.dvr.cdr7010.setting.module.system.controller.GPSStatusManager;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * 修改时间：2018/4/24 15:39
  * 修改备注：
  */
-public class SatelliteReceptionStatus extends BaseActivity implements GPSStatusManager.GpsStatusChangedCallback{
+public class SatelliteReceptionStatus extends BaseKeyAudioActivity implements GPSStatusManager.GpsStatusChangedCallback{
     private static final String TAG = "SatelliteReceptionStatus";
     private ArrayList<GpsSvInfo> gpsStatusList;
     private HorizontalListView hListView;

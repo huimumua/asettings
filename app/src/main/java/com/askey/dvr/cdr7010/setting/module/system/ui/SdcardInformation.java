@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.filemanagement.SdcardInfo;
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.dvr.cdr7010.setting.controller.FileManager;
 import com.askey.dvr.cdr7010.setting.util.Logg;
 
@@ -29,7 +29,7 @@ import java.util.List;
  * 修改时间：2018/4/17 15:50
  * 修改备注：
  */
-public class SdcardInformation extends BaseActivity {
+public class SdcardInformation extends BaseKeyAudioActivity {
     private static final String TAG = "SdcardInformation";
     private TextView normal, event, picture;
     private String backslash = "/";

@@ -273,8 +273,8 @@ public class LevelerActivity extends CameraBaseActivity implements SensorEventLi
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_ENTER) {
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_YAW_ANGLE, (int) yawAngle);
-            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_PITCH_ANGLE, (int) pitchAngle);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_YAW_ANGLE, yawAngle);
+            Settings.Global.putInt(contentResolver, AskeySettings.Global.ADAS_PITCH_ANGLE, pitchAngle);
 //            int car_type = Settings.Global.getInt(contentResolver, AskeySettings.Global.SETUP_WIZARD_AVAILABLE, 1);
             if (Const.SET_WIZARD) {
                 Intent intent = new Intent(mContext,SetWizardHelpActivity.class);

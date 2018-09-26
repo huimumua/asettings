@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
-import com.askey.dvr.cdr7010.setting.base.BaseActivity;
+import com.askey.dvr.cdr7010.setting.base.BaseKeyAudioActivity;
 import com.askey.platform.AskeySettings;
 
 /**
@@ -26,7 +26,7 @@ import com.askey.platform.AskeySettings;
  * 修改时间：2018/4/8 13:39
  * 修改备注：
  */
-public class LCDBrightnessSetting extends BaseActivity {
+public class LCDBrightnessSetting extends BaseKeyAudioActivity {
     private int currentBrightness = 0;
     private int oldBrightness = 0;
     private ImageView brightness0, brightness1, brightness2, brightness3, brightness4, brightness5,

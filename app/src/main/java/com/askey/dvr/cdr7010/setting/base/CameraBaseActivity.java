@@ -17,7 +17,7 @@ import com.askey.dvr.cdr7010.setting.R;
  * 修改时间：2018/6/5 17:35
  * 修改备注：
  */
-public class CameraBaseActivity extends BaseActivity implements SurfaceHolder.Callback{
+public class CameraBaseActivity extends BaseKeyAudioActivity implements SurfaceHolder.Callback{
     private final  String  TAG = "CameraBaseActivity";
     private Camera camera;
     private SurfaceHolder surfaceHolder;

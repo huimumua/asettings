@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.askey.dvr.cdr7010.setting.R;
+import com.askey.dvr.cdr7010.setting.controller.TtsServer;
 
 /**
  * 项目名称：settings
@@ -25,11 +26,11 @@ import com.askey.dvr.cdr7010.setting.R;
 public class BaseActivity extends AppCompatActivity  {
     private final  String  TAG = "BaseActivity";
     protected static Context mContext;
-
+    protected TtsServer ttsServer;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ttsServer = TtsServer.getInstance();
         mContext = this;
 
     }
